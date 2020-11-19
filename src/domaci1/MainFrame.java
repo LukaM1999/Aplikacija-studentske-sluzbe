@@ -1,9 +1,14 @@
 package domaci1;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+
+import domaci1.MyMenuBar;
+
 
 
 public class MainFrame extends JFrame {
@@ -31,7 +36,14 @@ public class MainFrame extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
+		
+		panel.setBackground(Color.WHITE);
 		this.add(panel);
+		
+		JMenuBar menuBar = new MyMenuBar();
+		
+		setJMenuBar(menuBar);
+		menuBar.setBackground(Color.WHITE);
 	}
 }
 
