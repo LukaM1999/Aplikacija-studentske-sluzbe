@@ -4,13 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
-
-import domaci1.MyMenuBar;
-import domaci1.Toolbar;
-
 
 
 public class MainFrame extends JFrame {
@@ -49,6 +46,7 @@ public class MainFrame extends JFrame {
 		
 		Toolbar toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
+		
 	}
 }
 
