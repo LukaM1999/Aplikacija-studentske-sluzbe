@@ -28,7 +28,7 @@ public class MainFrame extends JFrame {
 		int sirina =screenWidth * 3/4;
 		int duzina =screenHeight * 3/4;
 		setSize(sirina, duzina);
-		
+
 		setTitle("Studentska služba");
 		setLocationRelativeTo(null);
 
@@ -47,6 +47,9 @@ public class MainFrame extends JFrame {
 		Toolbar toolbar = new Toolbar();
 		add(toolbar, BorderLayout.NORTH);
 		
+		MyStatusBar statusBar = new MyStatusBar();
+		add(statusBar.getStatusBar(),BorderLayout.SOUTH);
+		statusBar.createStatusBar();
 	}
 }
 
