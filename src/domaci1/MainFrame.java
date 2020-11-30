@@ -6,8 +6,10 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 
 public class MainFrame extends JFrame {
@@ -39,6 +41,9 @@ public class MainFrame extends JFrame {
 		panel.setBackground(Color.WHITE);
 		this.add(panel);
 		
+		JLabel tabele = new JLabel("//TODO", SwingConstants.CENTER);
+		panel.add(tabele);
+		
 		JMenuBar menuBar = new MyMenuBar();
 		
 		setJMenuBar(menuBar);
@@ -50,6 +55,7 @@ public class MainFrame extends JFrame {
 		MyStatusBar statusBar = new MyStatusBar();
 		add(statusBar.getStatusBar(),BorderLayout.SOUTH);
 		statusBar.createStatusBar();
+		
 	}
 }
 

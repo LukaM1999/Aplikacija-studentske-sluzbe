@@ -21,21 +21,23 @@ public class Toolbar extends JToolBar {
 	public Toolbar() {
 		
 		super(SwingConstants.HORIZONTAL);
-				
-		JButton btnNew = new JButton();
+		
+		NewAction na = new NewAction();
+		JButton btnNew = new JButton(na);
 		btnNew.setToolTipText("Kreiranje entiteta");
 		btnNew.setIcon(new ImageIcon("images/File_new.png"));
 		btnNew.setBackground(Color.WHITE);
 		add(btnNew);
 
-		
-		JButton btnEdit = new JButton();
+		EditAction ea = new EditAction();
+		JButton btnEdit = new JButton(ea);
 		btnEdit.setToolTipText("Izmena entiteta");
 		btnEdit.setIcon(new ImageIcon("images/Edit_edit.png"));
 		btnEdit.setBackground(Color.WHITE);
 		add(btnEdit);
 
-		JButton btnDelete = new JButton();
+		DeleteAction da = new DeleteAction();
+		JButton btnDelete = new JButton(da);
 		btnDelete.setToolTipText("Brisanje entiteta");
 		btnDelete.setIcon(new ImageIcon("images/Edit_delete.png"));
 		btnDelete.setBackground(Color.WHITE);
