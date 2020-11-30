@@ -25,26 +25,32 @@ public class MyMenuBar extends JMenuBar {
 		Edit_m.setMnemonic(KeyEvent.VK_E);
 		JMenu Help_m = new JMenu("Help");
 		Help_m.setMnemonic(KeyEvent.VK_H);
+		
 
 		
 		JMenuItem New_mi = new JMenuItem("New", new ImageIcon("images/File_new.png"));
 		New_mi.setBackground(Color.WHITE);
 		New_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		
 		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images/File_close.png"));
 		Close_mi.setBackground(Color.WHITE);
 		Close_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		
 		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images/Edit_edit.png"));
 		Edit_mi.setBackground(Color.WHITE);
 		Edit_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		
 		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images/Edit_delete.png"));
 		Delete_mi.setBackground(Color.WHITE);
 		Delete_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		JMenuItem Help_mi = new JMenuItem("Help", new ImageIcon("images/Help_help.png"));
+		
+		HelpDialogAction hda = new HelpDialogAction();
+		JMenuItem Help_mi = new JMenuItem(hda);
 		Help_mi.setBackground(Color.WHITE);
-		Help_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, ActionEvent.CTRL_MASK));
-		JMenuItem About_mi = new JMenuItem("About", new ImageIcon("images/Help_about.png"));
+		
+		AboutDialogAction ada = new AboutDialogAction();
+		JMenuItem About_mi = new JMenuItem(ada);
 		About_mi.setBackground(Color.WHITE);
-		About_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
 
 		File_m.add(New_mi);
 		File_m.addSeparator();
