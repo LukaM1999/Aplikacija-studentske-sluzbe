@@ -1,10 +1,13 @@
 package domaci1;
 
 import java.awt.Color;
-import java.awt.event.KeyEvent;
+import java.awt.Dimension;
 
+import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
@@ -23,7 +26,6 @@ public class Toolbar extends JToolBar {
 		btnNew.setToolTipText("Kreiranje entiteta");
 		btnNew.setIcon(new ImageIcon("images/File_new.png"));
 		btnNew.setBackground(Color.WHITE);
-		//btnNew.setMnemonic(KeyEvent.VK_N);
 		add(btnNew);
 
 		
@@ -38,7 +40,15 @@ public class Toolbar extends JToolBar {
 		btnDelete.setIcon(new ImageIcon("images/Edit_delete.png"));
 		btnDelete.setBackground(Color.WHITE);
 		add(btnDelete);
-
+		
+		
+		add(Box.createHorizontalGlue());
+		
+		JTextField textfield = new JTextField(12);
+		textfield.setMaximumSize(new Dimension (450,25));
+		textfield.setBorder(BorderFactory.createBevelBorder(1));
+		add(textfield);
+		
 		JButton btnSearch = new JButton();
 		btnSearch.setToolTipText("Pretraga entiteta");
 		btnSearch.setIcon(new ImageIcon("images/Search.png"));
