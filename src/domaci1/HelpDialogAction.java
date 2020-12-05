@@ -7,6 +7,7 @@ import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
 import javax.swing.KeyStroke;
 
+//Uz pomoc materijala sa vezbi
 public class HelpDialogAction extends AbstractAction {
 
 	/**

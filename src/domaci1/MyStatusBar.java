@@ -38,7 +38,7 @@ public class MyStatusBar {
 
 	SimpleDateFormat timeFormat = new SimpleDateFormat("hh:mm dd.MM.yyyy.");
 	
-//	REFFERENCE: https://stackoverflow.com/questions/2959718/dynamic-clock-in-java
+//	REFERENCE: https://stackoverflow.com/questions/2959718/dynamic-clock-in-java
 	
 	JLabel DateAndTime = new JLabel();
 	ActionListener updateClockAction = new ActionListener() {

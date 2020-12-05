@@ -10,6 +10,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 
+
+//Koriscen materijal sa vezbi
 public class MyMenuBar extends JMenuBar {
 
 	/**
