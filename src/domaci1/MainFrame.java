@@ -1,3 +1,4 @@
+
 package domaci1;
 
 import java.awt.BorderLayout;
@@ -11,7 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-
+//Koriscen materijal sa vezbi
 public class MainFrame extends JFrame {
 
 	
