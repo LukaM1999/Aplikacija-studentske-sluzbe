@@ -1,15 +1,15 @@
-package domaci1;
+package controller;
 
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-public class EditAction extends AbstractAction {
+public class NewAction extends AbstractAction {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8607052962546472068L;
+	private static final long serialVersionUID = 5890111219779301848L;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {

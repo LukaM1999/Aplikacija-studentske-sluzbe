@@ -1,5 +1,5 @@
 
-package domaci1;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -32,7 +32,7 @@ public class MainFrame extends JFrame {
 		int duzina =screenHeight * 3/4;
 		setSize(sirina, duzina);
 
-		setTitle("Studentska sluûba");
+		setTitle("Studentska slu≈æba");
 		setLocationRelativeTo(null);
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

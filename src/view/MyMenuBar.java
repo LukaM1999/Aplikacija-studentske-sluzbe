@@ -1,10 +1,13 @@
-package domaci1;
+package view;
 
 import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import controller.AboutDialogAction;
+import controller.HelpDialogAction;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;

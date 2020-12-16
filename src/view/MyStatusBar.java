@@ -1,4 +1,4 @@
-package domaci1;
+package view;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -32,7 +32,7 @@ public class MyStatusBar {
 	statusBar.setBorder(new BevelBorder(BevelBorder.LOWERED));
 	statusBar.setLayout(new BoxLayout(statusBar, BoxLayout.X_AXIS));
 			
-	JLabel SSluzba = new JLabel("Studentska sluzba", SwingConstants.LEFT);
+	JLabel SSluzba = new JLabel("Studentska služba", SwingConstants.LEFT);
 	statusBar.add(SSluzba);
 	statusBar.add(Box.createGlue());
 

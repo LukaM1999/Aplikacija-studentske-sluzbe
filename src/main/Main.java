@@ -1,7 +1,9 @@
-package domaci1;
+package main;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+
+import view.MainFrame;
 
 public class Main {
 

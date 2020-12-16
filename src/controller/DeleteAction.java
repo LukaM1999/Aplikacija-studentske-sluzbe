@@ -1,4 +1,4 @@
-package domaci1;
+package controller;
 
 import java.awt.event.ActionEvent;
 
