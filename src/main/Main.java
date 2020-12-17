@@ -1,5 +1,7 @@
 package main;
 
+import java.io.File;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
@@ -11,7 +13,7 @@ public class Main {
 		
 		JFrame frame = new MainFrame();
 		
-		ImageIcon icon = new ImageIcon("images/1.png");
+		ImageIcon icon = new ImageIcon("images"+ File.separator + "1.png");
 		frame.setIconImage(icon.getImage());
 		
 		frame.setVisible(true);
