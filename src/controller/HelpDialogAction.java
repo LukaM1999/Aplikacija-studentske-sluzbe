@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -17,7 +18,7 @@ public class HelpDialogAction extends AbstractAction {
 
 	public HelpDialogAction() {
 		putValue(NAME, "Help");
-		putValue(SMALL_ICON, new ImageIcon("images/Help_help.png"));
+		putValue(SMALL_ICON, new ImageIcon("images" + File.separator + "Help_help.png"));
 		putValue(ACCELERATOR_KEY, KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK));
 	}
 

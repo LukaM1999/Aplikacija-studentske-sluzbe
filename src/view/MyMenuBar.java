@@ -12,6 +12,7 @@ import controller.HelpDialogAction;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 
 //Koriscen materijal sa vezbi
@@ -33,19 +34,19 @@ public class MyMenuBar extends JMenuBar {
 		
 
 		
-		JMenuItem New_mi = new JMenuItem("New", new ImageIcon("images/File_new.png"));
+		JMenuItem New_mi = new JMenuItem("New", new ImageIcon("images" + File.separator +  "File_new.png"));
 		New_mi.setBackground(Color.WHITE);
 		New_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		
-		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images/File_close.png"));
+		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
 		Close_mi.setBackground(Color.WHITE);
 		Close_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
 		
-		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images/Edit_edit.png"));
+		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
 		Edit_mi.setBackground(Color.WHITE);
 		Edit_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
 		
-		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images/Edit_delete.png"));
+		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
 		Delete_mi.setBackground(Color.WHITE);
 		Delete_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		
