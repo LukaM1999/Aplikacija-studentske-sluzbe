@@ -11,6 +11,7 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 
 
@@ -57,18 +58,27 @@ public class MainFrame extends JFrame {
 		statusBar.createStatusBar();
 		
 		//tabovi
+		
 		JTabbedPane tabs = new JTabbedPane();
 		tabs.setBackground(Color.LIGHT_GRAY);
 		
 		TableStudent student = new TableStudent();
-		TableProfesor profesor = new TableProfesor();
-		TablePredmet predmet = new TablePredmet();
-		
-		tabs.addTab("Student", student);
-		tabs.addTab("Profesor", profesor);
-		tabs.addTab("Predmet", predmet);
-		add(tabs, BorderLayout.CENTER);
-		
+        JScrollPane stud = new JScrollPane(student);
+        
+        TableProfesor profesor = new TableProfesor();
+        JScrollPane prof = new JScrollPane(profesor);
+        
+        TablePredmet predmet = new TablePredmet();
+        JScrollPane pred = new JScrollPane(predmet);
+        
+        tabs.addTab("Student", stud);
+        tabs.addTab("Profesor", prof);
+        tabs.addTab("Predmet", pred);
+        tabs.setPreferredSize(new Dimension(sirina-100, duzina-150));
+        tabs.setMaximumSize(tabs.getPreferredSize()); 
+        tabs.setMinimumSize(tabs.getPreferredSize());
+        panel.add(tabs);
+        
 		
 	}
 }
