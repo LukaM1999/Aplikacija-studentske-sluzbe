@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class Student {
 	
-	enum Status {B, S}
+	public enum Status {B, S}
 
 	private String ime;
 	private String prezime;
@@ -33,7 +33,10 @@ public class Student {
 	public Student(String ime, String prezime, Date datumRodjenja,
 				   String adresa, int telefon, String email, 
 				   String brIndeksa, int godinaUpisa,
-				   int trenutnaGodina, Status statusStudenta) {
+				   int trenutnaGodina, Status statusStudenta,
+				   double prosecnaOcena,
+				   ArrayList<Ocena> spisakPolozenih,
+				   ArrayList<Ocena> spisakNepolozenih) {
 		setIme(ime);
 		setPrezime(prezime);
 		setDatumRodjenja(datumRodjenja);
@@ -44,8 +47,50 @@ public class Student {
 		setGodinaUpisa(godinaUpisa);
 		setTrenutnaGodina(trenutnaGodina);
 		setStatusStudenta(statusStudenta);
+		setProsecnaOcena(prosecnaOcena);
+		setSpisakPolozenih(spisakPolozenih);
+		setSpisakNepolozenih(spisakNepolozenih);
+	}
+	
+	public Student(Student s) {
+		ime = s.ime;
+		prezime = s.prezime;
+		datumRodjenja = s.datumRodjenja;
+		adresa = s.adresa;
+		telefon = s.telefon;
+		email = s.email;
+		brIndeksa = s.brIndeksa;
+		godinaUpisa = s.godinaUpisa;
+		trenutnaGodina = s.trenutnaGodina;
+		statusStudenta = s.statusStudenta;
+		prosecnaOcena = s.prosecnaOcena;
+		spisakPolozenih = s.spisakPolozenih;
+		spisakNepolozenih = s.spisakNepolozenih;
+	}
+	
+	public double getProsecnaOcena() {
+		return prosecnaOcena;
 	}
 
+	public void setProsecnaOcena(double prosecnaOcena) {
+		this.prosecnaOcena = prosecnaOcena;
+	}
+
+	public ArrayList<Ocena> getSpisakPolozenih() {
+		return spisakPolozenih;
+	}
+
+	public void setSpisakPolozenih(ArrayList<Ocena> spisakPolozenih) {
+		this.spisakPolozenih = spisakPolozenih;
+	}
+
+	public ArrayList<Ocena> getSpisakNepolozenih() {
+		return spisakNepolozenih;
+	}
+
+	public void setSpisakNepolozenih(ArrayList<Ocena> spisakNepolozenih) {
+		this.spisakNepolozenih = spisakNepolozenih;
+	}
 
 	public String getIme() {
 		return ime;
