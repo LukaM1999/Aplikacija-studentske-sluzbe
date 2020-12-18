@@ -4,7 +4,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Koriscen materijal sa vezbi
@@ -16,9 +15,9 @@ public class Student {
 
 	private String ime;
 	private String prezime;
-	private Date datumRodjenja;
+	private String datumRodjenja;
 	private String adresa;
-	private int telefon;
+	private String telefon;
 	private String email;
 	private String brIndeksa;
 	private int godinaUpisa;
@@ -30,8 +29,8 @@ public class Student {
 	
 	
 
-	public Student(String ime, String prezime, Date datumRodjenja,
-				   String adresa, int telefon, String email, 
+	public Student(String ime, String prezime, String datumRodjenja,
+				   String adresa, String telefon, String email, 
 				   String brIndeksa, int godinaUpisa,
 				   int trenutnaGodina, Status statusStudenta,
 				   double prosecnaOcena,
@@ -67,6 +66,24 @@ public class Student {
 		spisakPolozenih = s.spisakPolozenih;
 		spisakNepolozenih = s.spisakNepolozenih;
 	}
+	
+	public Student(String ime, String prezime, String datumRodjenja,
+			   String adresa, String telefon, String email, 
+			   String brIndeksa, int godinaUpisa,
+			   int trenutnaGodina, Status statusStudenta,
+			   double prosecnaOcena) {
+	setIme(ime);
+	setPrezime(prezime);
+	setDatumRodjenja(datumRodjenja);
+	setAdresa(adresa);
+	setTelefon(telefon);
+	setEmail(email);
+	setBrIndeksa(brIndeksa);
+	setGodinaUpisa(godinaUpisa);
+	setTrenutnaGodina(trenutnaGodina);
+	setStatusStudenta(statusStudenta);
+	setProsecnaOcena(prosecnaOcena);
+}
 	
 	public double getProsecnaOcena() {
 		return prosecnaOcena;
@@ -107,11 +124,11 @@ public class Student {
 		this.ime = ime;
 	}
 
-	public Date getDatumRodjenja() {
+	public String getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(Date datumRodjenja) {
+	public void setDatumRodjenja(String datumRodjenja) {
 		if (datumRodjenja == null) {
 			throw new NullPointerException();
 		}
@@ -136,11 +153,11 @@ public class Student {
 		this.adresa = adresa;
 	}
 
-	public int getTelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
 
-	public void setTelefon(int telefon) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 
