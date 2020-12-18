@@ -29,6 +29,17 @@ public class Predmet {
 	setProfesor(profesor);
 	setESPB(EPSB);
 }
+	public Predmet (Predmet p) {
+		sifra = p.sifra;
+		naziv = p.naziv;
+		semestar = p.semestar;
+		godinaStudija = p.godinaStudija;
+		profesor = p.profesor;
+		ESPB = p.ESPB;
+		polozili = p.polozili;
+		oboreni = p.oboreni;
+		
+	}
 	
 	public String getSifra() {
 		return sifra;
