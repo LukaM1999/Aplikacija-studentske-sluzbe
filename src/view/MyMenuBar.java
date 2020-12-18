@@ -11,6 +11,7 @@ import controller.HelpDialogAction;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
 
@@ -37,26 +38,59 @@ public class MyMenuBar extends JMenuBar {
 		JMenuItem New_mi = new JMenuItem("New", new ImageIcon("images" + File.separator +  "File_new.png"));
 		New_mi.setBackground(Color.WHITE);
 		New_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		New_mi.setMnemonic(KeyEvent.VK_N);
+
 		
 		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
 		Close_mi.setBackground(Color.WHITE);
 		Close_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		Close_mi.setMnemonic(KeyEvent.VK_C);
+
 		
 		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
 		Edit_mi.setBackground(Color.WHITE);
 		Edit_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		Edit_mi.setMnemonic(KeyEvent.VK_T);
+
 		
 		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
 		Delete_mi.setBackground(Color.WHITE);
 		Delete_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		Delete_mi.setMnemonic(KeyEvent.VK_D);
+
 		
 		HelpDialogAction hda = new HelpDialogAction();
 		JMenuItem Help_mi = new JMenuItem(hda);
 		Help_mi.setBackground(Color.WHITE);
+		Help_mi.setMnemonic(KeyEvent.VK_P);
+
+		
+		Help_mi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				HelpDialog helpDialog = new HelpDialog(MainFrame.getInstance(), "Help", false);
+				helpDialog.setVisible(true);
+
+			}
+		});
 		
 		AboutDialogAction ada = new AboutDialogAction();
 		JMenuItem About_mi = new JMenuItem(ada);
 		About_mi.setBackground(Color.WHITE);
+		About_mi.setMnemonic(KeyEvent.VK_A);
+
+		
+		
+		About_mi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				AboutDialog aboutDialog = new AboutDialog(MainFrame.getInstance(), "About", true);
+				aboutDialog.setVisible(true);
+
+			}
+		});
 
 		File_m.add(New_mi);
 		File_m.addSeparator();

@@ -23,6 +23,15 @@ public class MainFrame extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 6391879538928021934L;
+	
+	private static MainFrame instance = null;
+	
+	public static MainFrame getInstance() {
+		if (instance == null) {
+			instance = new MainFrame();
+		}
+		return instance;
+	}
 
 	public MainFrame() {
 		
