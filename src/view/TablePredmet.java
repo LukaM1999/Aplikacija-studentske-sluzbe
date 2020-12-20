@@ -14,6 +14,16 @@ public class TablePredmet extends JTable {
 	 */
 	private static final long serialVersionUID = 6347149562179666223L;
 	
+	private static TablePredmet instance = null;
+	
+	public static TablePredmet getInstance() {
+		if (instance == null) {
+			instance = new TablePredmet();
+		}
+		return instance;
+	}
+
+	
 	public TablePredmet() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

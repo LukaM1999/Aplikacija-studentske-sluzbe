@@ -6,15 +6,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
-import controller.AboutDialogAction;
-import controller.HelpDialogAction;
-
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
-
 
 //Koriscen materijal sa vezbi
 public class MyMenuBar extends JMenuBar {
@@ -24,7 +20,6 @@ public class MyMenuBar extends JMenuBar {
 	 */
 	private static final long serialVersionUID = -5986249145568966369L;
 
-	
 	public MyMenuBar() {
 		JMenu File_m = new JMenu("File");
 		File_m.setMnemonic(KeyEvent.VK_F);
@@ -39,6 +34,28 @@ public class MyMenuBar extends JMenuBar {
 		New_mi.setBackground(Color.WHITE);
 		New_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		New_mi.setMnemonic(KeyEvent.VK_N);
+		New_mi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Tabs.getTabIndex() == 0) {
+					DodajStudentaDialog studentDialog = new DodajStudentaDialog(MainFrame.getInstance(),
+							"Dodavanje studenta", true);
+					studentDialog.setVisible(true);
+				}
+				if (Tabs.getTabIndex() == 1) {
+					DodajProfesoraDialog profesorDialog = new DodajProfesoraDialog(MainFrame.getInstance(),
+							"Dodavanje profesora", true);
+					profesorDialog.setVisible(true);
+				}
+				if (Tabs.getTabIndex() == 2) {
+					DodajPredmetDialog predmetDialog = new DodajPredmetDialog(MainFrame.getInstance(),
+							"Dodavanje predmeta", true);
+					predmetDialog.setVisible(true);
+				}
+			
+			}
+		});
 
 		
 		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
@@ -63,8 +80,6 @@ public class MyMenuBar extends JMenuBar {
 		JMenuItem Help_mi = new JMenuItem(hda);
 		Help_mi.setBackground(Color.WHITE);
 		Help_mi.setMnemonic(KeyEvent.VK_P);
-
-		
 		Help_mi.addActionListener(new ActionListener() {
 
 			@Override
@@ -74,14 +89,12 @@ public class MyMenuBar extends JMenuBar {
 
 			}
 		});
-		
+	
+
 		AboutDialogAction ada = new AboutDialogAction();
 		JMenuItem About_mi = new JMenuItem(ada);
 		About_mi.setBackground(Color.WHITE);
 		About_mi.setMnemonic(KeyEvent.VK_A);
-
-		
-		
 		About_mi.addActionListener(new ActionListener() {
 
 			@Override
@@ -92,6 +105,7 @@ public class MyMenuBar extends JMenuBar {
 			}
 		});
 
+		
 		File_m.add(New_mi);
 		File_m.addSeparator();
 		File_m.add(Close_mi);
@@ -108,4 +122,3 @@ public class MyMenuBar extends JMenuBar {
 	}
 
 }
-

@@ -13,6 +13,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 
 //Koriscen materijal sa vezbi
@@ -24,6 +26,10 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 6391879538928021934L;
 	
+	private static JTabbedPane tabs;
+	
+	private static int tabIndex;
+	
 	private static MainFrame instance = null;
 	
 	public static MainFrame getInstance() {
@@ -32,7 +38,15 @@ public class MainFrame extends JFrame {
 		}
 		return instance;
 	}
+	
+	public JTabbedPane getTabs() {
+		return tabs;
+	}
 
+	public int getTabIndex() {
+		return tabIndex;
+	}
+	
 	public MainFrame() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -68,25 +82,18 @@ public class MainFrame extends JFrame {
 		
 		//tabovi
 		
-		JTabbedPane tabs = new JTabbedPane();
-		tabs.setBackground(Color.LIGHT_GRAY);
-		
-		TableStudent student = new TableStudent();
-        JScrollPane stud = new JScrollPane(student);
+		JTabbedPane tabs = Tabs.getInstance();
+
         
-        TableProfesor profesor = new TableProfesor();
-        JScrollPane prof = new JScrollPane(profesor);
         
-        TablePredmet predmet = new TablePredmet();
-        JScrollPane pred = new JScrollPane(predmet);
+       // setPreferredSize(new Dimension(sirina-100, duzina-150));
+
+        //tabs.setMaximumSize(tabs.getPreferredSize());
+        //tabs.setMinimumSize(tabs.getPreferredSize());
+ 
         
-        tabs.addTab("Student", stud);
-        tabs.addTab("Profesor", prof);
-        tabs.addTab("Predmet", pred);
-        tabs.setPreferredSize(new Dimension(sirina-100, duzina-150));
-        tabs.setMaximumSize(tabs.getPreferredSize()); 
-        tabs.setMinimumSize(tabs.getPreferredSize());
-        panel.add(tabs);
+        //panel.add(tabs);
+		add(tabs,BorderLayout.CENTER);
         
 		
 	}

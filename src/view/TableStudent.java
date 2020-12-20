@@ -14,6 +14,16 @@ public class TableStudent extends JTable {
 	 */
 	private static final long serialVersionUID = 8306744364765947146L;
 	
+	private static TableStudent instance = null;
+	
+	public static TableStudent getInstance() {
+		if (instance == null) {
+			instance = new TableStudent();
+		}
+		return instance;
+	}
+
+	
 	public TableStudent() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);

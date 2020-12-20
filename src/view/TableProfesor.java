@@ -13,6 +13,16 @@ public class TableProfesor extends JTable {
 	 * 
 	 */
 	private static final long serialVersionUID = 2944037584344128019L;
+	
+	private static TableProfesor instance = null;
+	
+	public static TableProfesor getInstance() {
+		if (instance == null) {
+			instance = new TableProfesor();
+		}
+		return instance;
+	}
+
 
 	public TableProfesor() {
 		this.setRowSelectionAllowed(true);

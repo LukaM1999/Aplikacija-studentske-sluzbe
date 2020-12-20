@@ -11,10 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
-
-import controller.DeleteAction;
-import controller.EditAction;
-import controller.NewAction;
 //Koriscen materijal sa vezbi
 public class Toolbar extends JToolBar {
 
