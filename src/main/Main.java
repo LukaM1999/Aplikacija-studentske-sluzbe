@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		JFrame frame = new MainFrame();
+		JFrame frame = MainFrame.getInstance();
 		
 		ImageIcon icon = new ImageIcon("images"+ File.separator + "1.png");
 		frame.setIconImage(icon.getImage());

@@ -10,11 +10,6 @@ import java.awt.Toolkit;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.event.ChangeEvent;
-import javax.swing.event.ChangeListener;
 
 
 //Koriscen materijal sa vezbi
@@ -26,10 +21,6 @@ public class MainFrame extends JFrame {
 	 */
 	private static final long serialVersionUID = 6391879538928021934L;
 	
-	private static JTabbedPane tabs;
-	
-	private static int tabIndex;
-	
 	private static MainFrame instance = null;
 	
 	public static MainFrame getInstance() {
@@ -39,13 +30,6 @@ public class MainFrame extends JFrame {
 		return instance;
 	}
 	
-	public JTabbedPane getTabs() {
-		return tabs;
-	}
-
-	public int getTabIndex() {
-		return tabIndex;
-	}
 	
 	public MainFrame() {
 		
@@ -63,10 +47,11 @@ public class MainFrame extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		JPanel panel = new JPanel();
+		//JPanel panel = new JPanel();
 		
-		panel.setBackground(Color.WHITE);
-		this.add(panel);
+		/*
+		 * panel.setBackground(Color.WHITE); this.add(panel);
+		 */
 		
 		JMenuBar menuBar = new MyMenuBar();
 		
@@ -82,7 +67,7 @@ public class MainFrame extends JFrame {
 		
 		//tabovi
 		
-		JTabbedPane tabs = Tabs.getInstance();
+		Tabs tabs = Tabs.getInstance();
 
         
         
