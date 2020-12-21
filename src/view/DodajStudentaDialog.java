@@ -14,10 +14,9 @@ public class DodajStudentaDialog extends JDialog {
 	public DodajStudentaDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
-		setSize(400, 400);
+		setSize(500, 550);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		getContentPane().setLayout(null);
 	}
-
 }
