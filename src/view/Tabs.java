@@ -11,15 +11,7 @@ public class Tabs extends JTabbedPane {
 	 * 
 	 */
 	private static final long serialVersionUID = -2949880040869967205L;
-	
-	private static int tabIndex = 0;
-	
-	private static TablePredmet predmetiTable;
-	
-	private static TableStudent studentiTable;
-	
-	private static TableProfesor profesoriTable;
-	
+			
 	private static Tabs instance = null;
 	
 	public static Tabs getInstance() {
@@ -29,20 +21,16 @@ public class Tabs extends JTabbedPane {
 		return instance;
 	}
 	
-	public static int getTabIndex() {
-		
-		return tabIndex;
-	}
 	
 	public Tabs() {
 		
-		studentiTable = TableStudent.getInstance();
+		TableStudent studentiTable = TableStudent.getInstance();
         JScrollPane stud = new JScrollPane(studentiTable);
         
-        profesoriTable = TableProfesor.getInstance();
+        TableProfesor profesoriTable = TableProfesor.getInstance();
         JScrollPane prof = new JScrollPane(profesoriTable);
         
-        predmetiTable = TablePredmet.getInstance();
+        TablePredmet predmetiTable = TablePredmet.getInstance();
         JScrollPane pred = new JScrollPane(predmetiTable);
         
         addTab("Student", stud);
@@ -52,8 +40,7 @@ public class Tabs extends JTabbedPane {
 
 	        public void stateChanged(ChangeEvent e) {
 
-	            tabIndex = getSelectedIndex();
-	            System.out.println(tabIndex);
+	        	System.out.println(getSelectedIndex());
 	        }
 	    });
 		        

@@ -38,17 +38,17 @@ public class MyMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				if (Tabs.getTabIndex() == 0) {
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
 					DodajStudentaDialog studentDialog = new DodajStudentaDialog(MainFrame.getInstance(),
 							"Dodavanje studenta", true);
 					studentDialog.setVisible(true);
 				}
-				if (Tabs.getTabIndex() == 1) {
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
 					DodajProfesoraDialog profesorDialog = new DodajProfesoraDialog(MainFrame.getInstance(),
 							"Dodavanje profesora", true);
 					profesorDialog.setVisible(true);
 				}
-				if (Tabs.getTabIndex() == 2) {
+				if (Tabs.getInstance().getSelectedIndex() == 2) {
 					DodajPredmetDialog predmetDialog = new DodajPredmetDialog(MainFrame.getInstance(),
 							"Dodavanje predmeta", true);
 					predmetDialog.setVisible(true);
@@ -67,7 +67,7 @@ public class MyMenuBar extends JMenuBar {
 		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
 		Edit_mi.setBackground(Color.WHITE);
 		Edit_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		Edit_mi.setMnemonic(KeyEvent.VK_T);
+		Edit_mi.setMnemonic(KeyEvent.VK_E);
 
 		
 		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
@@ -79,7 +79,7 @@ public class MyMenuBar extends JMenuBar {
 		HelpDialogAction hda = new HelpDialogAction();
 		JMenuItem Help_mi = new JMenuItem(hda);
 		Help_mi.setBackground(Color.WHITE);
-		Help_mi.setMnemonic(KeyEvent.VK_P);
+		Help_mi.setMnemonic(KeyEvent.VK_H);
 		Help_mi.addActionListener(new ActionListener() {
 
 			@Override
