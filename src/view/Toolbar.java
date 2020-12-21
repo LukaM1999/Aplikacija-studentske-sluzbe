@@ -2,6 +2,8 @@ package view;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.BorderFactory;
@@ -23,12 +25,35 @@ public class Toolbar extends JToolBar {
 		
 		super(SwingConstants.HORIZONTAL);
 		
-		NewAction na = new NewAction();
-		JButton btnNew = new JButton(na);
+		//NewAction na = new NewAction();
+		JButton btnNew = new JButton();
 		btnNew.setToolTipText("Kreiranje entiteta");
 		btnNew.setIcon(new ImageIcon("images"+ File.separator +"File_new.png"));
 		btnNew.setBackground(Color.WHITE);
+		btnNew.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					DodajStudentaDialog studentDialog = new DodajStudentaDialog(MainFrame.getInstance(),
+							"Dodavanje studenta", true);
+					studentDialog.setVisible(true);
+				}
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
+					DodajProfesoraDialog profesorDialog = new DodajProfesoraDialog(MainFrame.getInstance(),
+							"Dodavanje profesora", true);
+					profesorDialog.setVisible(true);
+				}
+				if (Tabs.getInstance().getSelectedIndex() == 2) {
+					DodajPredmetDialog predmetDialog = new DodajPredmetDialog(MainFrame.getInstance(),
+							"Dodavanje predmeta", true);
+					predmetDialog.setVisible(true);
+				}
+			
+			}
+		});
 		add(btnNew);
+		
 
 		EditAction ea = new EditAction();
 		JButton btnEdit = new JButton(ea);
