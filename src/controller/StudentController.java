@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.BazaStudenata;
 import model.Student;
 import view.MainFrame;
@@ -23,5 +25,9 @@ public class StudentController {
 		BazaStudenata.getInstance().dodajStudenta(s);
 		// azuriranje prikaza
 		MainFrame.getInstance().azurirajStudente("DODAT", -1);
+	}
+	
+	public List<Student> getStudenti(){
+		return BazaStudenata.getInstance().getStudenti();
 	}
 }

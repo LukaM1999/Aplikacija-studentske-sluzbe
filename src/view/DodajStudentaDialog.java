@@ -347,6 +347,14 @@ public class DodajStudentaDialog extends JDialog {
 					status = Status.S;
 				}
 				
+				for (Student s : StudentController.getInstance().getStudenti()) {
+					if (s.getBrIndeksa().equals(indeksVrednost)) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji student"
+								+ "sa ovim brojem indeksa!");
+						return;
+					}
+				}
+				
 				Student student = new Student(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
 						telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
 						godinaStudija+1, status);
