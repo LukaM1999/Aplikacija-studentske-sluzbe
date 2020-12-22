@@ -309,6 +309,15 @@ public class DodajProfesoraDialog extends JDialog {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet broj lične karte!");
 					return;
 				}
+				//REFERENCE:
+				//https://howtodoinjava.com/java/collections/arraylist/iterate-through-objects/
+				for (Profesor p : ProfesorController.getInstance().getProfesori()) {
+					if (p.getBrLicneKarte().equals(licnaVrednost)) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji profesor "
+								+ "sa ovim brojem lične karte!");
+						return;
+					}
+				}
 				
 				if (!(Pattern.compile(titulaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(titulaVrednost)
 						.matches())) {

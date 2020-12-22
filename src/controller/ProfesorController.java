@@ -1,5 +1,7 @@
 package controller;
 
+import java.util.List;
+
 import model.BazaProfesora;
 import model.Profesor;
 import view.MainFrame;
@@ -24,5 +26,9 @@ public class ProfesorController {
 			BazaProfesora.getInstance().dodajProfesora(p);
 			// azuriranje prikaza
 			MainFrame.getInstance().azurirajProfesore("DODAT", -1);
+		}
+		
+		public List<Profesor> getProfesori(){
+			return BazaProfesora.getInstance().getProfesori();
 		}
 }

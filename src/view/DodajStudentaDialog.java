@@ -346,10 +346,11 @@ public class DodajStudentaDialog extends JDialog {
 				if(budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
 					status = Status.S;
 				}
-				
+				//REFERENCE:
+				//https://howtodoinjava.com/java/collections/arraylist/iterate-through-objects/
 				for (Student s : StudentController.getInstance().getStudenti()) {
 					if (s.getBrIndeksa().equals(indeksVrednost)) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji student"
+						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji student "
 								+ "sa ovim brojem indeksa!");
 						return;
 					}
