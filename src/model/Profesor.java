@@ -13,18 +13,18 @@ public class Profesor {
 	//private Date datumRodjenja;
 	private String datumRodjenja;
 	private String adresa;
-	private int telefon;
+	private String telefon;
 	private String email;
 	private String kancelarija;
-	private int brLicneKarte;
+	private String brLicneKarte;
 	private String titula;
 	private String zvanje;
 	private ArrayList<Predmet> predajePredmet;
 	
 	
 	public Profesor (String prezime, String ime, String datumRodjenja,
-				   String adresa, int telefon, String email, 
-				   String kancelarija, int brLicneKarte,
+				   String adresa, String telefon, String email, 
+				   String kancelarija, String brLicneKarte,
 				   String titula, String zvanje) {
 		setIme(ime);
 		setPrezime(prezime);
@@ -74,8 +74,8 @@ public class Profesor {
 	public String getDatumRodjenja() {
 		return datumRodjenja;
 	}
-	public void setDatumRodjenja(String datumRodjenja2) {
-		this.datumRodjenja = datumRodjenja2;
+	public void setDatumRodjenja(String datumRodjenja) {
+		this.datumRodjenja = datumRodjenja;
 	}
 	public String getAdresa() {
 		return adresa;
@@ -83,10 +83,10 @@ public class Profesor {
 	public void setAdresa(String adresa) {
 		this.adresa = adresa;
 	}
-	public int getTelefon() {
+	public String getTelefon() {
 		return telefon;
 	}
-	public void setTelefon(int telefon) {
+	public void setTelefon(String telefon) {
 		this.telefon = telefon;
 	}
 	public String getEmail() {
@@ -95,10 +95,10 @@ public class Profesor {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public int getBrLicneKarte() {
+	public String getBrLicneKarte() {
 		return brLicneKarte;
 	}
-	public void setBrLicneKarte(int brLicneKarte) {
+	public void setBrLicneKarte(String brLicneKarte) {
 		this.brLicneKarte = brLicneKarte;
 	}
 	public String getTitula() {

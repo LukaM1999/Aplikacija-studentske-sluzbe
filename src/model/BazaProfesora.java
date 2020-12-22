@@ -32,7 +32,7 @@ public class BazaProfesora {
 	
 	private void init() {
 		this.profesori = new ArrayList<Profesor>();
-		profesori.add(new Profesor("Mikic", "Mika", "12.12.1965", "adresa", 066, "email", "kancelarija", 22222, "titula", "zvanje"));
+		profesori.add(new Profesor("Mikic", "Mika", "12.12.1965", "adresa", "066123456", "email", "kancelarija", "123456789", "titula", "zvanje"));
 	}
 	
 	
@@ -74,6 +74,10 @@ public class BazaProfesora {
 	
 	public void dodajProfesora(String ime, String prezime, String titula, String zvanje) {
 		this.profesori.add(new Profesor(ime, prezime, titula, zvanje));
+	}
+	
+	public void dodajProfesora(Profesor p) {
+		this.profesori.add(new Profesor(p));
 	}
 	
 }

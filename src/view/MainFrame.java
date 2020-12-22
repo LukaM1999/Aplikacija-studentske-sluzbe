@@ -31,11 +31,19 @@ public class MainFrame extends JFrame {
 	}
 	
 	
-	public void azurirajPrikaz(String akcija, int vrednost) {
+	public void azurirajStudente(String akcija, int vrednost) {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) TableStudent.getInstance().getModel();
 		model.fireTableDataChanged();
 		validate();
 	}
+	
+	public void azurirajProfesore(String akcija, int vrednost) {
+		AbstractTableModelProfesor model = (AbstractTableModelProfesor) TableProfesor.getInstance().getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
+	
 	
 	public MainFrame() {
 		

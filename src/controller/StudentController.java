@@ -22,6 +22,6 @@ public class StudentController {
 		// izmena modela
 		BazaStudenata.getInstance().dodajStudenta(s);
 		// azuriranje prikaza
-		MainFrame.getInstance().azurirajPrikaz("DODAT", -1);
+		MainFrame.getInstance().azurirajStudente("DODAT", -1);
 	}
 }
