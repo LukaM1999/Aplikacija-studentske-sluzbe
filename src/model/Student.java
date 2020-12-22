@@ -70,8 +70,7 @@ public class Student {
 	public Student(String ime, String prezime, String datumRodjenja,
 			   String adresa, String telefon, String email, 
 			   String brIndeksa, int godinaUpisa,
-			   int trenutnaGodina, Status statusStudenta,
-			   double prosecnaOcena) {
+			   int trenutnaGodina, Status statusStudenta) {
 	setIme(ime);
 	setPrezime(prezime);
 	setDatumRodjenja(datumRodjenja);
@@ -82,7 +81,6 @@ public class Student {
 	setGodinaUpisa(godinaUpisa);
 	setTrenutnaGodina(trenutnaGodina);
 	setStatusStudenta(statusStudenta);
-	setProsecnaOcena(prosecnaOcena);
 }
 	
 	public double getProsecnaOcena() {

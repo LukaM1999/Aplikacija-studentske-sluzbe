@@ -14,6 +14,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import controller.StudentController;
+import model.Student;
+import model.Student.Status;
+
 import javax.swing.JComboBox;
 import java.awt.Color;
 
@@ -33,16 +37,17 @@ public class DodajStudentaDialog extends JDialog {
 	private String telefonSablon = "[0-9]{8,9}?";
 
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
-			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)(gmail)|"
-			+ "(maildrop)|(yahoo)|(hotmail)(\\.)com";
+			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)((gmail)|"
+			+ "(maildrop)|(yahoo)|(hotmail))(\\.)com";
 	
 	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
 	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d).?";
 	
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)?"
-			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?";
+			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?(\\,)(p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
+			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 	
-	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20(0|1)[0-9])|(2020)";
+	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -242,74 +247,73 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 
-				 
+				 String imeVrednost = imeUnos.getText();
+				 String prezimeVrednost = prezimeUnos.getText();
+				 String datumVrednost = datumUnos.getText();
+				 String adresaVrednost = adresaUnos.getText();
+				 String telefonVrednost = telefonUnos.getText();
+				 String emailVrednost = emailUnos.getText();
+				 String indeksVrednost = indeksUnos.getText();
+				 String upisVrednost = upisUnos.getText();
 				// REFERENCE:
 				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
 				
-				String[] indeksGodina = indeksUnos.getText().split("-");
-				if(indeksGodina[2] != upisUnos.getText()) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
-							"Godina na indeksu i godina upisa se razlikuju!");
-					  System.out.println(indeksGodina[2]);
-					  System.out.println(upisUnos.getText());
-					  return;
-				}
-				
-				if (!Pattern.matches(emailSablon, emailUnos.getText())) {
-			// REFERENCE:
-			// https://stackoverflow.com/questions/6270354/how-to-open-warning-information-error-dialog-in-swing/24164386
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta e-mail adresa!");
-					return;
-				}
+		
 				// REFERENCE:
 				//https://www.javatpoint.com/java-regex
 				
-				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText())
+				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeVrednost)
 						.matches())) {
+			// REFERENCE:
+			// https://stackoverflow.com/questions/6270354/how-to-open-warning-information-error-dialog-in-swing/24164386
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto ime!");
 					return;
 				}
+				
 
-				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText())
+				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeVrednost)
 						.matches())) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto prezime!");
 					return;
 				}
 
-				if (!Pattern.matches(telefonSablon, telefonUnos.getText())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet kontakt telefon!");
-					return;
-				}
 				
-				if (!Pattern.matches(datumSablon, datumUnos.getText())) {
+				if (!Pattern.matches(datumSablon, datumVrednost)) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet datum rođenja!");
 					return;
 				}
 				
-				if (!Pattern.matches(telefonSablon, telefonUnos.getText())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet kontakt telefon!");
-					return;
-				}
-				
-				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText())
+				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaVrednost)
 						.matches())) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta adresa!");
 					return;
 				}
 				
-				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText())
+				if (!Pattern.matches(telefonSablon, telefonVrednost)) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet kontakt telefon!");
+					return;
+				}
+				
+				if (!Pattern.matches(emailSablon, emailVrednost)) {
+							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta e-mail adresa!");
+							return;
+				}
+				
+				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksVrednost)
 						.matches())) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet broj indeksa!");
 					return;
 				}
 				
 				
-				String[] godRodjenja = datumUnos.getText().split("\\.");				
-				if(Integer.parseInt(upisUnos.getText()) - Integer.parseInt(godRodjenja[2]) < 16) { 
+				String[] godRodjenja = datumVrednost.split("\\.");				
+				if(Integer.parseInt(upisVrednost) - Integer.parseInt(godRodjenja[2]) < 16) { 
 					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešno uneta godina upisa!");
 					  return; 
 				}
+				
 				
 				int godinaStudija = 0;
 				if(godinaCombo.getSelectedItem() == "II (druga)") {
@@ -321,15 +325,35 @@ public class DodajStudentaDialog extends JDialog {
 				else if(godinaCombo.getSelectedItem() == "IV (četvrta)") {
 					godinaStudija = 3;
 				}
-				System.out.println(godinaStudija);
 				//REFERENCE: https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
 				int trenutnaGodina = Year.now().getValue();
-				if(Integer.parseInt(upisUnos.getText()) > trenutnaGodina - godinaStudija ) {
+				if(Integer.parseInt(upisVrednost) > trenutnaGodina - godinaStudija ) {
 					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešna trenutna godina studija!");
 					  return;
 				}
 				
-
+				 String[] indeksGodina = indeksVrednost.split("-");
+					if(Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
+						JOptionPane.showMessageDialog(MainFrame.getInstance(),
+								"Godina na indeksu i godina upisa se razlikuju!");
+						System.out.println(indeksGodina[2]);
+						System.out.println(upisVrednost);
+						  return;
+					}
+					
+				
+				Status status = Status.B;
+				if(budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
+					status = Status.S;
+				}
+				
+				Student student = new Student(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
+						telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
+						godinaStudija+1, status);
+				StudentController.getInstance().dodajStudenta(student);
+				
+				dispose();
+				
 			}
 		});
 		getContentPane().add(ok);

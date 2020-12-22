@@ -31,6 +31,12 @@ public class MainFrame extends JFrame {
 	}
 	
 	
+	public void azurirajPrikaz(String akcija, int vrednost) {
+		AbstractTableModelStudent model = (AbstractTableModelStudent) TableStudent.getInstance().getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
 	public MainFrame() {
 		
 		Toolkit kit = Toolkit.getDefaultToolkit();
@@ -47,14 +53,7 @@ public class MainFrame extends JFrame {
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-		//JPanel panel = new JPanel();
-		
-		/*
-		 * panel.setBackground(Color.WHITE); this.add(panel);
-		 */
-		
 		JMenuBar menuBar = new MyMenuBar();
-		
 		setJMenuBar(menuBar);
 		menuBar.setBackground(Color.WHITE);
 		
@@ -65,19 +64,7 @@ public class MainFrame extends JFrame {
 		add(statusBar.getStatusBar(),BorderLayout.SOUTH);
 		statusBar.createStatusBar();
 		
-		//tabovi
-		
 		Tabs tabs = Tabs.getInstance();
-
-        
-        
-       // setPreferredSize(new Dimension(sirina-100, duzina-150));
-
-        //tabs.setMaximumSize(tabs.getPreferredSize());
-        //tabs.setMinimumSize(tabs.getPreferredSize());
- 
-        
-        //panel.add(tabs);
 		add(tabs,BorderLayout.CENTER);
         
 		

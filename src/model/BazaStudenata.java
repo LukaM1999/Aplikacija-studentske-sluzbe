@@ -35,7 +35,7 @@ public class BazaStudenata {
 	private void init() {
 		this.studenti = new ArrayList<Student>();
 		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20", "066754498", "peraperic@gmail.com",
-				"in-123-2017", 2017, 4, Status.B, 8.14));
+				"in-123-2017", 2017, 4, Status.B));
 	}
 
 	public List<Student> getStudenti() {
@@ -79,10 +79,13 @@ public class BazaStudenata {
 	}
 
 	public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresa, String telefon,
-			String email, String brIndeksa, int godinaUpisa, int trenutnaGodina, Status statusStudenta,
-			double prosecnaOcena) {
+			String email, String brIndeksa, int godinaUpisa, int trenutnaGodina, Status statusStudenta) {
 		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresa, telefon, email, brIndeksa, godinaUpisa,
-				trenutnaGodina, statusStudenta, prosecnaOcena));
+				trenutnaGodina, statusStudenta));
+	}
+	
+	public void dodajStudenta(Student s) {
+		this.studenti.add(new Student(s));
 	}
 
 }
