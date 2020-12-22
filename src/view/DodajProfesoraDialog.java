@@ -35,8 +35,11 @@ public class DodajProfesoraDialog extends JDialog {
 
 		setSize(500, 600);
 		setLocationRelativeTo(parent);
+		
+		//REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
+		
 		
 		//Labels
 		JLabel ime = new JLabel("Ime*");
@@ -119,7 +122,8 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.EAST, zvanje, 0, SpringLayout.EAST, ime);
 		getContentPane().add(zvanje);
 		
-		//textFields
+		
+		//Text fields
 		imeUnos = new JTextField();
 		imeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, imeUnos, 11, SpringLayout.NORTH, ime);
@@ -191,6 +195,7 @@ public class DodajProfesoraDialog extends JDialog {
 		getContentPane().add(zvanjeUnos);
 		
 		
+		//Buttons
 		JButton cancel = new JButton("Odustani");
 		cancel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.WEST, cancel, 294, SpringLayout.WEST, getContentPane());

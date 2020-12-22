@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.Year;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -52,7 +53,8 @@ public class DodajStudentaDialog extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
+		//REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
@@ -154,8 +156,6 @@ public class DodajStudentaDialog extends JDialog {
 		getContentPane().add(prezimeUnos);
 
 		JTextField datumUnos = new JTextField();
-		String[] godRodjenja = datumUnos.getText().split("\\.");
-
 		datumUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, datumUnos, 11, SpringLayout.NORTH, datum);
 		springLayout.putConstraint(SpringLayout.WEST, datumUnos, 6, SpringLayout.EAST, datum);
@@ -199,7 +199,7 @@ public class DodajStudentaDialog extends JDialog {
 		
 
 		// Combo boxes
-		String[] godinaStud = new String[] { "I (prva)", "II (druga)", "III (treća)", "IV (četvrta)" };
+		String[] godinaStud = new String[] { "I (prva)" , "II (druga)", "III (treća)", "IV (četvrta)" };
 		JComboBox godinaCombo = new JComboBox(godinaStud);
 		godinaCombo.setBackground(Color.WHITE);
 		springLayout.putConstraint(SpringLayout.NORTH, godinaCombo, 21, SpringLayout.SOUTH, upisUnos);
@@ -246,6 +246,15 @@ public class DodajStudentaDialog extends JDialog {
 				 
 				// REFERENCE:
 				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+				
+				String[] indeksGodina = indeksUnos.getText().split("-");
+				if(indeksGodina[2] != upisUnos.getText()) {
+					JOptionPane.showMessageDialog(MainFrame.getInstance(),
+							"Godina na indeksu i godina upisa se razlikuju!");
+					  System.out.println(indeksGodina[2]);
+					  System.out.println(upisUnos.getText());
+					  return;
+				}
 				
 				if (!Pattern.matches(emailSablon, emailUnos.getText())) {
 			// REFERENCE:
@@ -296,11 +305,30 @@ public class DodajStudentaDialog extends JDialog {
 				}
 				
 				
-				  if(Integer.parseInt(upisUnos.getText()) - Integer.parseInt(godRodjenja[1]) < 16) { 
-					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešno uneta godina upisa!"); 
+				String[] godRodjenja = datumUnos.getText().split("\\.");				
+				if(Integer.parseInt(upisUnos.getText()) - Integer.parseInt(godRodjenja[2]) < 16) { 
+					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešno uneta godina upisa!");
 					  return; 
-				  }
-				 
+				}
+				
+				int godinaStudija = 0;
+				if(godinaCombo.getSelectedItem() == "II (druga)") {
+					godinaStudija = 1;
+				}
+				else if(godinaCombo.getSelectedItem() == "III (treća)") {
+					godinaStudija = 2;
+				}
+				else if(godinaCombo.getSelectedItem() == "IV (četvrta)") {
+					godinaStudija = 3;
+				}
+				System.out.println(godinaStudija);
+				//REFERENCE: https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
+				int trenutnaGodina = Year.now().getValue();
+				if(Integer.parseInt(upisUnos.getText()) > trenutnaGodina - godinaStudija ) {
+					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešna trenutna godina studija!");
+					  return;
+				}
+				
 
 			}
 		});
