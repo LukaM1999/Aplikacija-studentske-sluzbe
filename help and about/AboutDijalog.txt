@@ -1,0 +1,21 @@
+Verzija aplikacije: U razvoju
+
+O autorima:
+
+1. Luka Miletić:
+
+Student treće godine Fakulteta tehničkih nauka u Novom Sadu, smera Računarstvo i automatika, modul
+Primenjene računarske nauke i informatika. Završio srednju školu Gimnazija "20. Oktobar" u Bačkoj Palanci.
+
+2. Mihajlo Kisić:
+
+Student treće godine Fakulteta tehničkih nauka u Novom Sadu, smer Računarstvo i automatika, modul
+Primenjene računarske nauke i informatika. Završio srednju školu Gimnazija "20. Oktobar" u Bačkoj Palanci.
+
+O programu:
+
+Ovaj program predstavlja model i implementaciju informacionog sistema studentske službe Fakulteta tehničkih
+nauka. Aplikacija namenjena za upotrebu od strane referenta studentske službe.
+
+ 
+	
