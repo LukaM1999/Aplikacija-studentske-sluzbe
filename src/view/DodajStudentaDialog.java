@@ -34,7 +34,7 @@ public class DodajStudentaDialog extends JDialog {
 
 	private String prezimeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
 
-	private String telefonSablon = "[0-9]{8,9}?";
+	private String telefonSablon = "[0-9]{8,13}?";
 
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)((gmail)|"

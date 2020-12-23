@@ -29,7 +29,7 @@ public class DodajProfesoraDialog extends JDialog {
 
 	private String prezimeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
 
-	private String telefonSablon = "[0-9]{8,9}?";
+	private String telefonSablon = "[0-9]{8,13}?";
 
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)((gmail)|"
@@ -44,9 +44,9 @@ public class DodajProfesoraDialog extends JDialog {
 	
 	private String licnaSablon = "[0-9]{9}";
 	
-	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}]+";
+	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
-	private String titulaSablon = "[A-Za-z\\p{IsWhite_Space}]+";
+	private String titulaSablon = "[A-Za-z\\p{IsWhite_Space}\\.]+";
 	
 	private String zvanjeSablon = "[A-Za-z\\p{IsWhite_Space}]+";
 

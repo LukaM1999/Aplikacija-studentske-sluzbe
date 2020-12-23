@@ -28,7 +28,7 @@ public class DodajPredmetDialog extends JDialog {
 	
 	// REFERENCE:
 		// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-		private String sifraSablon = "\\p{IsUppercase}+[0-9]*";
+		private String sifraSablon = "\\p{IsUppercase}+[0-9]+";
 
 		private String nazivSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)[\\p{IsWhite_Space}\\p{IsAlphabetic}\\p{IsDigit}]*";
 

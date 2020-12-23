@@ -1,0 +1,76 @@
+Instrukcije za korišćenje programa Studentska služba
+
+I Rukovanje enititetima u tabelama:
+
+	Odabirom određenog taba prikazaće se tabela za dati tip entiteta.
+	Imate opciju da dodate, izmenite i obrišete entitete.
+
+	a) Dodavanje entiteta:
+		1) Klikom na stavku New u toolbar traci ili pritiskom kombinacije tastera CTRL+N.
+		2) Klikom na File stavku menija (ili pritiskom tastera ALT+F) i zatim na stavku New (ALT+N).
+
+	b) Izmena entiteta:
+		1) Klikom na stavku Edit u toolbar traci ili pritiskom kombinacije tastera CTRL+E.
+		2) Klikom na Edit stavku menija (ili pritiskom tastera ALT+E) i zatim na stavku Edit (ALT+E).
+
+	c) Brisanje entiteta:
+		1) Klikom na stavku Delete u toolbar traci ili pritiskom kombinacije tastera CTRL+D.
+		2) Klikom na Edit stavku menija (ili pritiskom tastera ALT+E) i zatim na stavku New (ALT+D).
+
+
+II Neki primeri ispravnih unosa atributa za određene entitete:
+
+	a) Student:
+		1) Ime: Miloš, Stefan, Đorđe
+		2) Prezime: Perić, Jovančić, Stanojevski
+		3) Datum rođenja: 22.7.1999, 04.06.1985.
+		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
+		5) Broj telefona: 064357753, 0114590712, 38165432174
+		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com
+		7) Broj indeksa: ra-218-2018, IN-58-2015, F2-054-2005, Pr-111-2010
+		8) Godina upisa: 2017, 2014, 2007
+ 
+
+	b) Profesor:
+		1) Ime: Miloš, Stefan, Đorđe
+		2) Prezime: Perić, Jovančić, Stanojevski
+		3) Datum rođenja: 22.7.1999, 04.06.1985.
+		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
+		5) Kontakt telefon: 064357753, 0114590712, 38165432174
+		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com
+		7) Adresa kancelarije: NTP-506, Kancelarija 115, Kabinet 509A
+		8) Broj lične karte: 955555546, 003206516
+		9) Titula: Dr astronomije, Specijalista biolog, Spec. biol.
+		10) Zvanje: Redovni profesor, Asistent, Prodekan
+
+
+	c) Predmet:
+		1) Šifra: FI1, MA3, PR1, O5, W21
+		2) Naziv: Osnovi elektrotehnike 1, Fizika, Programski prevodioci 
+		3) ESPB: celi brojevi veći od 0
+
+
+	Klikom na dugme "Potvrdi" će se dodati entitet sa unetim podacima u tabelu
+	samo ako su korektno popunjena sva polja. Polja čiji nazivi sadrže zvezdicu(*)
+	ne smeju biti prazna da bi se uspešno izvršilo dodavanje. Ako ste napravili grešku u unosu,
+	pojaviće se prozor sa porukom koji vam govori u kom polju je napravljena greška. Klikom na
+	dugme "OK" se vraćate na dijalog za unos informacija. Ako želite da odustanete od dodavanja,
+	možete kliknuti na dugme "Odustani" ili na X u gornjem desnom uglu prozora.
+	Napomena: Nećete moći da koristite ostatak programa dok je otvoren prozor za dodavanje entiteta. 
+			
+ 
+III Pristup informacijama o programu i pomoći korišćenja
+
+	a) Informacije o programu i autorima:
+		1) Klikom na Help stavku menija (ili pritiskom tastera ALT+H) i zatim na stavku About (ALT+A).
+		2) Pritiskom kombinacije tastera CTRL+A.
+
+	b) Pomoć oko korišćenja programa:
+		1) Klikom na Help stavku menija (ili pritiskom tastera ALT+H) i zatim na stavku Help (ALT+H).
+		2) Pritiskom kombinacije tastera CTRL+H.
+
+
+IV Napuštanje programa
+
+	1) Klikom na File stavku menija (ili pritiskom tastera ALT+F) i zatim na stavku Close (ALT+C).
+	2) Pritiskom kombinacije tastera CTRL+C.
