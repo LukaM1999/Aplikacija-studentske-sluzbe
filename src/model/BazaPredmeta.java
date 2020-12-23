@@ -34,7 +34,7 @@ public class BazaPredmeta {
 	
 	private void init() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("sifra", "oisisi", 8, 3, Semestar.zimski));
+		predmeti.add(new Predmet("sifra", "oisisi", 8, 3, Semestar.Zimski));
 	}
 	
 	
@@ -78,6 +78,10 @@ public class BazaPredmeta {
 	
 	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar) {
 		this.predmeti.add(new Predmet(sifra, naziv, ESPB, godinaStudija, semestar));
+	}
+	
+	public void dodajPredmet(Predmet p) {
+		this.predmeti.add(new Predmet(p));
 	}
 	
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Predmet {
 	
-	public enum Semestar {letnji, zimski}
+	public enum Semestar {Letnji, Zimski}
 	
 	private String sifra;
 	private String naziv;

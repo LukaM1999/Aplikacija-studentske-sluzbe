@@ -43,6 +43,12 @@ public class MainFrame extends JFrame {
 		validate();
 	}
 	
+	public void azurirajPredmete(String akcija, int vrednost) {
+		AbstractTableModelPredmet model = (AbstractTableModelPredmet) TablePredmet.getInstance().getModel();
+		model.fireTableDataChanged();
+		validate();
+	}
+	
 	
 	
 	public MainFrame() {
