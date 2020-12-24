@@ -352,18 +352,6 @@ public class IzmeniStudentaDialog extends JDialog {
 				if(budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
 					status = Status.S;
 				}
-
-				
-				student.setIme(imeVrednost);
-				student.setPrezime(prezimeVrednost);
-				student.setDatumRodjenja(datumVrednost);
-				student.setTelefon(telefonVrednost);
-				student.setAdresa(adresaVrednost);
-				student.setBrIndeksa(indeksVrednost);
-				student.setEmail(emailVrednost);
-				student.setGodinaUpisa(Integer.parseInt(upisVrednost));
-				student.setStatusStudenta(status);
-				
 				
 				//REFERENCE: https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
@@ -372,6 +360,17 @@ public class IzmeniStudentaDialog extends JDialog {
 						"Da li ste sigurni da želite da izmenite informacije ovog studenta?", "Potvrda izmene",
 						JOptionPane.OK_CANCEL_OPTION);
 				if(answer == JOptionPane.YES_OPTION) {
+					
+					student.setIme(imeVrednost);
+					student.setPrezime(prezimeVrednost);
+					student.setDatumRodjenja(datumVrednost);
+					student.setTelefon(telefonVrednost);
+					student.setAdresa(adresaVrednost);
+					student.setBrIndeksa(indeksVrednost);
+					student.setEmail(emailVrednost);
+					student.setGodinaUpisa(Integer.parseInt(upisVrednost));
+					student.setTrenutnaGodina(godinaStudija+1);
+					student.setStatusStudenta(status);
 				StudentController.getInstance().izmeniStudenta(table.getSelectedRow());
 				dispose();
 				}

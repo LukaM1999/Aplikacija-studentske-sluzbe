@@ -211,22 +211,21 @@ public class IzmeniPredmetDialog extends JDialog{
 					semestarVrednost = Semestar.Letnji;
 				}
 				
-				
-				predmet.setSifra(sifraVrednost);
-				predmet.setNaziv(nazivVrednost);
-				predmet.setESPB(Integer.parseInt(ESPBVrednost));
-				predmet.setGodinaStudija(godinaStudija);
-				predmet.setSemestar(semestarVrednost);
-				
-				
 				//REFERENCE: https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
 				int answer = confirm.showConfirmDialog(null,
 						"Da li ste sigurni da želite da izmenite informacije ovog predmeta?", "Potvrda izmene",
 						JOptionPane.OK_CANCEL_OPTION);
 				if(answer == JOptionPane.YES_OPTION) {
-				PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());
-				dispose();
+					
+					predmet.setSifra(sifraVrednost);
+					predmet.setNaziv(nazivVrednost);
+					predmet.setESPB(Integer.parseInt(ESPBVrednost));
+					predmet.setGodinaStudija(godinaStudija);
+					predmet.setSemestar(semestarVrednost);
+					
+					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());
+					dispose();
 				}
 				
 			}
