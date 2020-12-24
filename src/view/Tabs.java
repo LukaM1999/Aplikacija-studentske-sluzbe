@@ -40,7 +40,6 @@ public class Tabs extends JTabbedPane {
 
 	        public void stateChanged(ChangeEvent e) {
 
-	        	System.out.println(getSelectedIndex());
 	        }
 	    });
 		        

@@ -9,19 +9,17 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -5712265068405275698L;
 	
 	public AbstractTableModelStudent() {}
 
 	@Override
 	public int getColumnCount() {
-		// TODO Auto-generated method stub
 		return BazaStudenata.getInstance().getColumnCount();
 	}
 
 	@Override
 	public int getRowCount() {
-		// TODO Auto-generated method stub
 		return BazaStudenata.getInstance().getStudenti().size();
 	}
 
@@ -31,7 +29,6 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 	
 	@Override
 	public Object getValueAt(int rowIndex, int columnIndex) {
-		// TODO Auto-generated method stub
 		return BazaStudenata.getInstance().getValueAt(rowIndex, columnIndex);
 	}
 

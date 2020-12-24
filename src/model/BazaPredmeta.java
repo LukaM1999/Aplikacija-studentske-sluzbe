@@ -34,7 +34,7 @@ public class BazaPredmeta {
 	
 	private void init() {
 		this.predmeti = new ArrayList<Predmet>();
-		predmeti.add(new Predmet("sifra", "oisisi", 8, 3, Semestar.Zimski));
+		predmeti.add(new Predmet("E234", "Programski prevodioci", 4, 3, Semestar.Zimski));
 	}
 	
 	

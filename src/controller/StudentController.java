@@ -21,13 +21,20 @@ public class StudentController {
 	private StudentController() {}
 	
 	public void dodajStudenta(Student s) {
-		// izmena modela
 		BazaStudenata.getInstance().dodajStudenta(s);
-		// azuriranje prikaza
 		MainFrame.getInstance().azurirajStudente("DODAT", -1);
+	}
+	
+	public void izmeniStudenta(int row) {
+		MainFrame.getInstance().izmeniStudenta(row);
 	}
 	
 	public List<Student> getStudenti(){
 		return BazaStudenata.getInstance().getStudenti();
 	}
+	
+	public Student getStudent(int row) {
+		return BazaStudenata.getInstance().getRow(row);
+	}
+	
 }

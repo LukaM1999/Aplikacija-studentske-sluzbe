@@ -27,7 +27,15 @@ public class PredmetController {
 		MainFrame.getInstance().azurirajPredmete("DODAT", -1);
 	}
 	
+	public void izmeniPredmet(int row) {
+		MainFrame.getInstance().izmeniPredmet(row);
+	}
+	
 	public List<Predmet> getPredmeti(){
 		return BazaPredmeta.getInstance().getPredmeti();
+	}
+	
+	public Predmet getPredmet(int row) {
+		return BazaPredmeta.getInstance().getRow(row);
 	}
 }

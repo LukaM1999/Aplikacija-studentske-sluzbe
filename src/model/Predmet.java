@@ -42,7 +42,6 @@ public class Predmet {
 	}
 	
 	public Predmet(String string, String string2, int i, int j, Semestar zimski) {
-		// TODO Auto-generated constructor stub
 		this.sifra = string;
 		this.naziv = string2;
 		this.ESPB = i;

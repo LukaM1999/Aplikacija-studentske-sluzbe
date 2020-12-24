@@ -16,6 +16,7 @@ public class HelpDialogAction extends AbstractAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("deprecation")
 	public HelpDialogAction() {
 		putValue(NAME, "Help");
 		putValue(SMALL_ICON, new ImageIcon("images" + File.separator + "Help_help.png"));

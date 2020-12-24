@@ -16,6 +16,7 @@ public class AboutDialogAction extends AbstractAction {
 	 */
 	private static final long serialVersionUID = 1L;
 
+	@SuppressWarnings("deprecation")
 	public AboutDialogAction() {
 		putValue(NAME, "About");
 		putValue(SMALL_ICON, new ImageIcon("images" + File.separator + "Help_about.png"));

@@ -34,7 +34,7 @@ public class BazaStudenata {
 
 	private void init() {
 		this.studenti = new ArrayList<Student>();
-		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20", "066754498", "peraperic@gmail.com",
+		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20, Novi Sad", "066754498", "peraperic@gmail.com",
 				"in-123-2017", 2017, 4, Status.B));
 	}
 

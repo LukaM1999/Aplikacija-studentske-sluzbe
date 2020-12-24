@@ -22,9 +22,7 @@ public class ProfesorController {
 		private ProfesorController() {}
 		
 		public void dodajProfesora(Profesor p) {
-			// izmena modela
 			BazaProfesora.getInstance().dodajProfesora(p);
-			// azuriranje prikaza
 			MainFrame.getInstance().azurirajProfesore("DODAT", -1);
 		}
 		

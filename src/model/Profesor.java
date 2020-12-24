@@ -10,7 +10,6 @@ public class Profesor {
 	
 	private String prezime;
 	private String ime;
-	//private Date datumRodjenja;
 	private String datumRodjenja;
 	private String adresa;
 	private String telefon;

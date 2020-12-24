@@ -4,7 +4,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
+
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -21,20 +23,20 @@ public class MyMenuBar extends JMenuBar {
 	private static final long serialVersionUID = -5986249145568966369L;
 
 	public MyMenuBar() {
-		JMenu File_m = new JMenu("File");
-		File_m.setMnemonic(KeyEvent.VK_F);
-		JMenu Edit_m = new JMenu("Edit");
-		Edit_m.setMnemonic(KeyEvent.VK_E);
-		JMenu Help_m = new JMenu("Help");
-		Help_m.setMnemonic(KeyEvent.VK_H);
+		JMenu fileMenu = new JMenu("File");
+		fileMenu.setMnemonic(KeyEvent.VK_F);
+		JMenu editMenu = new JMenu("Edit");
+		editMenu.setMnemonic(KeyEvent.VK_E);
+		JMenu helpMenu = new JMenu("Help");
+		helpMenu.setMnemonic(KeyEvent.VK_H);
 		
 
 		
-		JMenuItem New_mi = new JMenuItem("New", new ImageIcon("images" + File.separator +  "File_new.png"));
-		New_mi.setBackground(Color.WHITE);
-		New_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
-		New_mi.setMnemonic(KeyEvent.VK_N);
-		New_mi.addActionListener(new ActionListener() {
+		JMenuItem newItem = new JMenuItem("New", new ImageIcon("images" + File.separator +  "File_new.png"));
+		newItem.setBackground(Color.WHITE);
+		newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
+		newItem.setMnemonic(KeyEvent.VK_N);
+		newItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -58,29 +60,69 @@ public class MyMenuBar extends JMenuBar {
 		});
 
 		
-		JMenuItem Close_mi = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
-		Close_mi.setBackground(Color.WHITE);
-		Close_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
-		Close_mi.setMnemonic(KeyEvent.VK_C);
+		JMenuItem closeItem = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
+		closeItem.setBackground(Color.WHITE);
+		closeItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
+		closeItem.setMnemonic(KeyEvent.VK_C);
+		closeItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				
+				JOptionPane confirm = new JOptionPane();
+				@SuppressWarnings("static-access")
+				int answer = confirm.showConfirmDialog(null,
+						"Da li ste sigurni da želite da napustite aplikaciju?", "Potvrda izlaska",
+						JOptionPane.OK_CANCEL_OPTION);
+				if(answer == JOptionPane.YES_OPTION) {
+					System.exit(0);
+				}
+			
+			}
+		});
+		
 
 		
-		JMenuItem Edit_mi = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
-		Edit_mi.setBackground(Color.WHITE);
-		Edit_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
-		Edit_mi.setMnemonic(KeyEvent.VK_E);
+		JMenuItem editItem = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
+		editItem.setBackground(Color.WHITE);
+		editItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
+		editItem.setMnemonic(KeyEvent.VK_E);
+		editItem.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					IzmeniStudentaDialog studentDialog = new IzmeniStudentaDialog(MainFrame.getInstance(),
+							"Izmena studenta", true);
+					studentDialog.setVisible(true);
+				}
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
+					IzmeniProfesoraDialog profesorDialog = new IzmeniProfesoraDialog(MainFrame.getInstance(),
+							"Izmena profesora", true);
+					profesorDialog.setVisible(true);
+				}
+				if (Tabs.getInstance().getSelectedIndex() == 2) {
+					IzmeniPredmetDialog predmetDialog = new IzmeniPredmetDialog(MainFrame.getInstance(),
+							"Izmena predmeta", true);
+					predmetDialog.setVisible(true);
+				}
+			
+			}
+		});
+
 
 		
-		JMenuItem Delete_mi = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
-		Delete_mi.setBackground(Color.WHITE);
-		Delete_mi.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
-		Delete_mi.setMnemonic(KeyEvent.VK_D);
+		JMenuItem deleteItem = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
+		deleteItem.setBackground(Color.WHITE);
+		deleteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
+		deleteItem.setMnemonic(KeyEvent.VK_D);
 
 		
-		HelpDialogAction hda = new HelpDialogAction();
-		JMenuItem Help_mi = new JMenuItem(hda);
-		Help_mi.setBackground(Color.WHITE);
-		Help_mi.setMnemonic(KeyEvent.VK_H);
-		Help_mi.addActionListener(new ActionListener() {
+		HelpDialogAction helpAction = new HelpDialogAction();
+		JMenuItem helpItem = new JMenuItem(helpAction);
+		helpItem.setBackground(Color.WHITE);
+		helpItem.setMnemonic(KeyEvent.VK_H);
+		helpItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -91,11 +133,11 @@ public class MyMenuBar extends JMenuBar {
 		});
 	
 
-		AboutDialogAction ada = new AboutDialogAction();
-		JMenuItem About_mi = new JMenuItem(ada);
-		About_mi.setBackground(Color.WHITE);
-		About_mi.setMnemonic(KeyEvent.VK_A);
-		About_mi.addActionListener(new ActionListener() {
+		AboutDialogAction aboutAction = new AboutDialogAction();
+		JMenuItem aboutItem = new JMenuItem(aboutAction);
+		aboutItem.setBackground(Color.WHITE);
+		aboutItem.setMnemonic(KeyEvent.VK_A);
+		aboutItem.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
@@ -106,19 +148,19 @@ public class MyMenuBar extends JMenuBar {
 		});
 
 		
-		File_m.add(New_mi);
-		File_m.addSeparator();
-		File_m.add(Close_mi);
-		Edit_m.add(Edit_mi);
-		Edit_m.addSeparator();
-		Edit_m.add(Delete_mi);
-		Help_m.add(Help_mi);
-		Help_m.addSeparator();
-		Help_m.add(About_mi);
+		fileMenu.add(newItem);
+		fileMenu.addSeparator();
+		fileMenu.add(closeItem);
+		editMenu.add(editItem);
+		editMenu.addSeparator();
+		editMenu.add(deleteItem);
+		helpMenu.add(helpItem);
+		helpMenu.addSeparator();
+		helpMenu.add(aboutItem);
 		
-		add(File_m);
-		add(Edit_m);
-		add(Help_m);
+		add(fileMenu);
+		add(editMenu);
+		add(helpMenu);
 	}
 
 }
