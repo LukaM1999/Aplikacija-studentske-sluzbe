@@ -7,6 +7,9 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.PredmetController;
+import controller.ProfesorController;
+import controller.StudentController;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -29,10 +32,8 @@ public class MyMenuBar extends JMenuBar {
 		editMenu.setMnemonic(KeyEvent.VK_E);
 		JMenu helpMenu = new JMenu("Help");
 		helpMenu.setMnemonic(KeyEvent.VK_H);
-		
 
-		
-		JMenuItem newItem = new JMenuItem("New", new ImageIcon("images" + File.separator +  "File_new.png"));
+		JMenuItem newItem = new JMenuItem("New", new ImageIcon("images" + File.separator + "File_new.png"));
 		newItem.setBackground(Color.WHITE);
 		newItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_N, ActionEvent.CTRL_MASK));
 		newItem.setMnemonic(KeyEvent.VK_N);
@@ -55,11 +56,10 @@ public class MyMenuBar extends JMenuBar {
 							"Dodavanje predmeta", true);
 					predmetDialog.setVisible(true);
 				}
-			
+
 			}
 		});
 
-		
 		JMenuItem closeItem = new JMenuItem("Close", new ImageIcon("images" + File.separator + "File_close.png"));
 		closeItem.setBackground(Color.WHITE);
 		closeItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_C, ActionEvent.CTRL_MASK));
@@ -68,21 +68,18 @@ public class MyMenuBar extends JMenuBar {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
+
 				JOptionPane confirm = new JOptionPane();
 				@SuppressWarnings("static-access")
-				int answer = confirm.showConfirmDialog(null,
-						"Da li ste sigurni da želite da napustite aplikaciju?", "Potvrda izlaska",
-						JOptionPane.OK_CANCEL_OPTION);
-				if(answer == JOptionPane.YES_OPTION) {
+				int answer = confirm.showConfirmDialog(null, "Da li ste sigurni da želite da napustite aplikaciju?",
+						"Potvrda izlaska", JOptionPane.OK_CANCEL_OPTION);
+				if (answer == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
-			
+
 			}
 		});
-		
 
-		
 		JMenuItem editItem = new JMenuItem("Edit", new ImageIcon("images" + File.separator + "Edit_edit.png"));
 		editItem.setBackground(Color.WHITE);
 		editItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_E, ActionEvent.CTRL_MASK));
@@ -106,18 +103,54 @@ public class MyMenuBar extends JMenuBar {
 							"Izmena predmeta", true);
 					predmetDialog.setVisible(true);
 				}
-			
+
 			}
 		});
 
-
-		
 		JMenuItem deleteItem = new JMenuItem("Delete", new ImageIcon("images" + File.separator + "Edit_delete.png"));
 		deleteItem.setBackground(Color.WHITE);
 		deleteItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
 		deleteItem.setMnemonic(KeyEvent.VK_D);
+		deleteItem.addActionListener(new ActionListener() {
 
-		
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					if (TableStudent.getInstance().getSelectedRow() >= 0) {
+						int opcija = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da želite da obrišete studenta?", "Brisanje studenta",
+								JOptionPane.YES_NO_OPTION);
+						if (opcija == 0) {
+							StudentController.getInstance().izbrisiStudenta(TableStudent.getInstance().getSelectedRow());
+						}
+					}
+				}
+
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
+					if (TableProfesor.getInstance().getSelectedRow() >= 0) {
+						int opcija = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da želite da obrišete profesora?", "Brisanje profesora",
+								JOptionPane.YES_NO_OPTION);
+						if (opcija == 0) {
+							ProfesorController.getInstance().izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
+						}
+					}
+				}
+
+				if (Tabs.getInstance().getSelectedIndex() == 2) {
+					if (TablePredmet.getInstance().getSelectedRow() >= 0) {
+						int opcija = JOptionPane.showConfirmDialog(null,
+								"Da li ste sigurni da želite da obrišete predmet?", "Brisanje predmeta",
+								JOptionPane.YES_NO_OPTION);
+						if (opcija == 0) {
+							PredmetController.getInstance().izbrisiPredmet(TablePredmet.getInstance().getSelectedRow());
+						}
+					}
+				}
+
+			}
+		});
+
 		HelpDialogAction helpAction = new HelpDialogAction();
 		JMenuItem helpItem = new JMenuItem(helpAction);
 		helpItem.setBackground(Color.WHITE);
@@ -131,7 +164,6 @@ public class MyMenuBar extends JMenuBar {
 
 			}
 		});
-	
 
 		AboutDialogAction aboutAction = new AboutDialogAction();
 		JMenuItem aboutItem = new JMenuItem(aboutAction);
@@ -147,7 +179,6 @@ public class MyMenuBar extends JMenuBar {
 			}
 		});
 
-		
 		fileMenu.add(newItem);
 		fileMenu.addSeparator();
 		fileMenu.add(closeItem);
@@ -157,7 +188,7 @@ public class MyMenuBar extends JMenuBar {
 		helpMenu.add(helpItem);
 		helpMenu.addSeparator();
 		helpMenu.add(aboutItem);
-		
+
 		add(fileMenu);
 		add(editMenu);
 		add(helpMenu);

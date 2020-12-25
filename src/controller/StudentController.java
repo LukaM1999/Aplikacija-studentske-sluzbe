@@ -29,6 +29,16 @@ public class StudentController {
 		MainFrame.getInstance().izmeniStudenta(row);
 	}
 	
+	public void izbrisiStudenta(int rowSelectedIndex) {
+    	if (rowSelectedIndex < 0) {
+			return;
+		}
+    	
+    	Student s = BazaStudenata.getInstance().getRow(rowSelectedIndex);
+		BazaStudenata.getInstance().izbrisiStudenta(s.getBrIndeksa());
+		MainFrame.getInstance().azurirajStudente("UKLONJEN", rowSelectedIndex);
+    }
+	
 	public List<Student> getStudenti(){
 		return BazaStudenata.getInstance().getStudenti();
 	}

@@ -80,4 +80,13 @@ public class BazaProfesora {
 		this.profesori.add(new Profesor(p));
 	}
 	
+	public void izbrisiProfesora(String id) {
+		for (Profesor p : profesori) {
+			if (p.getBrLicneKarte() == id) {
+				profesori.remove(p);
+				break;
+			}
+		}
+	}
+	
 }

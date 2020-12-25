@@ -88,4 +88,13 @@ public class BazaStudenata {
 		this.studenti.add(new Student(s));
 	}
 
+	public void izbrisiStudenta(String id) {
+		for (Student s : studenti) {
+			if (s.getBrIndeksa() == id) {
+				studenti.remove(s);
+				break;
+			}
+		}
+	}
+	
 }
