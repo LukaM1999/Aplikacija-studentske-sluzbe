@@ -55,6 +55,12 @@ public class MainFrame extends JFrame {
 		validate();
 	}
 	
+	public void izmeniProfesora(int row) {
+		AbstractTableModelProfesor model = (AbstractTableModelProfesor) TableProfesor.getInstance().getModel();
+		model.fireTableRowsUpdated(row, row);
+		validate();
+	}
+	
 	public void izmeniPredmet(int row) {
 		AbstractTableModelPredmet model = (AbstractTableModelPredmet) TablePredmet.getInstance().getModel();
 		model.fireTableRowsUpdated(row, row);

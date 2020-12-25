@@ -31,6 +31,17 @@ public class PredmetController {
 		MainFrame.getInstance().izmeniPredmet(row);
 	}
 	
+	public void izbrisiPredmet(int rowSelectedIndex) {
+    	if (rowSelectedIndex < 0) {
+			return;
+		}
+    	// izmena modela
+    	Predmet p = BazaPredmeta.getInstance().getRow(rowSelectedIndex);
+		BazaPredmeta.getInstance().izbrisiPredmet(p.getSifra());
+		// azuriranje prikaza
+		MainFrame.getInstance().azurirajPredmete("UKLONJEN", rowSelectedIndex);
+    }
+	
 	public List<Predmet> getPredmeti(){
 		return BazaPredmeta.getInstance().getPredmeti();
 	}

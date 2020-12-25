@@ -5,6 +5,7 @@ import java.util.List;
 
 import model.Predmet.Semestar;
 
+
 public class BazaPredmeta {
 	
 	private static BazaPredmeta instance = null;
@@ -84,4 +85,12 @@ public class BazaPredmeta {
 		this.predmeti.add(new Predmet(p));
 	}
 	
+	public void izbrisiPredmet(String id) {
+		for (Predmet p : predmeti) {
+			if (p.getSifra() == id) {
+				predmeti.remove(p);
+				break;
+			}
+		}
+	}
 }
