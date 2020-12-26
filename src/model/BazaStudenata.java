@@ -94,11 +94,10 @@ public class BazaStudenata {
 
 	public void izbrisiStudenta(String id) {
 		for (Student s : studenti) {
-			if (s.getBrIndeksa() == id) {
+			if (s.getBrIndeksa().equals(id)) {
 				studenti.remove(s);
 				break;
 			}
 		}
 	}
-
 }

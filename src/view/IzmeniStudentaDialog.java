@@ -6,6 +6,7 @@ import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.Year;
+import java.util.List;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -19,7 +20,10 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.OcenaController;
 import controller.StudentController;
+import model.BazaOcena;
+import model.Ocena;
 import model.Student;
 import model.Student.Status;
 import javax.swing.JTabbedPane;
@@ -50,6 +54,8 @@ public class IzmeniStudentaDialog extends JDialog {
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 	
 	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
+	
+	private TableOcena polozeniTable;
 	
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
@@ -389,7 +395,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		});
 		panel.add(ok);
 		
-		JTabbedPane infoTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		
+		JTabbedPane infoTabbedPane = new JTabbedPane();
 		getContentPane().add(infoTabbedPane);
 		
 		infoTabbedPane.addTab("Informacije", panel);
@@ -397,7 +404,23 @@ public class IzmeniStudentaDialog extends JDialog {
 		polozeniPanel.setSize(500, 600);
 		infoTabbedPane.addTab("Položeni", polozeniPanel);
 		
-		TableOcena polozeniTable = new TableOcena();
+		List<Ocena> ocene = student.getSpisakPolozenih();	
+		//List<Ocena> ocene = OcenaController.getInstance().getOcene();
+		AbstractTableModelOcena model = (AbstractTableModelOcena) TableOcena.getInstance().getModel();
+		polozeniTable = TableOcena.getInstance();
+		
+		for(int i = 0; i < ocene.size(); i++) {
+			System.out.println(ocene.get(i).getStudent().getBrIndeksa());
+		}
+		
+		for(int i = 0; i < ocene.size(); i++) {
+			//System.out.println(ocene.get(i).getStudent().getBrIndeksa());
+			if(!(ocene.get(i).getStudent().getBrIndeksa().equals(student.getBrIndeksa()))) {
+		
+				//polozeniTable.remove(i);
+			}
+		}
+		
 		
 		JScrollPane polozeni = new JScrollPane(polozeniTable);
 		polozeni.setBounds(5, 40, 475, 430);
@@ -407,22 +430,59 @@ public class IzmeniStudentaDialog extends JDialog {
 		ponistiOcenu.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		ponistiOcenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				if (polozeniTable.getSelectedRow() >= 0) {
+					int answer = JOptionPane.showConfirmDialog(getContentPane(),
+							"Da li ste sigurni da želite da poništite ocenu?", "Ponišstavanje ocene",
+							JOptionPane.YES_NO_OPTION);
+					if (answer == JOptionPane.YES_OPTION) {
+						OcenaController.getInstance().ponistiOcenu(polozeniTable.getSelectedRow());
+						AbstractTableModelOcena model = (AbstractTableModelOcena) polozeniTable.getModel();
+						model.fireTableDataChanged();
+						validate();
+					}
+
+				}
+
 			}
-			
+
 		});
 		
+		//REFERENCE: https://www.caveofprogramming.com/guest-posts/absolute-layout-in-swing.html
 		polozeniPanel.setLayout(null);
 		polozeniPanel.add(polozeni);
 		polozeniPanel.add(ponistiOcenu);
 		
-		JLabel prosek = new JLabel("Prosečna ocena: ");
+		
+		float prosecnaOcena = 0;
+		float brOcena = 0;
+		for (int i = 0; i < OcenaController.getInstance().getOcene().size(); i++) {
+			if(OcenaController.getInstance().getOcene().get(i).getStudent().getBrIndeksa().equals(student.getBrIndeksa())) {
+				prosecnaOcena += OcenaController.getInstance().getOcene().get(i).getVrednostOcene();
+				brOcena++;
+			}
+		}
+		float avgOcena = prosecnaOcena / brOcena;
+		
+		//REFERENCE: https://www.baeldung.com/java-not-a-number
+		if(Float.isNaN(avgOcena)) {
+			avgOcena = 0;
+		}
+		
+		int ukupnoESPB = 0;
+		for (int i = 0; i < OcenaController.getInstance().getOcene().size(); i++) {
+			if(OcenaController.getInstance().getOcene().get(i).getStudent().getBrIndeksa().equals(student.getBrIndeksa())) {
+				ukupnoESPB += OcenaController.getInstance().getOcene().get(i).getPredmet().getESPB();
+			}
+		}
+		
+		
+		
+		JLabel prosek = new JLabel("Prosečna ocena: " + avgOcena);
 		prosek.setBounds(340, 475, 140, 25);
 		prosek.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		polozeniPanel.add(prosek);
 		
-		JLabel ESPB = new JLabel("Ukupno ESPB: ");
+		JLabel ESPB = new JLabel("Ukupno ESPB: " + ukupnoESPB);
 		ESPB.setBounds(340, 505, 140, 25);
 		ESPB.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		polozeniPanel.add(ESPB);
@@ -436,5 +496,9 @@ public class IzmeniStudentaDialog extends JDialog {
 	        }
 	    });
 
+	}
+	
+	public TableOcena getPolozeniTable() {
+		return polozeniTable;
 	}
 }

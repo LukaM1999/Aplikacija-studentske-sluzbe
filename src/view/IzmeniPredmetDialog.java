@@ -213,7 +213,7 @@ public class IzmeniPredmetDialog extends JDialog{
 				
 				//REFERENCE: https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
-				int answer = confirm.showConfirmDialog(null,
+				int answer = confirm.showConfirmDialog(getContentPane(),
 						"Da li ste sigurni da želite da izmenite informacije ovog predmeta?", "Potvrda izmene",
 						JOptionPane.OK_CANCEL_OPTION);
 				if(answer == JOptionPane.YES_OPTION) {
