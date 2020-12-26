@@ -36,6 +36,11 @@ public class BazaPredmeta {
 	private void init() {
 		this.predmeti = new ArrayList<Predmet>();
 		predmeti.add(new Predmet("E234", "Programski prevodioci", 4, 3, Semestar.Zimski));
+		predmeti.add(new Predmet("E256", "Fizika", 9, 1, Semestar.Letnji));
+		predmeti.add(new Predmet("E231", "Osnovi elektrotehnike", 9, 1, Semestar.Letnji));
+		predmeti.add(new Predmet("E154", "Objektno programiranje", 8, 2, Semestar.Zimski));
+		predmeti.add(new Predmet("E128", "Baze podataka 2", 8, 4, Semestar.Zimski));
+
 	}
 	
 	

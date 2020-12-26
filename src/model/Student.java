@@ -4,6 +4,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Koriscen materijal sa vezbi
@@ -24,8 +25,8 @@ public class Student {
 	private int trenutnaGodina;
 	private Status statusStudenta;
 	private double prosecnaOcena;
-	private ArrayList<Ocena> spisakPolozenih;
-	private ArrayList<Ocena> spisakNepolozenih;
+	private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
+	private List<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
 	
 	
 
@@ -34,8 +35,8 @@ public class Student {
 				   String brIndeksa, int godinaUpisa,
 				   int trenutnaGodina, Status statusStudenta,
 				   double prosecnaOcena,
-				   ArrayList<Ocena> spisakPolozenih,
-				   ArrayList<Ocena> spisakNepolozenih) {
+				   List<Ocena> spisakPolozenih,
+				   List<Predmet> spisakNepolozenih) {
 		setIme(ime);
 		setPrezime(prezime);
 		setDatumRodjenja(datumRodjenja);
@@ -83,6 +84,10 @@ public class Student {
 	setStatusStudenta(statusStudenta);
 }
 	
+	public void dodajNepolozen(Predmet p) {
+		this.spisakNepolozenih.add(p);
+	}
+	
 	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
@@ -91,19 +96,19 @@ public class Student {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
-	public ArrayList<Ocena> getSpisakPolozenih() {
+	public List<Ocena> getSpisakPolozenih() {
 		return spisakPolozenih;
 	}
 
-	public void setSpisakPolozenih(ArrayList<Ocena> spisakPolozenih) {
+	public void setSpisakPolozenih(List<Ocena> spisakPolozenih) {
 		this.spisakPolozenih = spisakPolozenih;
 	}
 
-	public ArrayList<Ocena> getSpisakNepolozenih() {
+	public List<Predmet> getSpisakNepolozenih() {
 		return spisakNepolozenih;
 	}
 
-	public void setSpisakNepolozenih(ArrayList<Ocena> spisakNepolozenih) {
+	public void setSpisakNepolozenih(List<Predmet> spisakNepolozenih) {
 		this.spisakNepolozenih = spisakNepolozenih;
 	}
 

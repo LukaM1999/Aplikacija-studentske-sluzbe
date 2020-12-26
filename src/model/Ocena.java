@@ -26,6 +26,13 @@ public class Ocena {
 		this.datumPolaganja = datumPolaganja;
 	}
 	
+	public Ocena(Ocena o) {
+		this.student = o.student;
+		this.predmet = o.predmet;
+		this.vrednostOcene = o.vrednostOcene;
+		this.datumPolaganja = o.datumPolaganja;
+	}
+	
 	public Student getStudent() {
 		return student;
 	}

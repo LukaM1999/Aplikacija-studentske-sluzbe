@@ -89,21 +89,26 @@ public class MyMenuBar extends JMenuBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					if (TableStudent.getInstance().getSelectedRow() >= 0) {
 					IzmeniStudentaDialog studentDialog = new IzmeniStudentaDialog(MainFrame.getInstance(),
 							"Izmena studenta", true);
 					studentDialog.setVisible(true);
+					}
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
+					if (TableProfesor.getInstance().getSelectedRow() >= 0) {
 					IzmeniProfesoraDialog profesorDialog = new IzmeniProfesoraDialog(MainFrame.getInstance(),
 							"Izmena profesora", true);
 					profesorDialog.setVisible(true);
+					}
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 2) {
+					if (TablePredmet.getInstance().getSelectedRow() >= 0) {
 					IzmeniPredmetDialog predmetDialog = new IzmeniPredmetDialog(MainFrame.getInstance(),
 							"Izmena predmeta", true);
 					predmetDialog.setVisible(true);
+					}
 				}
-
 			}
 		});
 

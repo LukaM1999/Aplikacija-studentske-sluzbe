@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
 
+import controller.PredmetController;
 import controller.StudentController;
 import model.Student;
 import model.Student.Status;
@@ -356,11 +357,18 @@ public class DodajStudentaDialog extends JDialog {
 					}
 				}
 				
+								
 				Student student = new Student(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
 						telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
 						godinaStudija+1, status);
-				StudentController.getInstance().dodajStudenta(student);
 				
+				for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {
+					if (PredmetController.getInstance().getPredmet(i).getGodinaStudija() <= godinaStudija+1) {
+						student.dodajNepolozen(PredmetController.getInstance().getPredmet(i));
+					}
+				}
+				
+				StudentController.getInstance().dodajStudenta(student);				
 				dispose();
 				
 			}

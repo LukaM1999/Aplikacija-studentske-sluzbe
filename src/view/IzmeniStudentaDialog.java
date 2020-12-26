@@ -13,12 +13,17 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import controller.StudentController;
 import model.Student;
 import model.Student.Status;
+import javax.swing.JTabbedPane;
+import javax.swing.JScrollPane;
 
 public class IzmeniStudentaDialog extends JDialog {
 	
@@ -46,7 +51,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 	
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public IzmeniStudentaDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
@@ -55,17 +60,20 @@ public class IzmeniStudentaDialog extends JDialog {
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
+		JPanel panel = new JPanel();
+		panel.setSize(500, 6);
+		
 		SpringLayout springLayout = new SpringLayout();
-		getContentPane().setLayout(springLayout);
+		panel.setLayout(springLayout);
 
 		// Labels
 		JLabel ime = new JLabel("Ime*");
 		ime.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, ime, 35, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, ime, 35, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, ime, 75, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, ime, 205, SpringLayout.WEST, getContentPane());
-		getContentPane().add(ime);
+		springLayout.putConstraint(SpringLayout.NORTH, ime, 35, SpringLayout.NORTH, panel);
+		springLayout.putConstraint(SpringLayout.WEST, ime, 35, SpringLayout.WEST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, ime, 75, SpringLayout.NORTH, panel);
+		springLayout.putConstraint(SpringLayout.EAST, ime, 205, SpringLayout.WEST, panel);
+		panel.add(ime);
 
 		JLabel prezime = new JLabel("Prezime*");
 		prezime.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -73,7 +81,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, prezime, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, prezime, 45, SpringLayout.SOUTH, ime);
 		springLayout.putConstraint(SpringLayout.EAST, prezime, 0, SpringLayout.EAST, ime);
-		getContentPane().add(prezime);
+		panel.add(prezime);
 
 		JLabel datum = new JLabel("Datum rođenja*");
 		datum.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -81,7 +89,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, datum, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, datum, 45, SpringLayout.SOUTH, prezime);
 		springLayout.putConstraint(SpringLayout.EAST, datum, 0, SpringLayout.EAST, ime);
-		getContentPane().add(datum);
+		panel.add(datum);
 
 		JLabel adresa = new JLabel("Adresa stanovanja*");
 		adresa.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -89,7 +97,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, adresa, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, adresa, 45, SpringLayout.SOUTH, datum);
 		springLayout.putConstraint(SpringLayout.EAST, adresa, 0, SpringLayout.EAST, ime);
-		getContentPane().add(adresa);
+		panel.add(adresa);
 
 		JLabel telefon = new JLabel("Broj telefona*");
 		telefon.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -97,7 +105,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, telefon, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, telefon, 45, SpringLayout.SOUTH, adresa);
 		springLayout.putConstraint(SpringLayout.EAST, telefon, 0, SpringLayout.EAST, ime);
-		getContentPane().add(telefon);
+		panel.add(telefon);
 
 		JLabel email = new JLabel("E-mail adresa*");
 		email.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -105,7 +113,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, email, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, email, 45, SpringLayout.SOUTH, telefon);
 		springLayout.putConstraint(SpringLayout.EAST, email, 0, SpringLayout.EAST, ime);
-		getContentPane().add(email);
+		panel.add(email);
 
 		JLabel indeks = new JLabel("Broj indeksa*");
 		indeks.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -113,7 +121,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, indeks, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, indeks, 45, SpringLayout.SOUTH, email);
 		springLayout.putConstraint(SpringLayout.EAST, indeks, 0, SpringLayout.EAST, ime);
-		getContentPane().add(indeks);
+		panel.add(indeks);
 
 		JLabel upis = new JLabel("Godina upisa*");
 		upis.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -121,7 +129,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, upis, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, upis, 45, SpringLayout.SOUTH, indeks);
 		springLayout.putConstraint(SpringLayout.EAST, upis, 0, SpringLayout.EAST, ime);
-		getContentPane().add(upis);
+		panel.add(upis);
 
 		JLabel godinaStudija = new JLabel("Trenutna godina studija*");
 		godinaStudija.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -129,7 +137,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, godinaStudija, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, godinaStudija, 45, SpringLayout.SOUTH, upis);
 		springLayout.putConstraint(SpringLayout.EAST, godinaStudija, 0, SpringLayout.EAST, ime);
-		getContentPane().add(godinaStudija);
+		panel.add(godinaStudija);
 
 		JLabel finansiranje = new JLabel("Način finansiranja*");
 		finansiranje.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -137,7 +145,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, finansiranje, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, finansiranje, 45, SpringLayout.SOUTH, godinaStudija);
 		springLayout.putConstraint(SpringLayout.EAST, finansiranje, 0, SpringLayout.EAST, ime);
-		getContentPane().add(finansiranje);
+		panel.add(finansiranje);
 		
 
 		// Text fields
@@ -145,57 +153,57 @@ public class IzmeniStudentaDialog extends JDialog {
 		imeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, imeUnos, 11, SpringLayout.NORTH, ime);
 		springLayout.putConstraint(SpringLayout.WEST, imeUnos, 6, SpringLayout.EAST, ime);
-		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, getContentPane());
-		getContentPane().add(imeUnos);
+		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, panel);
+		panel.add(imeUnos);
 
 		JTextField prezimeUnos = new JTextField();
 		prezimeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, prezimeUnos, 11, SpringLayout.NORTH, prezime);
 		springLayout.putConstraint(SpringLayout.WEST, prezimeUnos, 6, SpringLayout.EAST, prezime);
 		springLayout.putConstraint(SpringLayout.EAST, prezimeUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(prezimeUnos);
+		panel.add(prezimeUnos);
 
 		JTextField datumUnos = new JTextField();
 		datumUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, datumUnos, 11, SpringLayout.NORTH, datum);
 		springLayout.putConstraint(SpringLayout.WEST, datumUnos, 6, SpringLayout.EAST, datum);
 		springLayout.putConstraint(SpringLayout.EAST, datumUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(datumUnos);
+		panel.add(datumUnos);
 
 		JTextField adresaUnos = new JTextField();
 		adresaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, adresaUnos, 11, SpringLayout.NORTH, adresa);
 		springLayout.putConstraint(SpringLayout.WEST, adresaUnos, 6, SpringLayout.EAST, adresa);
 		springLayout.putConstraint(SpringLayout.EAST, adresaUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(adresaUnos);
+		panel.add(adresaUnos);
 
 		JTextField telefonUnos = new JTextField();
 		telefonUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, telefonUnos, 11, SpringLayout.NORTH, telefon);
 		springLayout.putConstraint(SpringLayout.WEST, telefonUnos, 6, SpringLayout.EAST, telefon);
 		springLayout.putConstraint(SpringLayout.EAST, telefonUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(telefonUnos);
+		panel.add(telefonUnos);
 
 		JTextField emailUnos = new JTextField();
 		emailUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, emailUnos, 11, SpringLayout.NORTH, email);
 		springLayout.putConstraint(SpringLayout.WEST, emailUnos, 6, SpringLayout.EAST, email);
 		springLayout.putConstraint(SpringLayout.EAST, emailUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(emailUnos);
+		panel.add(emailUnos);
 
 		JTextField indeksUnos = new JTextField();
 		indeksUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, indeksUnos, 11, SpringLayout.NORTH, indeks);
 		springLayout.putConstraint(SpringLayout.WEST, indeksUnos, 6, SpringLayout.EAST, indeks);
 		springLayout.putConstraint(SpringLayout.EAST, indeksUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(indeksUnos);
+		panel.add(indeksUnos);
 
 		JTextField upisUnos = new JTextField();
 		upisUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, upisUnos, 11, SpringLayout.NORTH, upis);
 		springLayout.putConstraint(SpringLayout.WEST, upisUnos, 6, SpringLayout.EAST, upis);
 		springLayout.putConstraint(SpringLayout.EAST, upisUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(upisUnos);
+		panel.add(upisUnos);
 		
 
 		// Combo boxes
@@ -207,7 +215,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.EAST, godinaCombo, 0, SpringLayout.EAST, imeUnos);
 		godinaCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		godinaCombo.setSelectedIndex(0);
-		getContentPane().add(godinaCombo);
+		panel.add(godinaCombo);
 
 		String[] nacinFinansiranja = new String[] { "Budžet", "Samofinansiranje" };
 		JComboBox budzetCombo = new JComboBox(nacinFinansiranja);
@@ -217,7 +225,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.EAST, budzetCombo, 0, SpringLayout.EAST, imeUnos);
 		budzetCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		budzetCombo.setSelectedIndex(0);
-		getContentPane().add(budzetCombo);
+		panel.add(budzetCombo);
 		
 		
 		TableStudent table = TableStudent.getInstance();
@@ -240,28 +248,30 @@ public class IzmeniStudentaDialog extends JDialog {
 			budzetCombo.setSelectedIndex(1);
 		}
 		
+		getContentPane().add(panel);
 		
 
 		// Buttons
 		JButton cancel = new JButton("Odustani");
+		springLayout.putConstraint(SpringLayout.NORTH, cancel, 19, SpringLayout.SOUTH, budzetCombo);
+		springLayout.putConstraint(SpringLayout.WEST, cancel, 280, SpringLayout.WEST, panel);
+		springLayout.putConstraint(SpringLayout.SOUTH, cancel, -10, SpringLayout.SOUTH, panel);
+		springLayout.putConstraint(SpringLayout.EAST, cancel, -80, SpringLayout.EAST, panel);
 		cancel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.WEST, cancel, 294, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, cancel, -68, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cancel, 37, SpringLayout.SOUTH, finansiranje);
-		springLayout.putConstraint(SpringLayout.SOUTH, cancel, -10, SpringLayout.SOUTH, getContentPane());
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 			}
 		});
-		getContentPane().add(cancel);
-	
+		panel.add(cancel);
+		
+			
 		JButton ok = new JButton("Potvrdi");
+		springLayout.putConstraint(SpringLayout.NORTH, ok, 0, SpringLayout.NORTH, cancel);
+		springLayout.putConstraint(SpringLayout.WEST, ok, 53, SpringLayout.WEST, ime);
+		springLayout.putConstraint(SpringLayout.SOUTH, ok, 0, SpringLayout.SOUTH, cancel);
+		springLayout.putConstraint(SpringLayout.EAST, ok, -68, SpringLayout.WEST, cancel);
 		ok.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, ok, 1, SpringLayout.NORTH, cancel);
-		springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, ime);
-		springLayout.putConstraint(SpringLayout.SOUTH, ok, 1, SpringLayout.SOUTH, cancel);
-		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -370,14 +380,36 @@ public class IzmeniStudentaDialog extends JDialog {
 					student.setEmail(emailVrednost);
 					student.setGodinaUpisa(Integer.parseInt(upisVrednost));
 					student.setTrenutnaGodina(godinaStudija+1);
-					student.setStatusStudenta(status);
+					student.setStatusStudenta(status);	
+					
 				StudentController.getInstance().izmeniStudenta(table.getSelectedRow());
 				dispose();
 				}
 				
 			}
 		});
-		getContentPane().add(ok);
+		panel.add(ok);
+		
+		TableOcena polozeniTable = new TableOcena();
+
+		JTabbedPane infoTabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		getContentPane().add(infoTabbedPane);
+
+		JScrollPane informacije = new JScrollPane(panel);
+		infoTabbedPane.addTab("Informacije", informacije);
+		
+		JScrollPane polozeni = new JScrollPane(polozeniTable);
+		infoTabbedPane.addTab("Položeni", polozeni);
+		
+		infoTabbedPane.setSelectedIndex(0);
+
+		
+		infoTabbedPane.addChangeListener(new ChangeListener() {
+
+	        public void stateChanged(ChangeEvent e) {
+	        	
+	        }
+	    });
 
 	}
 }

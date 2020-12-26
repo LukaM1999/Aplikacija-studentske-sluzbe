@@ -34,8 +34,12 @@ public class BazaStudenata {
 
 	private void init() {
 		this.studenti = new ArrayList<Student>();
-		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20, Novi Sad", "066754498", "peraperic@gmail.com",
-				"in-123-2017", 2017, 4, Status.B));
+		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20, Novi Sad", "066754498",
+				"peraperic@gmail.com", "in-123-2017", 2017, 4, Status.B));
+		studenti.add(new Student("Stefan", "Vulin", "4.8.2000.", "Cara Dusana 10, Novi Sad", "065432901",
+				"stefanvulin@gmail.com", "pr-53-2019", 2019, 2, Status.S));
+		studenti.add(new Student("Gorana", "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad", "066043781",
+				"gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S));
 	}
 
 	public List<Student> getStudenti() {
@@ -83,7 +87,7 @@ public class BazaStudenata {
 		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresa, telefon, email, brIndeksa, godinaUpisa,
 				trenutnaGodina, statusStudenta));
 	}
-	
+
 	public void dodajStudenta(Student s) {
 		this.studenti.add(new Student(s));
 	}
@@ -96,5 +100,5 @@ public class BazaStudenata {
 			}
 		}
 	}
-	
+
 }
