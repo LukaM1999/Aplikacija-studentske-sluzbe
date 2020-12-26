@@ -25,6 +25,7 @@ import model.Student.Status;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 
+
 public class IzmeniStudentaDialog extends JDialog {
 	
 	/**
@@ -61,7 +62,6 @@ public class IzmeniStudentaDialog extends JDialog {
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		JPanel panel = new JPanel();
-		panel.setSize(500, 6);
 		
 		SpringLayout springLayout = new SpringLayout();
 		panel.setLayout(springLayout);
@@ -248,7 +248,6 @@ public class IzmeniStudentaDialog extends JDialog {
 			budzetCombo.setSelectedIndex(1);
 		}
 		
-		getContentPane().add(panel);
 		
 
 		// Buttons
@@ -366,7 +365,7 @@ public class IzmeniStudentaDialog extends JDialog {
 				//REFERENCE: https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
 				@SuppressWarnings("static-access")
-				int answer = confirm.showConfirmDialog(null,
+				int answer = confirm.showConfirmDialog(getContentPane(),
 						"Da li ste sigurni da želite da izmenite informacije ovog studenta?", "Potvrda izmene",
 						JOptionPane.OK_CANCEL_OPTION);
 				if(answer == JOptionPane.YES_OPTION) {
@@ -390,17 +389,43 @@ public class IzmeniStudentaDialog extends JDialog {
 		});
 		panel.add(ok);
 		
-		TableOcena polozeniTable = new TableOcena();
-
 		JTabbedPane infoTabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		getContentPane().add(infoTabbedPane);
-
-		JScrollPane informacije = new JScrollPane(panel);
-		infoTabbedPane.addTab("Informacije", informacije);
+		
+		infoTabbedPane.addTab("Informacije", panel);
+		JPanel polozeniPanel = new JPanel();
+		polozeniPanel.setSize(500, 600);
+		infoTabbedPane.addTab("Položeni", polozeniPanel);
+		
+		TableOcena polozeniTable = new TableOcena();
 		
 		JScrollPane polozeni = new JScrollPane(polozeniTable);
-		infoTabbedPane.addTab("Položeni", polozeni);
+		polozeni.setBounds(5, 40, 475, 430);
 		
+		JButton ponistiOcenu = new JButton("Poništi ocenu");
+		ponistiOcenu.setBounds(5, 5, 115, 30);
+		ponistiOcenu.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		ponistiOcenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+			
+		});
+		
+		polozeniPanel.setLayout(null);
+		polozeniPanel.add(polozeni);
+		polozeniPanel.add(ponistiOcenu);
+		
+		JLabel prosek = new JLabel("Prosečna ocena: ");
+		prosek.setBounds(340, 475, 140, 25);
+		prosek.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		polozeniPanel.add(prosek);
+		
+		JLabel ESPB = new JLabel("Ukupno ESPB: ");
+		ESPB.setBounds(340, 505, 140, 25);
+		ESPB.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		polozeniPanel.add(ESPB);
 		infoTabbedPane.setSelectedIndex(0);
 
 		

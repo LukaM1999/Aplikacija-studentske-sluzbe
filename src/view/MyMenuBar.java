@@ -71,7 +71,7 @@ public class MyMenuBar extends JMenuBar {
 
 				JOptionPane confirm = new JOptionPane();
 				@SuppressWarnings("static-access")
-				int answer = confirm.showConfirmDialog(null, "Da li ste sigurni da želite da napustite aplikaciju?",
+				int answer = confirm.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da napustite aplikaciju?",
 						"Potvrda izlaska", JOptionPane.OK_CANCEL_OPTION);
 				if (answer == JOptionPane.YES_OPTION) {
 					System.exit(0);
@@ -122,7 +122,7 @@ public class MyMenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Tabs.getInstance().getSelectedIndex() == 0) {
 					if (TableStudent.getInstance().getSelectedRow() >= 0) {
-						int opcija = JOptionPane.showConfirmDialog(null,
+						int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(),
 								"Da li ste sigurni da želite da obrišete studenta?", "Brisanje studenta",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
@@ -133,7 +133,7 @@ public class MyMenuBar extends JMenuBar {
 
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
 					if (TableProfesor.getInstance().getSelectedRow() >= 0) {
-						int opcija = JOptionPane.showConfirmDialog(null,
+						int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(),
 								"Da li ste sigurni da želite da obrišete profesora?", "Brisanje profesora",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
@@ -144,7 +144,7 @@ public class MyMenuBar extends JMenuBar {
 
 				if (Tabs.getInstance().getSelectedIndex() == 2) {
 					if (TablePredmet.getInstance().getSelectedRow() >= 0) {
-						int opcija = JOptionPane.showConfirmDialog(null,
+						int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(),
 								"Da li ste sigurni da želite da obrišete predmet?", "Brisanje predmeta",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
