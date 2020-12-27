@@ -1,12 +1,24 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Student.Status;
 
-public class BazaStudenata {
+public class BazaStudenata implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5282477148286140938L;
+	
 	private static BazaStudenata instance = null;
 
 	public static BazaStudenata getInstance() {
@@ -21,7 +33,7 @@ public class BazaStudenata {
 
 	private BazaStudenata() {
 
-		init();
+		deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Indeks");
@@ -30,16 +42,11 @@ public class BazaStudenata {
 		this.kolone.add("Godina studija");
 		this.kolone.add("Status");
 		this.kolone.add("Prosek");
+		
 	}
 
 	private void init() {
 		this.studenti = new ArrayList<Student>();
-		studenti.add(new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20, Novi Sad", "066754498",
-				"peraperic@gmail.com", "in-123-2017", 2017, 4, Status.B));
-		studenti.add(new Student("Stefan", "Vulin", "4.8.2000.", "Cara Dusana 10, Novi Sad", "065432901",
-				"stefanvulin@gmail.com", "pr-53-2019", 2019, 2, Status.S));
-		studenti.add(new Student("Gorana", "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad", "066043781",
-				"gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S));
 	}
 
 	public List<Student> getStudenti() {
@@ -80,6 +87,65 @@ public class BazaStudenata {
 		default:
 			return null;
 		}
+	}
+	
+	public void deserijalizacija(String putanja) {
+		String ime;
+		String prezime;
+		String datum;
+		String adresa;
+		String telefon;
+		String email;
+		String indeks;
+		int godinaUpisa;
+		int trenutnaGodina;
+		Status status;
+		
+		init();
+		
+
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(putanja)));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] kolone = line.split(";");
+				ime = kolone[0];
+				prezime = kolone[1];
+				datum = kolone[2];
+				adresa = kolone[3];
+				telefon = kolone[4];
+				email = kolone[5];
+				indeks = kolone[6];
+				godinaUpisa = Integer.parseInt(kolone[7]);
+				trenutnaGodina = Integer.parseInt(kolone[8]);
+				if(kolone[9].equals("B")) {
+					status = Status.B;
+				}
+				else {
+					status = Status.S;
+				}
+				
+				dodajStudenta(ime, prezime, datum, adresa, telefon, email, indeks, godinaUpisa, trenutnaGodina, status);
+
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
 	}
 
 	public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresa, String telefon,

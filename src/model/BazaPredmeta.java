@@ -1,12 +1,24 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Predmet.Semestar;
 
 
-public class BazaPredmeta {
+public class BazaPredmeta implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1599877952191814692L;
 	
 	private static BazaPredmeta instance = null;
 
@@ -23,7 +35,7 @@ public class BazaPredmeta {
 	
 	private BazaPredmeta() {
 		
-		init();
+		deserijalizacija("deserijalizacija" + File.separator + "predmeti.txt");
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");
@@ -80,6 +92,55 @@ public class BazaPredmeta {
 		default:
 			return null;
 		}
+	}
+	
+	public void deserijalizacija(String putanja) {
+		String sifra;
+		String naziv;
+		Semestar semestar;
+		int godina;
+		int espb;
+
+		init();
+
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(putanja)));
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] kolone = line.split(";");
+				sifra = kolone[0];
+				naziv = kolone[1];
+				if(kolone[2].equals("Zimski")) {
+					semestar = Semestar.Zimski;
+				}
+				else {
+					semestar = Semestar.Letnji;
+				}
+				godina =Integer.parseInt(kolone[3]);
+				espb = Integer.parseInt(kolone[4]);
+				
+
+				dodajPredmet(sifra, naziv, espb, godina, semestar);
+
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
 	}
 	
 	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar) {

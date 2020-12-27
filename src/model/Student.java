@@ -88,6 +88,14 @@ public class Student {
 		this.spisakNepolozenih.add(p);
 	}
 	
+	public void dodajPolozen(Ocena o) {
+		this.spisakPolozenih.add(o);
+	}
+	
+	public void dodajPolozen(Student s, Predmet p, int vrednostOcene, String datumPolaganja) {
+		this.spisakPolozenih.add(new Ocena(s, p, vrednostOcene, datumPolaganja));
+	}
+	
 	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
