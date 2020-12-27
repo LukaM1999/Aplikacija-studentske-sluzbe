@@ -331,7 +331,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 			
 			JOptionPane confirm = new JOptionPane();	
 			@SuppressWarnings("static-access")
-			int answer = confirm.showConfirmDialog(null,
+			int answer = confirm.showConfirmDialog(getContentPane(),
 					"Da li ste sigurni da želite da izmenite informacije ovog profesora?", "Potvrda izmene",
 					JOptionPane.OK_CANCEL_OPTION);	
 			if(answer == JOptionPane.YES_OPTION) {	

@@ -57,6 +57,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	
 	private TableOcena polozeniTable;
 	
+	private TablePredmet nepolozeniTable;
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public IzmeniStudentaDialog(Frame parent, String title, boolean modal) {
@@ -398,16 +399,18 @@ public class IzmeniStudentaDialog extends JDialog {
 		
 		JTabbedPane infoTabbedPane = new JTabbedPane();
 		getContentPane().add(infoTabbedPane);
-		
 		infoTabbedPane.addTab("Informacije", panel);
+		
+		
 		JPanel polozeniPanel = new JPanel();
 		polozeniPanel.setSize(500, 600);
 		infoTabbedPane.addTab("Položeni", polozeniPanel);
 		
+		
 		List<Ocena> ocene = student.getSpisakPolozenih();	
 		//List<Ocena> ocene = OcenaController.getInstance().getOcene();
 		AbstractTableModelOcena model = (AbstractTableModelOcena) TableOcena.getInstance().getModel();
-		polozeniTable = TableOcena.getInstance();
+		polozeniTable = new TableOcena();
 		
 		for(int i = 0; i < ocene.size(); i++) {
 			System.out.println(ocene.get(i).getStudent().getBrIndeksa());
@@ -496,9 +499,37 @@ public class IzmeniStudentaDialog extends JDialog {
 	        }
 	    });
 
+		
+		//nepolozeni
+		JPanel nepolozeniPanel = new JPanel();
+		nepolozeniPanel.setSize(500, 600);
+		infoTabbedPane.addTab("Nepoloženi", nepolozeniPanel);
+		
+		nepolozeniTable = new TablePredmet();		
+		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
+		nepolozeni.setBounds(5, 40, 475, 430);
+		
+		JButton dodaj = new JButton("Dodaj");
+		dodaj.setBounds(5, 5, 100, 30);
+		JButton obrisi = new JButton("Obriši");
+		obrisi.setBounds(130, 5, 100, 30);
+		JButton polaganje = new JButton("Polaganje");
+		polaganje.setBounds(255, 5, 130, 30);
+		
+		nepolozeniPanel.setLayout(null);
+		nepolozeniPanel.add(nepolozeni);
+		nepolozeniPanel.add(dodaj);
+		nepolozeniPanel.add(obrisi);
+		nepolozeniPanel.add(polaganje);
+		
+		//nepolozeni.add(nepolozeniPanel);
+
 	}
 	
 	public TableOcena getPolozeniTable() {
 		return polozeniTable;
+
 	}
+	
+	
 }

@@ -16,6 +16,8 @@ import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
 import controller.PredmetController;
+import controller.ProfesorController;
+import controller.StudentController;
 //Koriscen materijal sa vezbi
 public class Toolbar extends JToolBar {
 
@@ -106,10 +108,10 @@ public class Toolbar extends JToolBar {
 						
 						if(TableStudent.getInstance().getSelectedRow()>=0) {
 						
-							int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete studenta?", 
+							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?", 
 																	"Brisanje studenta", JOptionPane.YES_NO_OPTION);
 							if(opcija == 0) {
-								//StudentController.getInstance().izbrisiStudenta(TableStudent.getInstance().getSelectedRow());
+								StudentController.getInstance().izbrisiStudenta(TableStudent.getInstance().getSelectedRow());
 							} 					
 						}
 					}
@@ -118,10 +120,10 @@ public class Toolbar extends JToolBar {
 						
 						if(TableProfesor.getInstance().getSelectedRow()>=0) {
 							
-							int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete profesora?", 
+							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora?", 
 								  									"Brisanje profesora", JOptionPane.YES_NO_OPTION);
 							if(opcija == 0) {
-								//ProfesorController.getInstance().izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
+								ProfesorController.getInstance().izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
 							} 						
 						} 
 					}  					  
@@ -130,7 +132,7 @@ public class Toolbar extends JToolBar {
 							
 						if(TablePredmet.getInstance().getSelectedRow()>=0) {
 							
-							int opcija = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da obrišete predmet?", 
+							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?", 
 																	"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 							if(opcija == 0) {
 								PredmetController.getInstance().izbrisiPredmet(TablePredmet.getInstance().getSelectedRow());
