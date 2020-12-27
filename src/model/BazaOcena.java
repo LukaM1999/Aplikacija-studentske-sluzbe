@@ -42,6 +42,15 @@ public class BazaOcena {
 				new Student("Gorana", "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad", "066043781",
 						"gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S),
 				new Predmet("E234", "Programski prevodioci", 4, 3, Semestar.Zimski), 7, "27.1.2020."));
+		
+		
+		Student s1 = new Student("Pera", "Perić", "3.7.1998.", "Cara Lazara 20, Novi Sad", "066754498",
+				"peraperic@gmail.com", "in-123-2017", 2017, 4, Status.B);
+		Student s2 = new Student("Gorana", "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad", "066043781",
+				"gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S);
+		s1.getSpisakPolozenih().add(ocene.get(0));
+		System.out.println(s1.getSpisakPolozenih().get(0).getStudent().getBrIndeksa());
+		s2.getSpisakPolozenih().add(ocene.get(1));
 	}
 
 	public List<Ocena> getOcene() {

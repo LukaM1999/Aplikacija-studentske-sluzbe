@@ -4,6 +4,7 @@ import java.util.List;
 
 import model.BazaOcena;
 import model.Ocena;
+import model.Student;
 
 public class OcenaController {
 	
@@ -22,6 +23,15 @@ public class OcenaController {
 		BazaOcena.getInstance().dodajOcenu(o);
 	}
 	
+	public void upisiOcenu(Student s) {
+		List<Ocena> ocene = BazaOcena.getInstance().getOcene();
+		for (Ocena o : ocene) {
+			if (o.getStudent().getBrIndeksa().equals(s.getBrIndeksa())) {
+				s.getSpisakPolozenih().add(o);
+			}
+		}
+		
+	}
 	
 	public void ponistiOcenu(int rowSelectedIndex) {
     	if (rowSelectedIndex < 0) {
