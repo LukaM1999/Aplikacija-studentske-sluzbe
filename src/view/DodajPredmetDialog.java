@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -33,6 +35,14 @@ public class DodajPredmetDialog extends JDialog {
 		private String nazivSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)[\\p{IsWhite_Space}\\p{IsAlphabetic}\\p{IsDigit}]*";
 
 		private String ESPBSablon = "[1-9]+0?";
+		
+		private boolean sifraKorektno;
+		private boolean nazivKorektno;
+		private boolean ESPBKorektno;
+		
+		private boolean ispravno;
+		
+		private JButton ok;
 
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		public DodajPredmetDialog(Frame parent, String title, boolean modal) {
@@ -96,6 +106,37 @@ public class DodajPredmetDialog extends JDialog {
 			springLayout.putConstraint(SpringLayout.WEST, sifraUnos, 6, SpringLayout.EAST, sifra);
 			springLayout.putConstraint(SpringLayout.EAST, sifraUnos, -68, SpringLayout.EAST, getContentPane());
 			getContentPane().add(sifraUnos);
+			sifraUnos.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					sifraUnos.setBackground(Color.WHITE);
+					enableButton(ok);
+				}
+
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					// REFERENCE:
+					// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+					if (!(Pattern.compile(sifraSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(sifraUnos.getText())
+							.matches())) {
+						sifraUnos.setBackground(Color.RED);
+						sifraKorektno = false;
+					} else {
+						sifraUnos.transferFocus();
+						sifraUnos.setBackground(Color.WHITE);
+						sifraKorektno = true;
+						if (sifraKorektno && nazivKorektno && ESPBKorektno) {
+							ispravno = true;
+						} else {
+							ispravno = false;
+						}
+
+					}
+					enableButton(ok);
+				}
+
+			});
 
 			JTextField nazivUnos = new JTextField();
 			nazivUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -103,13 +144,75 @@ public class DodajPredmetDialog extends JDialog {
 			springLayout.putConstraint(SpringLayout.WEST, nazivUnos, 6, SpringLayout.EAST, naziv);
 			springLayout.putConstraint(SpringLayout.EAST, nazivUnos, 0, SpringLayout.EAST, sifraUnos);
 			getContentPane().add(nazivUnos);
+			nazivUnos.addFocusListener(new FocusListener() {
 
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					nazivUnos.setBackground(Color.WHITE);
+					enableButton(ok);
+				}
+
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					// REFERENCE:
+					// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+					if (!(Pattern.compile(nazivSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(nazivUnos.getText())
+							.matches())) {
+						nazivUnos.setBackground(Color.RED);
+						nazivKorektno = false;
+					} else {
+						nazivUnos.transferFocus();
+						nazivUnos.setBackground(Color.WHITE);
+						nazivKorektno = true;
+						if (sifraKorektno && nazivKorektno && ESPBKorektno) {
+							ispravno = true;
+						} else {
+							ispravno = false;
+						}
+
+					}
+					enableButton(ok);
+				}
+
+			});
+			
 			JTextField ESPBUnos = new JTextField();
 			ESPBUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			springLayout.putConstraint(SpringLayout.NORTH, ESPBUnos, 11, SpringLayout.NORTH, ESPB);
 			springLayout.putConstraint(SpringLayout.WEST, ESPBUnos, 6, SpringLayout.EAST, ESPB);
 			springLayout.putConstraint(SpringLayout.EAST, ESPBUnos, 0, SpringLayout.EAST, sifraUnos);
 			getContentPane().add(ESPBUnos);
+			ESPBUnos.addFocusListener(new FocusListener() {
+
+				@Override
+				public void focusGained(FocusEvent arg0) {
+					ESPBUnos.setBackground(Color.WHITE);
+					enableButton(ok);
+				}
+
+				@Override
+				public void focusLost(FocusEvent arg0) {
+					// REFERENCE:
+					// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+					if (!(Pattern.compile(ESPBSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(ESPBUnos.getText())
+							.matches())) {
+						ESPBUnos.setBackground(Color.RED);
+						ESPBKorektno = false;
+					} else {
+						ESPBUnos.transferFocus();
+						ESPBUnos.setBackground(Color.WHITE);
+						ESPBKorektno = true;
+						if (sifraKorektno && nazivKorektno && ESPBKorektno) {
+							ispravno = true;
+						} else {
+							ispravno = false;
+						}
+
+					}
+					enableButton(ok);
+				}
+
+			});
 
 			
 			// Combo boxes
@@ -148,7 +251,7 @@ public class DodajPredmetDialog extends JDialog {
 			});
 			getContentPane().add(cancel);
 
-			JButton ok = new JButton("Potvrdi");
+			ok = new JButton("Potvrdi");
 			ok.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 			springLayout.putConstraint(SpringLayout.NORTH, ok, 0, SpringLayout.NORTH, cancel);
 			springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, sifra);
@@ -172,20 +275,20 @@ public class DodajPredmetDialog extends JDialog {
 							.matches())) {
 				// REFERENCE:
 				// https://stackoverflow.com/questions/6270354/how-to-open-warning-information-error-dialog-in-swing/24164386
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta šifra!");
+						JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta šifra!");
 						return;
 					}
 					
 
 					if (!(Pattern.compile(nazivSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(nazivVrednost)
 							.matches())) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet naziv!");
+						JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet naziv!");
 						return;
 					}
 
 					
 					if (!Pattern.matches(ESPBSablon, ESPBVrednost)) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet broj ESPB!");
+						JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet broj ESPB!");
 						return;
 					}
 					
@@ -208,7 +311,7 @@ public class DodajPredmetDialog extends JDialog {
 					//https://howtodoinjava.com/java/collections/arraylist/iterate-through-objects/
 					for (Predmet p : PredmetController.getInstance().getPredmeti()) {
 						if (p.getSifra().equals(sifraVrednost)) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji predmet "
+							JOptionPane.showMessageDialog(getContentPane(), "Već postoji predmet "
 									+ "sa ovom šifrom!");
 							return;
 						}
@@ -225,6 +328,14 @@ public class DodajPredmetDialog extends JDialog {
 			getContentPane().add(ok);
 
 		
+		}
+		
+		public void enableButton(JButton button) {
+			if (!ispravno) {
+				button.setEnabled(false);
+			} else {
+				button.setEnabled(true);
+			}
 		}
 }
 		

@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.time.Year;
 import java.util.regex.Pattern;
 
@@ -31,25 +33,39 @@ public class DodajStudentaDialog extends JDialog {
 
 	// REFERENCE:
 	// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-	private String imeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
+	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
-	private String prezimeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
+	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
-	private String telefonSablon = "[0-9]{8,13}?";
+	private String telefonSablon = "[0-9]{8,12}?";
 
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
-			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)((gmail)|"
-			+ "(maildrop)|(yahoo)|(hotmail))(\\.)com";
-	
-	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
+
+	// REFERENCE:
+	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
 	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d).?";
-	
-	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)?"
+
+	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
-	
+
 	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
-	
+
+	private String upisSablon = "(20[0-9]{2})";
+
+	private boolean imeKorektno;
+	private boolean prezimeKorektno;
+	private boolean datumKorektno;
+	private boolean adresaKorektno;
+	private boolean telefonKorektno;
+	private boolean emailKorektno;
+	private boolean indeksKorektno;
+	private boolean upisKorektno;
+
+	private boolean ispravno;
+
+	private JButton ok;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajStudentaDialog(Frame parent, String title, boolean modal) {
@@ -59,8 +75,8 @@ public class DodajStudentaDialog extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		//REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
+
+		// REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
@@ -144,7 +160,6 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.SOUTH, finansiranje, 45, SpringLayout.SOUTH, godinaStudija);
 		springLayout.putConstraint(SpringLayout.EAST, finansiranje, 0, SpringLayout.EAST, ime);
 		getContentPane().add(finansiranje);
-		
 
 		// Text fields
 		JTextField imeUnos = new JTextField();
@@ -153,6 +168,38 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, imeUnos, 6, SpringLayout.EAST, ime);
 		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, getContentPane());
 		getContentPane().add(imeUnos);
+		imeUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				imeUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				// REFERENCE:
+				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText())
+						.matches())) {
+					imeUnos.setBackground(Color.RED);
+					imeKorektno = false;
+				} else {
+					imeUnos.transferFocus();
+					imeUnos.setBackground(Color.WHITE);
+					imeKorektno = true;
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+				enableButton(ok);
+			}
+
+		});
 
 		JTextField prezimeUnos = new JTextField();
 		prezimeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -160,6 +207,35 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, prezimeUnos, 6, SpringLayout.EAST, prezime);
 		springLayout.putConstraint(SpringLayout.EAST, prezimeUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(prezimeUnos);
+		prezimeUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				prezimeUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				prezimeUnos.setBackground(Color.WHITE);
+				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText())
+						.matches())) {
+					prezimeUnos.setBackground(Color.RED);
+					prezimeKorektno = false;
+				} else {
+					prezimeKorektno = true;
+					prezimeUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+				}
+				enableButton(ok);
+			}
+
+		});
 
 		JTextField datumUnos = new JTextField();
 		datumUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -167,6 +243,36 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, datumUnos, 6, SpringLayout.EAST, datum);
 		springLayout.putConstraint(SpringLayout.EAST, datumUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(datumUnos);
+		datumUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				datumUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText())
+						.matches())) {
+					datumUnos.setBackground(Color.RED);
+					datumKorektno = false;
+				} else {
+					datumKorektno = true;
+					datumUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+				enableButton(ok);
+
+			}
+
+		});
 
 		JTextField adresaUnos = new JTextField();
 		adresaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -174,6 +280,36 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, adresaUnos, 6, SpringLayout.EAST, adresa);
 		springLayout.putConstraint(SpringLayout.EAST, adresaUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(adresaUnos);
+		adresaUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				adresaUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText())
+						.matches())) {
+					adresaUnos.setBackground(Color.RED);
+					adresaKorektno = false;
+				} else {
+					adresaKorektno = true;
+					adresaUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+				enableButton(ok);
+
+			}
+
+		});
 
 		JTextField telefonUnos = new JTextField();
 		telefonUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -181,6 +317,37 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, telefonUnos, 6, SpringLayout.EAST, telefon);
 		springLayout.putConstraint(SpringLayout.EAST, telefonUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(telefonUnos);
+		telefonUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				telefonUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText())
+						.matches())) {
+					telefonUnos.setBackground(Color.RED);
+					telefonKorektno = false;
+				} else {
+					telefonKorektno = true;
+					telefonUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+
+				enableButton(ok);
+
+			}
+
+		});
 
 		JTextField emailUnos = new JTextField();
 		emailUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -188,6 +355,36 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, emailUnos, 6, SpringLayout.EAST, email);
 		springLayout.putConstraint(SpringLayout.EAST, emailUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(emailUnos);
+		emailUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				emailUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText())
+						.matches())) {
+					emailUnos.setBackground(Color.RED);
+					emailKorektno = false;
+				} else {
+					emailKorektno = true;
+					emailUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+				enableButton(ok);
+
+			}
+
+		});
 
 		JTextField indeksUnos = new JTextField();
 		indeksUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -195,6 +392,37 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, indeksUnos, 6, SpringLayout.EAST, indeks);
 		springLayout.putConstraint(SpringLayout.EAST, indeksUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(indeksUnos);
+		indeksUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				indeksUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText())
+						.matches())) {
+					indeksUnos.setBackground(Color.RED);
+					indeksKorektno = false;
+				} else {
+					indeksKorektno = true;
+					indeksUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+
+				enableButton(ok);
+
+			}
+
+		});
 
 		JTextField upisUnos = new JTextField();
 		upisUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -202,10 +430,39 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, upisUnos, 6, SpringLayout.EAST, upis);
 		springLayout.putConstraint(SpringLayout.EAST, upisUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(upisUnos);
-		
+		upisUnos.addFocusListener(new FocusListener() {
+
+			@Override
+			public void focusGained(FocusEvent arg0) {
+				upisUnos.setBackground(Color.WHITE);
+				enableButton(ok);
+			}
+
+			@Override
+			public void focusLost(FocusEvent arg0) {
+				if (!(Pattern.compile(upisSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(upisUnos.getText())
+						.matches())) {
+					upisUnos.setBackground(Color.RED);
+					upisKorektno = false;
+				} else {
+					upisKorektno = true;
+					upisUnos.setBackground(Color.WHITE);
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
+
+				}
+				enableButton(ok);
+
+			}
+
+		});
 
 		// Combo boxes
-		String[] godinaStud = new String[] { "I (prva)" , "II (druga)", "III (treća)", "IV (četvrta)" };
+		String[] godinaStud = new String[] { "I (prva)", "II (druga)", "III (treća)", "IV (četvrta)" };
 		JComboBox godinaCombo = new JComboBox(godinaStud);
 		godinaCombo.setBackground(Color.WHITE);
 		springLayout.putConstraint(SpringLayout.NORTH, godinaCombo, 21, SpringLayout.SOUTH, upisUnos);
@@ -224,7 +481,6 @@ public class DodajStudentaDialog extends JDialog {
 		budzetCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		budzetCombo.setSelectedIndex(0);
 		getContentPane().add(budzetCombo);
-		
 
 		// Buttons
 		JButton cancel = new JButton("Odustani");
@@ -240,7 +496,7 @@ public class DodajStudentaDialog extends JDialog {
 		});
 		getContentPane().add(cancel);
 
-		JButton ok = new JButton("Potvrdi");
+		ok = new JButton("Potvrdi");
 		ok.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, ok, 1, SpringLayout.NORTH, cancel);
 		springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, ime);
@@ -248,130 +504,122 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 
-				 String imeVrednost = imeUnos.getText();
-				 String prezimeVrednost = prezimeUnos.getText();
-				 String datumVrednost = datumUnos.getText();
-				 String adresaVrednost = adresaUnos.getText();
-				 String telefonVrednost = telefonUnos.getText();
-				 String emailVrednost = emailUnos.getText();
-				 String indeksVrednost = indeksUnos.getText();
-				 String upisVrednost = upisUnos.getText();
-				// REFERENCE:
-				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-				
-		
-				// REFERENCE:
-				//https://www.javatpoint.com/java-regex
-				
-				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeVrednost)
-						.matches())) {
-			// REFERENCE:
-			// https://stackoverflow.com/questions/6270354/how-to-open-warning-information-error-dialog-in-swing/24164386
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto ime!");
+				String imeVrednost = imeUnos.getText();
+				String prezimeVrednost = prezimeUnos.getText();
+				String datumVrednost = datumUnos.getText();
+				String adresaVrednost = adresaUnos.getText();
+				String telefonVrednost = telefonUnos.getText();
+				String emailVrednost = emailUnos.getText();
+				String indeksVrednost = indeksUnos.getText();
+				String upisVrednost = upisUnos.getText();
+
+				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeVrednost).matches())) {
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneto ime!");
 					return;
 				}
-				
 
 				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto prezime!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneto prezime!");
 					return;
 				}
 
-				
 				if (!Pattern.matches(datumSablon, datumVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet datum rođenja!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet datum rođenja!");
 					return;
 				}
-				
+
 				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta adresa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta adresa!");
 					return;
 				}
-				
+
 				if (!Pattern.matches(telefonSablon, telefonVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet kontakt telefon!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet kontakt telefon!");
 					return;
 				}
-				
+
 				if (!Pattern.matches(emailSablon, emailVrednost)) {
-							JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta e-mail adresa!");
-							return;
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta e-mail adresa!");
+					return;
 				}
-				
+
 				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet broj indeksa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet broj indeksa!");
 					return;
 				}
-				
-				
-				String[] godRodjenja = datumVrednost.split("\\.");				
-				if(Integer.parseInt(upisVrednost) - Integer.parseInt(godRodjenja[2]) < 16) { 
-					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešno uneta godina upisa!");
-					  return; 
+
+				String[] godRodjenja = datumVrednost.split("\\.");
+				if (Integer.parseInt(upisVrednost) - Integer.parseInt(godRodjenja[2]) < 16) {
+					// REFERENCE:
+					// https://stackoverflow.com/questions/6270354/how-to-open-warning-information-error-dialog-in-swing/24164386
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta godina upisa!");
+					return;
 				}
-				
-				
+
 				int godinaStudija = 0;
-				if(godinaCombo.getSelectedItem() == "II (druga)") {
+				if (godinaCombo.getSelectedItem() == "II (druga)") {
 					godinaStudija = 1;
-				}
-				else if(godinaCombo.getSelectedItem() == "III (treća)") {
+				} else if (godinaCombo.getSelectedItem() == "III (treća)") {
 					godinaStudija = 2;
-				}
-				else if(godinaCombo.getSelectedItem() == "IV (četvrta)") {
+				} else if (godinaCombo.getSelectedItem() == "IV (četvrta)") {
 					godinaStudija = 3;
 				}
-				//REFERENCE: https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
+				// REFERENCE:
+				// https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
 				int trenutnaGodina = Year.now().getValue();
-				if(Integer.parseInt(upisVrednost) > trenutnaGodina - godinaStudija ) {
-					  JOptionPane.showMessageDialog(MainFrame.getInstance(),"Pogrešna trenutna godina studija!");
-					  return;
+				if (Integer.parseInt(upisVrednost) > trenutnaGodina - godinaStudija) {
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešna trenutna godina studija!");
+					return;
 				}
-				
-				 String[] indeksGodina = indeksVrednost.split("-");
-					if(Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(),
-								"Godina na indeksu i godina upisa se razlikuju!");
-						  return;
-					}
-					
-				
+
+				String[] indeksGodina = indeksVrednost.split("-");
+				if (Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
+					JOptionPane.showMessageDialog(getContentPane(), "Godina na indeksu i godina upisa se razlikuju!");
+					return;
+				}
+
 				Status status = Status.B;
-				if(budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
+				if (budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
 					status = Status.S;
 				}
-				//REFERENCE:
-				//https://howtodoinjava.com/java/collections/arraylist/iterate-through-objects/
+				// REFERENCE:
+				// https://howtodoinjava.com/java/collections/arraylist/iterate-through-objects/
 				for (Student s : StudentController.getInstance().getStudenti()) {
 					if (s.getBrIndeksa().equals(indeksVrednost)) {
-						JOptionPane.showMessageDialog(MainFrame.getInstance(), "Već postoji student "
-								+ "sa ovim brojem indeksa!");
+						JOptionPane.showMessageDialog(MainFrame.getInstance(),
+								"Već postoji student " + "sa ovim brojem indeksa!");
 						return;
 					}
 				}
-				
-								
+
 				Student student = new Student(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
 						telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
-						godinaStudija+1, status);
-				
+						godinaStudija + 1, status);
+
 				for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {
-					if (PredmetController.getInstance().getPredmet(i).getGodinaStudija() <= godinaStudija+1) {
+					if (PredmetController.getInstance().getPredmet(i).getGodinaStudija() <= godinaStudija + 1) {
 						student.dodajNepolozen(PredmetController.getInstance().getPredmet(i));
 					}
 				}
-				
-				StudentController.getInstance().dodajStudenta(student);				
+
+				StudentController.getInstance().dodajStudenta(student);
 				dispose();
-				
+
 			}
 		});
 		getContentPane().add(ok);
 
+	}
+
+	public void enableButton(JButton button) {
+		if (!ispravno) {
+			button.setEnabled(false);
+		} else {
+			button.setEnabled(true);
+		}
 	}
 }
