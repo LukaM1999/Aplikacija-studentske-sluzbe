@@ -337,8 +337,6 @@ public class DodajStudentaDialog extends JDialog {
 					if(Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
 						JOptionPane.showMessageDialog(MainFrame.getInstance(),
 								"Godina na indeksu i godina upisa se razlikuju!");
-						System.out.println(indeksGodina[2]);
-						System.out.println(upisVrednost);
 						  return;
 					}
 					

@@ -10,6 +10,8 @@ public class AbstractTableModelOcena extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 4953354420568992083L;
+	
+	public  AbstractTableModelOcena() {}
 
 	@Override
 	public int getRowCount() {

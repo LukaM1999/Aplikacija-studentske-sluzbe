@@ -6,14 +6,20 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.PredmetController;
 import controller.StudentController;
 
-public class BazaOcena {
+public class BazaOcena implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -532190613446495075L;
+	
 	private static BazaOcena instance = null;
 
 	public static BazaOcena getInstance() {
@@ -25,10 +31,9 @@ public class BazaOcena {
 
 	private List<Ocena> ocene;
 	private List<String> kolone;
-	
-	//private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
 
 	private BazaOcena() {
+		
 
 		deserijalizacija("deserijalizacija" + File.separator + "ocene.txt");
 
@@ -42,30 +47,10 @@ public class BazaOcena {
 
 	private void init() {
 		this.ocene = new ArrayList<Ocena>();
-		/*
-		 * this.ocene.add(new Ocena( new Student("Pera", "Perić", "3.7.1998.",
-		 * "Cara Lazara 20, Novi Sad", "066754498", "peraperic@gmail.com",
-		 * "in-123-2017", 2017, 4, Status.B), new Predmet("E256", "Fizika", 9, 1,
-		 * Semestar.Letnji), 9, "8.7.2018.")); this.ocene.add(new Ocena( new
-		 * Student("Gorana", "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad",
-		 * "066043781", "gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S), new
-		 * Predmet("E234", "Programski prevodioci", 4, 3, Semestar.Zimski), 7,
-		 * "27.1.2020."));
-		 * 
-		 * 
-		 * Student s1 = new Student("Pera", "Perić", "3.7.1998.",
-		 * "Cara Lazara 20, Novi Sad", "066754498", "peraperic@gmail.com",
-		 * "in-123-2017", 2017, 4, Status.B); Student s2 = new Student("Gorana",
-		 * "Papov", "14.2.1999.", "Kralja Aleksandra 4, Novi Sad", "066043781",
-		 * "gpapov@gmail.com", "sw-12-2016", 2016, 3, Status.S);
-		 * s1.getSpisakPolozenih().add(ocene.get(0));
-		 * System.out.println(s1.getSpisakPolozenih().get(0).getStudent().getBrIndeksa()
-		 * ); s2.getSpisakPolozenih().add(ocene.get(1));
-		 */
 	}
 
 	public List<Ocena> getOcene() {
-		return ocene;
+		return this.ocene;
 	}
 
 	public void setOcene(List<Ocena> ocene) {
@@ -103,10 +88,12 @@ public class BazaOcena {
 	}
 
 	public void deserijalizacija(String putanja) {
+		
 		String indeks;
 		String sifra;
 		int vrednostOcene;
 		String datum;
+		
 
 		init();
 
@@ -126,18 +113,15 @@ public class BazaOcena {
 				sifra = kolone[1];
 				vrednostOcene = Integer.parseInt(kolone[2]);
 				datum = kolone[3];
-				
-				dodajPolozen(indeks, sifra, vrednostOcene, datum);		
-				
+				this.dodajPolozen(indeks, sifra, vrednostOcene, datum);
+							
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}	
@@ -171,8 +155,7 @@ public class BazaOcena {
 					if(sifra.equals(predmeti.get(j).getSifra())) {
 						Predmet polozenPredmet = predmeti.get(j);
 						dodajOcenu(polozio, polozenPredmet, vrednostOcene, datum);
-						polozio.dodajPolozen(polozio, polozenPredmet, vrednostOcene, datum);
-						
+						break;
 					}
 				}
 			}

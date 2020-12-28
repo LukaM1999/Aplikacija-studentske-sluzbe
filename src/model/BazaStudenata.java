@@ -34,6 +34,8 @@ public class BazaStudenata implements Serializable {
 	private BazaStudenata() {
 
 		deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
+		
+		
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Indeks");
@@ -44,7 +46,8 @@ public class BazaStudenata implements Serializable {
 		this.kolone.add("Prosek");
 		
 	}
-
+	
+	
 	private void init() {
 		this.studenti = new ArrayList<Student>();
 	}
@@ -132,7 +135,7 @@ public class BazaStudenata implements Serializable {
 				}
 				
 				dodajStudenta(ime, prezime, datum, adresa, telefon, email, indeks, godinaUpisa, trenutnaGodina, status);
-
+				
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

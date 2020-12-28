@@ -23,6 +23,7 @@ public class AbstractTableModelStudent extends AbstractTableModel {
 		return BazaStudenata.getInstance().getStudenti().size();
 	}
 
+	@Override
 	public String getColumnName(int column) {
 		return BazaStudenata.getInstance().getColumnName(column);
 	}

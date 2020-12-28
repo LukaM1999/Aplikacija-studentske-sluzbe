@@ -24,17 +24,15 @@ public class Student {
 	private int godinaUpisa;
 	private int trenutnaGodina;
 	private Status statusStudenta;
-	private double prosecnaOcena;
+	private float prosecnaOcena = 0;
 	private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
 	private List<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
-	
-	
 
 	public Student(String ime, String prezime, String datumRodjenja,
 				   String adresa, String telefon, String email, 
 				   String brIndeksa, int godinaUpisa,
 				   int trenutnaGodina, Status statusStudenta,
-				   double prosecnaOcena,
+				   float prosecnaOcena,
 				   List<Ocena> spisakPolozenih,
 				   List<Predmet> spisakNepolozenih) {
 		setIme(ime);
@@ -72,6 +70,7 @@ public class Student {
 			   String adresa, String telefon, String email, 
 			   String brIndeksa, int godinaUpisa,
 			   int trenutnaGodina, Status statusStudenta) {
+		
 	setIme(ime);
 	setPrezime(prezime);
 	setDatumRodjenja(datumRodjenja);
@@ -96,11 +95,31 @@ public class Student {
 		this.spisakPolozenih.add(new Ocena(s, p, vrednostOcene, datumPolaganja));
 	}
 	
-	public double getProsecnaOcena() {
+	public void ponistiOcenu(int index) {
+		spisakPolozenih.remove(index);
+	}
+	
+	public void ispisPolozenih() {
+		for (Ocena o: spisakPolozenih) {
+			System.out.println(o.getStudent().getBrIndeksa());
+		}
+	}
+	
+	public float getProsecnaOcena() {
 		return prosecnaOcena;
 	}
+	
+	public float izracunajProsek(List<Ocena> polozeni) {
+		float ukupno = 0;
+		int brOcena = 0;
+		for(Ocena o: polozeni) {
+			ukupno += o.getVrednostOcene();
+			brOcena++;
+		}
+		return ukupno/brOcena;
+	}
 
-	public void setProsecnaOcena(double prosecnaOcena) {
+	public void setProsecnaOcena(float prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 
@@ -233,6 +252,5 @@ public class Student {
 		}
 		this.prezime = prezime;
 	}
-
 
 }
