@@ -5,6 +5,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.time.LocalDate;
+
 
 /**
  * Koriscen materijal sa vezbi
@@ -16,7 +18,7 @@ public class Student {
 
 	private String ime;
 	private String prezime;
-	private String datumRodjenja;
+	private LocalDate datumRodjenja;
 	private String adresa;
 	private String telefon;
 	private String email;
@@ -28,7 +30,7 @@ public class Student {
 	private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
 	private List<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
 
-	public Student(String ime, String prezime, String datumRodjenja,
+	public Student(String ime, String prezime, LocalDate datumRodjenja,
 				   String adresa, String telefon, String email, 
 				   String brIndeksa, int godinaUpisa,
 				   int trenutnaGodina, Status statusStudenta,
@@ -66,7 +68,7 @@ public class Student {
 		spisakNepolozenih = s.spisakNepolozenih;
 	}
 	
-	public Student(String ime, String prezime, String datumRodjenja,
+	public Student(String ime, String prezime, LocalDate datumRodjenja,
 			   String adresa, String telefon, String email, 
 			   String brIndeksa, int godinaUpisa,
 			   int trenutnaGodina, Status statusStudenta) {
@@ -154,11 +156,11 @@ public class Student {
 		this.ime = ime;
 	}
 
-	public String getDatumRodjenja() {
+	public LocalDate getDatumRodjenja() {
 		return datumRodjenja;
 	}
 
-	public void setDatumRodjenja(String datumRodjenja) {
+	public void setDatumRodjenja(LocalDate datumRodjenja) {
 		if (datumRodjenja == null) {
 			throw new NullPointerException();
 		}

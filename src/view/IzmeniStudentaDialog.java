@@ -7,7 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.time.LocalDate;
 import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -46,9 +48,10 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d).?";
 
-	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)?"
-			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
+	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
+			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
+
 
 	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
@@ -66,16 +69,16 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	private JLabel ESPB;
 
-	private boolean imeKorektno;
-	private boolean prezimeKorektno;
-	private boolean datumKorektno;
-	private boolean adresaKorektno;
-	private boolean telefonKorektno;
-	private boolean emailKorektno;
-	private boolean indeksKorektno;
-	private boolean upisKorektno;
+	private boolean imeKorektno = true;
+	private boolean prezimeKorektno = true;
+	private boolean datumKorektno = true;
+	private boolean adresaKorektno = true;
+	private boolean telefonKorektno = true;
+	private boolean emailKorektno = true;
+	private boolean indeksKorektno = true;
+	private boolean upisKorektno = true;
 
-	private boolean ispravno = true;;
+	private boolean ispravno = true;
 
 	private JButton ok;
 
@@ -181,6 +184,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, imeUnos, 6, SpringLayout.EAST, ime);
 		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, panel);
 		panel.add(imeUnos);
+		imeUnos.requestFocusInWindow();
 		imeUnos.addFocusListener(new FocusListener() {
 
 			@Override
@@ -511,9 +515,11 @@ public class IzmeniStudentaDialog extends JDialog {
 		TableStudent table = TableStudent.getInstance();
 		Student student = StudentController.getInstance().getStudent(table.getSelectedRow());
 
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+
 		imeUnos.setText(student.getIme());
 		prezimeUnos.setText(student.getPrezime());
-		datumUnos.setText(student.getDatumRodjenja());
+		datumUnos.setText(formatter.format(student.getDatumRodjenja()));
 		adresaUnos.setText(student.getAdresa());
 		telefonUnos.setText(student.getTelefon());
 		emailUnos.setText(student.getEmail());
@@ -642,7 +648,9 @@ public class IzmeniStudentaDialog extends JDialog {
 
 					student.setIme(imeVrednost);
 					student.setPrezime(prezimeVrednost);
-					student.setDatumRodjenja(datumVrednost);
+					// REFERENCE:
+					// https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
+					student.setDatumRodjenja(LocalDate.parse(datumVrednost, formatter));
 					student.setTelefon(telefonVrednost);
 					student.setAdresa(adresaVrednost);
 					student.setBrIndeksa(indeksVrednost);

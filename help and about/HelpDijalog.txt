@@ -23,7 +23,7 @@ II Neki primeri ispravnih unosa atributa za određene entitete:
 	a) Student:
 		1) Ime: Miloš, Stefan, Đorđe
 		2) Prezime: Perić, Jovančić, Stanojevski
-		3) Datum rođenja: 22.7.1999, 04.06.1985.
+		3) Datum rođenja: 22.07.1999., 04.06.1985.
 		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
 		5) Broj telefona: 064357753, 0114590712, 38165432174
 		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com
@@ -34,7 +34,7 @@ II Neki primeri ispravnih unosa atributa za određene entitete:
 	b) Profesor:
 		1) Ime: Miloš, Stefan, Đorđe
 		2) Prezime: Perić, Jovančić, Stanojevski
-		3) Datum rođenja: 22.7.1999, 04.06.1985.
+		3) Datum rođenja: 22.07.1987., 04.06.1985.
 		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
 		5) Kontakt telefon: 064357753, 0114590712, 38165432174
 		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com

@@ -7,10 +7,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import model.Student.Status;
+import view.MainFrame;
 
 public class BazaStudenata implements Serializable {
 
@@ -18,7 +23,7 @@ public class BazaStudenata implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -5282477148286140938L;
-	
+
 	private static BazaStudenata instance = null;
 
 	public static BazaStudenata getInstance() {
@@ -34,8 +39,6 @@ public class BazaStudenata implements Serializable {
 	private BazaStudenata() {
 
 		deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
-		
-		
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Indeks");
@@ -45,9 +48,11 @@ public class BazaStudenata implements Serializable {
 		this.kolone.add("Status");
 		this.kolone.add("Prosek");
 		
+		
+		
+
 	}
-	
-	
+
 	private void init() {
 		this.studenti = new ArrayList<Student>();
 	}
@@ -91,7 +96,7 @@ public class BazaStudenata implements Serializable {
 			return null;
 		}
 	}
-	
+
 	public void deserijalizacija(String putanja) {
 		String ime;
 		String prezime;
@@ -103,15 +108,13 @@ public class BazaStudenata implements Serializable {
 		int godinaUpisa;
 		int trenutnaGodina;
 		Status status;
-		
+
 		init();
-		
 
 		BufferedReader reader = null;
 		try {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(putanja)));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -127,31 +130,33 @@ public class BazaStudenata implements Serializable {
 				indeks = kolone[6];
 				godinaUpisa = Integer.parseInt(kolone[7]);
 				trenutnaGodina = Integer.parseInt(kolone[8]);
-				if(kolone[9].equals("B")) {
+				if (kolone[9].equals("B")) {
 					status = Status.B;
-				}
-				else {
+				} else {
 					status = Status.S;
 				}
-				
-				dodajStudenta(ime, prezime, datum, adresa, telefon, email, indeks, godinaUpisa, trenutnaGodina, status);
-				
+
+				// REFERENCE:
+				// https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+
+				dodajStudenta(ime, prezime, LocalDate.parse(datum, formatter), adresa, telefon, email, indeks,
+						godinaUpisa, trenutnaGodina, status);
+
 			}
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			try {
 				reader.close();
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 	}
 
-	public void dodajStudenta(String ime, String prezime, String datumRodjenja, String adresa, String telefon,
+	public void dodajStudenta(String ime, String prezime, LocalDate datumRodjenja, String adresa, String telefon,
 			String email, String brIndeksa, int godinaUpisa, int trenutnaGodina, Status statusStudenta) {
 		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresa, telefon, email, brIndeksa, godinaUpisa,
 				trenutnaGodina, statusStudenta));
@@ -167,6 +172,24 @@ public class BazaStudenata implements Serializable {
 				studenti.remove(s);
 				break;
 			}
+		}
+	}
+	
+	public void sortiranje(int kolona) {
+		
+		List<Student> studentiNesortirani = studenti;
+		
+		switch (kolona) {
+		case 0:
+				Comparator<Student> compareByIndeks = (Student s1, Student s2) -> s1.getBrIndeksa().compareTo(s2.getBrIndeksa());
+				Collections.sort(studentiNesortirani, compareByIndeks);
+				//Collections.sort(studentiNesortirani, compareByIndeks.reversed());
+		case 1:
+				Comparator<Student> compareByName = (Student s1, Student s2) -> s1.getIme().compareTo(s2.getIme());
+				Collections.sort(studentiNesortirani, compareByName);
+				//Collections.sort(studentiNesortirani, compareByName.reversed());
+		case 2:
+				
 		}
 	}
 }
