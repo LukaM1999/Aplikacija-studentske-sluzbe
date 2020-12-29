@@ -597,11 +597,11 @@ public class DodajStudentaDialog extends JDialog {
 						return;
 					}
 				}
-				
+
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
-				
-				Student student = new Student(imeVrednost, prezimeVrednost, LocalDate.parse(datumVrednost, formatter), adresaVrednost,
-						telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
+
+				Student student = new Student(imeVrednost, prezimeVrednost, LocalDate.parse(datumVrednost, formatter),
+						adresaVrednost, telefonVrednost, emailVrednost, indeksVrednost, Integer.parseInt(upisVrednost),
 						godinaStudija + 1, status);
 
 				for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {

@@ -90,6 +90,10 @@ public class Student {
 		this.spisakNepolozenih.add(p);
 	}
 	
+	public void izbrisiNepolozen(int index) {
+		this.spisakNepolozenih.remove(index);
+	}
+	
 	public void dodajPolozen(Ocena o) {
 		this.spisakPolozenih.add(o);
 	}

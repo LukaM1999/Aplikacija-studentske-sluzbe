@@ -21,7 +21,7 @@ import controller.PredmetController;
 import model.Predmet;
 import model.Predmet.Semestar;
 
-public class IzmeniPredmetDialog extends JDialog{
+public class IzmeniPredmetDialog extends JDialog {
 
 	/**
 	 * 
@@ -33,13 +33,13 @@ public class IzmeniPredmetDialog extends JDialog{
 	private String nazivSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)[\\p{IsWhite_Space}\\p{IsAlphabetic}\\p{IsDigit}]*";
 
 	private String ESPBSablon = "[1-9]+0?";
-	
+
 	private boolean sifraKorektno;
 	private boolean nazivKorektno;
 	private boolean ESPBKorektno;
-	
+
 	private boolean ispravno = true;
-	
+
 	private JButton ok;
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -50,8 +50,8 @@ public class IzmeniPredmetDialog extends JDialog{
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
-		//REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
+
+		// REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
 
@@ -79,7 +79,7 @@ public class IzmeniPredmetDialog extends JDialog{
 		springLayout.putConstraint(SpringLayout.SOUTH, ESPB, 45, SpringLayout.SOUTH, naziv);
 		springLayout.putConstraint(SpringLayout.EAST, ESPB, 0, SpringLayout.EAST, sifra);
 		getContentPane().add(ESPB);
-		
+
 		JLabel godinaStudija = new JLabel("Godina studija*");
 		godinaStudija.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, godinaStudija, 5, SpringLayout.SOUTH, ESPB);
@@ -95,7 +95,6 @@ public class IzmeniPredmetDialog extends JDialog{
 		springLayout.putConstraint(SpringLayout.SOUTH, semestar, 45, SpringLayout.SOUTH, godinaStudija);
 		springLayout.putConstraint(SpringLayout.EAST, semestar, 0, SpringLayout.EAST, sifra);
 		getContentPane().add(semestar);
-		
 
 		// Text fields
 		JTextField sifraUnos = new JTextField();
@@ -212,10 +211,8 @@ public class IzmeniPredmetDialog extends JDialog{
 
 		});
 
-
-		
 		// Combo boxes
-		String[] godinaStud = new String[] { "1" , "2", "3", "4" };
+		String[] godinaStud = new String[] { "1", "2", "3", "4" };
 		JComboBox godinaCombo = new JComboBox(godinaStud);
 		godinaCombo.setBackground(Color.WHITE);
 		springLayout.putConstraint(SpringLayout.NORTH, godinaCombo, 21, SpringLayout.SOUTH, ESPBUnos);
@@ -234,23 +231,20 @@ public class IzmeniPredmetDialog extends JDialog{
 		semestarCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		semestarCombo.setSelectedIndex(0);
 		getContentPane().add(semestarCombo);
-		
-		
+
 		TablePredmet table = TablePredmet.getInstance();
 		Predmet predmet = PredmetController.getInstance().getPredmet(table.getSelectedRow());
-		
+
 		sifraUnos.setText(predmet.getSifra());
 		nazivUnos.setText(predmet.getNaziv());
 		ESPBUnos.setText(String.valueOf(predmet.getESPB()));
 		sifraUnos.setText(predmet.getSifra());
-		godinaCombo.setSelectedIndex(predmet.getGodinaStudija()-1);		
-		if(predmet.getSemestar() == Semestar.Zimski) {
+		godinaCombo.setSelectedIndex(predmet.getGodinaStudija() - 1);
+		if (predmet.getSemestar() == Semestar.Zimski) {
 			semestarCombo.setSelectedIndex(0);
-		}
-		else {
+		} else {
 			semestarCombo.setSelectedIndex(1);
 		}
-		
 
 		// Buttons
 		JButton cancel = new JButton("Odustani");
@@ -275,70 +269,64 @@ public class IzmeniPredmetDialog extends JDialog{
 		ok.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
-				
-				 String sifraVrednost = sifraUnos.getText();
-				 String nazivVrednost = nazivUnos.getText();
-				 String ESPBVrednost = ESPBUnos.getText();
-				
-				if (!(Pattern.compile(sifraSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(sifraVrednost)
-						.matches())) {
+
+				String sifraVrednost = sifraUnos.getText();
+				String nazivVrednost = nazivUnos.getText();
+				String ESPBVrednost = ESPBUnos.getText();
+
+				if (!(Pattern.compile(sifraSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(sifraVrednost).matches())) {
 					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta šifra!");
 					return;
 				}
-				
 
-				if (!(Pattern.compile(nazivSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(nazivVrednost)
-						.matches())) {
+				if (!(Pattern.compile(nazivSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(nazivVrednost).matches())) {
 					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet naziv!");
 					return;
 				}
 
-				
 				if (!Pattern.matches(ESPBSablon, ESPBVrednost)) {
 					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet broj ESPB!");
 					return;
 				}
-				
+
 				int godinaStudija = 1;
-				if(godinaCombo.getSelectedItem() == "2") {
+				if (godinaCombo.getSelectedItem() == "2") {
 					godinaStudija = 2;
-				}
-				else if(godinaCombo.getSelectedItem() == "3") {
+				} else if (godinaCombo.getSelectedItem() == "3") {
 					godinaStudija = 3;
-				}
-				else if(godinaCombo.getSelectedItem() == "4") {
+				} else if (godinaCombo.getSelectedItem() == "4") {
 					godinaStudija = 4;
 				}
-				
+
 				Semestar semestarVrednost = Semestar.Zimski;
-				if(semestarCombo.getSelectedItem().toString() == "Letnji") {
+				if (semestarCombo.getSelectedItem().toString() == "Letnji") {
 					semestarVrednost = Semestar.Letnji;
 				}
-				
-				//REFERENCE: https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
+
+				// REFERENCE:
+				// https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
 				int answer = confirm.showConfirmDialog(getContentPane(),
 						"Da li ste sigurni da želite da izmenite informacije ovog predmeta?", "Potvrda izmene",
 						JOptionPane.OK_CANCEL_OPTION);
-				if(answer == JOptionPane.YES_OPTION) {
-					
+				if (answer == JOptionPane.YES_OPTION) {
+
 					predmet.setSifra(sifraVrednost);
 					predmet.setNaziv(nazivVrednost);
 					predmet.setESPB(Integer.parseInt(ESPBVrednost));
 					predmet.setGodinaStudija(godinaStudija);
 					predmet.setSemestar(semestarVrednost);
-					
+
 					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());
 					dispose();
 				}
-				
+
 			}
 		});
 		getContentPane().add(ok);
 
-	
 	}
-	
+
 	public void enableButton(JButton button) {
 		if (!ispravno) {
 			button.setEnabled(false);

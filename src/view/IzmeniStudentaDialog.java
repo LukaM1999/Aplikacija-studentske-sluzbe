@@ -25,8 +25,10 @@ import javax.swing.event.ChangeListener;
 
 import controller.NepolozeniIspitiController;
 import controller.PolozeniIspitiController;
+import controller.PredmetController;
 import controller.SlobodniPredmetiController;
 import controller.StudentController;
+import model.Predmet;
 import model.Student;
 import model.Student.Status;
 import javax.swing.JTabbedPane;
@@ -700,7 +702,7 @@ public class IzmeniStudentaDialog extends JDialog {
 							JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
 						PolozeniIspitiController.getInstance().ponistiOcenu(polozeniTable.getSelectedRow());
-						
+
 						izracunaj(student);
 						prosek.setText("Prosečna ocena: " + avgOcena);
 						ESPB.setText("Ukupno ESPB: " + ukupnoESPB);
@@ -711,7 +713,7 @@ public class IzmeniStudentaDialog extends JDialog {
 								.getModel();
 						model.fireTableDataChanged();
 						validate();
-						
+
 						AbstractTableModelNepolozeniIspiti modelNepolozenih = (AbstractTableModelNepolozeniIspiti) nepolozeniTable
 								.getModel();
 						modelNepolozenih.fireTableDataChanged();
@@ -768,7 +770,6 @@ public class IzmeniStudentaDialog extends JDialog {
 
 		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
 		nepolozeni.setBounds(5, 40, 475, 430);
-		
 
 		JButton dodaj = new JButton("Dodaj");
 		dodaj.setBounds(5, 5, 100, 30);
@@ -776,26 +777,55 @@ public class IzmeniStudentaDialog extends JDialog {
 
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				
-				
+
 				SlobodniPredmetiController.getInstance().initSpisakPolozenih(student);
 				SlobodniPredmetiController.getInstance().initSpisakNepolozenih(student);
 				SlobodniPredmetiController.getInstance().initSlobodne(student);
 				SlobodniPredmetiController.getInstance().popuniSlobodne(student);
+
+				new DodajSlobodanPredmetDialog(parent, "Dodavanje predmeta", true, student);
 				
-				new DodajSlobodanPredmetDialog(parent, "Dodavanje predmeta",
-						true, student);
 				modelNepolozeni.fireTableDataChanged();
 				validate();
-				
-			
-				
 			}
 
 		});
 
 		JButton obrisi = new JButton("Obriši");
 		obrisi.setBounds(130, 5, 100, 30);
+		obrisi.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (nepolozeniTable.getSelectedRow() >= 0) {
+					int answer = JOptionPane.showConfirmDialog(getContentPane(),
+							"Da li ste sigurni da želite da uklonite predmet?", "Uklanjanje predmeta",
+							JOptionPane.YES_NO_OPTION);
+					if (answer == JOptionPane.YES_OPTION) {
+						
+						String sifra = (String)nepolozeniTable.getValueAt(nepolozeniTable.getSelectedRow(), 0);
+						
+						student.izbrisiNepolozen(nepolozeniTable.getSelectedRow());
+						
+						for(Predmet p: PredmetController.getInstance().getPredmeti()) {
+							if(sifra.equals(p.getSifra())) {
+								student.dodajSlobodan(p);
+							}
+						}
+						
+						modelNepolozeni.fireTableDataChanged();
+						validate();
+					
+						
+					}
+				}
+			}
+			
+			
+			
+		});
+		
+		
 		JButton polaganje = new JButton("Polaganje");
 		polaganje.setBounds(255, 5, 130, 30);
 
@@ -830,7 +860,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	}
 
 	public void enableButton(JButton button) {
-			button.setEnabled(ispravno);
+		button.setEnabled(ispravno);
 	}
 
 }

@@ -98,12 +98,11 @@ public class BazaSlobodnihPredmeta {
 	}
 	
 	public void popuniSlobodne(Student s) {
+		
 		boolean polozen = false;
 		boolean nepolozen = false;
 		boolean slobodan = false;
-		
-		s.setSlobodne(predmetiSlobodni);
-		
+				
 		for(Predmet svi: PredmetController.getInstance().getPredmeti()) {
 			for(Ocena polozeni: predmetiPolozeni) {
 				if(svi.getSifra().equals(polozeni.getPredmet().getSifra())) {
