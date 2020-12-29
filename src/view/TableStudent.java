@@ -13,6 +13,7 @@ import javax.swing.table.TableRowSorter;
 
 import controller.OcenaController;
 import controller.StudentController;
+import model.BazaNepolozenihIspita;
 import model.BazaOcena;
 import model.BazaStudenata;
 import model.Student;
@@ -103,6 +104,7 @@ public class TableStudent extends JTable {
 			}
 
 		}
+		
 
 	}
 

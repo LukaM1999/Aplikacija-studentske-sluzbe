@@ -23,6 +23,7 @@ import javax.swing.SpringLayout;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import controller.NepolozeniIspitiController;
 import controller.PolozeniIspitiController;
 import controller.StudentController;
 import model.Student;
@@ -51,7 +52,6 @@ public class IzmeniStudentaDialog extends JDialog {
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
-
 
 	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
@@ -667,8 +667,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		});
 		panel.add(ok);
 
-		//-----------------------------------------------------------
-		
+		// -----------------------------------------------------------
+
 		JTabbedPane infoTabbedPane = new JTabbedPane();
 		getContentPane().add(infoTabbedPane);
 		infoTabbedPane.addTab("Informacije", panel);
@@ -752,8 +752,14 @@ public class IzmeniStudentaDialog extends JDialog {
 		nepolozeniPanel.setSize(500, 600);
 		infoTabbedPane.addTab("Nepoloženi", nepolozeniPanel);
 
+		NepolozeniIspitiController.getInstance().initSpisakNepolozenih(student);
+		AbstractTableModelNepolozeniIspiti modelNepolozeni = (AbstractTableModelNepolozeniIspiti) TableNepolozeniIspiti
+				.getInstance().getModel();
+		modelNepolozeni.fireTableDataChanged();
+		validate();
+
 		nepolozeniTable = TableNepolozeniIspiti.getInstance();
-		
+
 		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
 		nepolozeni.setBounds(5, 40, 475, 430);
 
@@ -772,11 +778,6 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	}
 
-	
-	
-	
-	
-	
 	public void izracunaj(Student s) {
 		float prosecnaOcena = 0;
 		float brOcena = 0;

@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.PredmetController;
+import controller.StudentController;
 import model.Predmet.Semestar;
 
 public class BazaNepolozenihIspita implements Serializable {
@@ -106,12 +107,18 @@ public void deserijalizacija(String putanja) {
 				indeks = kolone[0];
 				sifra = kolone[1];
 				
-				for(Predmet p: PredmetController.getInstance().getPredmeti()) {
-					if(p.getSifra().equals(sifra)) {
-						this.dodajPredmet(p);
-					}
+				  for(Student s: StudentController.getInstance().getStudenti()) { 
+					  if(s.getBrIndeksa().equals(indeks)) {
+						  for(Predmet p: PredmetController.getInstance().getPredmeti()) {
+							  if(p.getSifra().equals(sifra)) { 
+								  s.dodajNepolozen(p); 
+								  break;
+							  } 
+						  }
+					  } 
+				  }
+				 
 							
-				}
 			}
 		} catch (IOException e) {
 			e.printStackTrace();
