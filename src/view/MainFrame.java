@@ -11,10 +11,6 @@ import java.awt.Toolkit;
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 
-import controller.OcenaController;
-import controller.StudentController;
-import model.Student;
-
 //Koriscen materijal sa vezbi
 public class MainFrame extends JFrame {
 

@@ -15,8 +15,8 @@ public class Predmet {
 	private int godinaStudija;
 	private Profesor profesor;
 	private int ESPB;
-	private ArrayList<Student> polozili;
-	private ArrayList<Student> nisuPolozili;
+	private ArrayList<Student> polozili = new ArrayList<Student>();
+	private ArrayList<Student> nisuPolozili = new ArrayList<Student>();
 	
 	
 	

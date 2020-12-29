@@ -7,36 +7,26 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.TableCellRenderer;
 
-import controller.PredmetController;
-import model.Predmet;
-
-public class TablePredmet extends JTable {
+public class TableNepolozeniIspiti extends JTable {
 
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6347149562179666223L;
-
-	private static TablePredmet instance = null;
-
-	public static TablePredmet getInstance() {
+	private static final long serialVersionUID = 8038757563140948107L;
+private static TableNepolozeniIspiti instance = null;
+	
+	public static TableNepolozeniIspiti getInstance() {
 		if (instance == null) {
-			instance = new TablePredmet();
+			instance = new TableNepolozeniIspiti();
 		}
 		return instance;
 	}
-
-	public TablePredmet() {
+	
+	public TableNepolozeniIspiti() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelPredmet());
-
-		
-		  for (Predmet p : PredmetController.getInstance().getPredmeti()) {
-			  PredmetController.getInstance().popuniListuPolozili(p); 
-		  } 
-		 		  
+		this.setModel(new AbstractTableModelNepolozeniIspiti());
 	}
 
 	@Override

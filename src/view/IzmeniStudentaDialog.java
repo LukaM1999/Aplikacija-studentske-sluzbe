@@ -59,7 +59,7 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	private TablePolozeniIspiti polozeniTable;
 
-	private TablePredmet nepolozeniTable;
+	private TableNepolozeniIspiti nepolozeniTable;
 
 	private float avgOcena = 0;
 
@@ -667,6 +667,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		});
 		panel.add(ok);
 
+		//-----------------------------------------------------------
+		
 		JTabbedPane infoTabbedPane = new JTabbedPane();
 		getContentPane().add(infoTabbedPane);
 		infoTabbedPane.addTab("Informacije", panel);
@@ -750,7 +752,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		nepolozeniPanel.setSize(500, 600);
 		infoTabbedPane.addTab("Nepoloženi", nepolozeniPanel);
 
-		nepolozeniTable = new TablePredmet();
+		nepolozeniTable = TableNepolozeniIspiti.getInstance();
+		
 		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
 		nepolozeni.setBounds(5, 40, 475, 430);
 
@@ -769,6 +772,11 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	}
 
+	
+	
+	
+	
+	
 	public void izracunaj(Student s) {
 		float prosecnaOcena = 0;
 		float brOcena = 0;
