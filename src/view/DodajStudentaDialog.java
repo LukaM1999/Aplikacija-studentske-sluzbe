@@ -52,7 +52,7 @@ public class DodajStudentaDialog extends JDialog {
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 
-	private String indeksSablon = "([A-Za-z]{2}|[A-Za-z][1-9])-([0-9]{1,3})-(20[0-9]{2})";
+	private String indeksSablon = "([A-Ža-ž]{2}|[A-Ža-ž][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
 	private String upisSablon = "(20[0-9]{2})";
 

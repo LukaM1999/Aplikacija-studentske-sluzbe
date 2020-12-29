@@ -144,6 +144,10 @@ public void deserijalizacija(String putanja) {
 		this.predmeti.add(new Predmet(p));
 	}
 	
+	public void dodajNepolozen(Predmet p) {
+		this.predmeti.add(p);
+	}
+	
 	public void izbrisiPredmet(String id) {
 		for (Predmet p : predmeti) {
 			if (p.getSifra() == id) {

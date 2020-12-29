@@ -2,6 +2,7 @@ package controller;
 
 import java.util.List;
 
+import model.BazaNepolozenihIspita;
 import model.BazaOcena;
 import model.BazaPolozenihIspita;
 import model.Ocena;
@@ -42,7 +43,7 @@ public class PolozeniIspitiController {
     	Ocena o = BazaPolozenihIspita.getInstance().getRow(rowSelectedIndex);
 		o.getStudent().ponistiOcenu(rowSelectedIndex);
 		BazaPolozenihIspita.getInstance().ponistiOcenu(o.getStudent().getBrIndeksa(), o.getPredmet().getSifra());
-
+		BazaNepolozenihIspita.getInstance().dodajNepolozen(o.getPredmet());
     }
 	
 	public void initSpisakPolozenih(Student s) {

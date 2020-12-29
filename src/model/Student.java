@@ -29,6 +29,7 @@ public class Student {
 	private float prosecnaOcena = 0;
 	private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
 	private List<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
+	private List<Predmet> spisakSlobodnih = new ArrayList<Predmet>();
 
 	public Student(String ime, String prezime, LocalDate datumRodjenja,
 				   String adresa, String telefon, String email, 
@@ -98,7 +99,23 @@ public class Student {
 	}
 	
 	public void ponistiOcenu(int index) {
-		spisakPolozenih.remove(index);
+		this.spisakPolozenih.remove(index);
+	}
+	
+	public void dodajSlobodan(Predmet p) {
+		this.spisakSlobodnih.add(p);
+	}
+	
+	public void izbrisiSlobodan(int index) {
+		this.spisakSlobodnih.remove(index);
+	}
+	
+	public void setSlobodne(List<Predmet> slobodni) {
+		this.spisakSlobodnih = slobodni;
+	}
+	
+	public List<Predmet> getSlobodne() {
+		return this.spisakSlobodnih;
 	}
 	
 	public void ispisPolozenih() {

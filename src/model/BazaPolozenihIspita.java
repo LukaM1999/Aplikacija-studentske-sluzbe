@@ -23,6 +23,8 @@ public class BazaPolozenihIspita {
 	private BazaPolozenihIspita() {
 		
 		init();
+		
+		
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");

@@ -19,3 +19,6 @@ OIS573;Osnovi informacionih sistema i softverskog inzenjerstva;Letnji;1;6
 NNS8;Numericki algoritmi i numericki softver;Letnji;1;4
 MISS1;Modeliranje i simulacija sistema;Letnji;2;8
 ENG1;Engleski 1;Letnji;2;3
+BP2;Baze podataka 2;Zimski;2;6
+E441;Robotika;Letnji;2;8
+E123;Pametni sistemi;Zimski;2;4

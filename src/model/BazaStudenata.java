@@ -15,7 +15,6 @@ import java.util.Comparator;
 import java.util.List;
 
 import model.Student.Status;
-import view.MainFrame;
 
 public class BazaStudenata implements Serializable {
 

@@ -31,4 +31,8 @@ public class NepolozeniIspitiController {
 	public Predmet getPredmet(int row) {
 		return BazaNepolozenihIspita.getInstance().getRow(row);
 	}
+	
+	public void dodajNepolozen(Predmet p) {
+		BazaNepolozenihIspita.getInstance().dodajNepolozen(p);
+	}
 }
