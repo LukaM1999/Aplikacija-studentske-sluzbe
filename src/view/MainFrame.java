@@ -95,23 +95,6 @@ public class MainFrame extends JFrame {
 		add(statusBar.getStatusBar(), BorderLayout.SOUTH);
 		statusBar.createStatusBar();
 
-		for (int i = 0; i < StudentController.getInstance().getStudenti().size(); i++) {
-			for (int j = 0; j < OcenaController.getInstance().getOcene().size(); j++)
-				if (StudentController.getInstance().getStudenti().get(i).getBrIndeksa()
-						.equals(OcenaController.getInstance().getOcene().get(j).getStudent().getBrIndeksa())) {
-					StudentController.getInstance().getStudenti().get(i)
-							.dodajPolozen(OcenaController.getInstance().getOcene().get(j));
-				}
-		}
-
-		for (Student s : StudentController.getInstance().getStudenti()) {
-			s.setProsecnaOcena(s.izracunajProsek(s.getSpisakPolozenih()));
-			if(Float.isNaN(s.getProsecnaOcena())) {
-				s.setProsecnaOcena(0); 
-			}
-
-		}
-
 		Tabs tabs = Tabs.getInstance();
 		add(tabs, BorderLayout.CENTER);
 
