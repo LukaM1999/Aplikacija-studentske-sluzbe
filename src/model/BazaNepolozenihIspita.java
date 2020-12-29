@@ -1,9 +1,16 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import controller.PredmetController;
 import model.Predmet.Semestar;
 
 public class BazaNepolozenihIspita implements Serializable {
@@ -27,6 +34,8 @@ public class BazaNepolozenihIspita implements Serializable {
 	private BazaNepolozenihIspita() {
 	
 		init();
+		
+		deserijalizacija("deserijalizacija" + File.separator + "nepolozeni.txt");
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");
@@ -76,6 +85,44 @@ public class BazaNepolozenihIspita implements Serializable {
 		default:
 			return null;
 		}
+	}
+	
+public void deserijalizacija(String putanja) {
+		
+		String indeks;
+		String sifra;
+		
+		BufferedReader reader = null;
+		try {
+			reader = new BufferedReader(new InputStreamReader(new FileInputStream(putanja)));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				String[] kolone = line.split(";");
+				
+				indeks = kolone[0];
+				sifra = kolone[1];
+				
+				for(Predmet p: PredmetController.getInstance().getPredmeti()) {
+					if(p.getSifra().equals(sifra)) {
+						this.dodajPredmet(p);
+					}
+							
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}	
+
 	}
 	
 	public void initSpisakNepolozenih(Student s) {
