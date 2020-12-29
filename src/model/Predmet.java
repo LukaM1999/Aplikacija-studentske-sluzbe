@@ -16,7 +16,7 @@ public class Predmet {
 	private Profesor profesor;
 	private int ESPB;
 	private ArrayList<Student> polozili;
-	private ArrayList<Student> oboreni;
+	private ArrayList<Student> nisuPolozili;
 	
 	
 	
@@ -37,7 +37,7 @@ public class Predmet {
 		profesor = p.profesor;
 		ESPB = p.ESPB;
 		polozili = p.polozili;
-		oboreni = p.oboreni;
+		nisuPolozili = p.nisuPolozili;
 		
 	}
 	
@@ -92,7 +92,7 @@ public class Predmet {
 		return ESPB;
 	}
 	public void setESPB(int eSPB) {
-		ESPB = eSPB;
+		this.ESPB = eSPB;
 	}
 	public ArrayList<Student> getPolozili() {
 		return polozili;
@@ -100,14 +100,30 @@ public class Predmet {
 	public void setPolozili(ArrayList<Student> polozili) {
 		this.polozili = polozili;
 	}
-	public ArrayList<Student> getOboreni() {
-		return oboreni;
+	public ArrayList<Student> getNepolozeni() {
+		return nisuPolozili;
 	}
-	public void setOboreni(ArrayList<Student> oboreni) {
-		this.oboreni = oboreni;
+	public void setNepolozeni(ArrayList<Student> nisuPolozili) {
+		this.nisuPolozili = nisuPolozili;
 	}
 	
+	public void dodajPolozili (Student s) {
+		this.polozili.add(s);
+	}
 	
+	public void dodajNisuPolozili(Student s) {
+		this.nisuPolozili.add(s);
+	}
 	
+	public void ukloniPolozili (Student s) {
+		this.polozili.remove(s);
+	}
 	
+	public void ukloniNisuPolozili (Student s) {
+		this.nisuPolozili.remove(s);
+	}
+
+
+
+
 }

@@ -49,4 +49,8 @@ public class PredmetController {
 	public Predmet getPredmet(int row) {
 		return BazaPredmeta.getInstance().getRow(row);
 	}
+	
+	public void popuniListuPolozili (Predmet p) {
+		BazaPredmeta.getInstance().dodajPolozili(p.getSifra());
+	}
 }
