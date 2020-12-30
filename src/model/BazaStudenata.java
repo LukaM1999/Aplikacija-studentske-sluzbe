@@ -46,9 +46,6 @@ public class BazaStudenata implements Serializable {
 		this.kolone.add("Godina studija");
 		this.kolone.add("Status");
 		this.kolone.add("Prosek");
-		
-		
-		
 
 	}
 
@@ -155,6 +152,15 @@ public class BazaStudenata implements Serializable {
 
 	}
 
+	public Student getStudent(String indeks) {
+		for (Student s : studenti) {
+			if (indeks.equals(s.getBrIndeksa())) {
+				return s;
+			}
+		}
+		return null;
+	}
+
 	public void dodajStudenta(String ime, String prezime, LocalDate datumRodjenja, String adresa, String telefon,
 			String email, String brIndeksa, int godinaUpisa, int trenutnaGodina, Status statusStudenta) {
 		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresa, telefon, email, brIndeksa, godinaUpisa,
@@ -173,22 +179,5 @@ public class BazaStudenata implements Serializable {
 			}
 		}
 	}
-	
-	public void sortiranje(int kolona) {
-		
-		List<Student> studentiNesortirani = studenti;
-		
-		switch (kolona) {
-		case 0:
-				Comparator<Student> compareByIndeks = (Student s1, Student s2) -> s1.getBrIndeksa().compareTo(s2.getBrIndeksa());
-				Collections.sort(studentiNesortirani, compareByIndeks);
-				//Collections.sort(studentiNesortirani, compareByIndeks.reversed());
-		case 1:
-				Comparator<Student> compareByName = (Student s1, Student s2) -> s1.getIme().compareTo(s2.getIme());
-				Collections.sort(studentiNesortirani, compareByName);
-				//Collections.sort(studentiNesortirani, compareByName.reversed());
-		case 2:
-				
-		}
-	}
+
 }

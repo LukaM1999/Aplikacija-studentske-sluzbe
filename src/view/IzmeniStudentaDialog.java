@@ -93,7 +93,7 @@ public class IzmeniStudentaDialog extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+		
 		JPanel panel = new JPanel();
 
 		SpringLayout springLayout = new SpringLayout();
@@ -516,7 +516,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(budzetCombo);
 
 		TableStudent table = TableStudent.getInstance();
-		Student student = StudentController.getInstance().getStudent(table.getSelectedRow());
+		String indexString = (String) table.getValueAt(table.getSelectedRow(), 0);
+		Student student = StudentController.getInstance().getStudent(indexString);
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 
