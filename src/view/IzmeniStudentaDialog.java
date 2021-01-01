@@ -803,7 +803,7 @@ public class IzmeniStudentaDialog extends JDialog {
 				SlobodniPredmetiController.getInstance().initSlobodne(student);
 				SlobodniPredmetiController.getInstance().popuniSlobodne(student);
 
-				new DodajSlobodanPredmetDialog(parent, "Dodavanje predmeta", true, student);
+				new DodajSlobodanPredmetDialog(getContentPane(), "Dodavanje predmeta", true, student);
 				
 				modelNepolozeni.fireTableDataChanged();
 				validate();

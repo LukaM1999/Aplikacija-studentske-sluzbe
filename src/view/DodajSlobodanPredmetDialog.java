@@ -1,6 +1,5 @@
 package view;
 
-import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -9,6 +8,7 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import java.awt.Container;
 import java.awt.Font;
 import javax.swing.JTable;
 
@@ -27,12 +27,14 @@ public class DodajSlobodanPredmetDialog extends JDialog {
 
 	private AbstractTableModelSlobodniPredmeti model;
 
-	public DodajSlobodanPredmetDialog(Frame parent, String title, boolean modal, Student s) {
-		super(parent, title, modal);
-
+	public DodajSlobodanPredmetDialog(Container container, String title, boolean b, Student s) {
+				
+		
 		setSize(400, 400);
 		setResizable(false);
-		setLocationRelativeTo(parent);
+		setLocationRelativeTo(container);
+		setModal(b);
+		setTitle(title);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		JPanel slobodanPanel = new JPanel();

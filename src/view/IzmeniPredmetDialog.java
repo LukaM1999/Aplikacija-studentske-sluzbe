@@ -3,6 +3,7 @@ package view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Frame;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.regex.Pattern;
@@ -18,8 +19,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.PredmetController;
+import controller.ProfesorController;
 import model.Predmet;
 import model.Predmet.Semestar;
+import model.Profesor;
 
 public class IzmeniPredmetDialog extends JDialog {
 
@@ -41,21 +44,32 @@ public class IzmeniPredmetDialog extends JDialog {
 	private boolean ispravno = true;
 
 	private JButton ok;
+	private JButton plus;
+	private JButton minus;
+	
+	private static JTextField profesorUnos;
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniPredmetDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
-		setSize(500, 380);
+		setSize(550, 420);
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		ok = new JButton("Potvrdi");
 		ok.setEnabled(true);
+		
+		plus = new JButton("+");
+		minus = new JButton("-");
 
 		// REFERENCE: https://docs.oracle.com/javase/tutorial/uiswing/layout/spring.html
 		SpringLayout springLayout = new SpringLayout();
+		springLayout.putConstraint(SpringLayout.WEST, ok, 136, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, ok, -25, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, ok, -295, SpringLayout.EAST, getContentPane());
 		getContentPane().setLayout(springLayout);
 
 		// Labels
@@ -257,11 +271,11 @@ public class IzmeniPredmetDialog extends JDialog {
 
 		// Buttons
 		JButton cancel = new JButton("Odustani");
+		springLayout.putConstraint(SpringLayout.NORTH, cancel, 0, SpringLayout.NORTH, ok);
+		springLayout.putConstraint(SpringLayout.WEST, cancel, 52, SpringLayout.EAST, ok);
+		springLayout.putConstraint(SpringLayout.SOUTH, cancel, 0, SpringLayout.SOUTH, ok);
+		springLayout.putConstraint(SpringLayout.EAST, cancel, -128, SpringLayout.EAST, getContentPane());
 		cancel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.WEST, cancel, 294, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, cancel, -68, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cancel, 37, SpringLayout.SOUTH, semestar);
-		springLayout.putConstraint(SpringLayout.SOUTH, cancel, -10, SpringLayout.SOUTH, getContentPane());
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
@@ -271,10 +285,6 @@ public class IzmeniPredmetDialog extends JDialog {
 
 		
 		ok.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, ok, 0, SpringLayout.NORTH, cancel);
-		springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, sifra);
-		springLayout.putConstraint(SpringLayout.SOUTH, ok, 0, SpringLayout.SOUTH, cancel);
-		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
 		ok.addActionListener(new ActionListener() {
 			@SuppressWarnings("static-access")
 			public void actionPerformed(ActionEvent e) {
@@ -325,23 +335,109 @@ public class IzmeniPredmetDialog extends JDialog {
 					predmet.setESPB(Integer.parseInt(ESPBVrednost));
 					predmet.setGodinaStudija(godinaStudija);
 					predmet.setSemestar(semestarVrednost);
-
+					
+					if(!profesorUnos.getText().equals("")) {
+						
+						String[] imePrezimeProf = profesorUnos.getText().split(" ");
+						
+						for(Profesor prof: ProfesorController.getInstance().getProfesori()) {
+							if(prof.getIme().equals(imePrezimeProf[0]) && prof.getPrezime().equals(imePrezimeProf[1])) {
+								predmet.setProfesor(prof);
+								break;
+							}
+						}
+					}
+										
 					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());
+					
 					dispose();
 				}
 
 			}
 		});
 		getContentPane().add(ok);
-
-	}
-
-	public void enableButton(JButton button) {
-		if (!ispravno) {
-			button.setEnabled(false);
-		} else {
-			button.setEnabled(true);
+		
+		JLabel profesor = new JLabel("Profesor*");
+		springLayout.putConstraint(SpringLayout.NORTH, ok, 27, SpringLayout.SOUTH, profesor);
+		profesor.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		springLayout.putConstraint(SpringLayout.NORTH, profesor, 5, SpringLayout.SOUTH, semestar);
+		springLayout.putConstraint(SpringLayout.WEST, profesor, 0, SpringLayout.WEST, sifra);
+		springLayout.putConstraint(SpringLayout.SOUTH, profesor, 45, SpringLayout.SOUTH, semestar);
+		springLayout.putConstraint(SpringLayout.EAST, profesor, 0, SpringLayout.EAST, sifra);
+		getContentPane().add(profesor);
+		
+		profesorUnos = new JTextField();
+		profesorUnos.setEditable(false);
+		springLayout.putConstraint(SpringLayout.NORTH, profesorUnos, 21, SpringLayout.SOUTH, semestarCombo);
+		springLayout.putConstraint(SpringLayout.WEST, profesorUnos, 6, SpringLayout.EAST, profesor);
+		springLayout.putConstraint(SpringLayout.EAST, profesorUnos, -83, SpringLayout.EAST, sifraUnos);
+		profesorUnos.setBackground(Color.WHITE);
+		profesorUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		profesorUnos.getDocument().addDocumentListener(new DocumentListener() {
+			
+			@Override
+			public void removeUpdate(DocumentEvent arg0) {
+				changedUpdate(arg0);
+				
+			}
+			
+			@Override
+			public void insertUpdate(DocumentEvent arg0) {
+				changedUpdate(arg0);
+				
+			}
+			
+			@Override
+			public void changedUpdate(DocumentEvent arg0) {
+				if(profesorUnos.getText().equals("")) {
+					minus.setEnabled(false);
+					plus.setEnabled(true);
+				}
+				else {
+					minus.setEnabled(true);
+					plus.setEnabled(false);
+				}
+				
+			}
+		});
+		
+		
+		if(predmet.getProfesor() != null) {
+			profesorUnos.setText(predmet.getProfesor().getIme() + " " + predmet.getProfesor().getPrezime());
+			minus.setEnabled(true);
+			plus.setEnabled(false);
 		}
+		else {
+			minus.setEnabled(false);
+			plus.setEnabled(true);
+		}
+		
+		getContentPane().add(profesorUnos);
+		
+		plus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				new DodajProfesoraNaPredmetDialog(getContentPane(), "Odaberi profesora", true, predmet, profesorUnos);
+			}
+		});
+		springLayout.putConstraint(SpringLayout.NORTH, plus, 0, SpringLayout.NORTH, profesorUnos);
+		springLayout.putConstraint(SpringLayout.WEST, plus, 15, SpringLayout.EAST, profesorUnos);
+		springLayout.putConstraint(SpringLayout.SOUTH, plus, 0, SpringLayout.SOUTH, profesorUnos);
+		springLayout.putConstraint(SpringLayout.EAST, plus, -107, SpringLayout.EAST, getContentPane());
+		//REFERENCE: https://stackoverflow.com/questions/5808195/removing-the-three-dots-from-a-jbutton
+		plus.setMargin(new Insets(0,0,0,0));
+		getContentPane().add(plus);
+		
+		
+		springLayout.putConstraint(SpringLayout.NORTH, minus, 0, SpringLayout.NORTH, profesorUnos);
+		springLayout.putConstraint(SpringLayout.WEST, minus, 40, SpringLayout.WEST, plus);
+		springLayout.putConstraint(SpringLayout.SOUTH, minus, 33, SpringLayout.NORTH, profesor);
+		springLayout.putConstraint(SpringLayout.EAST, minus, 0, SpringLayout.EAST, sifraUnos);
+		minus.setMargin(new Insets(0,0,0,0));
+		getContentPane().add(minus);
+
 	}
+	
 
 }

@@ -20,6 +20,7 @@ public class Profesor {
 	private String zvanje;
 	private ArrayList<Predmet> predajePredmet;
 	
+	//Promeniti redosled imena i prezimena u konstruktoru!!!
 	
 	public Profesor (String prezime, String ime, String datumRodjenja,
 				   String adresa, String telefon, String email, 
