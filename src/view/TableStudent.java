@@ -4,12 +4,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.RowFilter;
 import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableRowSorter;
 
 import controller.OcenaController;
 import controller.StudentController;
@@ -38,13 +41,29 @@ public class TableStudent extends JTable {
 	private int cetvrta = 0;
 	private int peta = 0;
 	private int sesta = 0;
+	
+	private TableRowSorter<AbstractTableModelStudent> sorter;
+	
+	private ArrayList<RowFilter<Object, Object>> filters;
 
 	public TableStudent() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		this.setModel(new AbstractTableModelStudent());
-		this.getTableHeader().addMouseListener(new MouseAdapter() {
+		AbstractTableModelStudent model = new AbstractTableModelStudent();
+		this.setModel(model);
+		sorter = new TableRowSorter<AbstractTableModelStudent>(model);
+		
+		//REFERNCE: https://docs.oracle.com/javase/7/docs/api/javax/swing/RowFilter.html
+		filters = new ArrayList<RowFilter<Object, Object>>();
+	    setRowSorter(sorter);
+	    sorter.setSortable(0, false);
+	    sorter.setSortable(1, false);
+	    sorter.setSortable(2, false);
+	    sorter.setSortable(3, false);
+	    sorter.setSortable(4, false);
+	    sorter.setSortable(5, false);
+	    this.getTableHeader().addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				int col = TableStudent.getInstance().columnAtPoint(e.getPoint());
@@ -70,7 +89,7 @@ public class TableStudent extends JTable {
 						});
 						
 					//REFERENCE: https://stackoverflow.com/questions/1496143/dynamically-changing-the-column-header-text-in-jtable
-						getColumnModel().getColumn(0).setHeaderValue("Indeks " + "\u25B2");
+						getColumnModel().getColumn(0).setHeaderValue("Indeks " + "\u25BC");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
@@ -86,7 +105,7 @@ public class TableStudent extends JTable {
 							}
 						});
 
-						getColumnModel().getColumn(0).setHeaderValue("Indeks " + "\u25BC");
+						getColumnModel().getColumn(0).setHeaderValue("Indeks " + "\u25B2");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
@@ -114,7 +133,7 @@ public class TableStudent extends JTable {
 						});
 
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
-						getColumnModel().getColumn(1).setHeaderValue("Ime " + "\u25B2");
+						getColumnModel().getColumn(1).setHeaderValue("Ime " + "\u25BC");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
@@ -131,7 +150,7 @@ public class TableStudent extends JTable {
 						});
 						
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
-						getColumnModel().getColumn(1).setHeaderValue("Ime " + "\u25BC");
+						getColumnModel().getColumn(1).setHeaderValue("Ime " + "\u25B2");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
@@ -159,7 +178,7 @@ public class TableStudent extends JTable {
 						
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
-						getColumnModel().getColumn(2).setHeaderValue("Prezime " + "\u25B2");
+						getColumnModel().getColumn(2).setHeaderValue("Prezime " + "\u25BC");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
@@ -175,7 +194,7 @@ public class TableStudent extends JTable {
 						
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
-						getColumnModel().getColumn(2).setHeaderValue("Prezime " + "\u25BC");
+						getColumnModel().getColumn(2).setHeaderValue("Prezime " + "\u25B2");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
@@ -204,7 +223,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
-						getColumnModel().getColumn(3).setHeaderValue("Godina studija " + "\u25B2");
+						getColumnModel().getColumn(3).setHeaderValue("Godina studija " + "\u25BC");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
 						
@@ -221,7 +240,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(0).setHeaderValue("Indeks");
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
-						getColumnModel().getColumn(3).setHeaderValue("Godina studija " + "\u25BC");
+						getColumnModel().getColumn(3).setHeaderValue("Godina studija " + "\u25B2");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
 						
@@ -251,7 +270,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
-						getColumnModel().getColumn(4).setHeaderValue("Status " + "\u25B2");
+						getColumnModel().getColumn(4).setHeaderValue("Status " + "\u25BC");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
 							
 					} else {
@@ -268,7 +287,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(1).setHeaderValue("Ime");
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
-						getColumnModel().getColumn(4).setHeaderValue("Status " + "\u25BC");
+						getColumnModel().getColumn(4).setHeaderValue("Status " + "\u25B2");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
 						
 					}
@@ -297,7 +316,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
-						getColumnModel().getColumn(5).setHeaderValue("Prosek " + "\u25B2");
+						getColumnModel().getColumn(5).setHeaderValue("Prosek " + "\u25BC");
 						
 					} else {
 						Collections.sort(BazaStudenata.getInstance().getStudenti(), new Comparator<Student>() {
@@ -314,7 +333,7 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(2).setHeaderValue("Prezime");
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
-						getColumnModel().getColumn(5).setHeaderValue("Prosek " + "\u25BC");
+						getColumnModel().getColumn(5).setHeaderValue("Prosek " + "\u25B2");
 						
 					}
 					break;
@@ -355,5 +374,13 @@ public class TableStudent extends JTable {
 			c.setBackground(Color.WHITE);
 		}
 		return c;
+	}
+	
+	public TableRowSorter<AbstractTableModelStudent> getSorter() {
+		return sorter;
+	}
+	
+	public ArrayList<RowFilter<Object, Object>> getFilters() {
+		return filters;
 	}
 }
