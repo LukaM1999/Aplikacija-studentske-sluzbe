@@ -7,6 +7,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,7 +83,7 @@ public class BazaOcena implements Serializable {
 		case 3:
 			return String.valueOf(ocena.getVrednostOcene());
 		case 4:
-			return ocena.getDatumPolaganja();
+			return String.valueOf(ocena.getDatumPolaganja());
 		default:
 			return null;
 		}
@@ -101,7 +103,6 @@ public class BazaOcena implements Serializable {
 		try {
 			reader = new BufferedReader(new InputStreamReader(new FileInputStream(putanja)));
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
 		try {
@@ -113,7 +114,10 @@ public class BazaOcena implements Serializable {
 				sifra = kolone[1];
 				vrednostOcene = Integer.parseInt(kolone[2]);
 				datum = kolone[3];
-				this.dodajPolozen(indeks, sifra, vrednostOcene, datum);
+				
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+				
+				this.dodajPolozen(indeks, sifra, vrednostOcene, LocalDate.parse(datum, formatter));
 							
 			}
 		} catch (IOException e) {
@@ -128,7 +132,7 @@ public class BazaOcena implements Serializable {
 
 	}
 	
-	public void dodajOcenu(Student s, Predmet p, int vrednostOcene, String datumPolaganja) {
+	public void dodajOcenu(Student s, Predmet p, int vrednostOcene, LocalDate datumPolaganja) {
 		this.ocene.add(new Ocena(s, p, vrednostOcene, datumPolaganja));
 	}
 
@@ -145,7 +149,17 @@ public class BazaOcena implements Serializable {
 		}
 	}
 	
-	public void dodajPolozen(String indeks, String sifra, int vrednostOcene, String datum) {
+	public void obrisiOcene(String indeks) {
+		for (Ocena o : ocene) {
+			if (o.getStudent().getBrIndeksa().equals(indeks)) {
+				ocene.remove(o);
+			}
+		}
+	}
+	
+	
+	
+	public void dodajPolozen(String indeks, String sifra, int vrednostOcene, LocalDate datum) {
 		List<Student> studenti = StudentController.getInstance().getStudenti();
 		for(int i = 0; i < studenti.size(); i++) {
 			if(indeks.equals(studenti.get(i).getBrIndeksa())) {

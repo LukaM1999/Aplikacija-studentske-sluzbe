@@ -39,6 +39,10 @@ public class StudentController {
 		BazaStudenata.getInstance().izbrisiStudenta(s.getBrIndeksa());
 		MainFrame.getInstance().azurirajStudente("UKLONJEN", rowSelectedIndex);
 	}
+	
+	public void izbrisiStudenta(String indeks) {
+		BazaStudenata.getInstance().izbrisiStudenta(indeks);
+	}
 
 	public List<Student> getStudenti() {
 		return BazaStudenata.getInstance().getStudenti();
@@ -51,5 +55,6 @@ public class StudentController {
 	public Student getStudent(String indeks) {
 		return BazaStudenata.getInstance().getStudent(indeks);
 	}
+	
 
 }

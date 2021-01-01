@@ -3,16 +3,18 @@
  */
 package model;
 
+import java.time.LocalDate;
+
 public class Ocena {
 	
 	private Student student;
 	private Predmet predmet;
 	private int vrednostOcene;
-	private String datumPolaganja;
+	private LocalDate datumPolaganja;
 	
 	
 	
-	public Ocena(Student student, Predmet predmet, int vrednostOcene, String datumPolaganja) {
+	public Ocena(Student student, Predmet predmet, int vrednostOcene, LocalDate datumPolaganja) {
 		super();
 		this.student = student;
 		this.predmet = predmet;
@@ -20,7 +22,7 @@ public class Ocena {
 		this.datumPolaganja = datumPolaganja;
 	}
 	
-	public Ocena(int vrednostOcene, String datumPolaganja) {
+	public Ocena(int vrednostOcene, LocalDate datumPolaganja) {
 		super();
 		this.vrednostOcene = vrednostOcene;
 		this.datumPolaganja = datumPolaganja;
@@ -51,10 +53,10 @@ public class Ocena {
 	public void setVrednostOcene(int vrednostOcene) {
 		this.vrednostOcene = vrednostOcene;
 	}
-	public String getDatumPolaganja() {
+	public LocalDate getDatumPolaganja() {
 		return datumPolaganja;
 	}
-	public void setDatumPolaganja(String datumPolaganja) {
+	public void setDatumPolaganja(LocalDate datumPolaganja) {
 		this.datumPolaganja = datumPolaganja;
 	}
 

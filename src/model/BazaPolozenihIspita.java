@@ -1,6 +1,7 @@
 package model;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +71,7 @@ public class BazaPolozenihIspita {
 		case 3:
 			return String.valueOf(ocena.getVrednostOcene());
 		case 4:
-			return ocena.getDatumPolaganja();
+			return String.valueOf(ocena.getDatumPolaganja());
 		default:
 			return null;
 		}
@@ -82,7 +83,7 @@ public class BazaPolozenihIspita {
 	}
 	
 	
-	public void dodajOcenu(Student s, Predmet p, int vrednostOcene, String datumPolaganja) {
+	public void dodajOcenu(Student s, Predmet p, int vrednostOcene, LocalDate datumPolaganja) {
 		this.ocene.add(new Ocena(s, p, vrednostOcene, datumPolaganja));
 	}
 

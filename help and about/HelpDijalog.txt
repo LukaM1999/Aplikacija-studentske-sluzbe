@@ -24,10 +24,10 @@ II Neki primeri ispravnih unosa atributa za određene entitete:
 		1) Ime: Miloš, Stefan, Đorđe
 		2) Prezime: Perić, Jovančić, Stanojevski
 		3) Datum rođenja: 22.07.1999., 04.06.1985.
-		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
+		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16a, Beograd
 		5) Broj telefona: 064357753, 0114590712, 38165432174
-		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com
-		7) Broj indeksa: ra-218-2018, IN-58-2015, F2-054-2005, Pr-111-2010
+		6) E-mail adresa: branko.maric@uns.ac.rs, Dragan123@yahoo.com, XyZ.123@gmail.com, 547Ad.21B@dropmail.com
+		7) Broj indeksa: RA-218-2018, IN-58-2015, F2-054-2005, PR-111-2010
 		8) Godina upisa: 2017, 2014, 2007
  
 
@@ -35,9 +35,9 @@ II Neki primeri ispravnih unosa atributa za određene entitete:
 		1) Ime: Miloš, Stefan, Đorđe
 		2) Prezime: Perić, Jovančić, Stanojevski
 		3) Datum rođenja: 22.07.1987., 04.06.1985.
-		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16, Beograd
+		4) Adresa stanovanja: Subotička 21, Novi Sad; Mike Ilića 5,Beograd; Neznanog junaka 16a, Beograd
 		5) Kontakt telefon: 064357753, 0114590712, 38165432174
-		6) E-mail adresa: branko.maric@gmail.com, Dragan123@yahoo.com, XyZ.123@hotmail.com, 547Ad.21B@dropmail.com
+		6) E-mail adresa: branko.maric@uns.ac.rs, Dragan123@yahoo.com, XyZ.123@gmail.com, 547Ad.21B@dropmail.com
 		7) Adresa kancelarije: NTP-506, Kancelarija 115, Kabinet 509A
 		8) Broj lične karte: 955555546, 003206516
 		9) Titula: Dr astronomije, Specijalista biolog, Spec. biol.

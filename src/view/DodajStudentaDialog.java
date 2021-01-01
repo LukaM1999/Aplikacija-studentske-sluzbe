@@ -4,8 +4,6 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -17,6 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.PredmetController;
 import controller.StudentController;
@@ -46,13 +46,13 @@ public class DodajStudentaDialog extends JDialog {
 
 	// REFERENCE:
 	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d).?";
+	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 
-	private String indeksSablon = "([A-Ža-ž]{2}|[A-Ža-ž][1-9])-([0-9]{1,3})-(20[0-9]{2})";
+	private String indeksSablon = "([\\p{IsUppercase}]{2}|[\\p{IsUppercase}][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
 	private String upisSablon = "(20[0-9]{2})";
 
@@ -65,7 +65,7 @@ public class DodajStudentaDialog extends JDialog {
 	private boolean indeksKorektno;
 	private boolean upisKorektno;
 
-	private boolean ispravno;
+	private boolean ispravno = false;
 
 	private JButton ok;
 
@@ -170,35 +170,36 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, imeUnos, 6, SpringLayout.EAST, ime);
 		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, getContentPane());
 		getContentPane().add(imeUnos);
-		imeUnos.addFocusListener(new FocusListener() {
+		imeUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				imeUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				// REFERENCE:
-				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
-				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText())
-						.matches())) {
-					imeUnos.setBackground(Color.RED);
-					imeKorektno = false;
-				} else {
-					imeUnos.transferFocus();
-					imeUnos.setBackground(Color.WHITE);
-					imeKorektno = true;
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText()).matches())) {
+                    imeKorektno = false;
+                    imeUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    imeKorektno = true;
+                    imeUnos.setBackground(Color.GREEN);
 
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
 				}
-				enableButton(ok);
+                ok.setEnabled(ispravno);
 			}
 
 		});
@@ -209,35 +210,40 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, prezimeUnos, 6, SpringLayout.EAST, prezime);
 		springLayout.putConstraint(SpringLayout.EAST, prezimeUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(prezimeUnos);
-		prezimeUnos.addFocusListener(new FocusListener() {
+		prezimeUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				prezimeUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				prezimeUnos.setBackground(Color.WHITE);
-				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText())
-						.matches())) {
-					prezimeUnos.setBackground(Color.RED);
-					prezimeKorektno = false;
-				} else {
-					prezimeKorektno = true;
-					prezimeUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText()).matches())) {
+                    prezimeKorektno = false;
+                    prezimeUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    prezimeKorektno = true;
+                    prezimeUnos.setBackground(Color.GREEN);
+
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
 				}
-				enableButton(ok);
+                ok.setEnabled(ispravno);
 			}
 
 		});
+
 
 		JTextField datumUnos = new JTextField();
 		datumUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -245,33 +251,36 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, datumUnos, 6, SpringLayout.EAST, datum);
 		springLayout.putConstraint(SpringLayout.EAST, datumUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(datumUnos);
-		datumUnos.addFocusListener(new FocusListener() {
+		datumUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				datumUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText())
-						.matches())) {
-					datumUnos.setBackground(Color.RED);
-					datumKorektno = false;
-				} else {
-					datumKorektno = true;
-					datumUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
-
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText()).matches())) {
+                    datumKorektno = false;
+                    datumUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    datumKorektno = true;
+                    datumUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
 				}
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
 
 		});
@@ -282,36 +291,40 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, adresaUnos, 6, SpringLayout.EAST, adresa);
 		springLayout.putConstraint(SpringLayout.EAST, adresaUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(adresaUnos);
-		adresaUnos.addFocusListener(new FocusListener() {
+		adresaUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				adresaUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText())
-						.matches())) {
-					adresaUnos.setBackground(Color.RED);
-					adresaKorektno = false;
-				} else {
-					adresaKorektno = true;
-					adresaUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText()).matches())) {
+                    adresaKorektno = false;
+                    adresaUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    adresaKorektno = true;
+                    adresaUnos.setBackground(Color.GREEN);
 
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
 				}
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
 
 		});
+
 
 		JTextField telefonUnos = new JTextField();
 		telefonUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -319,109 +332,118 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, telefonUnos, 6, SpringLayout.EAST, telefon);
 		springLayout.putConstraint(SpringLayout.EAST, telefonUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(telefonUnos);
-		telefonUnos.addFocusListener(new FocusListener() {
+		telefonUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				telefonUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText())
-						.matches())) {
-					telefonUnos.setBackground(Color.RED);
-					telefonKorektno = false;
-				} else {
-					telefonKorektno = true;
-					telefonUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText()).matches())) {
+                    telefonKorektno = false;
+                    telefonUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    telefonKorektno = true;
+                    telefonUnos.setBackground(Color.GREEN);
 
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
 				}
-
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
 
 		});
-
+		
 		JTextField emailUnos = new JTextField();
 		emailUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, emailUnos, 11, SpringLayout.NORTH, email);
 		springLayout.putConstraint(SpringLayout.WEST, emailUnos, 6, SpringLayout.EAST, email);
 		springLayout.putConstraint(SpringLayout.EAST, emailUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(emailUnos);
-		emailUnos.addFocusListener(new FocusListener() {
+		emailUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				emailUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText())
-						.matches())) {
-					emailUnos.setBackground(Color.RED);
-					emailKorektno = false;
-				} else {
-					emailKorektno = true;
-					emailUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
-
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText()).matches())) {
+                    emailKorektno = false;
+                    emailUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    emailKorektno = true;
+                    emailUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                    
 				}
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
 
 		});
-
+		
 		JTextField indeksUnos = new JTextField();
 		indeksUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, indeksUnos, 11, SpringLayout.NORTH, indeks);
 		springLayout.putConstraint(SpringLayout.WEST, indeksUnos, 6, SpringLayout.EAST, indeks);
 		springLayout.putConstraint(SpringLayout.EAST, indeksUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(indeksUnos);
-		indeksUnos.addFocusListener(new FocusListener() {
+		indeksUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				indeksUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText())
-						.matches())) {
-					indeksUnos.setBackground(Color.RED);
-					indeksKorektno = false;
-				} else {
-					indeksKorektno = true;
-					indeksUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
-
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText()).matches())) {
+                    indeksKorektno = false;
+                    indeksUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    indeksKorektno = true;
+                    indeksUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                   
 				}
-
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
 
 		});
@@ -432,35 +454,38 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, upisUnos, 6, SpringLayout.EAST, upis);
 		springLayout.putConstraint(SpringLayout.EAST, upisUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(upisUnos);
-		upisUnos.addFocusListener(new FocusListener() {
+		upisUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-			@Override
-			public void focusGained(FocusEvent arg0) {
-				upisUnos.setBackground(Color.WHITE);
-				enableButton(ok);
-			}
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
 
-			@Override
-			public void focusLost(FocusEvent arg0) {
-				if (!(Pattern.compile(upisSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(upisUnos.getText())
-						.matches())) {
-					upisUnos.setBackground(Color.RED);
-					upisKorektno = false;
-				} else {
-					upisKorektno = true;
-					upisUnos.setBackground(Color.WHITE);
-					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-							&& emailKorektno && indeksKorektno && upisKorektno) {
-						ispravno = true;
-					} else {
-						ispravno = false;
-					}
-
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(upisSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(upisUnos.getText()).matches())) {
+                    upisKorektno = false;
+                    upisUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    upisKorektno = true;
+                    upisUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && indeksKorektno && upisKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                    
 				}
-				enableButton(ok);
-
+                ok.setEnabled(ispravno);
 			}
-
 		});
 
 		// Combo boxes
@@ -504,6 +529,7 @@ public class DodajStudentaDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, ok, 1, SpringLayout.SOUTH, cancel);
 		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
+		ok.setEnabled(false);
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -570,17 +596,18 @@ public class DodajStudentaDialog extends JDialog {
 				} else if (godinaCombo.getSelectedItem() == "IV (četvrta)") {
 					godinaStudija = 3;
 				}
+				
+				String[] indeksGodina = indeksVrednost.split("-");
+				if (Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
+					JOptionPane.showMessageDialog(getContentPane(), "Godina na indeksu i godina upisa se razlikuju!");
+					return;
+				}
+				
 				// REFERENCE:
 				// https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
 				int trenutnaGodina = Year.now().getValue();
 				if (Integer.parseInt(upisVrednost) > trenutnaGodina - godinaStudija) {
 					JOptionPane.showMessageDialog(getContentPane(), "Pogrešna trenutna godina studija!");
-					return;
-				}
-
-				String[] indeksGodina = indeksVrednost.split("-");
-				if (Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
-					JOptionPane.showMessageDialog(getContentPane(), "Godina na indeksu i godina upisa se razlikuju!");
 					return;
 				}
 
@@ -617,13 +644,5 @@ public class DodajStudentaDialog extends JDialog {
 		});
 		getContentPane().add(ok);
 
-	}
-
-	public void enableButton(JButton button) {
-		if (!ispravno) {
-			button.setEnabled(false);
-		} else {
-			button.setEnabled(true);
-		}
 	}
 }

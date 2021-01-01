@@ -7,15 +7,19 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
+import controller.OcenaController;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import model.Ocena;
+import model.Student;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.Iterator;
 
 //Koriscen materijal sa vezbi
 public class MyMenuBar extends JMenuBar {
@@ -71,8 +75,9 @@ public class MyMenuBar extends JMenuBar {
 
 				JOptionPane confirm = new JOptionPane();
 				@SuppressWarnings("static-access")
-				int answer = confirm.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da napustite aplikaciju?",
-						"Potvrda izlaska", JOptionPane.OK_CANCEL_OPTION);
+				int answer = confirm.showConfirmDialog(MainFrame.getInstance(),
+						"Da li ste sigurni da želite da napustite aplikaciju?", "Potvrda izlaska",
+						JOptionPane.OK_CANCEL_OPTION);
 				if (answer == JOptionPane.YES_OPTION) {
 					System.exit(0);
 				}
@@ -90,23 +95,23 @@ public class MyMenuBar extends JMenuBar {
 			public void actionPerformed(ActionEvent arg0) {
 				if (Tabs.getInstance().getSelectedIndex() == 0) {
 					if (TableStudent.getInstance().getSelectedRow() >= 0) {
-					IzmeniStudentaDialog studentDialog = new IzmeniStudentaDialog(MainFrame.getInstance(),
-							"Izmena studenta", true);
-					studentDialog.setVisible(true);
+						IzmeniStudentaDialog studentDialog = new IzmeniStudentaDialog(MainFrame.getInstance(),
+								"Izmena studenta", true);
+						studentDialog.setVisible(true);
 					}
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
 					if (TableProfesor.getInstance().getSelectedRow() >= 0) {
-					IzmeniProfesoraDialog profesorDialog = new IzmeniProfesoraDialog(MainFrame.getInstance(),
-							"Izmena profesora", true);
-					profesorDialog.setVisible(true);
+						IzmeniProfesoraDialog profesorDialog = new IzmeniProfesoraDialog(MainFrame.getInstance(),
+								"Izmena profesora", true);
+						profesorDialog.setVisible(true);
 					}
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 2) {
 					if (TablePredmet.getInstance().getSelectedRow() >= 0) {
-					IzmeniPredmetDialog predmetDialog = new IzmeniPredmetDialog(MainFrame.getInstance(),
-							"Izmena predmeta", true);
-					predmetDialog.setVisible(true);
+						IzmeniPredmetDialog predmetDialog = new IzmeniPredmetDialog(MainFrame.getInstance(),
+								"Izmena predmeta", true);
+						predmetDialog.setVisible(true);
 					}
 				}
 			}
@@ -126,7 +131,31 @@ public class MyMenuBar extends JMenuBar {
 								"Da li ste sigurni da želite da obrišete studenta?", "Brisanje studenta",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
-							StudentController.getInstance().izbrisiStudenta(TableStudent.getInstance().getSelectedRow());
+
+							String indeks = (String) TableStudent.getInstance()
+									.getValueAt(TableStudent.getInstance().getSelectedRow(), 0);
+
+							Iterator<Ocena> itO = OcenaController.getInstance().getOcene().iterator();
+							while (itO.hasNext()) {
+								Ocena o = itO.next();
+								if (o.getStudent().getBrIndeksa().equals(indeks)) {
+									itO.remove();
+								}
+							}
+
+				// REFERENCE:
+				// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+							Iterator<Student> it = StudentController.getInstance().getStudenti().iterator();
+							while (it.hasNext()) {
+								Student s = it.next();
+								if (s.getBrIndeksa().equals(indeks)) {
+									it.remove();
+									break;
+								}
+							}
+
+							MainFrame.getInstance().azurirajStudente("Uklonjen", -1);
+
 						}
 					}
 				}
@@ -137,7 +166,8 @@ public class MyMenuBar extends JMenuBar {
 								"Da li ste sigurni da želite da obrišete profesora?", "Brisanje profesora",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
-							ProfesorController.getInstance().izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
+							ProfesorController.getInstance()
+									.izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
 						}
 					}
 				}

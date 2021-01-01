@@ -42,6 +42,10 @@ public class OcenaController {
 		BazaOcena.getInstance().ponistiOcenu(o.getStudent().getBrIndeksa(), o.getPredmet().getSifra());
     }
 	
+	public void obrisiOcene(String indeks) {
+		BazaOcena.getInstance().obrisiOcene(indeks);
+	}
+	
 	public List<Ocena> getOcene(){
 		return BazaOcena.getInstance().getOcene();
 	}

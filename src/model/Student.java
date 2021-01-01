@@ -98,7 +98,7 @@ public class Student {
 		this.spisakPolozenih.add(o);
 	}
 	
-	public void dodajPolozen(Student s, Predmet p, int vrednostOcene, String datumPolaganja) {
+	public void dodajPolozen(Student s, Predmet p, int vrednostOcene, LocalDate datumPolaganja) {
 		this.spisakPolozenih.add(new Ocena(s, p, vrednostOcene, datumPolaganja));
 	}
 	

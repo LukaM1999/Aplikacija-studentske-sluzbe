@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -15,9 +16,12 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
 
+import controller.OcenaController;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
+import model.Ocena;
+import model.Student;
 //Koriscen materijal sa vezbi
 public class Toolbar extends JToolBar {
 
@@ -111,8 +115,31 @@ public class Toolbar extends JToolBar {
 							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?", 
 																	"Brisanje studenta", JOptionPane.YES_NO_OPTION);
 							if(opcija == 0) {
-								StudentController.getInstance().izbrisiStudenta(TableStudent.getInstance().getSelectedRow());
-							} 					
+								String indeks = (String) TableStudent.getInstance()
+										.getValueAt(TableStudent.getInstance().getSelectedRow(), 0);
+
+								Iterator<Ocena> itO = OcenaController.getInstance().getOcene().iterator();
+								while (itO.hasNext()) {
+									Ocena o = itO.next();
+									if (o.getStudent().getBrIndeksa().equals(indeks)) {
+										itO.remove();
+									}
+								}
+
+					// REFERENCE:
+					// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+								Iterator<Student> it = StudentController.getInstance().getStudenti().iterator();
+								while (it.hasNext()) {
+									Student s = it.next();
+									if (s.getBrIndeksa().equals(indeks)) {
+										it.remove();
+										break;
+									}
+								}
+
+								MainFrame.getInstance().azurirajStudente("Uklonjen", -1);
+
+							}				
 						}
 					}
 					
