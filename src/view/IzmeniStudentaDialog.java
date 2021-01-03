@@ -791,6 +791,9 @@ public class IzmeniStudentaDialog extends JDialog {
 		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
 		nepolozeni.setBounds(5, 40, 475, 430);
 
+		
+		
+		
 		JButton dodaj = new JButton("Dodaj");
 		dodaj.setBounds(5, 5, 100, 30);
 		dodaj.addActionListener(new ActionListener() {
@@ -832,7 +835,7 @@ public class IzmeniStudentaDialog extends JDialog {
 								student.dodajSlobodan(p);
 							}
 						}
-						
+						model.fireTableDataChanged();
 						modelNepolozeni.fireTableDataChanged();
 						validate();	
 					}
@@ -844,6 +847,26 @@ public class IzmeniStudentaDialog extends JDialog {
 		
 		JButton polaganje = new JButton("Polaganje");
 		polaganje.setBounds(255, 5, 130, 30);
+		polaganje.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (nepolozeniTable.getSelectedRow() >= 0) {
+					
+					PolaganjeDialog polaganje = new PolaganjeDialog(MainFrame.getInstance(), "Unos ocene", true,
+							nepolozeniTable, datumSablon, student, model);
+				
+					polaganje.setVisible(true);
+				
+					
+					modelNepolozeni.fireTableDataChanged();
+					validate();
+				}
+			}
+		});
+		
+		
+		
 
 		nepolozeniPanel.setLayout(null);
 		nepolozeniPanel.add(nepolozeni);
