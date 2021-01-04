@@ -1,20 +1,20 @@
-Kosta;Savic;14.2.1977.;Iva Andrica 58;021191559;KostaSavic17@gmail.com;Mise Dimitrijevica 8;123456789;magistar;redovni profesor
-Nina;Popovic;22.3.1966.;Bulevar patrijarha Pavla 72;021596978;NinaPopovic4@gmail.com;Bulevar despota Stefana 32;476930683;doktor nauka;vanredni profesor
-Masa;Ilic;11.4.1976.;Dr Sime Milosevica 32;021634494;MasaIlic20@gmail.com;Tolstojeva 82;487011254;magistar;vanredni profesor
-Milica;Savic;19.2.1984.;Drage Spasic 48;021906373;MilicaSavic4@gmail.com;Gogoljeva 80;684807648;doktor nauka;vanredni profesor
-Jana;Petrovic;25.4.1961.;Boska Buhe 82;021141872;JanaPetrovic13@gmail.com;Bulevar Jase Tomica 64;446488941;doktor nauka;vanredni profesor
-Vukasin;Popovic;24.9.1965.;Mise Dimitrijevica 95;021965771;VukasinPopovic2@gmail.com;Bulevar Mihajla Pupina 71;999594934;doktor nauka;redovni profesor
-Una;Todorovic;11.5.1964.;Fruskogorska 92;021437897;UnaTodorovic8@gmail.com;Mise Dimitrijevica 62;333399959;doktor nauka;vanredni profesor
-Masa;Ristic;17.10.1972.;Suboticki bulevar 8;021543645;MasaRistic18@gmail.com;Ravanicka 72;749602846;magistar;redovni profesor
-Dunja;Krstic;25.8.1978.;Dr Ivana Ribara 42;021851274;DunjaKrstic11@gmail.com;Bulevar Mihajla Pupina 79;098492051;magistar;vanredni profesor
-Dunja;Milosevic;13.5.1965.;Lasla Gala 86;021933258;DunjaMilosevic14@gmail.com;Brace Ribnikar 40;999954892;magistar;vanredni profesor
-Sara;Tomic;12.4.1981.;Fruskogorska 4;021880625;SaraTomic18@gmail.com;Dr Ivana Ribara 2;748602789;doktor nauka;vanredni profesor
-Teodora;Pavlovic;4.5.1975.;Resavska 89;021441254;TeodoraPavlovic6@gmail.com;Bulevar vojvode Stepe 95;666678945;doktor nauka;redovni profesor
-Petar;Cvetkovic;11.4.1971.;Suboticki bulevar 7;021131148;PetarCvetkovic13@gmail.com;Narodnog fronta 65;444457489;doktor nauka;redovni profesor
-Ana;Savic;21.8.1961.;Narodnog fronta 65;021881609;AnaSavic14@gmail.com;Bulevar despota Stefana 71;890265768;doktor nauka;redovni profesor
-Filip;Popovic;16.1.1978.;Balzakova 52;021227383;FilipPopovic3@gmail.com;Lasla Gala 54;053869386;doktor nauka;redovni profesor
-Helena;Pavlovic;14.9.1961.;Fruskogorska 91;021931322;HelenaPavlovic1@gmail.com;Gogoljeva 18;777777356;doktor nauka;redovni profesor
-Petar;Nikolic;14.2.1974.;Bulevar Jovana Ducica 23;021579180;PetarNikolic18@gmail.com;Bulevar Mihajla Pupina 51;739603725;doktor nauka;redovni profesor
-Ognjen;Kostic;22.5.1962.;Danila Kisa 65;021923128;OgnjenKostic13@gmail.com;Boska Buhe 29;857037597;doktor nauka;vanredni profesor
-Pavle;Tomic;18.4.1966.;Bulevar Slobodana Jovanovica 80;021456475;PavleTomic11@gmail.com;Dr Sime Milosevica 73;476832076;doktor nauka;redovni profesor
-Sara;Jankovic;9.3.1962.;Iva Andrica 91;021498483;SaraJankovic17@gmail.com;Vojvodjanska 97;758703849;doktor nauka;vanredni profesor
+Kosta;Savic;14.02.1977.;Iva Andrica 58, Novi Sad;021191559;KostaSavic17@gmail.com;Mise Dimitrijevica 8;123456789;magistar;redovni profesor
+Nina;Popovic;22.03.1966.;Bulevar patrijarha Pavla 72, Novi Sad;021596978;NinaPopovic4@gmail.com;Bulevar despota Stefana 32;476930683;doktor nauka;vanredni profesor
+Masa;Ilic;11.04.1976.;Dr Sime Milosevica 32, Sremska Mitrovica;021634494;MasaIlic20@gmail.com;Tolstojeva 82;487011254;magistar;vanredni profesor
+Milica;Savic;19.02.1984.;Drage Spasic 48, Beograd;021906373;MilicaSavic4@gmail.com;Gogoljeva 80;684807648;doktor nauka;vanredni profesor
+Jana;Petrovic;25.04.1961.;Boska Buhe 82, Beograd;021141872;JanaPetrovic13@gmail.com;Bulevar Jase Tomica 64;446488941;doktor nauka;vanredni profesor
+Vukasin;Popovic;24.09.1965.;Mise Dimitrijevica 95,Novi Sad;021965771;VukasinPopovic2@gmail.com;Bulevar Mihajla Pupina 71;999594934;doktor nauka;redovni profesor
+Una;Todorovic;11.05.1964.;Fruskogorska 92, Novi Sad;021437897;UnaTodorovic8@gmail.com;Mise Dimitrijevica 62;333399959;doktor nauka;vanredni profesor
+Masa;Ristic;17.10.1972.;Suboticki bulevar 8, Subotica;021543645;MasaRistic18@gmail.com;Ravanicka 72;749602846;magistar;redovni profesor
+Dunja;Krstic;25.08.1978.;Dr Ivana Ribara 42, Novi Sad;021851274;DunjaKrstic11@gmail.com;Bulevar Mihajla Pupina 79;098492051;magistar;vanredni profesor
+Dunja;Milosevic;13.05.1965.;Lasla Gala 86, Novi Sad;021933258;DunjaMilosevic14@gmail.com;Brace Ribnikar 40;999954892;magistar;vanredni profesor
+Sara;Tomic;12.04.1981.;Fruskogorska 4, Nis;021880625;SaraTomic18@gmail.com;Dr Ivana Ribara 2;748602789;doktor nauka;vanredni profesor
+Teodora;Pavlovic;04.05.1975.;Resavska 89, Novi Sad;021441254;TeodoraPavlovic6@gmail.com;Bulevar vojvode Stepe 95;666678945;doktor nauka;redovni profesor
+Petar;Cvetkovic;11.04.1971.;Suboticki bulevar 7, Subotica;021131148;PetarCvetkovic13@gmail.com;Narodnog fronta 65;444457489;doktor nauka;redovni profesor
+Ana;Savic;21.08.1961.;Narodnog fronta 65, Novi Sad;021881609;AnaSavic14@gmail.com;Bulevar despota Stefana 71;890265768;doktor nauka;redovni profesor
+Filip;Popovic;16.01.1978.;Balzakova 52, Beograd;021227383;FilipPopovic3@gmail.com;Lasla Gala 54;053869386;doktor nauka;redovni profesor
+Helena;Pavlovic;14.09.1961.;Fruskogorska 91, Novi Sad;021931322;HelenaPavlovic1@gmail.com;Gogoljeva 18;777777356;doktor nauka;redovni profesor
+Petar;Nikolic;14.02.1974.;Bulevar Jovana Ducica 23, Novi Sad;021579180;PetarNikolic18@gmail.com;Bulevar Mihajla Pupina 51;739603725;doktor nauka;redovni profesor
+Ognjen;Kostic;22.05.1962.;Danila Kisa 65, Novi Sad;021923128;OgnjenKostic13@gmail.com;Boska Buhe 29;857037597;doktor nauka;vanredni profesor
+Pavle;Tomic;18.04.1966.;Bulevar Slobodana Jovanovica 80, Ruma;021456475;PavleTomic11@gmail.com;Dr Sime Milosevica 73;476832076;doktor nauka;redovni profesor
+Sara;Jankovic;09.03.1962.;Iva Andrica 91, Beograd;021498483;SaraJankovic17@gmail.com;Vojvodjanska 97;758703849;doktor nauka;vanredni profesor

@@ -1,24 +1,24 @@
-ALG1;Algebra;Letnji;1;9
-OET1;Osnovi elektrotehnike;Letnji;2;9
-OS3;Operativni sistemi;Letnji;2;8
-FIZ1;Fizika;Letnji;1;9
-LPRS1;Logicko projektovanje racunarskih sistema 1;Letnji;2;6
-VSP342;Verovatnoca i slucajni procesi;Letnji;2;5
-SPP1;Sistemska programska podrska u realnom vremenu 1;Letnji;1;6
-SAU856;Sistemi automatskog upravljanja;Letnji;1;8
-MA1;Matematicka analiza 1;Letnji;3;9
-MA2;Matematicka analiza 2;Letnji;2;8
-ARH1;Arhitektura racunara;Letnji;2;9
-ENG2;Engleski 2;Letnji;1;3
-OP1;Objektno programiranje;Letnji;3;8
-BP1;Baze podataka 1;Letnji;1;8
-PJSP342;Programski jezici i strukture podataka;Letnji;2;9
-SAT649;Socioloski aspekti tehnickog razvoja;Letnji;2;3
-MO1;Metode optimizacije;Letnji;1;8
-OIS573;Osnovi informacionih sistema i softverskog inzenjerstva;Letnji;1;6
-NNS8;Numericki algoritmi i numericki softver;Letnji;1;4
-MISS1;Modeliranje i simulacija sistema;Letnji;2;8
-ENG1;Engleski 1;Letnji;2;3
-BP2;Baze podataka 2;Zimski;2;6
-E441;Robotika;Letnji;2;8
-E123;Pametni sistemi;Zimski;2;4
+ALG1;Algebra;Letnji;1;9;476930683
+OET1;Osnovi elektrotehnike;Letnji;2;9; 
+OS3;Operativni sistemi;Letnji;2;8;444457489
+FIZ1;Fizika;Letnji;1;9;476930683
+LPRS1;Logicko projektovanje racunarskih sistema 1;Letnji;2;6;999594934
+VSP342;Verovatnoca i slucajni procesi;Letnji;2;5;748602789
+SPP1;Sistemska programska podrska u realnom vremenu 1;Letnji;1;6;684807648
+SAU856;Sistemi automatskog upravljanja;Letnji;1;8;890265768
+MA1;Matematicka analiza 1;Letnji;3;9;446488941
+MA2;Matematicka analiza 2;Letnji;2;8;446488941
+ARH1;Arhitektura racunara;Letnji;2;9;444457489
+ENG2;Engleski 2;Letnji;1;3;333399959
+OP1;Objektno programiranje;Letnji;3;8;444457489
+BP1;Baze podataka 1;Letnji;1;8;999594934
+PJSP342;Programski jezici i strukture podataka;Letnji;2;9;444457489
+SAT649;Socioloski aspekti tehnickog razvoja;Letnji;2;3;684807648
+MO1;Metode optimizacije;Letnji;1;8;890265768
+OIS573;Osnovi informacionih sistema i softverskog inzenjerstva;Letnji;1;6;123456789
+NNS8;Numericki algoritmi i numericki softver;Letnji;1;4;098492051
+MISS1;Modeliranje i simulacija sistema;Letnji;2;8;890265768
+ENG1;Engleski 1;Letnji;2;3;333399959
+BP2;Baze podataka 2;Zimski;2;6;487011254
+E441;Robotika;Letnji;2;8; 
+E123;Pametni sistemi;Zimski;2;4; 
