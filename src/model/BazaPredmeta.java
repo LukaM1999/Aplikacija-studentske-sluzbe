@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import controller.OcenaController;
+import controller.ProfesorController;
 import model.Predmet.Semestar;
 
 
@@ -95,6 +96,7 @@ public class BazaPredmeta implements Serializable {
 		Semestar semestar;
 		int godina;
 		int espb;
+		String licna = null;
 
 		init();
 
@@ -119,9 +121,16 @@ public class BazaPredmeta implements Serializable {
 				}
 				godina =Integer.parseInt(kolone[3]);
 				espb = Integer.parseInt(kolone[4]);
-				
+				if(kolone[5] != null) {
+					licna = kolone[5];
+				}
+				for(Profesor p: ProfesorController.getInstance().getProfesori()) {
+					if(licna.equals(p.getBrLicneKarte())) {
+						dodajPredmet(sifra, naziv, espb, godina, semestar, p);
+						break;
+					}
+				}
 
-				dodajPredmet(sifra, naziv, espb, godina, semestar, null);
 
 			}
 		} catch (IOException e) {

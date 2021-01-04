@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Iterator;
+import java.util.regex.PatternSyntaxException;
 
 import javax.swing.Box;
 import javax.swing.ImageIcon;
@@ -13,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JToolBar;
+import javax.swing.RowFilter;
 import javax.swing.SwingConstants;
 
 import controller.OcenaController;
@@ -188,6 +190,57 @@ public class Toolbar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					String[] text = textfield.getText().split(" ");
+					if (text.length == 0) {
+						TableStudent.getInstance().getSorter().setRowFilter(null);
+					} else {
+						if (text.length == 1) {
+							try {
+								TableStudent.getInstance().getSorter().setRowFilter(
+										RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+							} catch (PatternSyntaxException pse) {
+								System.out.println("Bad regex pattern");
+							}
+						} else {
+							if (text.length == 2) {
+
+								// REFERNCE:
+								// https://stackoverflow.com/questions/5194948/java-swing-combine-rowfilter-andfilter-with-rowfilter-orfilter
+								try {
+									TableStudent.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+									TableStudent.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^" + text[1] + ")|(" + text[1] + "$)", 2));
+									TableStudent.getInstance().getSorter()
+											.setRowFilter(RowFilter.andFilter(TableStudent.getInstance().getFilters()));
+
+								} catch (PatternSyntaxException pse) {
+									System.out.println("Bad regex pattern");
+								}
+
+								for (int i = 0; i < TableStudent.getInstance().getFilters().size(); i++) {
+									TableStudent.getInstance().getFilters().remove(i);
+								}
+							} else {
+								try {
+									TableStudent.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+									TableStudent.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^" + text[1] + ")|(" + text[1] + "$)", 2));
+									TableStudent.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^" + text[2] + ")|(" + text[2] + "$)", 0));
+									TableStudent.getInstance().getSorter()
+											.setRowFilter(RowFilter.andFilter(TableStudent.getInstance().getFilters()));
+
+								} catch (PatternSyntaxException pse) {
+									System.out.println("Bad regex pattern");
+								}
+								for (int i = 0; i < TableStudent.getInstance().getFilters().size(); i++) {
+									TableStudent.getInstance().getFilters().remove(i);
+								}
+							}
+						}
+					}
 					
 				}	
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
