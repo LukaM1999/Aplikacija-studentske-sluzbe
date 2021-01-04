@@ -19,8 +19,8 @@ public class Profesor {
 	private String titula;
 	private String zvanje;
 	private ArrayList<Predmet> predajePredmet = new ArrayList<Predmet>();
+	private ArrayList<Predmet> predmetiBezProfesora = new ArrayList<Predmet>();
 	
-	//Promeniti redosled imena i prezimena u konstruktoru!!!
 	
 	public Profesor (String ime, String prezime, String datumRodjenja,
 				   String adresa, String telefon, String email, 
@@ -135,4 +135,21 @@ public class Profesor {
 	public void izbrisiPredajePredmet(int index) {
 		this.predajePredmet.remove(index);
 	}
+
+	public ArrayList<Predmet> getPredmetiBezProfesora() {
+		return predmetiBezProfesora;
+	}
+
+	public void setPredmetiBezProfesora(ArrayList<Predmet> predmetiBezProfesora) {
+		this.predmetiBezProfesora = predmetiBezProfesora;
+	}
+	
+	public void dodajSlobodan(Predmet p) {
+		this.predmetiBezProfesora.add(p);
+	}
+	
+	public void izbrisiSlobodan(int index) {
+		this.predmetiBezProfesora.remove(index);
+	}
+	
 }

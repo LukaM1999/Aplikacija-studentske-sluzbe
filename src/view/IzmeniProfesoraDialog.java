@@ -18,6 +18,7 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import controller.PredmetiBezProfesoraController;
 import controller.ProfesorController;
 import controller.ProfesorPredajeController;
 import model.Profesor;
@@ -42,8 +43,8 @@ public class IzmeniProfesoraDialog extends JDialog {
 	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
 	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 	
-	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)?"
-			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
+	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
+			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 	
 	private String licnaSablon = "[0-9]{9}";
@@ -675,7 +676,15 @@ public class IzmeniProfesoraDialog extends JDialog {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+			
+			PredmetiBezProfesoraController.getInstance().initPredajePredmet(prof);
+			PredmetiBezProfesoraController.getInstance().initSlobodne(prof);		
+			PredmetiBezProfesoraController.getInstance().popuniPredmetiBezProfesora(prof);
+			
+			new DodajPredmetProfesoruDialog(getContentPane(), "Dodaj predmet", true, prof);
+
+			model.fireTableDataChanged();
+			validate();
 			
 		}
 	});
