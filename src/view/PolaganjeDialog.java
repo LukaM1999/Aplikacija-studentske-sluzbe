@@ -10,6 +10,8 @@ import java.util.regex.Pattern;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
@@ -117,8 +119,8 @@ public class PolaganjeDialog extends JDialog {
 		comboBox.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		comboBox.setModel(new DefaultComboBoxModel(new String[] { "6", "7", "8", "9", "10" }));
 		comboBox.setSelectedIndex(0);
-		comboBox.setEditable(true);
 		comboBox.setBounds(170, 130, 135, 25);
+		comboBox.setBackground(Color.white);
 		polaganjePanel.add(comboBox);
 
 		potvrdi = new JButton("Potvrdi");

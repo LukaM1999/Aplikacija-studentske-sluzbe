@@ -188,26 +188,20 @@ public class Toolbar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				if (Tabs.getInstance().getSelectedIndex() == 0) {
-					if(TableStudent.getInstance().getSelectedRow()>=0) {
-						
-					}
+					
 				}	
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
-					if(TableProfesor.getInstance().getSelectedRow()>=0) {
-						
-					}
+					
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 2) {
-					if(TablePredmet.getInstance().getSelectedRow()>=0) {
 					
-					}
 				}	
 			
 			}
 		});
 		
 		setFloatable(false);
-		setBackground (Color.WHITE);
+		setBackground(Color.WHITE);
 
 	}
 	

@@ -121,7 +121,7 @@ public class BazaPredmeta implements Serializable {
 				espb = Integer.parseInt(kolone[4]);
 				
 
-				dodajPredmet(sifra, naziv, espb, godina, semestar);
+				dodajPredmet(sifra, naziv, espb, godina, semestar, null);
 
 			}
 		} catch (IOException e) {
@@ -138,7 +138,7 @@ public class BazaPredmeta implements Serializable {
 
 	}
 	
-	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar) {
+	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar, Profesor p) {
 		this.predmeti.add(new Predmet(sifra, naziv, ESPB, godinaStudija, semestar));
 	}
 	

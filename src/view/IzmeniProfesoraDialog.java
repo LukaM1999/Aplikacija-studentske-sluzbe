@@ -11,6 +11,7 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.SpringLayout;
@@ -18,6 +19,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.ProfesorController;
+import controller.ProfesorPredajeController;
 import model.Profesor;
 
 public class IzmeniProfesoraDialog extends JDialog {
@@ -657,5 +659,42 @@ public class IzmeniProfesoraDialog extends JDialog {
 	predmetiPanel.setSize(500, 600);
 	infoTabbedPane.addTab("Predmeti", predmetiPanel);
 	
-}
+	ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+	//AbstractTableModelProfesorPredaje model = (AbstractTableModelProfesorPredaje) TableProfesorPredaje.getInstance().getModel();
+	//model.fireTableDataChanged();
+	//validate();
+	
+	TableProfesorPredaje predmetiTable = TableProfesorPredaje.getInstance();
+	JScrollPane predmeti = new JScrollPane(predmetiTable);
+	predmeti.setBounds(5, 40, 475, 430);
+	
+	JButton dodaj = new JButton("Dodaj predmet");
+	dodaj.setBounds(5, 5, 150, 30);
+	dodaj.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+	dodaj.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	
+	JButton ukloni = new JButton("Ukloni predmet");
+	ukloni.setBounds(205, 5, 150, 30);
+	ukloni.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+	ukloni.addActionListener(new ActionListener() {
+		
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+	});
+	
+	predmetiPanel.setLayout(null);
+	predmetiPanel.add(dodaj);
+	predmetiPanel.add(ukloni);
+	predmetiPanel.add(predmeti);
+	}
 }

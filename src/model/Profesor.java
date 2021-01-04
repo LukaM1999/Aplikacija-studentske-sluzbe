@@ -18,7 +18,7 @@ public class Profesor {
 	private String brLicneKarte;
 	private String titula;
 	private String zvanje;
-	private ArrayList<Predmet> predajePredmet;
+	private ArrayList<Predmet> predajePredmet = new ArrayList<Predmet>();
 	
 	//Promeniti redosled imena i prezimena u konstruktoru!!!
 	
@@ -128,5 +128,11 @@ public class Profesor {
 		this.kancelarija = kancelarija;
 	}
 	
+	public void dodajPredajePredmet(Predmet p) {
+		this.predajePredmet.add(p);
+	}
 	
+	public void izbrisiPredajePredmet(int index) {
+		this.predajePredmet.remove(index);
+	}
 }
