@@ -1,4 +1,4 @@
- package view;
+package view;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -93,10 +93,10 @@ public class IzmeniStudentaDialog extends JDialog {
 		setResizable(false);
 		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		
+
 		ok = new JButton("Potvrdi");
 		ok.setEnabled(true);
-		
+
 		JPanel panel = new JPanel();
 
 		SpringLayout springLayout = new SpringLayout();
@@ -193,34 +193,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(imeUnos);
 		imeUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText()).matches())) {
-                    imeKorektno = false;
-                    imeUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    imeKorektno = true;
-                    imeUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText())
+						.matches())) {
+					imeKorektno = false;
+					imeUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					imeKorektno = true;
+					imeUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -234,34 +236,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(prezimeUnos);
 		prezimeUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText()).matches())) {
-                    prezimeKorektno = false;
-                    prezimeUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    prezimeKorektno = true;
-                    prezimeUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText())
+						.matches())) {
+					prezimeKorektno = false;
+					prezimeUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					prezimeKorektno = true;
+					prezimeUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -275,34 +279,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(datumUnos);
 		datumUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText()).matches())) {
-                    datumKorektno = false;
-                    datumUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    datumKorektno = true;
-                    datumUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText())
+						.matches())) {
+					datumKorektno = false;
+					datumUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					datumKorektno = true;
+					datumUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -316,34 +322,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(adresaUnos);
 		adresaUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText()).matches())) {
-                    adresaKorektno = false;
-                    adresaUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    adresaKorektno = true;
-                    adresaUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText())
+						.matches())) {
+					adresaKorektno = false;
+					adresaUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					adresaKorektno = true;
+					adresaUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -357,34 +365,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(telefonUnos);
 		telefonUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText()).matches())) {
-                    telefonKorektno = false;
-                    telefonUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    telefonKorektno = true;
-                    telefonUnos.setBackground(Color.GREEN);
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
 
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText())
+						.matches())) {
+					telefonKorektno = false;
+					telefonUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					telefonKorektno = true;
+					telefonUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -398,34 +408,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(emailUnos);
 		emailUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText()).matches())) {
-                    emailKorektno = false;
-                    emailUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    emailKorektno = true;
-                    emailUnos.setBackground(Color.GREEN);
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
 
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText())
+						.matches())) {
+					emailKorektno = false;
+					emailUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					emailKorektno = true;
+					emailUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -439,34 +451,36 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(indeksUnos);
 		indeksUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText()).matches())) {
-                    indeksKorektno = false;
-                    indeksUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    indeksKorektno = true;
-                    indeksUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksUnos.getText())
+						.matches())) {
+					indeksKorektno = false;
+					indeksUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					indeksKorektno = true;
+					indeksUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
@@ -480,38 +494,40 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(upisUnos);
 		upisUnos.getDocument().addDocumentListener(new DocumentListener() {
 
-            @Override
-            public void removeUpdate(DocumentEvent e) {
-                changedUpdate(e);
-            }
-            @Override
-            public void insertUpdate(DocumentEvent e) {
-                changedUpdate(e);
+			@Override
+			public void removeUpdate(DocumentEvent e) {
+				changedUpdate(e);
+			}
 
-            }
-            @Override
-            public void changedUpdate(DocumentEvent e) {
-                if (!(Pattern.compile(upisSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(upisUnos.getText()).matches())) {
-                    upisKorektno = false;
-                    upisUnos.setBackground(Color.WHITE);
-                    ispravno = false;
-                } 
-                else { 
-                    upisKorektno = true;
-                    upisUnos.setBackground(Color.GREEN);
-                    
-                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
-                            && emailKorektno && indeksKorektno && upisKorektno) {
-                        ispravno = true;
-                    } else {
-                        ispravno = false;
-                    }
+			@Override
+			public void insertUpdate(DocumentEvent e) {
+				changedUpdate(e);
+
+			}
+
+			@Override
+			public void changedUpdate(DocumentEvent e) {
+				if (!(Pattern.compile(upisSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(upisUnos.getText())
+						.matches())) {
+					upisKorektno = false;
+					upisUnos.setBackground(Color.WHITE);
+					ispravno = false;
+				} else {
+					upisKorektno = true;
+					upisUnos.setBackground(Color.GREEN);
+
+					if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+							&& emailKorektno && indeksKorektno && upisKorektno) {
+						ispravno = true;
+					} else {
+						ispravno = false;
+					}
 				}
-                ok.setEnabled(ispravno);
+				ok.setEnabled(ispravno);
 			}
 
 		});
-		
+
 		// Combo boxes
 		String[] godinaStud = new String[] { "I (prva)", "II (druga)", "III (treća)", "IV (četvrta)" };
 		JComboBox godinaCombo = new JComboBox(godinaStud);
@@ -534,7 +550,8 @@ public class IzmeniStudentaDialog extends JDialog {
 		panel.add(budzetCombo);
 
 		TableStudent table = TableStudent.getInstance();
-		Student student = StudentController.getInstance().getStudent(table.convertRowIndexToModel(table.getSelectedRow()));
+		Student student = StudentController.getInstance()
+				.getStudent(table.convertRowIndexToModel(table.getSelectedRow()));
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 
@@ -568,7 +585,6 @@ public class IzmeniStudentaDialog extends JDialog {
 		});
 		panel.add(cancel);
 
-		
 		springLayout.putConstraint(SpringLayout.NORTH, ok, 0, SpringLayout.NORTH, cancel);
 		springLayout.putConstraint(SpringLayout.WEST, ok, 53, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, ok, 0, SpringLayout.SOUTH, cancel);
@@ -638,14 +654,14 @@ public class IzmeniStudentaDialog extends JDialog {
 				} else if (godinaCombo.getSelectedItem() == "IV (četvrta)") {
 					godinaStudija = 3;
 				}
-				
+
 				String[] indeksGodina = indeksVrednost.split("-");
 				if (Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(),
 							"Godina na indeksu i godina upisa se razlikuju!");
 					return;
 				}
-				
+
 				// REFERENCE:
 				// https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
 				int trenutnaGodina = Year.now().getValue();
@@ -653,7 +669,6 @@ public class IzmeniStudentaDialog extends JDialog {
 					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešna trenutna godina studija!");
 					return;
 				}
-
 
 				Status status = Status.B;
 				if (budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
@@ -721,6 +736,26 @@ public class IzmeniStudentaDialog extends JDialog {
 							"Da li ste sigurni da želite da poništite ocenu?", "Poništavanje ocene",
 							JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
+
+						String sifra = (String) TablePolozeniIspiti.getInstance()
+								.getValueAt(TablePolozeniIspiti.getInstance().getSelectedRow(), 0);
+
+						for (Predmet p : PredmetController.getInstance().getPredmeti()) {
+							if (p.getSifra().equals(sifra)) {
+								for (int i = 0; i < p.getPolozili().size(); i++) {
+									if (p.getPolozili().get(i).getBrIndeksa().equals(student.getBrIndeksa())) {
+										p.getPolozili().remove(i);
+									}
+								}
+							}
+						}
+
+						for (Predmet p : PredmetController.getInstance().getPredmeti()) {
+							if (p.getSifra().equals(sifra)) {
+								p.dodajNisuPolozili(student);
+							}
+						}
+
 						PolozeniIspitiController.getInstance().ponistiOcenu(polozeniTable.getSelectedRow());
 
 						izracunaj(student);
@@ -791,9 +826,6 @@ public class IzmeniStudentaDialog extends JDialog {
 		JScrollPane nepolozeni = new JScrollPane(nepolozeniTable);
 		nepolozeni.setBounds(5, 40, 475, 430);
 
-		
-		
-		
 		JButton dodaj = new JButton("Dodaj");
 		dodaj.setBounds(5, 5, 100, 30);
 		dodaj.addActionListener(new ActionListener() {
@@ -807,7 +839,7 @@ public class IzmeniStudentaDialog extends JDialog {
 				SlobodniPredmetiController.getInstance().popuniSlobodne(student);
 
 				new DodajSlobodanPredmetDialog(getContentPane(), "Dodavanje predmeta", true, student);
-				
+
 				modelNepolozeni.fireTableDataChanged();
 				validate();
 			}
@@ -825,48 +857,43 @@ public class IzmeniStudentaDialog extends JDialog {
 							"Da li ste sigurni da želite da uklonite predmet?", "Uklanjanje predmeta",
 							JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
-						
-						String sifra = (String)nepolozeniTable.getValueAt(nepolozeniTable.getSelectedRow(), 0);
-						
+
+						String sifra = (String) nepolozeniTable.getValueAt(nepolozeniTable.getSelectedRow(), 0);
+
 						student.izbrisiNepolozen(nepolozeniTable.getSelectedRow());
-						
-						for(Predmet p: PredmetController.getInstance().getPredmeti()) {
-							if(sifra.equals(p.getSifra())) {
+
+						for (Predmet p : PredmetController.getInstance().getPredmeti()) {
+							if (sifra.equals(p.getSifra())) {
 								student.dodajSlobodan(p);
 							}
 						}
 						model.fireTableDataChanged();
 						modelNepolozeni.fireTableDataChanged();
-						validate();	
+						validate();
 					}
 				}
 			}
-			
+
 		});
-		
-		
+
 		JButton polaganje = new JButton("Polaganje");
 		polaganje.setBounds(255, 5, 130, 30);
 		polaganje.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (nepolozeniTable.getSelectedRow() >= 0) {
-					
+
 					PolaganjeDialog polaganje = new PolaganjeDialog(MainFrame.getInstance(), "Unos ocene", true,
 							nepolozeniTable, datumSablon, student, model);
-				
+
 					polaganje.setVisible(true);
-				
-					
+
 					modelNepolozeni.fireTableDataChanged();
 					validate();
 				}
 			}
 		});
-		
-		
-		
 
 		nepolozeniPanel.setLayout(null);
 		nepolozeniPanel.add(nepolozeni);

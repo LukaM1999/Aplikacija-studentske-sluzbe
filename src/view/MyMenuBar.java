@@ -12,6 +12,8 @@ import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
 import model.Ocena;
+import model.Predmet;
+import model.Profesor;
 import model.Student;
 
 import java.awt.Color;
@@ -143,14 +145,39 @@ public class MyMenuBar extends JMenuBar {
 								}
 							}
 
-				// REFERENCE:
-				// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+							// REFERENCE:
+							// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
 							Iterator<Student> it = StudentController.getInstance().getStudenti().iterator();
 							while (it.hasNext()) {
 								Student s = it.next();
 								if (s.getBrIndeksa().equals(indeks)) {
 									it.remove();
 									break;
+								}
+							}
+
+							Iterator<Predmet> itP = PredmetController.getInstance().getPredmeti().iterator();
+							while (itP.hasNext()) {
+								Predmet p = itP.next();
+								Iterator<Student> itStudent = p.getPolozili().iterator();
+								while (itStudent.hasNext()) {
+									Student s = itStudent.next();
+									if (s.getBrIndeksa().equals(indeks)) {
+										itStudent.remove();
+										break;
+									}
+								}
+							}
+
+							while (itP.hasNext()) {
+								Predmet p = itP.next();
+								Iterator<Student> itStudent = p.getNepolozeni().iterator();
+								while (itStudent.hasNext()) {
+									Student s = itStudent.next();
+									if (s.getBrIndeksa().equals(indeks)) {
+										itStudent.remove();
+										break;
+									}
 								}
 							}
 
@@ -166,8 +193,33 @@ public class MyMenuBar extends JMenuBar {
 								"Da li ste sigurni da želite da obrišete profesora?", "Brisanje profesora",
 								JOptionPane.YES_NO_OPTION);
 						if (opcija == 0) {
-							ProfesorController.getInstance()
-									.izbrisiProfesora(TableProfesor.getInstance().getSelectedRow());
+							Profesor prof = ProfesorController.getInstance()
+									.getProfesor(TableProfesor.getInstance().getSelectedRow());
+							String licna = prof.getBrLicneKarte();
+
+							// REFERENCE:
+							// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+							Iterator<Profesor> itP = ProfesorController.getInstance().getProfesori().iterator();
+							while (itP.hasNext()) {
+								Profesor p = itP.next();
+								if (p.getBrLicneKarte().equals(licna)) {
+									itP.remove();
+									break;
+								}
+							}
+
+							Iterator<Predmet> itPredmet = PredmetController.getInstance().getPredmeti().iterator();
+							while (itPredmet.hasNext()) {
+								Predmet p = itPredmet.next();
+								if (p.getProfesor() != null) {
+									if (p.getProfesor().getBrLicneKarte().equals(licna)) {
+										p.setProfesor(null);
+									}
+								}
+							}
+
+							MainFrame.getInstance().azurirajProfesore("Uklonjen", -1);
+
 						}
 					}
 				}

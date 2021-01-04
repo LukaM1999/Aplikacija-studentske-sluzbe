@@ -15,6 +15,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 import controller.OcenaController;
+import controller.PredmetController;
 import controller.StudentController;
 import model.BazaStudenata;
 import model.Student;
@@ -352,6 +353,15 @@ public class TableStudent extends JTable {
 						.equals(OcenaController.getInstance().getOcene().get(j).getStudent().getBrIndeksa())) {
 					StudentController.getInstance().getStudenti().get(i)
 							.dodajPolozen(OcenaController.getInstance().getOcene().get(j));
+				}
+		}
+		
+		for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {
+			for (int j = 0; j < OcenaController.getInstance().getOcene().size(); j++)
+				if (PredmetController.getInstance().getPredmeti().get(i).getSifra()
+						.equals(OcenaController.getInstance().getOcene().get(j).getPredmet().getSifra())) {
+					PredmetController.getInstance().getPredmeti().get(i)
+							.dodajPolozili(OcenaController.getInstance().getOcena(j).getStudent());
 				}
 		}
 
