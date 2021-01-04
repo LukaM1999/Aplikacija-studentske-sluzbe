@@ -252,7 +252,7 @@ public class Toolbar extends JToolBar {
 						if (text.length == 1) {
 							try {
 								TableStudent.getInstance().getSorter().setRowFilter(
-										RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+										RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 2));
 							} catch (PatternSyntaxException pse) {
 								System.out.println("Bad regex pattern");
 							}
@@ -263,9 +263,9 @@ public class Toolbar extends JToolBar {
 								// https://stackoverflow.com/questions/5194948/java-swing-combine-rowfilter-andfilter-with-rowfilter-orfilter
 								try {
 									TableStudent.getInstance().getFilters().add(
-											RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 2));
 									TableStudent.getInstance().getFilters().add(
-											RowFilter.regexFilter("(?i)" + "(^" + text[1] + ")|(" + text[1] + "$)", 2));
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[1] + ".*$)", 1));
 									TableStudent.getInstance().getSorter()
 											.setRowFilter(RowFilter.andFilter(TableStudent.getInstance().getFilters()));
 
@@ -279,11 +279,11 @@ public class Toolbar extends JToolBar {
 							} else {
 								try {
 									TableStudent.getInstance().getFilters().add(
-											RowFilter.regexFilter("(?i)" + "(^" + text[0] + ")|(" + text[0] + "$)", 1));
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 2));
 									TableStudent.getInstance().getFilters().add(
-											RowFilter.regexFilter("(?i)" + "(^" + text[1] + ")|(" + text[1] + "$)", 2));
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[1] + ".*$)", 1));
 									TableStudent.getInstance().getFilters().add(
-											RowFilter.regexFilter("(?i)" + "(^" + text[2] + ")|(" + text[2] + "$)", 0));
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[2] + ".*$)", 0));
 									TableStudent.getInstance().getSorter()
 											.setRowFilter(RowFilter.andFilter(TableStudent.getInstance().getFilters()));
 
