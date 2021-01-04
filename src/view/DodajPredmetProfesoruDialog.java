@@ -49,18 +49,35 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (table.getSelectedRow() >= 0) {
-					String info = (String) table.getValueAt(table.getSelectedRow(), 0);
-					String[] sifra = info.split("-");
 					
-					for (Predmet predmet : p.getPredmetiBezProfesora()) {
-						if (predmet.getSifra().equals(sifra[0])) {
-							PredmetiBezProfesoraController.getInstance().izbrisiSlobodan(sifra[0]);
-							p.dodajPredajePredmet(predmet);
-							p.izbrisiSlobodan(table.getSelectedRow());
-							predmet.setProfesor(p);
-							break;
+					
+					int[] rows = TablePredmetiBezProfesora.getInstance().getSelectedRows();
+					for(int i = 0; i < rows.length; i++) {
+						
+						String info = (String) TablePredmetiBezProfesora.getInstance().getValueAt(rows[i],0);
+						String[] sifra = info.split("-");
+						
+						//sifra[0] = (String) TablePredmetiBezProfesora.getInstance().getValueAt(rows[i], 0);
+				
+						for (Predmet predmet : p.getPredmetiBezProfesora()) {
+							if (predmet.getSifra().equals(sifra[0])) {
+								PredmetiBezProfesoraController.getInstance().izbrisiSlobodan(sifra[0]);
+								p.dodajPredajePredmet(predmet);
+								p.izbrisiSlobodan(rows[i]);
+								predmet.setProfesor(p);
+								break;
+							}
 						}
+						
+						for(int j = 0; j < rows.length; j++) {
+							rows[j] -= 1;
+						}
+				
 					}
+					model.fireTableDataChanged();
+					validate();
+					
+					
 					dispose();
 				}
 			}

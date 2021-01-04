@@ -135,6 +135,14 @@ public class Profesor {
 	public void izbrisiPredajePredmet(int index) {
 		this.predajePredmet.remove(index);
 	}
+	
+	public void izbrisiPredajePredmet(String sifra) {
+		for(int i = 0; i < predajePredmet.size(); i++) {
+			if(predajePredmet.get(i).getSifra().equals(sifra)) {
+				this.predajePredmet.remove(i);
+			}
+		}
+	}
 
 	public ArrayList<Predmet> getPredmetiBezProfesora() {
 		return predmetiBezProfesora;
@@ -150,6 +158,10 @@ public class Profesor {
 	
 	public void izbrisiSlobodan(int index) {
 		this.predmetiBezProfesora.remove(index);
+	}
+	
+	public void izbrisiSlobodan(Predmet p) {
+		this.predmetiBezProfesora.remove(p);
 	}
 	
 }

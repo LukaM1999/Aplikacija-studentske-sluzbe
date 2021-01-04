@@ -6,6 +6,7 @@ import java.awt.Frame;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Iterator;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
@@ -430,6 +431,32 @@ public class IzmeniPredmetDialog extends JDialog {
 		plus.setMargin(new Insets(0,0,0,0));
 		getContentPane().add(plus);
 		
+		minus.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				int answer = JOptionPane.showConfirmDialog(getContentPane(),
+						"        Da li ste sigurni?", "Ukloni profesora",
+						JOptionPane.OK_CANCEL_OPTION);
+				if (answer == JOptionPane.YES_OPTION) {
+					predmet.setProfesor(null);
+					
+					for(Profesor p : ProfesorController.getInstance().getProfesori()) {
+						Iterator<Predmet> itp = p.getPredajePredmet().iterator();
+						while(itp.hasNext()){
+							Predmet pred = itp.next();
+							if(pred.getSifra().equals(predmet.getSifra())) {
+								itp.remove();
+								//p.dodajSlobodan(predmet);
+							}
+						}
+					}
+					profesorUnos.setText(null);
+				}
+				
+			}
+		});
 		
 		springLayout.putConstraint(SpringLayout.NORTH, minus, 0, SpringLayout.NORTH, profesorUnos);
 		springLayout.putConstraint(SpringLayout.WEST, minus, 40, SpringLayout.WEST, plus);

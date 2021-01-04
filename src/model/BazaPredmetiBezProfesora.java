@@ -70,10 +70,20 @@ public class BazaPredmetiBezProfesora {
 	}
 	
 	public void dodajSlobodanPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar) {
+		for(Predmet p : slobodniPredmeti) {
+			if(p.getSifra().equals(sifra)) {
+				return;
+			}
+		}
 		this.slobodniPredmeti.add(new Predmet(sifra, naziv, ESPB, godinaStudija, semestar));
 	}
 	
 	public void dodajSlobodanPredmet(Predmet p) {
+		for(Predmet pred : slobodniPredmeti) {
+			if(pred.getSifra().equals(p.getSifra())) {
+				return;
+			}
+		}
 		this.slobodniPredmeti.add(p);
 	}
 	

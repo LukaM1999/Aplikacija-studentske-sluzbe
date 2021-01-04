@@ -26,7 +26,7 @@ public class TablePredmetiBezProfesora extends JTable {
 	public TablePredmetiBezProfesora() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
-		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.setModel(new AbstractTableModelPredmetiBezProfesora());
 	}
 
