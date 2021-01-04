@@ -125,6 +125,7 @@ public class BazaPredmeta implements Serializable {
 				if(kolone[5] != null) {
 					licna = kolone[5];
 				}
+				
 				for(Profesor p: ProfesorController.getInstance().getProfesori()) {
 					if(licna.equals(p.getBrLicneKarte())) {
 						prof = p;
@@ -133,6 +134,14 @@ public class BazaPredmeta implements Serializable {
 				}
 				
 				dodajPredmet(sifra, naziv, espb, godina, semestar, prof);
+				
+				for(Profesor p: ProfesorController.getInstance().getProfesori()) {
+					if(licna.equals(p.getBrLicneKarte())) {
+						prof = p;
+						prof.dodajPredajePredmet(this.predmeti.get(predmeti.size()-1));
+						break;
+					}
+				}
 				
 				prof = null;
 

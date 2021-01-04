@@ -19,8 +19,10 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.PredmetiBezProfesoraController;
+import controller.PredmetController;
 import controller.ProfesorController;
 import controller.ProfesorPredajeController;
+import model.Predmet;
 import model.Profesor;
 
 public class IzmeniProfesoraDialog extends JDialog {
@@ -696,8 +698,34 @@ public class IzmeniProfesoraDialog extends JDialog {
 		
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
-			
+			if(TableProfesorPredaje.getInstance().getSelectedRow() >= 0) {
+				int answer = JOptionPane.showConfirmDialog(getContentPane(),
+						"Da li ste sigurni?", "Ukloni predmet",
+						JOptionPane.OK_CANCEL_OPTION);	
+				if(answer == JOptionPane.YES_OPTION) {
+					int[] rows = TableProfesorPredaje.getInstance().getSelectedRows();
+					for(int i = 0; i < rows.length; i++) {
+						String sifra = (String) TableProfesorPredaje.getInstance().getValueAt(rows[i], 0);
+				
+						for(Predmet p: PredmetController.getInstance().getPredmeti()) {
+							if(p.getSifra().equals(sifra)) {
+								p.setProfesor(null);
+								break;
+							}
+						}
+				
+						prof.izbrisiPredajePredmet(rows[i]);
+						
+						for(int j = 0; j < rows.length; j++) {
+							rows[j] -= 1;
+						}
+				
+					}
+					model.fireTableDataChanged();
+					validate();
+				
+				}
+			}
 		}
 	});
 	

@@ -27,7 +27,7 @@ public class TableProfesorPredaje extends JTable {
 	public TableProfesorPredaje() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
-		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		this.setSelectionMode(ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 		this.setModel(new AbstractTableModelProfesorPredaje()); 
 		 		  
 	}

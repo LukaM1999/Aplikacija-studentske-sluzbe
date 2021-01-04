@@ -343,6 +343,7 @@ public class IzmeniPredmetDialog extends JDialog {
 						for(Profesor prof: ProfesorController.getInstance().getProfesori()) {
 							if(prof.getIme().equals(imePrezimeProf[0]) && prof.getPrezime().equals(imePrezimeProf[1])) {
 								predmet.setProfesor(prof);
+								prof.dodajPredajePredmet(predmet);
 								break;
 							}
 						}
