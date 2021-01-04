@@ -139,7 +139,6 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
-						getTableHeader().repaint();
 						
 					} else {
 						Collections.sort(BazaStudenata.getInstance().getStudenti(), new Comparator<Student>() {
@@ -156,7 +155,6 @@ public class TableStudent extends JTable {
 						getColumnModel().getColumn(3).setHeaderValue("Godina studija");
 						getColumnModel().getColumn(4).setHeaderValue("Status");
 						getColumnModel().getColumn(5).setHeaderValue("Prosek");
-						getTableHeader().repaint();
 					}
 					break;
 

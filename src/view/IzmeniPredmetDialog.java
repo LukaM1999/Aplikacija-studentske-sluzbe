@@ -345,6 +345,7 @@ public class IzmeniPredmetDialog extends JDialog {
 							if(prof.getIme().equals(imePrezimeProf[0]) && prof.getPrezime().equals(imePrezimeProf[1])) {
 								predmet.setProfesor(prof);
 								prof.dodajPredajePredmet(predmet);
+								prof.izbrisiSlobodan(predmet);
 								break;
 							}
 						}

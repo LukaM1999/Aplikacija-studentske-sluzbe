@@ -251,6 +251,7 @@ public class Toolbar extends JToolBar {
 					} else {
 						if (text.length == 1) {
 							try {
+						//REFERENCE: https://stackoverflow.com/questions/4724095/check-if-word-contains-substring-in-java-regex
 								TableStudent.getInstance().getSorter().setRowFilter(
 										RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 2));
 							} catch (PatternSyntaxException pse) {
@@ -259,8 +260,8 @@ public class Toolbar extends JToolBar {
 						} else {
 							if (text.length == 2) {
 
-								// REFERNCE:
-								// https://stackoverflow.com/questions/5194948/java-swing-combine-rowfilter-andfilter-with-rowfilter-orfilter
+						// REFERNCE:
+						// https://stackoverflow.com/questions/5194948/java-swing-combine-rowfilter-andfilter-with-rowfilter-orfilter
 								try {
 									TableStudent.getInstance().getFilters().add(
 											RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 2));
