@@ -659,12 +659,12 @@ public class IzmeniProfesoraDialog extends JDialog {
 	predmetiPanel.setSize(500, 600);
 	infoTabbedPane.addTab("Predmeti", predmetiPanel);
 	
-	ProfesorPredajeController.getInstance().initPredajePredmet(prof);
-	//AbstractTableModelProfesorPredaje model = (AbstractTableModelProfesorPredaje) TableProfesorPredaje.getInstance().getModel();
-	//model.fireTableDataChanged();
-	//validate();
-	
 	TableProfesorPredaje predmetiTable = TableProfesorPredaje.getInstance();
+	ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+	AbstractTableModelProfesorPredaje model = (AbstractTableModelProfesorPredaje) TableProfesorPredaje.getInstance().getModel();
+	model.fireTableDataChanged();
+	validate();
+	
 	JScrollPane predmeti = new JScrollPane(predmetiTable);
 	predmeti.setBounds(5, 40, 475, 430);
 	

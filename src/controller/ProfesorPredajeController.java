@@ -28,10 +28,10 @@ public class ProfesorPredajeController {
 		return BazaProfesorPredaje.getInstance().getPredmeti();
 	}
 	
-	/*
-	 * public Predmet getPredmet(int row) { return
-	 * BazaProfesorPredaje.getInstance().getRow(row); }
-	 */
+	
+	public Predmet getPredmet(int row) { 
+		return BazaProfesorPredaje.getInstance().getRow(row); }
+	 
 	
 	public void dodajNepolozen(Predmet p) {
 		BazaProfesorPredaje.getInstance().dodajPredmet(p);
