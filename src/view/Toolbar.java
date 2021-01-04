@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.Iterator;
 
-import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -177,7 +176,6 @@ public class Toolbar extends JToolBar {
 		
 		JTextField textfield = new JTextField(12);
 		textfield.setMaximumSize(new Dimension (450,25));
-		textfield.setBorder(BorderFactory.createBevelBorder(1));
 		add(textfield);
 		
 		JButton btnSearch = new JButton();
@@ -185,6 +183,28 @@ public class Toolbar extends JToolBar {
 		btnSearch.setIcon(new ImageIcon("images"+ File.separator +"Search.png"));
 		btnSearch.setBackground(Color.WHITE);
 		add(btnSearch);
+		btnSearch.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
+					if(TableStudent.getInstance().getSelectedRow()>=0) {
+						
+					}
+				}	
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
+					if(TableProfesor.getInstance().getSelectedRow()>=0) {
+						
+					}
+				}
+				if (Tabs.getInstance().getSelectedIndex() == 2) {
+					if(TablePredmet.getInstance().getSelectedRow()>=0) {
+					
+					}
+				}	
+			
+			}
+		});
 		
 		setFloatable(false);
 		setBackground (Color.WHITE);

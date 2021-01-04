@@ -333,7 +333,7 @@ public class DodajProfesoraDialog extends JDialog {
 				
 				
 				
-				Profesor prof = new Profesor(prezimeVrednost, imeVrednost, datumVrednost, adresaVrednost,
+				Profesor prof = new Profesor(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
 						telefonVrednost, emailVrednost, kancelarijaVrednost, licnaVrednost,
 						titulaVrednost, zvanjeVrednost);
 				ProfesorController.getInstance().dodajProfesora(prof);

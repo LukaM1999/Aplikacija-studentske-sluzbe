@@ -22,7 +22,7 @@ public class Profesor {
 	
 	//Promeniti redosled imena i prezimena u konstruktoru!!!
 	
-	public Profesor (String prezime, String ime, String datumRodjenja,
+	public Profesor (String ime, String prezime, String datumRodjenja,
 				   String adresa, String telefon, String email, 
 				   String kancelarija, String brLicneKarte,
 				   String titula, String zvanje) {
