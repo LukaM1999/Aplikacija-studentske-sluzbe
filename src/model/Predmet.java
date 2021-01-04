@@ -21,12 +21,11 @@ public class Predmet {
 	
 	
 	public Predmet (String sifra, String naziv, Semestar semestar,
-			   int godinaStudija, Profesor profesor, int EPSB, Profesor p) {
+			   int godinaStudija, int EPSB, Profesor p) {
 	setSifra(sifra);
 	setNaziv(naziv);
 	setSemestar(semestar);
 	setGodinaStudija(godinaStudija);
-	setProfesor(profesor);
 	setESPB(EPSB);
 	setProfesor(p);
 }
