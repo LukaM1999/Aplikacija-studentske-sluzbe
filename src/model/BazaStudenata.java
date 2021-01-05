@@ -1,18 +1,26 @@
 package model;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.thoughtworks.xstream.XStream;
+
 import model.Student.Status;
+
 
 public class BazaStudenata implements Serializable {
 
@@ -32,11 +40,13 @@ public class BazaStudenata implements Serializable {
 
 	private List<Student> studenti;
 	private List<String> kolone;
-
+	private Student[] niz;
+	
 	private BazaStudenata() {
 
 		deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
-
+				 		 
+		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Indeks");
 		this.kolone.add("Ime");
@@ -149,6 +159,36 @@ public class BazaStudenata implements Serializable {
 		}
 
 	}
+
+	public void XstreamSerialization(String putanja) throws IOException {
+		
+		niz = new Student[studenti.size()];
+		
+		for (int i = 0; i < studenti.size(); i++) {
+			niz[i] = studenti.get(i);
+		}
+		
+		File f = new File(putanja);
+		OutputStream os = new BufferedOutputStream(new FileOutputStream(f));
+		try {
+
+			XStream xs = new XStream();
+			// Naziv tag-a u xml umesto punog naziva klase.
+			xs.alias("student", Student.class);
+
+			// Serijalizacija u xml.
+			xs.toXML(niz, os); 
+
+
+
+		} finally {
+			os.close();
+		}
+		
+		
+		
+	}
+	
 
 	public Student getStudent(String indeks) {
 		for (Student s : studenti) {

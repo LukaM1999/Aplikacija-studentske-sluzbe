@@ -157,7 +157,6 @@ public class PolaganjeDialog extends JDialog {
 						OcenaController.getInstance().dodajOcenu(o);
 						s.dodajPolozen(o);
 						s.izbrisiNepolozen(tabela.getSelectedRow());
-						System.out.println(s.getSpisakPolozenih().get(2).getVrednostOcene());
 						model.fireTableDataChanged();
 						validate();
 					}

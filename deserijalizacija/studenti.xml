@@ -1,0 +1,854 @@
+<student-array>
+  <student>
+    <ime>Dunja</ime>
+    <prezime>Jovanovic</prezime>
+    <datumRodjenja>1999-07-25</datumRodjenja>
+    <adresa>Iva Andrica 43, Novi Sad</adresa>
+    <telefon>021883300</telefon>
+    <email>DunjaJovanovic12@gmail.com</email>
+    <brIndeksa>RA-119-2019</brIndeksa>
+    <godinaUpisa>2019</godinaUpisa>
+    <trenutnaGodina>2</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>8.33</prosecnaOcena>
+    <spisakPolozenih>
+      <model.Ocena>
+        <student reference="../../.."/>
+        <predmet>
+          <sifra>ENG1</sifra>
+          <naziv>Engleski 1</naziv>
+          <semestar>Letnji</semestar>
+          <godinaStudija>2</godinaStudija>
+          <profesor>
+            <ime>Una</ime>
+            <prezime>Todorovic</prezime>
+            <datumRodjenja>1964-05-11</datumRodjenja>
+            <adresa>Fruskogorska 92, Novi Sad</adresa>
+            <telefon>021437897</telefon>
+            <email>UnaTodorovic8@gmail.com</email>
+            <kancelarija>Mise Dimitrijevica 62</kancelarija>
+            <brLicneKarte>333399959</brLicneKarte>
+            <titula>mr</titula>
+            <zvanje>vanredni_profesor</zvanje>
+            <predajePredmet>
+              <model.Predmet>
+                <sifra>ENG2</sifra>
+                <naziv>Engleski 2</naziv>
+                <semestar>Letnji</semestar>
+                <godinaStudija>1</godinaStudija>
+                <profesor reference="../../.."/>
+                <ESPB>3</ESPB>
+                <polozili/>
+                <nisuPolozili/>
+              </model.Predmet>
+              <model.Predmet reference="../../.."/>
+            </predajePredmet>
+            <predmetiBezProfesora/>
+          </profesor>
+          <ESPB>3</ESPB>
+          <polozili>
+            <student reference="../../../../.."/>
+            <student>
+              <ime>Ognjen</ime>
+              <prezime>Krstic</prezime>
+              <datumRodjenja>1982-09-25</datumRodjenja>
+              <adresa>Lasla Gala 17, Novi Sad</adresa>
+              <telefon>021926860</telefon>
+              <email>OgnjenKrstic2@gmail.com</email>
+              <brIndeksa>EE-78-2016</brIndeksa>
+              <godinaUpisa>2016</godinaUpisa>
+              <trenutnaGodina>4</trenutnaGodina>
+              <statusStudenta>S</statusStudenta>
+              <prosecnaOcena>7.0</prosecnaOcena>
+              <spisakPolozenih>
+                <model.Ocena>
+                  <student reference="../../.."/>
+                  <predmet reference="../../../../.."/>
+                  <vrednostOcene>7</vrednostOcene>
+                  <datumPolaganja>2017-07-19</datumPolaganja>
+                </model.Ocena>
+              </spisakPolozenih>
+              <spisakNepolozenih/>
+              <spisakSlobodnih/>
+            </student>
+            <student reference="../../../../.."/>
+            <student reference="../student[2]"/>
+          </polozili>
+          <nisuPolozili/>
+        </predmet>
+        <vrednostOcene>10</vrednostOcene>
+        <datumPolaganja>2020-01-25</datumPolaganja>
+      </model.Ocena>
+      <model.Ocena>
+        <student reference="../../.."/>
+        <predmet>
+          <sifra>OS3</sifra>
+          <naziv>Operativni sistemi</naziv>
+          <semestar>Letnji</semestar>
+          <godinaStudija>2</godinaStudija>
+          <profesor>
+            <ime>Petar</ime>
+            <prezime>Cvetkovic</prezime>
+            <datumRodjenja>1971-04-11</datumRodjenja>
+            <adresa>Suboticki bulevar 7, Subotica</adresa>
+            <telefon>021131148</telefon>
+            <email>PetarCvetkovic13@gmail.com</email>
+            <kancelarija>Narodnog fronta 65</kancelarija>
+            <brLicneKarte>444457489</brLicneKarte>
+            <titula>dr</titula>
+            <zvanje>redovni_profesor</zvanje>
+            <predajePredmet>
+              <model.Predmet reference="../../.."/>
+              <model.Predmet>
+                <sifra>ARH1</sifra>
+                <naziv>Arhitektura racunara</naziv>
+                <semestar>Letnji</semestar>
+                <godinaStudija>2</godinaStudija>
+                <profesor reference="../../.."/>
+                <ESPB>9</ESPB>
+                <polozili/>
+                <nisuPolozili/>
+              </model.Predmet>
+              <model.Predmet>
+                <sifra>OP1</sifra>
+                <naziv>Objektno programiranje</naziv>
+                <semestar>Letnji</semestar>
+                <godinaStudija>3</godinaStudija>
+                <profesor reference="../../.."/>
+                <ESPB>8</ESPB>
+                <polozili/>
+                <nisuPolozili/>
+              </model.Predmet>
+              <model.Predmet>
+                <sifra>PJSP342</sifra>
+                <naziv>Programski jezici i strukture podataka</naziv>
+                <semestar>Letnji</semestar>
+                <godinaStudija>2</godinaStudija>
+                <profesor reference="../../.."/>
+                <ESPB>9</ESPB>
+                <polozili/>
+                <nisuPolozili/>
+              </model.Predmet>
+            </predajePredmet>
+            <predmetiBezProfesora/>
+          </profesor>
+          <ESPB>8</ESPB>
+          <polozili>
+            <student reference="../../../../.."/>
+            <student reference="../../../../.."/>
+          </polozili>
+          <nisuPolozili/>
+        </predmet>
+        <vrednostOcene>9</vrednostOcene>
+        <datumPolaganja>2020-06-05</datumPolaganja>
+      </model.Ocena>
+      <model.Ocena>
+        <student reference="../../.."/>
+        <predmet>
+          <sifra>ALG1</sifra>
+          <naziv>Algebra</naziv>
+          <semestar>Letnji</semestar>
+          <godinaStudija>1</godinaStudija>
+          <profesor>
+            <ime>Nina</ime>
+            <prezime>Popovic</prezime>
+            <datumRodjenja>1966-03-22</datumRodjenja>
+            <adresa>Bulevar patrijarha Pavla 72, Novi Sad</adresa>
+            <telefon>021596978</telefon>
+            <email>NinaPopovic4@gmail.com</email>
+            <kancelarija>Bulevar despota Stefana 32</kancelarija>
+            <brLicneKarte>476930683</brLicneKarte>
+            <titula>MSc</titula>
+            <zvanje>vanredni_profesor</zvanje>
+            <predajePredmet>
+              <model.Predmet reference="../../.."/>
+              <model.Predmet>
+                <sifra>FIZ1</sifra>
+                <naziv>Fizika</naziv>
+                <semestar>Letnji</semestar>
+                <godinaStudija>1</godinaStudija>
+                <profesor reference="../../.."/>
+                <ESPB>9</ESPB>
+                <polozili/>
+                <nisuPolozili/>
+              </model.Predmet>
+            </predajePredmet>
+            <predmetiBezProfesora/>
+          </profesor>
+          <ESPB>9</ESPB>
+          <polozili/>
+          <nisuPolozili/>
+        </predmet>
+        <vrednostOcene>6</vrednostOcene>
+        <datumPolaganja>2011-06-06</datumPolaganja>
+      </model.Ocena>
+    </spisakPolozenih>
+    <spisakNepolozenih>
+      <model.Predmet>
+        <sifra>MA1</sifra>
+        <naziv>Matematicka analiza 1</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>3</godinaStudija>
+        <profesor>
+          <ime>Jana</ime>
+          <prezime>Petrovic</prezime>
+          <datumRodjenja>1961-04-25</datumRodjenja>
+          <adresa>Boska Buhe 82, Beograd</adresa>
+          <telefon>021141872</telefon>
+          <email>JanaPetrovic13@gmail.com</email>
+          <kancelarija>Bulevar Jase Tomica 64</kancelarija>
+          <brLicneKarte>446488941</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>vanredni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>MA2</sifra>
+              <naziv>Matematicka analiza 2</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>9</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet reference="../model.Predmet/profesor/predajePredmet/model.Predmet[2]"/>
+      <model.Predmet>
+        <sifra>OET1</sifra>
+        <naziv>Osnovi elektrotehnike</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>2</godinaStudija>
+        <ESPB>9</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+    </spisakNepolozenih>
+    <spisakSlobodnih>
+      <model.Predmet reference="../../spisakPolozenih/model.Ocena[3]/predmet/profesor/predajePredmet/model.Predmet[2]"/>
+      <model.Predmet>
+        <sifra>LPRS1</sifra>
+        <naziv>Logicko projektovanje racunarskih sistema 1</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>2</godinaStudija>
+        <profesor>
+          <ime>Vukasin</ime>
+          <prezime>Popovic</prezime>
+          <datumRodjenja>1965-09-24</datumRodjenja>
+          <adresa>Mise Dimitrijevica 95,Novi Sad</adresa>
+          <telefon>021965771</telefon>
+          <email>VukasinPopovic2@gmail.com</email>
+          <kancelarija>Bulevar Mihajla Pupina 71</kancelarija>
+          <brLicneKarte>999594934</brLicneKarte>
+          <titula>prof_dr</titula>
+          <zvanje>redovni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>BP1</sifra>
+              <naziv>Baze podataka 1</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>1</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>6</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>VSP342</sifra>
+        <naziv>Verovatnoca i slucajni procesi</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>2</godinaStudija>
+        <profesor>
+          <ime>Sara</ime>
+          <prezime>Tomic</prezime>
+          <datumRodjenja>1981-04-12</datumRodjenja>
+          <adresa>Fruskogorska 4, Nis</adresa>
+          <telefon>021880625</telefon>
+          <email>SaraTomic18@gmail.com</email>
+          <kancelarija>Dr Ivana Ribara 2</kancelarija>
+          <brLicneKarte>748602789</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>vanredni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>5</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>SPP1</sifra>
+        <naziv>Sistemska programska podrska u realnom vremenu 1</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>1</godinaStudija>
+        <profesor>
+          <ime>Milica</ime>
+          <prezime>Savic</prezime>
+          <datumRodjenja>1984-02-19</datumRodjenja>
+          <adresa>Drage Spasic 48, Beograd</adresa>
+          <telefon>021906373</telefon>
+          <email>MilicaSavic4@gmail.com</email>
+          <kancelarija>Gogoljeva 80</kancelarija>
+          <brLicneKarte>684807648</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>vanredni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>SAT649</sifra>
+              <naziv>Socioloski aspekti tehnickog razvoja</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>3</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>6</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>SAU856</sifra>
+        <naziv>Sistemi automatskog upravljanja</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>1</godinaStudija>
+        <profesor>
+          <ime>Ana</ime>
+          <prezime>Savic</prezime>
+          <datumRodjenja>1961-08-21</datumRodjenja>
+          <adresa>Narodnog fronta 65, Novi Sad</adresa>
+          <telefon>021881609</telefon>
+          <email>AnaSavic14@gmail.com</email>
+          <kancelarija>Bulevar despota Stefana 71</kancelarija>
+          <brLicneKarte>890265768</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>redovni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>MO1</sifra>
+              <naziv>Metode optimizacije</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>1</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+            <model.Predmet>
+              <sifra>MISS1</sifra>
+              <naziv>Modeliranje i simulacija sistema</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>8</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>ARH1</sifra>
+        <naziv>Arhitektura racunara</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>2</godinaStudija>
+        <profesor>
+          <ime>Petar</ime>
+          <prezime>Cvetkovic</prezime>
+          <datumRodjenja>1971-04-11</datumRodjenja>
+          <adresa>Suboticki bulevar 7, Subotica</adresa>
+          <telefon>021131148</telefon>
+          <email>PetarCvetkovic13@gmail.com</email>
+          <kancelarija>Narodnog fronta 65</kancelarija>
+          <brLicneKarte>444457489</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>redovni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet>
+              <sifra>OS3</sifra>
+              <naziv>Operativni sistemi</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>OP1</sifra>
+              <naziv>Objektno programiranje</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>3</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>8</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+            <model.Predmet>
+              <sifra>PJSP342</sifra>
+              <naziv>Programski jezici i strukture podataka</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>9</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>9</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>ENG2</sifra>
+        <naziv>Engleski 2</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>1</godinaStudija>
+        <profesor>
+          <ime>Una</ime>
+          <prezime>Todorovic</prezime>
+          <datumRodjenja>1964-05-11</datumRodjenja>
+          <adresa>Fruskogorska 92, Novi Sad</adresa>
+          <telefon>021437897</telefon>
+          <email>UnaTodorovic8@gmail.com</email>
+          <kancelarija>Mise Dimitrijevica 62</kancelarija>
+          <brLicneKarte>333399959</brLicneKarte>
+          <titula>mr</titula>
+          <zvanje>vanredni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+            <model.Predmet>
+              <sifra>ENG1</sifra>
+              <naziv>Engleski 1</naziv>
+              <semestar>Letnji</semestar>
+              <godinaStudija>2</godinaStudija>
+              <profesor reference="../../.."/>
+              <ESPB>3</ESPB>
+              <polozili/>
+              <nisuPolozili/>
+            </model.Predmet>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>3</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet reference="../model.Predmet[2]/profesor/predajePredmet/model.Predmet[2]"/>
+      <model.Predmet reference="../model.Predmet[6]/profesor/predajePredmet/model.Predmet[4]"/>
+      <model.Predmet reference="../model.Predmet[4]/profesor/predajePredmet/model.Predmet[2]"/>
+      <model.Predmet reference="../model.Predmet[5]/profesor/predajePredmet/model.Predmet[2]"/>
+      <model.Predmet>
+        <sifra>OIS573</sifra>
+        <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>1</godinaStudija>
+        <profesor>
+          <ime>Kosta</ime>
+          <prezime>Savic</prezime>
+          <datumRodjenja>1977-02-14</datumRodjenja>
+          <adresa>Iva Andrica 58, Novi Sad</adresa>
+          <telefon>021191559</telefon>
+          <email>KostaSavic17@gmail.com</email>
+          <kancelarija>Mise Dimitrijevica 8</kancelarija>
+          <brLicneKarte>123456789</brLicneKarte>
+          <titula>BSc</titula>
+          <zvanje>redovni_profesor</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>6</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>NNS8</sifra>
+        <naziv>Numericki algoritmi i numericki softver</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>1</godinaStudija>
+        <profesor>
+          <ime>Dunja</ime>
+          <prezime>Krstic</prezime>
+          <datumRodjenja>1978-08-25</datumRodjenja>
+          <adresa>Dr Ivana Ribara 42, Novi Sad</adresa>
+          <telefon>021851274</telefon>
+          <email>DunjaKrstic11@gmail.com</email>
+          <kancelarija>Bulevar Mihajla Pupina 79</kancelarija>
+          <brLicneKarte>098492051</brLicneKarte>
+          <titula>dr</titula>
+          <zvanje>asistent_sa_doktoratom</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>4</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet reference="../model.Predmet[5]/profesor/predajePredmet/model.Predmet[3]"/>
+      <model.Predmet>
+        <sifra>BP2</sifra>
+        <naziv>Baze podataka 2</naziv>
+        <semestar>Zimski</semestar>
+        <godinaStudija>2</godinaStudija>
+        <profesor>
+          <ime>Masa</ime>
+          <prezime>Ilic</prezime>
+          <datumRodjenja>1976-04-11</datumRodjenja>
+          <adresa>Dr Sime Milosevica 32, Sremska Mitrovica</adresa>
+          <telefon>021634494</telefon>
+          <email>MasaIlic20@gmail.com</email>
+          <kancelarija>Tolstojeva 82</kancelarija>
+          <brLicneKarte>487011254</brLicneKarte>
+          <titula>mr</titula>
+          <zvanje>asistent</zvanje>
+          <predajePredmet>
+            <model.Predmet reference="../../.."/>
+          </predajePredmet>
+          <predmetiBezProfesora/>
+        </profesor>
+        <ESPB>6</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>E441</sifra>
+        <naziv>Robotika</naziv>
+        <semestar>Letnji</semestar>
+        <godinaStudija>2</godinaStudija>
+        <ESPB>8</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+      <model.Predmet>
+        <sifra>E123</sifra>
+        <naziv>Pametni sistemi</naziv>
+        <semestar>Zimski</semestar>
+        <godinaStudija>2</godinaStudija>
+        <ESPB>4</ESPB>
+        <polozili/>
+        <nisuPolozili/>
+      </model.Predmet>
+    </spisakSlobodnih>
+  </student>
+  <student reference="../student/spisakPolozenih/model.Ocena/predmet/polozili/student[2]"/>
+  <student>
+    <ime>Vuk</ime>
+    <prezime>Markovic</prezime>
+    <datumRodjenja>1984-03-16</datumRodjenja>
+    <adresa>Dr Ivana Ribara 26, Novi Sad</adresa>
+    <telefon>021775691</telefon>
+    <email>VukMarkovic16@gmail.com</email>
+    <brIndeksa>MH-1-2011</brIndeksa>
+    <godinaUpisa>2011</godinaUpisa>
+    <trenutnaGodina>3</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Masa</ime>
+    <prezime>Savic</prezime>
+    <datumRodjenja>1981-01-27</datumRodjenja>
+    <adresa>Bulevar Evrope 7, Novi Sad</adresa>
+    <telefon>021735013</telefon>
+    <email>MasaSavic13@gmail.com</email>
+    <brIndeksa>MR-153-2015</brIndeksa>
+    <godinaUpisa>2015</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Ognjen</ime>
+    <prezime>Savic</prezime>
+    <datumRodjenja>1992-09-15</datumRodjenja>
+    <adresa>Lasla Gala 36, Novi Sad</adresa>
+    <telefon>021525716</telefon>
+    <email>OgnjenSavic13@gmail.com</email>
+    <brIndeksa>GR-209-2020</brIndeksa>
+    <godinaUpisa>2020</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Nikola</ime>
+    <prezime>Stojanovic</prezime>
+    <datumRodjenja>1990-07-13</datumRodjenja>
+    <adresa>Podgoricka 28, Novi Sad</adresa>
+    <telefon>021811787</telefon>
+    <email>NikolaStojanovic11@gmail.com</email>
+    <brIndeksa>EE-180-2017</brIndeksa>
+    <godinaUpisa>2017</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Sofija</ime>
+    <prezime>Stankovic</prezime>
+    <datumRodjenja>1998-11-16</datumRodjenja>
+    <adresa>Bulevar Jovana Ducica 47, Novi Sad</adresa>
+    <telefon>021853592</telefon>
+    <email>SofijaStankovic6@gmail.com</email>
+    <brIndeksa>MR-116-2011</brIndeksa>
+    <godinaUpisa>2011</godinaUpisa>
+    <trenutnaGodina>3</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Sofija</ime>
+    <prezime>Zivkovic</prezime>
+    <datumRodjenja>1999-11-11</datumRodjenja>
+    <adresa>Ravanicka 100, Novi Sad</adresa>
+    <telefon>021832171</telefon>
+    <email>SofijaZivkovic5@gmail.com</email>
+    <brIndeksa>GR-15-2018</brIndeksa>
+    <godinaUpisa>2018</godinaUpisa>
+    <trenutnaGodina>3</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Kosta</ime>
+    <prezime>Markovic</prezime>
+    <datumRodjenja>1988-01-22</datumRodjenja>
+    <adresa>Resavska 50, Novi Sad</adresa>
+    <telefon>021629681</telefon>
+    <email>KostaMarkovic19@gmail.com</email>
+    <brIndeksa>GR-17-2013</brIndeksa>
+    <godinaUpisa>2013</godinaUpisa>
+    <trenutnaGodina>3</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Una</ime>
+    <prezime>Cvetkovic</prezime>
+    <datumRodjenja>1987-09-11</datumRodjenja>
+    <adresa>Podgoricka 72, Beograd</adresa>
+    <telefon>021321083</telefon>
+    <email>UnaCvetkovic15@gmail.com</email>
+    <brIndeksa>MR-40-2017</brIndeksa>
+    <godinaUpisa>2017</godinaUpisa>
+    <trenutnaGodina>2</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Dunja</ime>
+    <prezime>Tomic</prezime>
+    <datumRodjenja>1981-05-21</datumRodjenja>
+    <adresa>Bulevar patrijarha Pavla 32,Novi Sad</adresa>
+    <telefon>021541692</telefon>
+    <email>DunjaTomic16@gmail.com</email>
+    <brIndeksa>MH-140-2019</brIndeksa>
+    <godinaUpisa>2019</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Andrej</ime>
+    <prezime>Jankovic</prezime>
+    <datumRodjenja>1992-02-05</datumRodjenja>
+    <adresa>Puskinova 28, Beograd</adresa>
+    <telefon>021374446</telefon>
+    <email>AndrejJankovic6@gmail.com</email>
+    <brIndeksa>MH-227-2016</brIndeksa>
+    <godinaUpisa>2016</godinaUpisa>
+    <trenutnaGodina>2</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Lena</ime>
+    <prezime>Kostic</prezime>
+    <datumRodjenja>1992-01-04</datumRodjenja>
+    <adresa>Podgoricka 83, Nis</adresa>
+    <telefon>021833080</telefon>
+    <email>LenaKostic4@gmail.com</email>
+    <brIndeksa>BI-91-2020</brIndeksa>
+    <godinaUpisa>2020</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Dunja</ime>
+    <prezime>Zivkovic</prezime>
+    <datumRodjenja>1992-01-22</datumRodjenja>
+    <adresa>Bulevar Mihajla Pupina 71, Novi Sad</adresa>
+    <telefon>021841777</telefon>
+    <email>DunjaZivkovic14@gmail.com</email>
+    <brIndeksa>MH-178-2016</brIndeksa>
+    <godinaUpisa>2016</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Lazar</ime>
+    <prezime>Pavlovic</prezime>
+    <datumRodjenja>1993-07-22</datumRodjenja>
+    <adresa>Resavska 8, Novi Sad</adresa>
+    <telefon>021211397</telefon>
+    <email>LazarPavlovic3@gmail.com</email>
+    <brIndeksa>AH-69-2013</brIndeksa>
+    <godinaUpisa>2013</godinaUpisa>
+    <trenutnaGodina>4</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Helena</ime>
+    <prezime>Jankovic</prezime>
+    <datumRodjenja>1996-06-26</datumRodjenja>
+    <adresa>Bulevar Jovana Ducica 41, Novi Sad</adresa>
+    <telefon>021194112</telefon>
+    <email>HelenaJankovic5@gmail.com</email>
+    <brIndeksa>IZ-192-2020</brIndeksa>
+    <godinaUpisa>2020</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Andrej</ime>
+    <prezime>Ivanovic</prezime>
+    <datumRodjenja>1996-05-18</datumRodjenja>
+    <adresa>Brace Ribnikar 71, Novi Sad</adresa>
+    <telefon>021583618</telefon>
+    <email>AndrejIvanovic19@gmail.com</email>
+    <brIndeksa>IZ-42-2012</brIndeksa>
+    <godinaUpisa>2012</godinaUpisa>
+    <trenutnaGodina>2</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Viktor</ime>
+    <prezime>Ristic</prezime>
+    <datumRodjenja>1984-08-16</datumRodjenja>
+    <adresa>Fruskogorska 77, Novi Sad</adresa>
+    <telefon>021353078</telefon>
+    <email>ViktorRistic9@gmail.com</email>
+    <brIndeksa>GG-67-2016</brIndeksa>
+    <godinaUpisa>2016</godinaUpisa>
+    <trenutnaGodina>2</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Vuk</ime>
+    <prezime>Tomic</prezime>
+    <datumRodjenja>1985-06-25</datumRodjenja>
+    <adresa>Ravanicka 46, Kragujevac</adresa>
+    <telefon>021870503</telefon>
+    <email>VukTomic19@gmail.com</email>
+    <brIndeksa>IZ-206-2018</brIndeksa>
+    <godinaUpisa>2018</godinaUpisa>
+    <trenutnaGodina>1</trenutnaGodina>
+    <statusStudenta>B</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+  <student>
+    <ime>Vukasin</ime>
+    <prezime>Zivkovic</prezime>
+    <datumRodjenja>1987-02-06</datumRodjenja>
+    <adresa>Fruskogorska 21, Novi Sad</adresa>
+    <telefon>021581143</telefon>
+    <email>VukasinZivkovic13@gmail.com</email>
+    <brIndeksa>IZ-43-2012</brIndeksa>
+    <godinaUpisa>2012</godinaUpisa>
+    <trenutnaGodina>3</trenutnaGodina>
+    <statusStudenta>S</statusStudenta>
+    <prosecnaOcena>0.0</prosecnaOcena>
+    <spisakPolozenih/>
+    <spisakNepolozenih/>
+    <spisakSlobodnih/>
+  </student>
+</student-array>

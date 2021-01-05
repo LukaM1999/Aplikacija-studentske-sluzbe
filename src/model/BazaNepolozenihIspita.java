@@ -107,17 +107,8 @@ public void deserijalizacija(String putanja) {
 				indeks = kolone[0];
 				sifra = kolone[1];
 				
-				  for(Student s: StudentController.getInstance().getStudenti()) { 
-					  if(s.getBrIndeksa().equals(indeks)) {
-						  for(Predmet p: PredmetController.getInstance().getPredmeti()) {
-							  if(p.getSifra().equals(sifra)) { 
-								  s.dodajNepolozen(p); 
-								  break;
-							  } 
-						  }
-					  } 
-				  }
-				 
+		
+		this.dodajNepolozen(indeks, sifra);		 
 							
 			}
 		} catch (IOException e) {
@@ -144,7 +135,7 @@ public void deserijalizacija(String putanja) {
 		this.predmeti.add(new Predmet(p));
 	}
 	
-	public void dodajNepolozen(Predmet p) {
+	public void dodajNepolozen(Predmet p) {	  
 		this.predmeti.add(p);
 	}
 	
@@ -157,5 +148,26 @@ public void deserijalizacija(String putanja) {
 		}
 	}
 	
+	public void dodajNepolozen(String indeks, String sifra) {
+		List<Student> studenti = StudentController.getInstance().getStudenti();
+		for(int i = 0; i < studenti.size(); i++) {
+			if(indeks.equals(studenti.get(i).getBrIndeksa())) {
+				Student s = studenti.get(i);
+				List<Predmet> predmeti = PredmetController.getInstance().getPredmeti();
+				for (int j = 0; j < predmeti.size(); j++) {
+					if(sifra.equals(predmeti.get(j).getSifra())) {
+						for(Predmet p : s.getSpisakNepolozenih()) {
+							if(p.getSifra().equals(sifra)) {
+								return;
+							}
+						}					
+						Predmet nepolozenPredmet = predmeti.get(j);
+						s.dodajNepolozen(nepolozenPredmet);
+						break;
+					}
+				}
+			}
+		}
+	}
 	
 }	

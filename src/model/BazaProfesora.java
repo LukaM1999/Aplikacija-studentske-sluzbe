@@ -172,7 +172,7 @@ public class BazaProfesora implements Serializable {
 					zvanje = Zvanje.asistent_sa_doktoratom;
 				} else if (kolone[9].equals("Docent")) {
 					zvanje = Zvanje.docent;
-				} else if (kolone[9].equals("Vandredni profesor")) {
+				} else if (kolone[9].equals("Vanredni profesor")) {
 					zvanje = Zvanje.vanredni_profesor;
 				} else if (kolone[9].equals("Redovni profesor")) {
 					zvanje = Zvanje.redovni_profesor;

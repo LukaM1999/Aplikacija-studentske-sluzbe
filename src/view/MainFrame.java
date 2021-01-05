@@ -7,9 +7,18 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.io.File;
+import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
+
+import controller.StudentController;
+import model.BazaStudenata;
+import model.Student;
 
 //Koriscen materijal sa vezbi
 public class MainFrame extends JFrame {
@@ -94,5 +103,65 @@ public class MainFrame extends JFrame {
 		Tabs tabs = Tabs.getInstance();
 		add(tabs, BorderLayout.CENTER);
 
+		addWindowListener(new WindowListener() {
+			
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowIconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeiconified(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowDeactivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void windowClosing(WindowEvent e) {
+				int answer = JOptionPane.showConfirmDialog(getContentPane(),
+						"Da li ste sigurni? :(", "Gašenje studentske službe",
+						JOptionPane.OK_CANCEL_OPTION);	
+				if(answer == JOptionPane.YES_OPTION) {
+					windowClosed(e);
+				}
+				else {
+					setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+				}
+			}
+			
+			@Override
+			public void windowClosed(WindowEvent e) {
+				
+				//StudentController.getInstance().Xstream("deserijalizacija" + File.separator + "studenti.xml");
+				
+					  try {
+						BazaStudenata.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti.xml");
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					} 
+					
+				 
+			}
+			
+			@Override
+			public void windowActivated(WindowEvent e) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 	}
 }
