@@ -218,7 +218,94 @@ public class Toolbar extends JToolBar {
 							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete predmet?", 
 																	"Brisanje predmeta", JOptionPane.YES_NO_OPTION);
 							if(opcija == 0) {
-								PredmetController.getInstance().izbrisiPredmet(TablePredmet.getInstance().getSelectedRow());
+								String sifra = (String) TablePredmet.getInstance()
+										.getValueAt(TablePredmet.getInstance().getSelectedRow(), 0);
+							
+								Iterator<Ocena> itO = OcenaController.getInstance().getOcene().iterator();
+								while(itO.hasNext()) {
+									Ocena o = itO.next();
+									if(o.getPredmet().getSifra().equals(sifra)) {
+										itO.remove();
+										break;
+										}
+								}
+								
+								Iterator<Student> itPol = StudentController.getInstance().getStudenti().iterator();
+								while(itPol.hasNext()) {
+									Student s = itPol.next();
+									Iterator<Ocena> ito = s.getSpisakPolozenih().iterator();
+									while(ito.hasNext()) {
+										Ocena o = ito.next();
+										if (o.getPredmet().getSifra().equals(sifra)) {
+											ito.remove();
+											break;
+										}
+									}
+								}
+								
+								
+								Iterator<Student> itN = StudentController.getInstance().getStudenti().iterator();
+								while(itN.hasNext()) {
+									Student s = itN.next();
+									Iterator<Predmet> itP = s.getSpisakNepolozenih().iterator();
+									while(itP.hasNext()) {
+										Predmet p = itP.next();
+										if (p.getSifra().equals(sifra)) {
+											itP.remove();
+											break;
+										}
+									}
+								}
+							
+								Iterator<Student> itS = StudentController.getInstance().getStudenti().iterator();
+								while(itS.hasNext()) {
+									Student s = itS.next();
+									Iterator<Predmet> itP = s.getSlobodne().iterator();
+									while(itP.hasNext()) {
+										Predmet p = itP.next();
+										if (p.getSifra().equals(sifra)) {
+											itP.remove();
+											break;
+										}
+									}
+								}
+							
+								Iterator<Profesor> itProf = ProfesorController.getInstance().getProfesori().iterator();
+								while(itProf.hasNext()) {
+									Profesor prof = itProf.next();
+									Iterator<Predmet> itP = prof.getPredajePredmet().iterator();
+									while(itP.hasNext()) {
+										Predmet p = itP.next();
+										if (p.getSifra().equals(sifra)) {
+											itP.remove();
+											break;
+										}
+									}
+								}
+								
+								Iterator<Profesor> itProf2 = ProfesorController.getInstance().getProfesori().iterator();
+								while(itProf2.hasNext()) {
+									Profesor prof = itProf2.next();
+									Iterator<Predmet> itP = prof.getPredmetiBezProfesora().iterator();
+									while(itP.hasNext()) {
+										Predmet p = itP.next();
+										if (p.getSifra().equals(sifra)) {
+											itP.remove();
+											break;
+										}
+									}
+								}
+								
+								Iterator<Predmet> p = PredmetController.getInstance().getPredmeti().iterator();
+								while (p.hasNext()) {
+									Predmet pred = p.next();
+									if (pred.getSifra().equals(sifra)) {
+										p.remove();
+										break;
+									}
+								}
+							
+								MainFrame.getInstance().azurirajPredmete("Uklonjen", -1);
 							} 
 						}					 
 					}

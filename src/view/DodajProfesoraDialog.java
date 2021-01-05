@@ -6,14 +6,23 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SpringLayout;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 
 import controller.ProfesorController;
 import model.Profesor;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
@@ -25,33 +34,42 @@ public class DodajProfesoraDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 6293346707131160182L;
 	
-	private String imeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
+	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
-	private String prezimeSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)";
+	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
-	private String telefonSablon = "[0-9]{8,13}?";
+	private String telefonSablon = "[0-9]{8,12}?";
 
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
-			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)((gmail)|"
-			+ "(maildrop)|(yahoo)|(hotmail))(\\.)com";
-	
-	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d).?";
-	
-	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)?"
-			+ "\\p{IsWhite_Space}\\p{IsDigit}+\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
+			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
+
+	// REFERENCE:
+	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
+
+	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
+			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 	
 	private String licnaSablon = "[0-9]{9}";
 	
 	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
-	private String titulaSablon = "[A-Za-z\\p{IsWhite_Space}\\.]+";
-	
-	private String zvanjeSablon = "[A-Za-z\\p{IsWhite_Space}]+";
 
+	private boolean imeKorektno;
+	private boolean prezimeKorektno;
+	private boolean datumKorektno;
+	private boolean adresaKorektno;
+	private boolean telefonKorektno;
+	private boolean emailKorektno;
+	private boolean licnaKorektno;
+	private boolean kancelarijaKorektno;
 	
+	private boolean ispravno = false;
 	
+	private JButton ok;
+	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajProfesoraDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		getContentPane().setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -155,6 +173,39 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, imeUnos, 6, SpringLayout.EAST, ime);
 		springLayout.putConstraint(SpringLayout.EAST, imeUnos, -68, SpringLayout.EAST, getContentPane());
 		getContentPane().add(imeUnos);
+		imeUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeUnos.getText()).matches())) {
+                    imeKorektno = false;
+                    imeUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    imeKorektno = true;
+                    imeUnos.setBackground(Color.GREEN);
+
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField prezimeUnos = new JTextField();
 		prezimeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -162,6 +213,39 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, prezimeUnos, 6, SpringLayout.EAST, prezime);
 		springLayout.putConstraint(SpringLayout.EAST, prezimeUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(prezimeUnos);
+		prezimeUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeUnos.getText()).matches())) {
+                    prezimeKorektno = false;
+                    prezimeUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    prezimeKorektno = true;
+                    prezimeUnos.setBackground(Color.GREEN);
+
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField datumUnos = new JTextField();
 		datumUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -169,6 +253,39 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, datumUnos, 6, SpringLayout.EAST, datum);
 		springLayout.putConstraint(SpringLayout.EAST, datumUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(datumUnos);
+		datumUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(datumSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(datumUnos.getText()).matches())) {
+                    datumKorektno = false;
+                    datumUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    datumKorektno = true;
+                    datumUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField adresaUnos = new JTextField();
 		adresaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -176,6 +293,39 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, adresaUnos, 6, SpringLayout.EAST, adresa);
 		springLayout.putConstraint(SpringLayout.EAST, adresaUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(adresaUnos);
+		adresaUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaUnos.getText()).matches())) {
+                    adresaKorektno = false;
+                    adresaUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    adresaKorektno = true;
+                    adresaUnos.setBackground(Color.GREEN);
+
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField telefonUnos = new JTextField();
 		telefonUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -183,6 +333,39 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, telefonUnos, 6, SpringLayout.EAST, telefon);
 		springLayout.putConstraint(SpringLayout.EAST, telefonUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(telefonUnos);
+		telefonUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(telefonSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(telefonUnos.getText()).matches())) {
+                    telefonKorektno = false;
+                    telefonUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    telefonKorektno = true;
+                    telefonUnos.setBackground(Color.GREEN);
+
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField emailUnos = new JTextField();
 		emailUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -190,6 +373,40 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, emailUnos, 6, SpringLayout.EAST, email);
 		springLayout.putConstraint(SpringLayout.EAST, emailUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(emailUnos);
+		emailUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(emailSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(emailUnos.getText()).matches())) {
+                    emailKorektno = false;
+                    emailUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    emailKorektno = true;
+                    emailUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                    
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField kancelarijaUnos = new JTextField();
 		kancelarijaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -197,6 +414,40 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, kancelarijaUnos, 6, SpringLayout.EAST, kancelarija);
 		springLayout.putConstraint(SpringLayout.EAST, kancelarijaUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(kancelarijaUnos);
+		kancelarijaUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(kancelarijaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(kancelarijaUnos.getText()).matches())) {
+                    kancelarijaKorektno = false;
+                    kancelarijaUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    kancelarijaKorektno = true;
+                    kancelarijaUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                   
+				}
+                ok.setEnabled(ispravno);
+			}
+
+		});
 		
 		JTextField licnaUnos = new JTextField();
 		licnaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
@@ -204,20 +455,60 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, licnaUnos, 6, SpringLayout.EAST, brLicne);
 		springLayout.putConstraint(SpringLayout.EAST, licnaUnos, 0, SpringLayout.EAST, imeUnos);
 		getContentPane().add(licnaUnos);
+		licnaUnos.getDocument().addDocumentListener(new DocumentListener() {
+
+            @Override
+            public void removeUpdate(DocumentEvent e) {
+                changedUpdate(e);
+            }
+            @Override
+            public void insertUpdate(DocumentEvent e) {
+                changedUpdate(e);
+
+            }
+            @Override
+            public void changedUpdate(DocumentEvent e) {
+                if (!(Pattern.compile(licnaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(licnaUnos.getText()).matches())) {
+                    licnaKorektno = false;
+                    licnaUnos.setBackground(Color.WHITE);
+                    ispravno = false;
+                } 
+                else { 
+                    licnaKorektno = true;
+                    licnaUnos.setBackground(Color.GREEN);
+                    
+                    if (imeKorektno && prezimeKorektno && datumKorektno && adresaKorektno && telefonKorektno
+                            && emailKorektno && licnaKorektno && kancelarijaKorektno) {
+                        ispravno = true;
+                    } else {
+                        ispravno = false;
+                    }
+                    
+				}
+                ok.setEnabled(ispravno);
+			}
+		});
 		
-		JTextField titulaUnos = new JTextField();
-		titulaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, titulaUnos, 11, SpringLayout.NORTH, titula);
-		springLayout.putConstraint(SpringLayout.WEST, titulaUnos, 6, SpringLayout.EAST, titula);
-		springLayout.putConstraint(SpringLayout.EAST, titulaUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(titulaUnos);
 		
-		JTextField zvanjeUnos = new JTextField();
-		zvanjeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, zvanjeUnos, 11, SpringLayout.NORTH, zvanje);
-		springLayout.putConstraint(SpringLayout.WEST, zvanjeUnos, 6, SpringLayout.EAST, zvanje);
-		springLayout.putConstraint(SpringLayout.EAST, zvanjeUnos, 0, SpringLayout.EAST, imeUnos);
-		getContentPane().add(zvanjeUnos);
+		String[] titulaUnos = new String[] {"BSc", "MSc", "mr", "dr", "prof. dr"};
+		JComboBox titulaCombo = new JComboBox(titulaUnos);
+		titulaCombo.setBackground(Color.WHITE);
+		titulaCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		springLayout.putConstraint(SpringLayout.NORTH, titulaCombo, 11, SpringLayout.NORTH, titula);
+		springLayout.putConstraint(SpringLayout.WEST, titulaCombo, 6, SpringLayout.EAST, titula);
+		springLayout.putConstraint(SpringLayout.EAST, titulaCombo, 0, SpringLayout.EAST, imeUnos);
+		titulaCombo.setSelectedIndex(0);
+		getContentPane().add(titulaCombo);
+		
+		String[] zvanjeUnos = new String[] { "Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", 
+				"Docent", "Vanredni profesor", "Redovni profesor", "Profesor emeritus" };
+		JComboBox zvanjeCombo = new JComboBox(zvanjeUnos);
+		zvanjeCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		springLayout.putConstraint(SpringLayout.NORTH, zvanjeCombo, 11, SpringLayout.NORTH, zvanje);
+		springLayout.putConstraint(SpringLayout.WEST, zvanjeCombo, 6, SpringLayout.EAST, zvanje);
+		springLayout.putConstraint(SpringLayout.EAST, zvanjeCombo, 0, SpringLayout.EAST, imeUnos);
+		zvanjeCombo.setSelectedIndex(0);
+		getContentPane().add(zvanjeCombo);
 		
 		
 		//Buttons
@@ -225,7 +516,7 @@ public class DodajProfesoraDialog extends JDialog {
 		cancel.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.WEST, cancel, 294, SpringLayout.WEST, getContentPane());
 		springLayout.putConstraint(SpringLayout.EAST, cancel, -68, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, cancel, 37, SpringLayout.SOUTH, zvanjeUnos);
+		springLayout.putConstraint(SpringLayout.NORTH, cancel, 37, SpringLayout.SOUTH, zvanjeCombo);
 		springLayout.putConstraint(SpringLayout.SOUTH, cancel, -10, SpringLayout.SOUTH, getContentPane());
 		cancel.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -234,12 +525,13 @@ public class DodajProfesoraDialog extends JDialog {
 		});
 		getContentPane().add(cancel);
 		
-		JButton ok = new JButton("Potvrdi");
+		ok = new JButton("Potvrdi");
 		ok.setFont(new Font("Times New Roman", Font.PLAIN, 14));
 		springLayout.putConstraint(SpringLayout.NORTH, ok, 1, SpringLayout.NORTH, cancel);
 		springLayout.putConstraint(SpringLayout.WEST, ok, 0, SpringLayout.WEST, ime);
 		springLayout.putConstraint(SpringLayout.SOUTH, ok, 1, SpringLayout.SOUTH, cancel);
 		springLayout.putConstraint(SpringLayout.EAST, ok, 157, SpringLayout.WEST, getContentPane());
+		ok.setEnabled(false);
 		ok.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -252,8 +544,7 @@ public class DodajProfesoraDialog extends JDialog {
 				 String emailVrednost = emailUnos.getText();
 				 String kancelarijaVrednost = kancelarijaUnos.getText();
 				 String licnaVrednost = licnaUnos.getText();
-				 String titulaVrednost = titulaUnos.getText();
-				 String zvanjeVrednost = zvanjeUnos.getText();
+				
 				// REFERENCE:
 				// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
 				
@@ -318,24 +609,39 @@ public class DodajProfesoraDialog extends JDialog {
 						return;
 					}
 				}
-				
-				if (!(Pattern.compile(titulaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(titulaVrednost)
-						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta titula!");
-					return;
+			
+				Titula titulaVrednost = Titula.BSc;
+				if (titulaCombo.getSelectedItem() == "MSc" ) {
+					titulaVrednost = Titula.MSc;
+				} else if (titulaCombo.getSelectedItem().toString() == "mr") {
+					titulaVrednost = Titula.mr;
+				} else if (titulaCombo.getSelectedItem().toString() == "dr") {
+					titulaVrednost = Titula.dr;
+				} else if (titulaCombo.getSelectedItem().toString() == "prof. dr") {
+					titulaVrednost = Titula.prof_dr;
 				}
+
+				Zvanje zvanjeVrednost = Zvanje.saradnik_u_nastavi;
+				if (zvanjeCombo.getSelectedItem().toString() == "Asistent" ) {
+					zvanjeVrednost = Zvanje.asistent;
+				} else if (zvanjeCombo.getSelectedItem().toString() == "Asistent sa doktoratom") {
+					zvanjeVrednost = Zvanje.asistent_sa_doktoratom;
+				} else if (zvanjeCombo.getSelectedItem().toString() == "Docent") {
+					zvanjeVrednost = Zvanje.docent;
+				} else if (zvanjeCombo.getSelectedItem().toString() == "Vanredni profesor") {
+					zvanjeVrednost = Zvanje.vanredni_profesor;
+				} else if (zvanjeCombo.getSelectedItem().toString() == "Redovni profesor") {
+					zvanjeVrednost = Zvanje.redovni_profesor;
+				} else if (zvanjeCombo.getSelectedItem().toString() == "Profesor emeritus") {
+					zvanjeVrednost = Zvanje.profesor_emeritus;
+				} 
 				
-				if (!(Pattern.compile(zvanjeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(zvanjeVrednost)
-						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto zvanje!");
-					return;
-				}
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 				
-				
-				
-				Profesor prof = new Profesor(imeVrednost, prezimeVrednost, datumVrednost, adresaVrednost,
-						telefonVrednost, emailVrednost, kancelarijaVrednost, licnaVrednost,
+				Profesor prof = new Profesor(imeVrednost, prezimeVrednost, LocalDate.parse(datumVrednost, formatter),
+						adresaVrednost, telefonVrednost, emailVrednost, kancelarijaVrednost, licnaVrednost,
 						titulaVrednost, zvanjeVrednost);
+				
 				ProfesorController.getInstance().dodajProfesora(prof);
 				
 				dispose();

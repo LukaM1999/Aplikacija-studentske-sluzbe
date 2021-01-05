@@ -1,9 +1,12 @@
 package model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import controller.ProfesorController;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 public class BazaSlobodnihProfesora {
 	
@@ -63,8 +66,8 @@ public class BazaSlobodnihProfesora {
 
 	
 
-	public void dodajProfesora(String ime, String prezime, String datum, String adresa, String telefon, String email,
-			String kancelarija, String licna, String titula, String zvanje) {
+	public void dodajProfesora(String ime, String prezime, LocalDate datum, String adresa, String telefon, String email,
+			String kancelarija, String licna, Titula titula, Zvanje zvanje) {
 		this.profesori.add(new Profesor(ime, prezime, datum, adresa, telefon, email, kancelarija, licna, titula, zvanje));
 	}
 

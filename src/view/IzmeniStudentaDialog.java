@@ -891,6 +891,22 @@ public class IzmeniStudentaDialog extends JDialog {
 
 					modelNepolozeni.fireTableDataChanged();
 					validate();
+					
+					izracunaj(student);
+					prosek.setText("Prosečna ocena: " + avgOcena);
+					ESPB.setText("Ukupno ESPB: " + ukupnoESPB);
+					student.setProsecnaOcena(avgOcena);
+					MainFrame.getInstance().azurirajStudente("", -1);
+
+					AbstractTableModelPolozeniIspiti model = (AbstractTableModelPolozeniIspiti) polozeniTable
+							.getModel();
+					model.fireTableDataChanged();
+					validate();
+
+					AbstractTableModelNepolozeniIspiti modelNepolozenih = (AbstractTableModelNepolozeniIspiti) nepolozeniTable
+							.getModel();
+					modelNepolozenih.fireTableDataChanged();
+					validate();
 				}
 			}
 		});

@@ -4,9 +4,12 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -24,6 +27,8 @@ import controller.ProfesorController;
 import controller.ProfesorPredajeController;
 import model.Predmet;
 import model.Profesor;
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 public class IzmeniProfesoraDialog extends JDialog {
 
@@ -53,9 +58,6 @@ public class IzmeniProfesoraDialog extends JDialog {
 	
 	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
-	private String titulaSablon = "[A-Za-z\\p{IsWhite_Space}\\.]+";
-	
-	private String zvanjeSablon = "[A-Za-z\\p{IsWhite_Space}]+";
 	
 	
 	private boolean imeKorektno = true;
@@ -71,6 +73,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 
 	private JButton ok;
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniProfesoraDialog(MainFrame parent, String title, boolean modal) {
 		super(parent, title, modal);
 		
@@ -495,38 +498,72 @@ public class IzmeniProfesoraDialog extends JDialog {
 
 		});
 		
-		JTextField titulaUnos = new JTextField();
-		titulaUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, titulaUnos, 11, SpringLayout.NORTH, titula);
-		springLayout.putConstraint(SpringLayout.WEST, titulaUnos, 6, SpringLayout.EAST, titula);
-		springLayout.putConstraint(SpringLayout.EAST, titulaUnos, 0, SpringLayout.EAST, imeUnos);
-		panel.add(titulaUnos);
+		String[] titulaUnos = new String[] {"BSc", "MSc", "mr", "dr", "prof. dr"};
+		JComboBox titulaCombo = new JComboBox(titulaUnos);
+		titulaCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		springLayout.putConstraint(SpringLayout.NORTH, titulaCombo, 11, SpringLayout.NORTH, titula);
+		springLayout.putConstraint(SpringLayout.WEST, titulaCombo, 6, SpringLayout.EAST, titula);
+		springLayout.putConstraint(SpringLayout.EAST, titulaCombo, 0, SpringLayout.EAST, imeUnos);
+		titulaCombo.setSelectedIndex(0);
+		panel.add(titulaCombo);
 		
-		JTextField zvanjeUnos = new JTextField();
-		zvanjeUnos.setFont(new Font("Times New Roman", Font.PLAIN, 14));
-		springLayout.putConstraint(SpringLayout.NORTH, zvanjeUnos, 11, SpringLayout.NORTH, zvanje);
-		springLayout.putConstraint(SpringLayout.WEST, zvanjeUnos, 6, SpringLayout.EAST, zvanje);
-		springLayout.putConstraint(SpringLayout.EAST, zvanjeUnos, 0, SpringLayout.EAST, imeUnos);
-		panel.add(zvanjeUnos);		
+		String[] zvanjeUnos = new String[] { "Saradnik u nastavi", "Asistent", "Asistent sa doktoratom", 
+				"Docent", "Vanredni profesor", "Redovni profesor", "Profesor emeritus" };
+		JComboBox zvanjeCombo = new JComboBox(zvanjeUnos);
+		zvanjeCombo.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+		springLayout.putConstraint(SpringLayout.NORTH, zvanjeCombo, 11, SpringLayout.NORTH, zvanje);
+		springLayout.putConstraint(SpringLayout.WEST, zvanjeCombo, 6, SpringLayout.EAST, zvanje);
+		springLayout.putConstraint(SpringLayout.EAST, zvanjeCombo, 0, SpringLayout.EAST, imeUnos);
+		zvanjeCombo.setSelectedIndex(0);
+		panel.add(zvanjeCombo);		
 		
 		TableProfesor table = TableProfesor.getInstance();
 		Profesor prof = ProfesorController.getInstance().getProfesor(table.convertRowIndexToModel(table.getSelectedRow()));
 		
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		
 		imeUnos.setText(prof.getIme());
 		prezimeUnos.setText(prof.getPrezime());
-		datumUnos.setText(prof.getDatumRodjenja());
+		datumUnos.setText(formatter.format(prof.getDatumRodjenja()));
 		adresaUnos.setText(prof.getAdresa());
 		telefonUnos.setText(prof.getTelefon());
 		emailUnos.setText(prof.getEmail());
 		kancelarijaUnos.setText(prof.getKancelarija());
 		licnaUnos.setText(prof.getBrLicneKarte());
-		titulaUnos.setText(prof.getTitula());
-		zvanjeUnos.setText(prof.getZvanje());
+
+		if (prof.getTitula() == Titula.BSc) {
+			titulaCombo.setSelectedIndex(0);
+		} else if (prof.getTitula() == Titula.MSc) {
+			titulaCombo.setSelectedIndex(1);
+		} else if (prof.getTitula() == Titula.mr) {
+			titulaCombo.setSelectedIndex(2);
+		} else if (prof.getTitula() == Titula.dr) {
+			titulaCombo.setSelectedIndex(3);
+		} else if (prof.getTitula() == Titula.prof_dr) {
+			titulaCombo.setSelectedIndex(4);
+		}
+		
+		if (prof.getZvanje() == Zvanje.saradnik_u_nastavi) {
+			zvanjeCombo.setSelectedIndex(0);
+		} else if (prof.getZvanje() == Zvanje.asistent) {
+			zvanjeCombo.setSelectedIndex(1);
+		} else if (prof.getZvanje() == Zvanje.asistent_sa_doktoratom) {
+			zvanjeCombo.setSelectedIndex(2);
+		} else if (prof.getZvanje() == Zvanje.docent) {
+			zvanjeCombo.setSelectedIndex(3);
+		} else if (prof.getZvanje() == Zvanje.vanredni_profesor) {
+			zvanjeCombo.setSelectedIndex(4);
+		} else if (prof.getZvanje() == Zvanje.redovni_profesor) {
+			zvanjeCombo.setSelectedIndex(5);
+		} else if (prof.getZvanje() == Zvanje.profesor_emeritus) {
+			zvanjeCombo.setSelectedIndex(6);
+		}
+		
 		
 		
 		//Buttons
 		JButton cancel = new JButton("Odustani");
-		springLayout.putConstraint(SpringLayout.NORTH, cancel, 19, SpringLayout.SOUTH, zvanjeUnos);
+		springLayout.putConstraint(SpringLayout.NORTH, cancel, 19, SpringLayout.SOUTH, zvanjeCombo);
 		springLayout.putConstraint(SpringLayout.WEST, cancel, 280, SpringLayout.WEST, panel);
 		springLayout.putConstraint(SpringLayout.SOUTH, cancel, -10, SpringLayout.SOUTH, panel);
 		springLayout.putConstraint(SpringLayout.EAST, cancel, -80, SpringLayout.EAST, panel);
@@ -556,8 +593,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 			String emailVrednost = emailUnos.getText();
 			String kancelarijaVrednost = kancelarijaUnos.getText();
 			String licnaVrednost = licnaUnos.getText();
-			String titulaVrednost = titulaUnos.getText();
-			String zvanjeVrednost = zvanjeUnos.getText();
+
 			// REFERENCE:
 			// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
 			
@@ -614,18 +650,31 @@ public class IzmeniProfesoraDialog extends JDialog {
 				return;
 			}			
 			
-			if (!(Pattern.compile(titulaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(titulaVrednost)
-					.matches())) {
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta titula!");
-				return;
+			Titula titulaVrednost = Titula.BSc;
+			if (titulaCombo.getSelectedItem() == "MSc" ) {
+				titulaVrednost = Titula.MSc;
+			} else if (titulaCombo.getSelectedItem().toString() == "mr") {
+				titulaVrednost = Titula.mr;
+			} else if (titulaCombo.getSelectedItem().toString() == "dr") {
+				titulaVrednost = Titula.dr;
+			} else if (titulaCombo.getSelectedItem().toString() == "prof. dr") {
+				titulaVrednost = Titula.prof_dr;
 			}
-			
-			if (!(Pattern.compile(zvanjeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(zvanjeVrednost)
-					.matches())) {
-				JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto zvanje!");
-					return;
-				}
-			
+
+			Zvanje zvanjeVrednost = Zvanje.saradnik_u_nastavi;
+			if (zvanjeCombo.getSelectedItem().toString() == "Asistent" ) {
+				zvanjeVrednost = Zvanje.asistent;
+			} else if (zvanjeCombo.getSelectedItem().toString() == "Asistent sa doktoratom") {
+				zvanjeVrednost = Zvanje.asistent_sa_doktoratom;
+			} else if (zvanjeCombo.getSelectedItem().toString() == "Docent") {
+				zvanjeVrednost = Zvanje.docent;
+			} else if (zvanjeCombo.getSelectedItem().toString() == "Vanredni profesor") {
+				zvanjeVrednost = Zvanje.vanredni_profesor;
+			} else if (zvanjeCombo.getSelectedItem().toString() == "Redovni profesor") {
+				zvanjeVrednost = Zvanje.redovni_profesor;
+			} else if (zvanjeCombo.getSelectedItem().toString() == "Profesor emeritus") {
+				zvanjeVrednost = Zvanje.profesor_emeritus;
+			}
 			
 			JOptionPane confirm = new JOptionPane();	
 			@SuppressWarnings("static-access")
@@ -636,7 +685,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 				
 				prof.setIme(imeVrednost);
 				prof.setPrezime(prezimeVrednost);
-				prof.setDatumRodjenja(datumVrednost);
+				prof.setDatumRodjenja(LocalDate.parse(datumVrednost, formatter));
 				prof.setTelefon(telefonVrednost);
 				prof.setAdresa(adresaVrednost);
 				prof.setEmail(emailVrednost);

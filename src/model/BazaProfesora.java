@@ -7,8 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import model.Profesor.Titula;
+import model.Profesor.Zvanje;
 
 
 public class BazaProfesora implements Serializable {
@@ -73,9 +78,43 @@ public class BazaProfesora implements Serializable {
 		case 1:
 			return profesor.getPrezime();
 		case 2:
-			return profesor.getTitula();
+			if (String.valueOf(profesor.getTitula()).equals("BSc")) {
+				return "BSc";
+			}
+			else if (String.valueOf(profesor.getTitula()).equals("MSc")) {
+				return "MSc";
+			}	
+			else if (String.valueOf(profesor.getTitula()).equals("mr")) {
+				return "mr";
+			}
+			else if (String.valueOf(profesor.getTitula()).equals("dr")) {
+				return "dr";
+			}
+			else if (String.valueOf(profesor.getTitula()).equals("prof_dr")) {
+				return "prof. dr";
+			}
 		case 3:
-			return profesor.getZvanje();
+			if (String.valueOf(profesor.getZvanje()).equals("saradnik_u_nastavi")) {
+				return "Saradnik u nastavi";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("asistent")) {
+				return "Asistent";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("asistent_sa_doktoratom")) {
+				return "Asistent sa doktoratom";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("docent")) {
+				return "Docent";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("vanredni_profesor")) {
+				return "Vanredni profesor";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("redovni_profesor")) {
+				return "Redovni profesor";
+			}
+			else if (String.valueOf(profesor.getZvanje()).equals("profesor_emeritus")) {
+				return "Profesor emeritus";
+			}
 		default:
 			return null;
 		}
@@ -90,8 +129,8 @@ public class BazaProfesora implements Serializable {
 		String email;
 		String kancelarija;
 		String licna;
-		String titula;
-		String zvanje;
+		Titula titula;
+		Zvanje zvanje;
 
 		init();
 
@@ -114,10 +153,36 @@ public class BazaProfesora implements Serializable {
 				email = kolone[5];
 				kancelarija = kolone[6];
 				licna = kolone[7];
-				titula = kolone[8];
-				zvanje = kolone[9];
+				if (kolone[8].equals("BSc")) {
+					titula = Titula.BSc;
+				} else if (kolone[8].equals("MSc")) {
+					titula = Titula.MSc;
+				} else if (kolone[8].equals("mr")) {
+					titula = Titula.mr;
+				} else if (kolone[8].equals("dr")) {
+					titula = Titula.dr;
+				} else 
+					titula = Titula.prof_dr;
+				
+				if (kolone[9].equals("Saradnik u nastavi")) {
+					zvanje = Zvanje.saradnik_u_nastavi;
+				} else if (kolone[9].equals("Asistent")) {
+					zvanje = Zvanje.asistent;
+				} else if (kolone[9].equals("Asistent sa doktoratom")) {
+					zvanje = Zvanje.asistent_sa_doktoratom;
+				} else if (kolone[9].equals("Docent")) {
+					zvanje = Zvanje.docent;
+				} else if (kolone[9].equals("Vandredni profesor")) {
+					zvanje = Zvanje.vanredni_profesor;
+				} else if (kolone[9].equals("Redovni profesor")) {
+					zvanje = Zvanje.redovni_profesor;
+				} else 
+					zvanje = Zvanje.profesor_emeritus;
 
-				dodajProfesora(ime, prezime, datum, adresa, telefon, email, kancelarija, licna, titula, zvanje);
+
+				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+
+				dodajProfesora(ime, prezime, LocalDate.parse(datum, formatter), adresa, telefon, email, kancelarija, licna, titula, zvanje);
 
 			}
 		} catch (IOException e) {
@@ -134,8 +199,8 @@ public class BazaProfesora implements Serializable {
 
 	}
 
-	public void dodajProfesora(String ime, String prezime, String datum, String adresa, String telefon, String email,
-			String kancelarija, String licna, String titula, String zvanje) {
+	public void dodajProfesora(String ime, String prezime, LocalDate datum, String adresa, String telefon, String email,
+			String kancelarija, String licna, Titula titula, Zvanje zvanje) {
 		this.profesori.add(new Profesor(ime, prezime, datum, adresa, telefon, email, kancelarija, licna, titula, zvanje));
 	}
 
