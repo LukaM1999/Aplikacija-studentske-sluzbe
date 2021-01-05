@@ -83,7 +83,7 @@ public class BazaOcena implements Serializable {
 		case 3:
 			return String.valueOf(ocena.getVrednostOcene());
 		case 4:
-			return String.valueOf(ocena.getDatumPolaganja());
+			return ocena.getDatumPolaganja().format(DateTimeFormatter.ofPattern("dd.MM.yyyy."));
 		default:
 			return null;
 		}
@@ -118,7 +118,7 @@ public class BazaOcena implements Serializable {
 				DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 				
 				this.dodajPolozen(indeks, sifra, vrednostOcene, LocalDate.parse(datum, formatter));
-							
+				
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

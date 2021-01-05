@@ -5,6 +5,8 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 
 
@@ -26,7 +28,7 @@ public class Student {
 	private int godinaUpisa;
 	private int trenutnaGodina;
 	private Status statusStudenta;
-	private float prosecnaOcena = 0;
+	private double prosecnaOcena = 0;
 	private List<Ocena> spisakPolozenih = new ArrayList<Ocena>();
 	private List<Predmet> spisakNepolozenih = new ArrayList<Predmet>();
 	private List<Predmet> spisakSlobodnih = new ArrayList<Predmet>();
@@ -128,21 +130,26 @@ public class Student {
 		}
 	}
 	
-	public float getProsecnaOcena() {
+	public double getProsecnaOcena() {
 		return prosecnaOcena;
 	}
 	
-	public float izracunajProsek(List<Ocena> polozeni) {
-		float ukupno = 0;
+	public double izracunajProsek(List<Ocena> polozeni) {
+		double ukupno = 0;
 		int brOcena = 0;
 		for(Ocena o: polozeni) {
 			ukupno += o.getVrednostOcene();
 			brOcena++;
 		}
-		return ukupno/brOcena;
+		
+		if(Double.isNaN(ukupno/brOcena)) {
+			return 0;
+		}
+		//REFERENCE: https://stackoverflow.com/questions/2808535/round-a-double-to-2-decimal-places
+		return new BigDecimal(ukupno/brOcena).setScale(2, RoundingMode.HALF_UP).doubleValue();
 	}
 
-	public void setProsecnaOcena(float prosecnaOcena) {
+	public void setProsecnaOcena(double prosecnaOcena) {
 		this.prosecnaOcena = prosecnaOcena;
 	}
 

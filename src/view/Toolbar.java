@@ -111,105 +111,106 @@ public class Toolbar extends JToolBar {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				
-					if (Tabs.getInstance().getSelectedIndex() == 0) {
-						
-						if(TableStudent.getInstance().getSelectedRow()>=0) {
-						
-							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete studenta?", 
-																	"Brisanje studenta", JOptionPane.YES_NO_OPTION);
-							if(opcija == 0) {
-								String indeks = (String) TableStudent.getInstance()
-										.getValueAt(TableStudent.getInstance().getSelectedRow(), 0);
-								
+				if (Tabs.getInstance().getSelectedIndex() == 0) {
 
-								Iterator<Ocena> itO = OcenaController.getInstance().getOcene().iterator();
-								while (itO.hasNext()) {
-									Ocena o = itO.next();
-									if (o.getStudent().getBrIndeksa().equals(indeks)) {
-										itO.remove();
-									}
+					if (TableStudent.getInstance().getSelectedRow() >= 0) {
+
+						int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da želite da obrišete studenta?", "Brisanje studenta",
+								JOptionPane.YES_NO_OPTION);
+						if (opcija == 0) {
+							String indeks = (String) TableStudent.getInstance()
+									.getValueAt(TableStudent.getInstance().getSelectedRow(), 0);
+
+							Iterator<Ocena> itO = OcenaController.getInstance().getOcene().iterator();
+							while (itO.hasNext()) {
+								Ocena o = itO.next();
+								if (o.getStudent().getBrIndeksa().equals(indeks)) {
+									itO.remove();
 								}
+							}
 
-					// REFERENCE:
-					// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
-								Iterator<Student> itS = StudentController.getInstance().getStudenti().iterator();
-								while (itS.hasNext()) {
-									Student s = itS.next();
+							// REFERENCE:
+							// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+							Iterator<Student> itS = StudentController.getInstance().getStudenti().iterator();
+							while (itS.hasNext()) {
+								Student s = itS.next();
+								if (s.getBrIndeksa().equals(indeks)) {
+									itS.remove();
+									break;
+								}
+							}
+
+							Iterator<Predmet> itP = PredmetController.getInstance().getPredmeti().iterator();
+							while (itP.hasNext()) {
+								Predmet p = itP.next();
+								Iterator<Student> itStudent = p.getPolozili().iterator();
+								while (itStudent.hasNext()) {
+									Student s = itStudent.next();
 									if (s.getBrIndeksa().equals(indeks)) {
-										itS.remove();
+										itStudent.remove();
 										break;
 									}
 								}
-								
-								Iterator<Predmet> itP = PredmetController.getInstance().getPredmeti().iterator();
-								while (itP.hasNext()) {
-									Predmet p = itP.next();
-									Iterator<Student> itStudent = p.getPolozili().iterator();
-									while(itStudent.hasNext()) {
-										Student s = itStudent.next();
-										if(s.getBrIndeksa().equals(indeks)) {
-											itStudent.remove();
-											break;
-										}
+							}
+
+							while (itP.hasNext()) {
+								Predmet p = itP.next();
+								Iterator<Student> itStudent = p.getNepolozeni().iterator();
+								while (itStudent.hasNext()) {
+									Student s = itStudent.next();
+									if (s.getBrIndeksa().equals(indeks)) {
+										itStudent.remove();
+										break;
 									}
 								}
-								
-								while (itP.hasNext()) {
-									Predmet p = itP.next();
-									Iterator<Student> itStudent = p.getNepolozeni().iterator();
-									while(itStudent.hasNext()) {
-										Student s = itStudent.next();
-										if(s.getBrIndeksa().equals(indeks)) {
-											itStudent.remove();
-											break;
-										}
-									}
-								}
+							}
 
-								MainFrame.getInstance().azurirajStudente("Uklonjen", -1);
+							MainFrame.getInstance().azurirajStudente("Uklonjen", -1);
 
-							}				
 						}
 					}
-					
-					if (Tabs.getInstance().getSelectedIndex() == 1) { 
-						
-						if(TableProfesor.getInstance().getSelectedRow()>=0) {
-							
-							int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(), "Da li ste sigurni da želite da obrišete profesora?", 
-								  									"Brisanje profesora", JOptionPane.YES_NO_OPTION);
-							if(opcija == 0) {
-								
-								Profesor prof = ProfesorController.getInstance().getProfesor(TableProfesor.getInstance().getSelectedRow());
-								String licna = prof.getBrLicneKarte();
+				}
 
+				if (Tabs.getInstance().getSelectedIndex() == 1) {
 
-					// REFERENCE:
-					// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
-								Iterator<Profesor> itP = ProfesorController.getInstance().getProfesori().iterator();
-								while (itP.hasNext()) {
-									Profesor p = itP.next();
-									if (p.getBrLicneKarte().equals(licna)) {
-										itP.remove();
-										break;
+					if (TableProfesor.getInstance().getSelectedRow() >= 0) {
+
+						int opcija = JOptionPane.showConfirmDialog(MainFrame.getInstance(),
+								"Da li ste sigurni da želite da obrišete profesora?", "Brisanje profesora",
+								JOptionPane.YES_NO_OPTION);
+						if (opcija == 0) {
+
+							Profesor prof = ProfesorController.getInstance()
+									.getProfesor(TableProfesor.getInstance().getSelectedRow());
+							String licna = prof.getBrLicneKarte();
+
+							// REFERENCE:
+							// https://stackoverflow.com/questions/602636/why-is-a-concurrentmodificationexception-thrown-and-how-to-debug-it
+							Iterator<Profesor> itP = ProfesorController.getInstance().getProfesori().iterator();
+							while (itP.hasNext()) {
+								Profesor p = itP.next();
+								if (p.getBrLicneKarte().equals(licna)) {
+									itP.remove();
+									break;
+								}
+							}
+
+							Iterator<Predmet> itPredmet = PredmetController.getInstance().getPredmeti().iterator();
+							while (itPredmet.hasNext()) {
+								Predmet p = itPredmet.next();
+								if (p.getProfesor() != null) {
+									if (p.getProfesor().getBrLicneKarte().equals(licna)) {
+										p.setProfesor(null);
 									}
 								}
-								
-								Iterator<Predmet> itPredmet = PredmetController.getInstance().getPredmeti().iterator();
-								while (itPredmet.hasNext()) {
-									Predmet p = itPredmet.next();
-									if(p.getProfesor().getBrLicneKarte().equals(licna)) {
-										p.setProfesor(null);
-									}		
-								}
-								
+							}
 
-								MainFrame.getInstance().azurirajProfesore("Uklonjen", -1);
+							MainFrame.getInstance().azurirajProfesore("Uklonjen", -1);
 
-							
-							} 						
-						} 
-					}  					  
+						}
+					}
+				}				  
 					
 					if (Tabs.getInstance().getSelectedIndex() == 2) { 
 							

@@ -5,6 +5,8 @@ import java.awt.Font;
 import java.awt.Frame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
@@ -64,7 +66,7 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	private TableNepolozeniIspiti nepolozeniTable;
 
-	private float avgOcena = 0;
+	private double avgOcena = 0;
 
 	private int ukupnoESPB = 0;
 
@@ -920,24 +922,24 @@ public class IzmeniStudentaDialog extends JDialog {
 	}
 
 	public void izracunaj(Student s) {
-		float prosecnaOcena = 0;
-		float brOcena = 0;
+		double prosecnaOcena = 0;
+		int brOcena = 0;
 		for (int i = 0; i < s.getSpisakPolozenih().size(); i++) {
 			prosecnaOcena += s.getSpisakPolozenih().get(i).getVrednostOcene();
 			brOcena++;
-			validate();
 		}
-		avgOcena = prosecnaOcena / brOcena;
-
+		
 		// REFERENCE: https://www.baeldung.com/java-not-a-number
-		if (Float.isNaN(avgOcena)) {
-			avgOcena = 0;
+		if (Double.isNaN(prosecnaOcena/brOcena)) {
+					avgOcena = 0;
+		}
+		else {
+			avgOcena = new BigDecimal(prosecnaOcena/brOcena).setScale(2, RoundingMode.HALF_UP).doubleValue();
 		}
 
 		ukupnoESPB = 0;
 		for (int i = 0; i < s.getSpisakPolozenih().size(); i++) {
 			ukupnoESPB += s.getSpisakPolozenih().get(i).getPredmet().getESPB();
-			validate();
 		}
 	}
 

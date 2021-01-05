@@ -2,6 +2,7 @@ package model;
 
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +72,7 @@ public class BazaPolozenihIspita {
 		case 3:
 			return String.valueOf(ocena.getVrednostOcene());
 		case 4:
-			return String.valueOf(ocena.getDatumPolaganja());
+			return ocena.getDatumPolaganja().format(DateTimeFormatter.ofPattern("dd.MM.yyyy."));
 		default:
 			return null;
 		}

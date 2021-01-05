@@ -365,7 +365,7 @@ public class TableStudent extends JTable {
 
 		for (Student s : StudentController.getInstance().getStudenti()) {
 			s.setProsecnaOcena(s.izracunajProsek(s.getSpisakPolozenih()));
-			if (Float.isNaN(s.getProsecnaOcena())) {
+			if (Double.isNaN(s.getProsecnaOcena())) {
 				s.setProsecnaOcena(0);
 			}
 
