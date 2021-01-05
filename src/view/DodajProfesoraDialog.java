@@ -507,6 +507,7 @@ public class DodajProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.NORTH, zvanjeCombo, 11, SpringLayout.NORTH, zvanje);
 		springLayout.putConstraint(SpringLayout.WEST, zvanjeCombo, 6, SpringLayout.EAST, zvanje);
 		springLayout.putConstraint(SpringLayout.EAST, zvanjeCombo, 0, SpringLayout.EAST, imeUnos);
+		zvanjeCombo.setBackground(Color.white);
 		zvanjeCombo.setSelectedIndex(0);
 		getContentPane().add(zvanjeCombo);
 		

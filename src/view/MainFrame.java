@@ -10,15 +10,14 @@ import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.File;
-import java.io.IOException;
 
 import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
+import controller.PredmetController;
+import controller.ProfesorController;
 import controller.StudentController;
-import model.BazaStudenata;
-import model.Student;
 
 //Koriscen materijal sa vezbi
 public class MainFrame extends JFrame {
@@ -145,16 +144,11 @@ public class MainFrame extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				
-				//StudentController.getInstance().Xstream("deserijalizacija" + File.separator + "studenti.xml");
+				StudentController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti.xml");
+				ProfesorController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "profesori.xml"); 
+				PredmetController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "predmeti.xml"); 
 				
-					  try {
-						BazaStudenata.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti.xml");
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					} 
-					
-				 
+				setDefaultCloseOperation(EXIT_ON_CLOSE);
 			}
 			
 			@Override

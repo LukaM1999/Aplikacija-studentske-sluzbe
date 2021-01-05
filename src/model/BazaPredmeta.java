@@ -1,14 +1,19 @@
 package model;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
 
 import controller.OcenaController;
 import controller.ProfesorController;
@@ -34,6 +39,7 @@ public class BazaPredmeta implements Serializable {
 	
 	private List<Predmet> predmeti;
 	private List<String> kolone;
+	private Predmet[] niz;
 	
 	private BazaPredmeta() {
 		
@@ -159,6 +165,35 @@ public class BazaPredmeta implements Serializable {
 		}
 
 	}
+	
+	public void XstreamSerialization(String putanja) throws IOException {
+		
+		niz = new Predmet[predmeti.size()];
+		
+		for (int i = 0; i < predmeti.size(); i++) {
+			niz[i] = predmeti.get(i);
+		}
+		
+		File f = new File(putanja);
+		OutputStream os = new BufferedOutputStream(new FileOutputStream(f));
+		try {
+
+			XStream xs = new XStream();
+			// Naziv tag-a u xml umesto punog naziva klase.
+			xs.alias("predmet", Predmet.class);
+
+			// Serijalizacija u xml.
+			xs.toXML(niz, os); 
+
+
+
+		} finally {
+			os.close();
+		}
+		
+}
+	
+	
 	
 	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar, Profesor p) {
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godinaStudija, ESPB, p));

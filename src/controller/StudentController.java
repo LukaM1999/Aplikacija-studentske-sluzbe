@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.BazaStudenata;
@@ -56,5 +57,15 @@ public class StudentController {
 		return BazaStudenata.getInstance().getStudent(indeks);
 	}
 	
-
+	public void XstreamSerialization(String putanja) {
+		try {
+			BazaStudenata.getInstance().XstreamSerialization(putanja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 }

@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.BazaProfesora;
@@ -49,5 +50,14 @@ public class ProfesorController {
 		
 		public Profesor getProfesor(int row) {
 			return BazaProfesora.getInstance().getRow(row);
+		}
+		
+		public void XstreamSerialization(String putanja) {
+			try {
+				BazaProfesora.getInstance().XstreamSerialization(putanja);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 }

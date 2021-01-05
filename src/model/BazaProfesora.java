@@ -1,16 +1,21 @@
 package model;
 
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
 
 import model.Profesor.Titula;
 import model.Profesor.Zvanje;
@@ -34,7 +39,8 @@ public class BazaProfesora implements Serializable {
 
 	private List<Profesor> profesori;
 	private List<String> kolone;
-
+	private Profesor[] niz;
+	
 	private BazaProfesora() {
 		
 		deserijalizacija("deserijalizacija" + File.separator + "profesori.txt" );
@@ -199,6 +205,35 @@ public class BazaProfesora implements Serializable {
 
 	}
 
+	public void XstreamSerialization(String putanja) throws IOException {
+			
+			niz = new Profesor[profesori.size()];
+			
+			for (int i = 0; i < profesori.size(); i++) {
+				niz[i] = profesori.get(i);
+			}
+			
+			File f = new File(putanja);
+			OutputStream os = new BufferedOutputStream(new FileOutputStream(f));
+			try {
+	
+				XStream xs = new XStream();
+				// Naziv tag-a u xml umesto punog naziva klase.
+				xs.alias("profesor", Profesor.class);
+	
+				// Serijalizacija u xml.
+				xs.toXML(niz, os); 
+	
+	
+	
+			} finally {
+				os.close();
+			}
+			
+	}
+	
+	
+	
 	public void dodajProfesora(String ime, String prezime, LocalDate datum, String adresa, String telefon, String email,
 			String kancelarija, String licna, Titula titula, Zvanje zvanje) {
 		this.profesori.add(new Profesor(ime, prezime, datum, adresa, telefon, email, kancelarija, licna, titula, zvanje));

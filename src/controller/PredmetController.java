@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.BazaPredmeta;
@@ -52,5 +53,14 @@ public class PredmetController {
 	
 	public void popuniListuPolozili (Predmet p) {
 		BazaPredmeta.getInstance().dodajPolozili(p.getSifra());
+	}
+	
+	public void XstreamSerialization(String putanja) {
+		try {
+			BazaPredmeta.getInstance().XstreamSerialization(putanja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

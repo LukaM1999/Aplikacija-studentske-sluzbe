@@ -504,6 +504,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.NORTH, titulaCombo, 11, SpringLayout.NORTH, titula);
 		springLayout.putConstraint(SpringLayout.WEST, titulaCombo, 6, SpringLayout.EAST, titula);
 		springLayout.putConstraint(SpringLayout.EAST, titulaCombo, 0, SpringLayout.EAST, imeUnos);
+		titulaCombo.setBackground(Color.white);
 		titulaCombo.setSelectedIndex(0);
 		panel.add(titulaCombo);
 		
@@ -514,6 +515,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.NORTH, zvanjeCombo, 11, SpringLayout.NORTH, zvanje);
 		springLayout.putConstraint(SpringLayout.WEST, zvanjeCombo, 6, SpringLayout.EAST, zvanje);
 		springLayout.putConstraint(SpringLayout.EAST, zvanjeCombo, 0, SpringLayout.EAST, imeUnos);
+		zvanjeCombo.setBackground(Color.white);
 		zvanjeCombo.setSelectedIndex(0);
 		panel.add(zvanjeCombo);		
 		
