@@ -19,8 +19,11 @@ import javax.swing.SpringLayout;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
+import controller.NepolozeniIspitiController;
 import controller.PredmetController;
 import controller.ProfesorController;
+import controller.ProfesorPredajeController;
+import model.BazaNepolozenihIspita;
 import model.Predmet;
 import model.Predmet.Semestar;
 import model.Profesor;
@@ -341,17 +344,68 @@ public class IzmeniPredmetDialog extends JDialog {
 						
 						String[] imePrezimeProf = profesorUnos.getText().split(" ");
 						
+						
+						ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+						//REFERENCE: https://stackoverflow.com/questions/886955/how-do-i-break-out-of-nested-loops-in-java
+						outerloop:
 						for(Profesor prof: ProfesorController.getInstance().getProfesori()) {
+							System.out.println("Lol");
 							if(prof.getIme().equals(imePrezimeProf[0]) && prof.getPrezime().equals(imePrezimeProf[1])) {
-								predmet.setProfesor(prof);
-								prof.dodajPredajePredmet(predmet);
-								prof.izbrisiSlobodan(predmet);
-								break;
+								for(Predmet predavan: prof.getPredajePredmet()) {
+									if(predavan.getSifra().equals(sifraVrednost)) {
+										System.out.println("One time");
+										break;
+									}
+									System.out.println("Here i am");
+									ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+									predmet.setProfesor(prof);
+									prof.izbrisiPredajePredmet(predmet.getSifra());
+									prof.dodajPredajePredmet(predmet);
+									prof.izbrisiSlobodan(predmet);
+									ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+									
+									System.out.println(ProfesorPredajeController.getInstance().getPredmeti().size());
+									for(Predmet p: ProfesorPredajeController.getInstance().getPredmeti()) {
+										if(p.getSifra().equals(sifraVrednost)) {
+											
+											System.out.println("Mars");
+											
+											p.setSifra(sifraVrednost);
+											p.setNaziv(nazivVrednost);
+											p.setESPB(Integer.parseInt(ESPBVrednost));
+											p.setGodinaStudija(godinaStudija);
+											p.setSemestar(semestarVrednost);
+										}
+									}
+									
+									break outerloop;
+								}
 							}
 						}
 					}
+					
+					for(Predmet p: NepolozeniIspitiController.getInstance().getPredmeti()) {
+						System.out.println("Nmp");
+						if(p.getSifra().equals(sifraVrednost)) {
+							p.setSifra(sifraVrednost);
+							p.setNaziv(nazivVrednost);
+							p.setESPB(Integer.parseInt(ESPBVrednost));
+							p.setGodinaStudija(godinaStudija);
+							p.setSemestar(semestarVrednost);
+						}
+					}
+					
+					
+					
+					/*
+					 * for(Predmet p: ProfesorPredajeController.getInstance().getPredmeti()) {
+					 * if(p.getSifra().equals(sifraVrednost)) { System.out.println("Mars");
+					 * p.setSifra(sifraVrednost); p.setNaziv(nazivVrednost);
+					 * p.setESPB(Integer.parseInt(ESPBVrednost)); p.setGodinaStudija(godinaStudija);
+					 * p.setSemestar(semestarVrednost); } }
+					 */
 										
-					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());
+					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());					
 					
 					dispose();
 				}

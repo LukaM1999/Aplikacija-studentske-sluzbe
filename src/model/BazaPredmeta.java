@@ -1,12 +1,14 @@
 package model;
 
 import java.io.BufferedOutputStream;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -43,7 +45,14 @@ public class BazaPredmeta implements Serializable {
 	
 	private BazaPredmeta() {
 		
-		deserijalizacija("deserijalizacija" + File.separator + "predmeti.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "predmeti.txt");
+		
+		try {
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "predmeti.xml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");
@@ -184,16 +193,36 @@ public class BazaPredmeta implements Serializable {
 
 			// Serijalizacija u xml.
 			xs.toXML(niz, os); 
+			
+		} finally {
+			os.close();
+		}
+	}
+	
+		
 
+	public void XstreamDeserialization(String putanja) throws IOException {
 
+		init();
+
+		File f = new File(putanja);
+		InputStream os = new BufferedInputStream(new FileInputStream(f));
+		try {
+
+			XStream xs = new XStream();
+			xs.alias("predmet", Predmet.class);
+
+			Predmet[] ucitaniPredmeti = (Predmet[]) xs.fromXML(os);
+
+			for (Predmet predmet : ucitaniPredmeti) {
+				predmeti.add(predmet);
+			}
 
 		} finally {
 			os.close();
 		}
-		
-}
-	
-	
+	}
+
 	
 	public void dodajPredmet(String sifra, String naziv, int ESPB, int godinaStudija, Semestar semestar, Profesor p) {
 		this.predmeti.add(new Predmet(sifra, naziv, semestar, godinaStudija, ESPB, p));

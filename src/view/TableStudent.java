@@ -305,8 +305,7 @@ public class TableStudent extends JTable {
 
 							@Override
 							public int compare(Student arg0, Student arg1) {
-								return String.valueOf(arg0.getProsecnaOcena())
-										.compareTo(String.valueOf(arg1.getProsecnaOcena()));
+								return Double.compare(arg0.getProsecnaOcena(), arg1.getProsecnaOcena());
 							}
 						});
 						
@@ -322,8 +321,7 @@ public class TableStudent extends JTable {
 
 							@Override
 							public int compare(Student arg0, Student arg1) {
-								return String.valueOf(arg1.getProsecnaOcena())
-										.compareTo(String.valueOf(arg0.getProsecnaOcena()));
+								return Double.compare(arg1.getProsecnaOcena(), arg0.getProsecnaOcena());
 							}
 						});
 						

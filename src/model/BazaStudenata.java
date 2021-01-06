@@ -1,5 +1,6 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,6 +8,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.Serializable;
@@ -42,8 +44,14 @@ public class BazaStudenata implements Serializable {
 	
 	private BazaStudenata() {
 
-		deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
 				 		 
+		try {
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "studenti.xml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Indeks");
@@ -187,6 +195,32 @@ public class BazaStudenata implements Serializable {
 		
 	}
 	
+	public void XstreamDeserialization(String putanja) throws IOException {
+		
+		init();
+		
+		File f = new File(putanja);
+		InputStream os = new BufferedInputStream(new FileInputStream(f));
+		try {
+
+			XStream xs = new XStream();
+			xs.alias("student", Student.class);
+
+			Student[] ucitaniStudenti = (Student[]) xs.fromXML(os);
+			
+			for(Student student: ucitaniStudenti) {
+				studenti.add(student);
+			}
+
+
+
+		} finally {
+			os.close();
+		}
+		
+		
+		
+	}
 
 	public Student getStudent(String indeks) {
 		for (Student s : studenti) {

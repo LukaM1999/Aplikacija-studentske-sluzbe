@@ -53,8 +53,17 @@ public class ProfesorController {
 		}
 		
 		public void XstreamSerialization(String putanja) {
+				try {
+					BazaProfesora.getInstance().XstreamSerialization(putanja);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		}
+		
+		public void XstreamDeserialization(String putanja) {
 			try {
-				BazaProfesora.getInstance().XstreamSerialization(putanja);
+				BazaProfesora.getInstance().XstreamDeserialization(putanja);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

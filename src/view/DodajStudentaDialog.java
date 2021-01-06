@@ -41,12 +41,12 @@ public class DodajStudentaDialog extends JDialog {
 
 	private String telefonSablon = "[0-9]{8,12}?";
 
-	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
+	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
 
 	// REFERENCE:
 	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
+	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
@@ -633,7 +633,7 @@ public class DodajStudentaDialog extends JDialog {
 
 				for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {
 					if (PredmetController.getInstance().getPredmet(i).getGodinaStudija() <= godinaStudija + 1) {
-						student.dodajNepolozen(PredmetController.getInstance().getPredmet(i));
+						student.dodajSlobodan(PredmetController.getInstance().getPredmet(i));
 					}
 				}
 

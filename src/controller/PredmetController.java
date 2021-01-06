@@ -63,4 +63,13 @@ public class PredmetController {
 			e.printStackTrace();
 		}
 	}
+
+	public void XstreamDeserialization(String putanja) {
+		try {
+			BazaPredmeta.getInstance().XstreamDeserialization(putanja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }

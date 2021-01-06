@@ -66,6 +66,13 @@ public class StudentController {
 		}
 	}
 	
-	
-	
+	public void XstreamDeserialization(String putanja) {
+		try {
+			BazaStudenata.getInstance().XstreamDeserialization(putanja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 }

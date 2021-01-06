@@ -167,6 +167,11 @@ public class BazaOcena implements Serializable {
 				List<Predmet> predmeti = PredmetController.getInstance().getPredmeti();
 				for (int j = 0; j < predmeti.size(); j++) {
 					if(sifra.equals(predmeti.get(j).getSifra())) {
+						for(Ocena o: polozio.getSpisakPolozenih()) {
+							if(o.getPredmet().getSifra().equals(sifra)) {
+								return;
+							}
+						}
 						Predmet polozenPredmet = predmeti.get(j);
 						dodajOcenu(polozio, polozenPredmet, vrednostOcene, datum);
 						break;
