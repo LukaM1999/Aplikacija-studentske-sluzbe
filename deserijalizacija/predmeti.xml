@@ -16,7 +16,16 @@
       <titula>MSc</titula>
       <zvanje>vanredni_profesor</zvanje>
       <predajePredmet>
-        <predmet reference="../../.."/>
+        <predmet>
+          <sifra>ALG1</sifra>
+          <naziv>Algebra</naziv>
+          <semestar>Letnji</semestar>
+          <godinaStudija>1</godinaStudija>
+          <profesor reference="../../.."/>
+          <ESPB>9</ESPB>
+          <polozili/>
+          <nisuPolozili/>
+        </predmet>
         <predmet>
           <sifra>FIZ1</sifra>
           <naziv>Fizika</naziv>
@@ -190,7 +199,32 @@
     </polozili>
     <nisuPolozili/>
   </predmet>
-  <predmet reference="../predmet/profesor/predajePredmet/predmet[2]"/>
+  <predmet>
+    <sifra>FIZ1</sifra>
+    <naziv>Fizika</naziv>
+    <semestar>Letnji</semestar>
+    <godinaStudija>1</godinaStudija>
+    <profesor>
+      <ime>Nina</ime>
+      <prezime>Popovic</prezime>
+      <datumRodjenja>1966-03-22</datumRodjenja>
+      <adresa>Bulevar patrijarha Pavla 72, Novi Sad</adresa>
+      <telefon>021596978</telefon>
+      <email>NinaPopovic4@gmail.com</email>
+      <kancelarija>Bulevar despota Stefana 32</kancelarija>
+      <brLicneKarte>476930683</brLicneKarte>
+      <titula>MSc</titula>
+      <zvanje>vanredni_profesor</zvanje>
+      <predajePredmet>
+        <predmet reference="../../../../predmet"/>
+        <predmet reference="../../.."/>
+      </predajePredmet>
+      <predmetiBezProfesora/>
+    </profesor>
+    <ESPB>9</ESPB>
+    <polozili/>
+    <nisuPolozili/>
+  </predmet>
   <predmet>
     <sifra>LPRS1</sifra>
     <naziv>Logicko projektovanje racunarskih sistema 1</naziv>
@@ -413,7 +447,7 @@
     <sifra>OIS573</sifra>
     <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
     <semestar>Letnji</semestar>
-    <godinaStudija>3</godinaStudija>
+    <godinaStudija>1</godinaStudija>
     <ESPB>6</ESPB>
     <polozili/>
     <nisuPolozili>
@@ -900,7 +934,7 @@
           <predmet reference="../../../../../predmet"/>
           <predmet reference="../../../../../predmet[2]"/>
           <predmet reference="../../../../../predmet[3]"/>
-          <predmet reference="../../../../../predmet/profesor/predajePredmet/predmet[2]"/>
+          <predmet reference="../../../../../predmet[4]"/>
           <predmet reference="../../../../../predmet[5]"/>
           <predmet reference="../../../../../predmet[6]"/>
           <predmet reference="../../../../../predmet[7]"/>
@@ -4182,6 +4216,1616 @@
         </spisakSlobodnih>
       </model.Student>
       <model.Student reference="../model.Student"/>
+      <model.Student>
+        <ime>Mihajlo</ime>
+        <prezime>Kisic</prezime>
+        <datumRodjenja>1999-10-21</datumRodjenja>
+        <adresa>Suboticka 33, Novi Sad</adresa>
+        <telefon>062215561</telefon>
+        <email>kisic.ra183.2018@uns.ac.rs</email>
+        <brIndeksa>RA-183-2018</brIndeksa>
+        <godinaUpisa>2018</godinaUpisa>
+        <trenutnaGodina>3</trenutnaGodina>
+        <statusStudenta>B</statusStudenta>
+        <prosecnaOcena>0.0</prosecnaOcena>
+        <spisakPolozenih/>
+        <spisakNepolozenih>
+          <predmet reference="../../../.."/>
+          <predmet reference="../../../../../predmet"/>
+        </spisakNepolozenih>
+        <spisakSlobodnih>
+          <predmet>
+            <sifra>OET1</sifra>
+            <naziv>Osnovi elektrotehnike</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>2</godinaStudija>
+            <ESPB>9</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>OS3</sifra>
+            <naziv>Operativni sistemi</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>2</godinaStudija>
+            <profesor>
+              <ime>Petar</ime>
+              <prezime>Cvetkovic</prezime>
+              <datumRodjenja>1971-04-11</datumRodjenja>
+              <adresa>Suboticki bulevar 7, Subotica</adresa>
+              <telefon>021131148</telefon>
+              <email>PetarCvetkovic13@gmail.com</email>
+              <kancelarija>Narodnog fronta 65</kancelarija>
+              <brLicneKarte>444457489</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>redovni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>ARH1</sifra>
+                  <naziv>Arhitektura racunara</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>9</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+                <predmet>
+                  <sifra>OP1</sifra>
+                  <naziv>Objektno programiranje</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>3</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>8</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+                <predmet>
+                  <sifra>PJSP342</sifra>
+                  <naziv>Programski jezici i strukture podataka</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>9</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>8</ESPB>
+            <polozili>
+              <model.Student>
+                <ime>Dunja</ime>
+                <prezime>Jovanovic</prezime>
+                <datumRodjenja>1999-07-25</datumRodjenja>
+                <adresa>Iva Andrica 43, Novi Sad</adresa>
+                <telefon>021883300</telefon>
+                <email>DunjaJovanovic12@gmail.com</email>
+                <brIndeksa>RA-119-2019</brIndeksa>
+                <godinaUpisa>2019</godinaUpisa>
+                <trenutnaGodina>2</trenutnaGodina>
+                <statusStudenta>S</statusStudenta>
+                <prosecnaOcena>9.5</prosecnaOcena>
+                <spisakPolozenih>
+                  <model.Ocena>
+                    <student reference="../../.."/>
+                    <predmet>
+                      <sifra>ENG1</sifra>
+                      <naziv>Engleski 1</naziv>
+                      <semestar>Letnji</semestar>
+                      <godinaStudija>2</godinaStudija>
+                      <profesor>
+                        <ime>Una</ime>
+                        <prezime>Todorovic</prezime>
+                        <datumRodjenja>1964-05-11</datumRodjenja>
+                        <adresa>Fruskogorska 92, Novi Sad</adresa>
+                        <telefon>021437897</telefon>
+                        <email>UnaTodorovic8@gmail.com</email>
+                        <kancelarija>Mise Dimitrijevica 62</kancelarija>
+                        <brLicneKarte>333399959</brLicneKarte>
+                        <titula>mr</titula>
+                        <zvanje>vanredni_profesor</zvanje>
+                        <predajePredmet>
+                          <predmet>
+                            <sifra>ENG2</sifra>
+                            <naziv>Engleski 2</naziv>
+                            <semestar>Letnji</semestar>
+                            <godinaStudija>1</godinaStudija>
+                            <profesor reference="../../.."/>
+                            <ESPB>3</ESPB>
+                            <polozili/>
+                            <nisuPolozili/>
+                          </predmet>
+                          <predmet reference="../../.."/>
+                        </predajePredmet>
+                        <predmetiBezProfesora/>
+                      </profesor>
+                      <ESPB>3</ESPB>
+                      <polozili>
+                        <model.Student reference="../../../../.."/>
+                        <model.Student>
+                          <ime>Ognjen</ime>
+                          <prezime>Krstic</prezime>
+                          <datumRodjenja>1982-09-25</datumRodjenja>
+                          <adresa>Lasla Gala 17, Novi Sad</adresa>
+                          <telefon>021926860</telefon>
+                          <email>OgnjenKrstic2@gmail.com</email>
+                          <brIndeksa>EE-78-2016</brIndeksa>
+                          <godinaUpisa>2016</godinaUpisa>
+                          <trenutnaGodina>4</trenutnaGodina>
+                          <statusStudenta>S</statusStudenta>
+                          <prosecnaOcena>7.0</prosecnaOcena>
+                          <spisakPolozenih>
+                            <model.Ocena>
+                              <student reference="../../.."/>
+                              <predmet reference="../../../../.."/>
+                              <vrednostOcene>7</vrednostOcene>
+                              <datumPolaganja>2017-07-19</datumPolaganja>
+                            </model.Ocena>
+                          </spisakPolozenih>
+                          <spisakNepolozenih/>
+                          <spisakSlobodnih/>
+                        </model.Student>
+                        <model.Student reference="../../../../.."/>
+                        <model.Student reference="../model.Student[2]"/>
+                      </polozili>
+                      <nisuPolozili/>
+                    </predmet>
+                    <vrednostOcene>10</vrednostOcene>
+                    <datumPolaganja>2020-01-25</datumPolaganja>
+                  </model.Ocena>
+                  <model.Ocena>
+                    <student reference="../../.."/>
+                    <predmet reference="../../../../.."/>
+                    <vrednostOcene>9</vrednostOcene>
+                    <datumPolaganja>2020-06-05</datumPolaganja>
+                  </model.Ocena>
+                </spisakPolozenih>
+                <spisakNepolozenih/>
+                <spisakSlobodnih/>
+              </model.Student>
+              <model.Student reference="../model.Student"/>
+            </polozili>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>FIZ1</sifra>
+            <naziv>Fizika</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>1</godinaStudija>
+            <profesor>
+              <ime>Nina</ime>
+              <prezime>Popovic</prezime>
+              <datumRodjenja>1966-03-22</datumRodjenja>
+              <adresa>Bulevar patrijarha Pavla 72, Novi Sad</adresa>
+              <telefon>021596978</telefon>
+              <email>NinaPopovic4@gmail.com</email>
+              <kancelarija>Bulevar despota Stefana 32</kancelarija>
+              <brLicneKarte>476930683</brLicneKarte>
+              <titula>MSc</titula>
+              <zvanje>vanredni_profesor</zvanje>
+              <predajePredmet>
+                <predmet>
+                  <sifra>ALG1</sifra>
+                  <naziv>Algebra</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>9</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+                <predmet reference="../../.."/>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>9</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>LPRS1</sifra>
+            <naziv>Logicko projektovanje racunarskih sistema 1</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>2</godinaStudija>
+            <profesor>
+              <ime>Vukasin</ime>
+              <prezime>Popovic</prezime>
+              <datumRodjenja>1965-09-24</datumRodjenja>
+              <adresa>Mise Dimitrijevica 95,Novi Sad</adresa>
+              <telefon>021965771</telefon>
+              <email>VukasinPopovic2@gmail.com</email>
+              <kancelarija>Bulevar Mihajla Pupina 71</kancelarija>
+              <brLicneKarte>999594934</brLicneKarte>
+              <titula>prof_dr</titula>
+              <zvanje>redovni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>BP1</sifra>
+                  <naziv>Baze podataka 1</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>1</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>8</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>6</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>VSP342</sifra>
+            <naziv>Verovatnoca i slucajni procesi</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>2</godinaStudija>
+            <profesor>
+              <ime>Sara</ime>
+              <prezime>Tomic</prezime>
+              <datumRodjenja>1981-04-12</datumRodjenja>
+              <adresa>Fruskogorska 4, Nis</adresa>
+              <telefon>021880625</telefon>
+              <email>SaraTomic18@gmail.com</email>
+              <kancelarija>Dr Ivana Ribara 2</kancelarija>
+              <brLicneKarte>748602789</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>vanredni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>5</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>SPP1</sifra>
+            <naziv>Sistemska programska podrska u realnom vremenu 1</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>1</godinaStudija>
+            <profesor>
+              <ime>Milica</ime>
+              <prezime>Savic</prezime>
+              <datumRodjenja>1984-02-19</datumRodjenja>
+              <adresa>Drage Spasic 48, Beograd</adresa>
+              <telefon>021906373</telefon>
+              <email>MilicaSavic4@gmail.com</email>
+              <kancelarija>Gogoljeva 80</kancelarija>
+              <brLicneKarte>684807648</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>vanredni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>SAT649</sifra>
+                  <naziv>Socioloski aspekti tehnickog razvoja</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>3</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>6</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>SAU856</sifra>
+            <naziv>Sistemi automatskog upravljanja</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>1</godinaStudija>
+            <profesor>
+              <ime>Ana</ime>
+              <prezime>Savic</prezime>
+              <datumRodjenja>1961-08-21</datumRodjenja>
+              <adresa>Narodnog fronta 65, Novi Sad</adresa>
+              <telefon>021881609</telefon>
+              <email>AnaSavic14@gmail.com</email>
+              <kancelarija>Bulevar despota Stefana 71</kancelarija>
+              <brLicneKarte>890265768</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>redovni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>MO1</sifra>
+                  <naziv>Metode optimizacije</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>1</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>8</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+                <predmet>
+                  <sifra>MISS1</sifra>
+                  <naziv>Modeliranje i simulacija sistema</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>8</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>8</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>MA1</sifra>
+            <naziv>Matematicka analiza 1</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>3</godinaStudija>
+            <profesor>
+              <ime>Jana</ime>
+              <prezime>Petrovic</prezime>
+              <datumRodjenja>1961-04-25</datumRodjenja>
+              <adresa>Boska Buhe 82, Beograd</adresa>
+              <telefon>021141872</telefon>
+              <email>JanaPetrovic13@gmail.com</email>
+              <kancelarija>Bulevar Jase Tomica 64</kancelarija>
+              <brLicneKarte>446488941</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>vanredni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>MA2</sifra>
+                  <naziv>Matematicka analiza 2</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>2</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>8</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>9</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet reference="../predmet[8]/profesor/predajePredmet/predmet[2]"/>
+          <predmet reference="../predmet[2]/profesor/predajePredmet/predmet[2]"/>
+          <predmet reference="../predmet[2]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet/profesor/predajePredmet/predmet"/>
+          <predmet reference="../predmet[2]/profesor/predajePredmet/predmet[3]"/>
+          <predmet reference="../predmet[4]/profesor/predajePredmet/predmet[2]"/>
+          <predmet reference="../predmet[2]/profesor/predajePredmet/predmet[4]"/>
+          <predmet reference="../predmet[6]/profesor/predajePredmet/predmet[2]"/>
+          <predmet reference="../predmet[7]/profesor/predajePredmet/predmet[2]"/>
+          <predmet>
+            <sifra>NNS8</sifra>
+            <naziv>Numericki algoritmi i numericki softver</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>1</godinaStudija>
+            <profesor>
+              <ime>Dunja</ime>
+              <prezime>Krstic</prezime>
+              <datumRodjenja>1978-08-25</datumRodjenja>
+              <adresa>Dr Ivana Ribara 42, Novi Sad</adresa>
+              <telefon>021851274</telefon>
+              <email>DunjaKrstic11@gmail.com</email>
+              <kancelarija>Bulevar Mihajla Pupina 79</kancelarija>
+              <brLicneKarte>098492051</brLicneKarte>
+              <titula>dr</titula>
+              <zvanje>asistent_sa_doktoratom</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>4</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet reference="../predmet[7]/profesor/predajePredmet/predmet[3]"/>
+          <predmet reference="../predmet[2]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet"/>
+          <predmet>
+            <sifra>BP2</sifra>
+            <naziv>Baze podataka 2</naziv>
+            <semestar>Zimski</semestar>
+            <godinaStudija>2</godinaStudija>
+            <profesor>
+              <ime>Masa</ime>
+              <prezime>Ilic</prezime>
+              <datumRodjenja>1976-04-11</datumRodjenja>
+              <adresa>Dr Sime Milosevica 32, Sremska Mitrovica</adresa>
+              <telefon>021634494</telefon>
+              <email>MasaIlic20@gmail.com</email>
+              <kancelarija>Tolstojeva 82</kancelarija>
+              <brLicneKarte>487011254</brLicneKarte>
+              <titula>mr</titula>
+              <zvanje>asistent</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+              </predajePredmet>
+              <predmetiBezProfesora/>
+            </profesor>
+            <ESPB>6</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+          <predmet>
+            <sifra>E441</sifra>
+            <naziv>Robotika</naziv>
+            <semestar>Letnji</semestar>
+            <godinaStudija>2</godinaStudija>
+            <profesor>
+              <ime>Pera</ime>
+              <prezime>Peric</prezime>
+              <datumRodjenja>1977-08-11</datumRodjenja>
+              <adresa>Bulevar Oslobodjenja 12, Novi Sad</adresa>
+              <telefon>06604032</telefon>
+              <email>pera.peric@uns.ac.rs</email>
+              <kancelarija>NTP-402</kancelarija>
+              <brLicneKarte>999987931</brLicneKarte>
+              <titula>prof_dr</titula>
+              <zvanje>redovni_profesor</zvanje>
+              <predajePredmet>
+                <predmet reference="../../.."/>
+                <predmet>
+                  <sifra>E123</sifra>
+                  <naziv>Pametni sistemi</naziv>
+                  <semestar>Zimski</semestar>
+                  <godinaStudija>4</godinaStudija>
+                  <profesor reference="../../.."/>
+                  <ESPB>4</ESPB>
+                  <polozili/>
+                  <nisuPolozili/>
+                </predmet>
+              </predajePredmet>
+              <predmetiBezProfesora>
+                <predmet reference="../../../../predmet"/>
+                <predmet>
+                  <sifra>OIS573</sifra>
+                  <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
+                  <semestar>Letnji</semestar>
+                  <godinaStudija>1</godinaStudija>
+                  <ESPB>6</ESPB>
+                  <polozili/>
+                  <nisuPolozili>
+                    <model.Student>
+                      <ime>Luka</ime>
+                      <prezime>Miletic</prezime>
+                      <datumRodjenja>1999-09-21</datumRodjenja>
+                      <adresa>Kraljevica Marka 32b, Novi Sad</adresa>
+                      <telefon>066057998</telefon>
+                      <email>miletic.ra194.2018@uns.ac.rs</email>
+                      <brIndeksa>RA-194-2018</brIndeksa>
+                      <godinaUpisa>2018</godinaUpisa>
+                      <trenutnaGodina>3</trenutnaGodina>
+                      <statusStudenta>B</statusStudenta>
+                      <prosecnaOcena>10.0</prosecnaOcena>
+                      <spisakPolozenih>
+                        <model.Ocena>
+                          <student reference="../../.."/>
+                          <predmet>
+                            <sifra>OIS573</sifra>
+                            <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
+                            <semestar>Letnji</semestar>
+                            <godinaStudija>2</godinaStudija>
+                            <ESPB>6</ESPB>
+                            <polozili/>
+                            <nisuPolozili>
+                              <model.Student>
+                                <ime>Luka</ime>
+                                <prezime>Miletic</prezime>
+                                <datumRodjenja>1999-09-21</datumRodjenja>
+                                <adresa>Kraljevica Marka 32b, Novi Sad</adresa>
+                                <telefon>066057998</telefon>
+                                <email>miletic.ra194.2018@uns.ac.rs</email>
+                                <brIndeksa>RA-194-2018</brIndeksa>
+                                <godinaUpisa>2018</godinaUpisa>
+                                <trenutnaGodina>3</trenutnaGodina>
+                                <statusStudenta>B</statusStudenta>
+                                <prosecnaOcena>0.0</prosecnaOcena>
+                                <spisakPolozenih/>
+                                <spisakNepolozenih>
+                                  <predmet>
+                                    <sifra>ALG1</sifra>
+                                    <naziv>Algebra</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Nina</ime>
+                                      <prezime>Popovic</prezime>
+                                      <datumRodjenja>1966-03-22</datumRodjenja>
+                                      <adresa>Bulevar patrijarha Pavla 72, Novi Sad</adresa>
+                                      <telefon>021596978</telefon>
+                                      <email>NinaPopovic4@gmail.com</email>
+                                      <kancelarija>Bulevar despota Stefana 32</kancelarija>
+                                      <brLicneKarte>476930683</brLicneKarte>
+                                      <titula>MSc</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>FIZ1</sifra>
+                                          <naziv>Fizika</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>OET1</sifra>
+                                    <naziv>Osnovi elektrotehnike</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>OS3</sifra>
+                                    <naziv>Operativni sistemi</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Petar</ime>
+                                      <prezime>Cvetkovic</prezime>
+                                      <datumRodjenja>1971-04-11</datumRodjenja>
+                                      <adresa>Suboticki bulevar 7, Subotica</adresa>
+                                      <telefon>021131148</telefon>
+                                      <email>PetarCvetkovic13@gmail.com</email>
+                                      <kancelarija>Narodnog fronta 65</kancelarija>
+                                      <brLicneKarte>444457489</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>ARH1</sifra>
+                                          <naziv>Arhitektura racunara</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>OP1</sifra>
+                                          <naziv>Objektno programiranje</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>3</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>PJSP342</sifra>
+                                          <naziv>Programski jezici i strukture podataka</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>8</ESPB>
+                                    <polozili>
+                                      <model.Student>
+                                        <ime>Dunja</ime>
+                                        <prezime>Jovanovic</prezime>
+                                        <datumRodjenja>1999-07-25</datumRodjenja>
+                                        <adresa>Iva Andrica 43, Novi Sad</adresa>
+                                        <telefon>021883300</telefon>
+                                        <email>DunjaJovanovic12@gmail.com</email>
+                                        <brIndeksa>RA-119-2019</brIndeksa>
+                                        <godinaUpisa>2019</godinaUpisa>
+                                        <trenutnaGodina>2</trenutnaGodina>
+                                        <statusStudenta>S</statusStudenta>
+                                        <prosecnaOcena>9.5</prosecnaOcena>
+                                        <spisakPolozenih>
+                                          <model.Ocena>
+                                            <student reference="../../.."/>
+                                            <predmet>
+                                              <sifra>ENG1</sifra>
+                                              <naziv>Engleski 1</naziv>
+                                              <semestar>Letnji</semestar>
+                                              <godinaStudija>2</godinaStudija>
+                                              <profesor>
+                                                <ime>Una</ime>
+                                                <prezime>Todorovic</prezime>
+                                                <datumRodjenja>1964-05-11</datumRodjenja>
+                                                <adresa>Fruskogorska 92, Novi Sad</adresa>
+                                                <telefon>021437897</telefon>
+                                                <email>UnaTodorovic8@gmail.com</email>
+                                                <kancelarija>Mise Dimitrijevica 62</kancelarija>
+                                                <brLicneKarte>333399959</brLicneKarte>
+                                                <titula>mr</titula>
+                                                <zvanje>vanredni_profesor</zvanje>
+                                                <predajePredmet>
+                                                  <predmet>
+                                                    <sifra>ENG2</sifra>
+                                                    <naziv>Engleski 2</naziv>
+                                                    <semestar>Letnji</semestar>
+                                                    <godinaStudija>1</godinaStudija>
+                                                    <profesor reference="../../.."/>
+                                                    <ESPB>3</ESPB>
+                                                    <polozili/>
+                                                    <nisuPolozili/>
+                                                  </predmet>
+                                                  <predmet reference="../../.."/>
+                                                </predajePredmet>
+                                                <predmetiBezProfesora/>
+                                              </profesor>
+                                              <ESPB>3</ESPB>
+                                              <polozili>
+                                                <model.Student reference="../../../../.."/>
+                                                <model.Student>
+                                                  <ime>Ognjen</ime>
+                                                  <prezime>Krstic</prezime>
+                                                  <datumRodjenja>1982-09-25</datumRodjenja>
+                                                  <adresa>Lasla Gala 17, Novi Sad</adresa>
+                                                  <telefon>021926860</telefon>
+                                                  <email>OgnjenKrstic2@gmail.com</email>
+                                                  <brIndeksa>EE-78-2016</brIndeksa>
+                                                  <godinaUpisa>2016</godinaUpisa>
+                                                  <trenutnaGodina>4</trenutnaGodina>
+                                                  <statusStudenta>S</statusStudenta>
+                                                  <prosecnaOcena>7.0</prosecnaOcena>
+                                                  <spisakPolozenih>
+                                                    <model.Ocena>
+                                                      <student reference="../../.."/>
+                                                      <predmet reference="../../../../.."/>
+                                                      <vrednostOcene>7</vrednostOcene>
+                                                      <datumPolaganja>2017-07-19</datumPolaganja>
+                                                    </model.Ocena>
+                                                  </spisakPolozenih>
+                                                  <spisakNepolozenih/>
+                                                  <spisakSlobodnih/>
+                                                </model.Student>
+                                                <model.Student reference="../../../../.."/>
+                                                <model.Student reference="../model.Student[2]"/>
+                                              </polozili>
+                                              <nisuPolozili/>
+                                            </predmet>
+                                            <vrednostOcene>10</vrednostOcene>
+                                            <datumPolaganja>2020-01-25</datumPolaganja>
+                                          </model.Ocena>
+                                          <model.Ocena>
+                                            <student reference="../../.."/>
+                                            <predmet reference="../../../../.."/>
+                                            <vrednostOcene>9</vrednostOcene>
+                                            <datumPolaganja>2020-06-05</datumPolaganja>
+                                          </model.Ocena>
+                                        </spisakPolozenih>
+                                        <spisakNepolozenih/>
+                                        <spisakSlobodnih/>
+                                      </model.Student>
+                                      <model.Student reference="../model.Student"/>
+                                    </polozili>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet>
+                                    <sifra>LPRS1</sifra>
+                                    <naziv>Logicko projektovanje racunarskih sistema 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Vukasin</ime>
+                                      <prezime>Popovic</prezime>
+                                      <datumRodjenja>1965-09-24</datumRodjenja>
+                                      <adresa>Mise Dimitrijevica 95,Novi Sad</adresa>
+                                      <telefon>021965771</telefon>
+                                      <email>VukasinPopovic2@gmail.com</email>
+                                      <kancelarija>Bulevar Mihajla Pupina 71</kancelarija>
+                                      <brLicneKarte>999594934</brLicneKarte>
+                                      <titula>prof_dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>BP1</sifra>
+                                          <naziv>Baze podataka 1</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>VSP342</sifra>
+                                    <naziv>Verovatnoca i slucajni procesi</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Sara</ime>
+                                      <prezime>Tomic</prezime>
+                                      <datumRodjenja>1981-04-12</datumRodjenja>
+                                      <adresa>Fruskogorska 4, Nis</adresa>
+                                      <telefon>021880625</telefon>
+                                      <email>SaraTomic18@gmail.com</email>
+                                      <kancelarija>Dr Ivana Ribara 2</kancelarija>
+                                      <brLicneKarte>748602789</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>5</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>SPP1</sifra>
+                                    <naziv>Sistemska programska podrska u realnom vremenu 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Milica</ime>
+                                      <prezime>Savic</prezime>
+                                      <datumRodjenja>1984-02-19</datumRodjenja>
+                                      <adresa>Drage Spasic 48, Beograd</adresa>
+                                      <telefon>021906373</telefon>
+                                      <email>MilicaSavic4@gmail.com</email>
+                                      <kancelarija>Gogoljeva 80</kancelarija>
+                                      <brLicneKarte>684807648</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>SAT649</sifra>
+                                          <naziv>Socioloski aspekti tehnickog razvoja</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>3</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>SAU856</sifra>
+                                    <naziv>Sistemi automatskog upravljanja</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Ana</ime>
+                                      <prezime>Savic</prezime>
+                                      <datumRodjenja>1961-08-21</datumRodjenja>
+                                      <adresa>Narodnog fronta 65, Novi Sad</adresa>
+                                      <telefon>021881609</telefon>
+                                      <email>AnaSavic14@gmail.com</email>
+                                      <kancelarija>Bulevar despota Stefana 71</kancelarija>
+                                      <brLicneKarte>890265768</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>MO1</sifra>
+                                          <naziv>Metode optimizacije</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>MISS1</sifra>
+                                          <naziv>Modeliranje i simulacija sistema</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>8</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>MA1</sifra>
+                                    <naziv>Matematicka analiza 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>3</godinaStudija>
+                                    <profesor>
+                                      <ime>Jana</ime>
+                                      <prezime>Petrovic</prezime>
+                                      <datumRodjenja>1961-04-25</datumRodjenja>
+                                      <adresa>Boska Buhe 82, Beograd</adresa>
+                                      <telefon>021141872</telefon>
+                                      <email>JanaPetrovic13@gmail.com</email>
+                                      <kancelarija>Bulevar Jase Tomica 64</kancelarija>
+                                      <brLicneKarte>446488941</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>MA2</sifra>
+                                          <naziv>Matematicka analiza 2</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet[9]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet/profesor/predajePredmet/predmet"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[3]"/>
+                                  <predmet reference="../predmet[5]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[4]"/>
+                                  <predmet reference="../predmet[7]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[8]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet>
+                                    <sifra>NNS8</sifra>
+                                    <naziv>Numericki algoritmi i numericki softver</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Dunja</ime>
+                                      <prezime>Krstic</prezime>
+                                      <datumRodjenja>1978-08-25</datumRodjenja>
+                                      <adresa>Dr Ivana Ribara 42, Novi Sad</adresa>
+                                      <telefon>021851274</telefon>
+                                      <email>DunjaKrstic11@gmail.com</email>
+                                      <kancelarija>Bulevar Mihajla Pupina 79</kancelarija>
+                                      <brLicneKarte>098492051</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>asistent_sa_doktoratom</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>4</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet[8]/profesor/predajePredmet/predmet[3]"/>
+                                  <predmet reference="../predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet"/>
+                                  <predmet>
+                                    <sifra>BP2</sifra>
+                                    <naziv>Baze podataka 2</naziv>
+                                    <semestar>Zimski</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Masa</ime>
+                                      <prezime>Ilic</prezime>
+                                      <datumRodjenja>1976-04-11</datumRodjenja>
+                                      <adresa>Dr Sime Milosevica 32, Sremska Mitrovica</adresa>
+                                      <telefon>021634494</telefon>
+                                      <email>MasaIlic20@gmail.com</email>
+                                      <kancelarija>Tolstojeva 82</kancelarija>
+                                      <brLicneKarte>487011254</brLicneKarte>
+                                      <titula>mr</titula>
+                                      <zvanje>asistent</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>E441</sifra>
+                                    <naziv>Robotika</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <ESPB>8</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>E123</sifra>
+                                    <naziv>Pametni sistemi</naziv>
+                                    <semestar>Zimski</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <ESPB>4</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../../../.."/>
+                                </spisakNepolozenih>
+                                <spisakSlobodnih/>
+                              </model.Student>
+                              <model.Student>
+                                <ime>Mihajlo</ime>
+                                <prezime>Kisic</prezime>
+                                <datumRodjenja>1999-10-21</datumRodjenja>
+                                <adresa>Suboticka 33, Novi Sad</adresa>
+                                <telefon>062215561</telefon>
+                                <email>kisic.ra183.2018@uns.ac.rs</email>
+                                <brIndeksa>RA-183-2018</brIndeksa>
+                                <godinaUpisa>2018</godinaUpisa>
+                                <trenutnaGodina>3</trenutnaGodina>
+                                <statusStudenta>B</statusStudenta>
+                                <prosecnaOcena>0.0</prosecnaOcena>
+                                <spisakPolozenih/>
+                                <spisakNepolozenih>
+                                  <predmet reference="../../../.."/>
+                                </spisakNepolozenih>
+                                <spisakSlobodnih>
+                                  <predmet>
+                                    <sifra>ALG1</sifra>
+                                    <naziv>Algebra</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Nina</ime>
+                                      <prezime>Popovic</prezime>
+                                      <datumRodjenja>1966-03-22</datumRodjenja>
+                                      <adresa>Bulevar patrijarha Pavla 72, Novi Sad</adresa>
+                                      <telefon>021596978</telefon>
+                                      <email>NinaPopovic4@gmail.com</email>
+                                      <kancelarija>Bulevar despota Stefana 32</kancelarija>
+                                      <brLicneKarte>476930683</brLicneKarte>
+                                      <titula>MSc</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>FIZ1</sifra>
+                                          <naziv>Fizika</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>OET1</sifra>
+                                    <naziv>Osnovi elektrotehnike</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>OS3</sifra>
+                                    <naziv>Operativni sistemi</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Petar</ime>
+                                      <prezime>Cvetkovic</prezime>
+                                      <datumRodjenja>1971-04-11</datumRodjenja>
+                                      <adresa>Suboticki bulevar 7, Subotica</adresa>
+                                      <telefon>021131148</telefon>
+                                      <email>PetarCvetkovic13@gmail.com</email>
+                                      <kancelarija>Narodnog fronta 65</kancelarija>
+                                      <brLicneKarte>444457489</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>ARH1</sifra>
+                                          <naziv>Arhitektura racunara</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>OP1</sifra>
+                                          <naziv>Objektno programiranje</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>3</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>PJSP342</sifra>
+                                          <naziv>Programski jezici i strukture podataka</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>8</ESPB>
+                                    <polozili>
+                                      <model.Student>
+                                        <ime>Dunja</ime>
+                                        <prezime>Jovanovic</prezime>
+                                        <datumRodjenja>1999-07-25</datumRodjenja>
+                                        <adresa>Iva Andrica 43, Novi Sad</adresa>
+                                        <telefon>021883300</telefon>
+                                        <email>DunjaJovanovic12@gmail.com</email>
+                                        <brIndeksa>RA-119-2019</brIndeksa>
+                                        <godinaUpisa>2019</godinaUpisa>
+                                        <trenutnaGodina>2</trenutnaGodina>
+                                        <statusStudenta>S</statusStudenta>
+                                        <prosecnaOcena>9.5</prosecnaOcena>
+                                        <spisakPolozenih>
+                                          <model.Ocena>
+                                            <student reference="../../.."/>
+                                            <predmet>
+                                              <sifra>ENG1</sifra>
+                                              <naziv>Engleski 1</naziv>
+                                              <semestar>Letnji</semestar>
+                                              <godinaStudija>2</godinaStudija>
+                                              <profesor>
+                                                <ime>Una</ime>
+                                                <prezime>Todorovic</prezime>
+                                                <datumRodjenja>1964-05-11</datumRodjenja>
+                                                <adresa>Fruskogorska 92, Novi Sad</adresa>
+                                                <telefon>021437897</telefon>
+                                                <email>UnaTodorovic8@gmail.com</email>
+                                                <kancelarija>Mise Dimitrijevica 62</kancelarija>
+                                                <brLicneKarte>333399959</brLicneKarte>
+                                                <titula>mr</titula>
+                                                <zvanje>vanredni_profesor</zvanje>
+                                                <predajePredmet>
+                                                  <predmet>
+                                                    <sifra>ENG2</sifra>
+                                                    <naziv>Engleski 2</naziv>
+                                                    <semestar>Letnji</semestar>
+                                                    <godinaStudija>1</godinaStudija>
+                                                    <profesor reference="../../.."/>
+                                                    <ESPB>3</ESPB>
+                                                    <polozili/>
+                                                    <nisuPolozili/>
+                                                  </predmet>
+                                                  <predmet reference="../../.."/>
+                                                </predajePredmet>
+                                                <predmetiBezProfesora/>
+                                              </profesor>
+                                              <ESPB>3</ESPB>
+                                              <polozili>
+                                                <model.Student reference="../../../../.."/>
+                                                <model.Student>
+                                                  <ime>Ognjen</ime>
+                                                  <prezime>Krstic</prezime>
+                                                  <datumRodjenja>1982-09-25</datumRodjenja>
+                                                  <adresa>Lasla Gala 17, Novi Sad</adresa>
+                                                  <telefon>021926860</telefon>
+                                                  <email>OgnjenKrstic2@gmail.com</email>
+                                                  <brIndeksa>EE-78-2016</brIndeksa>
+                                                  <godinaUpisa>2016</godinaUpisa>
+                                                  <trenutnaGodina>4</trenutnaGodina>
+                                                  <statusStudenta>S</statusStudenta>
+                                                  <prosecnaOcena>7.0</prosecnaOcena>
+                                                  <spisakPolozenih>
+                                                    <model.Ocena>
+                                                      <student reference="../../.."/>
+                                                      <predmet reference="../../../../.."/>
+                                                      <vrednostOcene>7</vrednostOcene>
+                                                      <datumPolaganja>2017-07-19</datumPolaganja>
+                                                    </model.Ocena>
+                                                  </spisakPolozenih>
+                                                  <spisakNepolozenih/>
+                                                  <spisakSlobodnih/>
+                                                </model.Student>
+                                                <model.Student reference="../../../../.."/>
+                                                <model.Student reference="../model.Student[2]"/>
+                                              </polozili>
+                                              <nisuPolozili/>
+                                            </predmet>
+                                            <vrednostOcene>10</vrednostOcene>
+                                            <datumPolaganja>2020-01-25</datumPolaganja>
+                                          </model.Ocena>
+                                          <model.Ocena>
+                                            <student reference="../../.."/>
+                                            <predmet reference="../../../../.."/>
+                                            <vrednostOcene>9</vrednostOcene>
+                                            <datumPolaganja>2020-06-05</datumPolaganja>
+                                          </model.Ocena>
+                                        </spisakPolozenih>
+                                        <spisakNepolozenih/>
+                                        <spisakSlobodnih/>
+                                      </model.Student>
+                                      <model.Student reference="../model.Student"/>
+                                    </polozili>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet>
+                                    <sifra>LPRS1</sifra>
+                                    <naziv>Logicko projektovanje racunarskih sistema 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Vukasin</ime>
+                                      <prezime>Popovic</prezime>
+                                      <datumRodjenja>1965-09-24</datumRodjenja>
+                                      <adresa>Mise Dimitrijevica 95,Novi Sad</adresa>
+                                      <telefon>021965771</telefon>
+                                      <email>VukasinPopovic2@gmail.com</email>
+                                      <kancelarija>Bulevar Mihajla Pupina 71</kancelarija>
+                                      <brLicneKarte>999594934</brLicneKarte>
+                                      <titula>prof_dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>BP1</sifra>
+                                          <naziv>Baze podataka 1</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>VSP342</sifra>
+                                    <naziv>Verovatnoca i slucajni procesi</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Sara</ime>
+                                      <prezime>Tomic</prezime>
+                                      <datumRodjenja>1981-04-12</datumRodjenja>
+                                      <adresa>Fruskogorska 4, Nis</adresa>
+                                      <telefon>021880625</telefon>
+                                      <email>SaraTomic18@gmail.com</email>
+                                      <kancelarija>Dr Ivana Ribara 2</kancelarija>
+                                      <brLicneKarte>748602789</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>5</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>SPP1</sifra>
+                                    <naziv>Sistemska programska podrska u realnom vremenu 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Milica</ime>
+                                      <prezime>Savic</prezime>
+                                      <datumRodjenja>1984-02-19</datumRodjenja>
+                                      <adresa>Drage Spasic 48, Beograd</adresa>
+                                      <telefon>021906373</telefon>
+                                      <email>MilicaSavic4@gmail.com</email>
+                                      <kancelarija>Gogoljeva 80</kancelarija>
+                                      <brLicneKarte>684807648</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>SAT649</sifra>
+                                          <naziv>Socioloski aspekti tehnickog razvoja</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>3</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>SAU856</sifra>
+                                    <naziv>Sistemi automatskog upravljanja</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Ana</ime>
+                                      <prezime>Savic</prezime>
+                                      <datumRodjenja>1961-08-21</datumRodjenja>
+                                      <adresa>Narodnog fronta 65, Novi Sad</adresa>
+                                      <telefon>021881609</telefon>
+                                      <email>AnaSavic14@gmail.com</email>
+                                      <kancelarija>Bulevar despota Stefana 71</kancelarija>
+                                      <brLicneKarte>890265768</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>MO1</sifra>
+                                          <naziv>Metode optimizacije</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>MISS1</sifra>
+                                          <naziv>Modeliranje i simulacija sistema</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>8</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>MA1</sifra>
+                                    <naziv>Matematicka analiza 1</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>3</godinaStudija>
+                                    <profesor>
+                                      <ime>Jana</ime>
+                                      <prezime>Petrovic</prezime>
+                                      <datumRodjenja>1961-04-25</datumRodjenja>
+                                      <adresa>Boska Buhe 82, Beograd</adresa>
+                                      <telefon>021141872</telefon>
+                                      <email>JanaPetrovic13@gmail.com</email>
+                                      <kancelarija>Bulevar Jase Tomica 64</kancelarija>
+                                      <brLicneKarte>446488941</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>vanredni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                        <predmet>
+                                          <sifra>MA2</sifra>
+                                          <naziv>Matematicka analiza 2</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>9</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet[9]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet/profesor/predajePredmet/predmet"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[3]"/>
+                                  <predmet reference="../predmet[5]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[3]/profesor/predajePredmet/predmet[4]"/>
+                                  <predmet reference="../predmet[7]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet reference="../predmet[8]/profesor/predajePredmet/predmet[2]"/>
+                                  <predmet>
+                                    <sifra>NNS8</sifra>
+                                    <naziv>Numericki algoritmi i numericki softver</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>1</godinaStudija>
+                                    <profesor>
+                                      <ime>Dunja</ime>
+                                      <prezime>Krstic</prezime>
+                                      <datumRodjenja>1978-08-25</datumRodjenja>
+                                      <adresa>Dr Ivana Ribara 42, Novi Sad</adresa>
+                                      <telefon>021851274</telefon>
+                                      <email>DunjaKrstic11@gmail.com</email>
+                                      <kancelarija>Bulevar Mihajla Pupina 79</kancelarija>
+                                      <brLicneKarte>098492051</brLicneKarte>
+                                      <titula>dr</titula>
+                                      <zvanje>asistent_sa_doktoratom</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>4</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet reference="../predmet[8]/profesor/predajePredmet/predmet[3]"/>
+                                  <predmet reference="../predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet"/>
+                                  <predmet>
+                                    <sifra>BP2</sifra>
+                                    <naziv>Baze podataka 2</naziv>
+                                    <semestar>Zimski</semestar>
+                                    <godinaStudija>2</godinaStudija>
+                                    <profesor>
+                                      <ime>Masa</ime>
+                                      <prezime>Ilic</prezime>
+                                      <datumRodjenja>1976-04-11</datumRodjenja>
+                                      <adresa>Dr Sime Milosevica 32, Sremska Mitrovica</adresa>
+                                      <telefon>021634494</telefon>
+                                      <email>MasaIlic20@gmail.com</email>
+                                      <kancelarija>Tolstojeva 82</kancelarija>
+                                      <brLicneKarte>487011254</brLicneKarte>
+                                      <titula>mr</titula>
+                                      <zvanje>asistent</zvanje>
+                                      <predajePredmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora/>
+                                    </profesor>
+                                    <ESPB>6</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                  <predmet>
+                                    <sifra>E441</sifra>
+                                    <naziv>Robotika</naziv>
+                                    <semestar>Letnji</semestar>
+                                    <godinaStudija>3</godinaStudija>
+                                    <profesor>
+                                      <ime>Pera</ime>
+                                      <prezime>Peric</prezime>
+                                      <datumRodjenja>1977-08-11</datumRodjenja>
+                                      <adresa>Bulevar Oslobodjenja 12, Novi Sad</adresa>
+                                      <telefon>06604032</telefon>
+                                      <email>pera.peric@uns.ac.rs</email>
+                                      <kancelarija>NTP-402</kancelarija>
+                                      <brLicneKarte>999987931</brLicneKarte>
+                                      <titula>prof_dr</titula>
+                                      <zvanje>redovni_profesor</zvanje>
+                                      <predajePredmet>
+                                        <predmet>
+                                          <sifra>E441</sifra>
+                                          <naziv>Robotika</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>8</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>E123</sifra>
+                                          <naziv>Pametni sistemi</naziv>
+                                          <semestar>Zimski</semestar>
+                                          <godinaStudija>4</godinaStudija>
+                                          <profesor reference="../../.."/>
+                                          <ESPB>4</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet reference="../../.."/>
+                                      </predajePredmet>
+                                      <predmetiBezProfesora>
+                                        <predmet>
+                                          <sifra>OET1</sifra>
+                                          <naziv>Osnovi elektrotehnike</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>2</godinaStudija>
+                                          <ESPB>9</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                        <predmet>
+                                          <sifra>OIS573</sifra>
+                                          <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
+                                          <semestar>Letnji</semestar>
+                                          <godinaStudija>1</godinaStudija>
+                                          <ESPB>6</ESPB>
+                                          <polozili/>
+                                          <nisuPolozili/>
+                                        </predmet>
+                                      </predmetiBezProfesora>
+                                    </profesor>
+                                    <ESPB>8</ESPB>
+                                    <polozili/>
+                                    <nisuPolozili/>
+                                  </predmet>
+                                </spisakSlobodnih>
+                              </model.Student>
+                              <model.Student reference="../model.Student"/>
+                            </nisuPolozili>
+                          </predmet>
+                          <vrednostOcene>10</vrednostOcene>
+                          <datumPolaganja>2021-01-27</datumPolaganja>
+                        </model.Ocena>
+                      </spisakPolozenih>
+                      <spisakNepolozenih>
+                        <predmet>
+                          <sifra>E123</sifra>
+                          <naziv>Pametni sistemi</naziv>
+                          <semestar>Zimski</semestar>
+                          <godinaStudija>2</godinaStudija>
+                          <ESPB>4</ESPB>
+                          <polozili/>
+                          <nisuPolozili/>
+                        </predmet>
+                        <predmet>
+                          <sifra>E441</sifra>
+                          <naziv>Robotika</naziv>
+                          <semestar>Letnji</semestar>
+                          <godinaStudija>3</godinaStudija>
+                          <profesor>
+                            <ime>Pera</ime>
+                            <prezime>Peric</prezime>
+                            <datumRodjenja>1977-08-11</datumRodjenja>
+                            <adresa>Bulevar Oslobodjenja 12, Novi Sad</adresa>
+                            <telefon>06604032</telefon>
+                            <email>pera.peric@uns.ac.rs</email>
+                            <kancelarija>NTP-402</kancelarija>
+                            <brLicneKarte>999987931</brLicneKarte>
+                            <titula>prof_dr</titula>
+                            <zvanje>redovni_profesor</zvanje>
+                            <predajePredmet>
+                              <predmet>
+                                <sifra>E441</sifra>
+                                <naziv>Robotika</naziv>
+                                <semestar>Letnji</semestar>
+                                <godinaStudija>2</godinaStudija>
+                                <profesor reference="../../.."/>
+                                <ESPB>8</ESPB>
+                                <polozili/>
+                                <nisuPolozili/>
+                              </predmet>
+                              <predmet>
+                                <sifra>E123</sifra>
+                                <naziv>Pametni sistemi</naziv>
+                                <semestar>Zimski</semestar>
+                                <godinaStudija>4</godinaStudija>
+                                <profesor reference="../../.."/>
+                                <ESPB>4</ESPB>
+                                <polozili/>
+                                <nisuPolozili/>
+                              </predmet>
+                              <predmet>
+                                <sifra>E441</sifra>
+                                <naziv>Robotika</naziv>
+                                <semestar>Letnji</semestar>
+                                <godinaStudija>3</godinaStudija>
+                                <profesor reference="../../.."/>
+                                <ESPB>8</ESPB>
+                                <polozili/>
+                                <nisuPolozili/>
+                              </predmet>
+                              <predmet reference="../../.."/>
+                            </predajePredmet>
+                            <predmetiBezProfesora>
+                              <predmet>
+                                <sifra>OET1</sifra>
+                                <naziv>Osnovi elektrotehnike</naziv>
+                                <semestar>Letnji</semestar>
+                                <godinaStudija>2</godinaStudija>
+                                <ESPB>9</ESPB>
+                                <polozili/>
+                                <nisuPolozili/>
+                              </predmet>
+                              <predmet>
+                                <sifra>OIS573</sifra>
+                                <naziv>Osnovi informacionih sistema i softverskog inzenjerstva</naziv>
+                                <semestar>Letnji</semestar>
+                                <godinaStudija>1</godinaStudija>
+                                <ESPB>6</ESPB>
+                                <polozili/>
+                                <nisuPolozili/>
+                              </predmet>
+                            </predmetiBezProfesora>
+                          </profesor>
+                          <ESPB>8</ESPB>
+                          <polozili/>
+                          <nisuPolozili>
+                            <model.Student reference="../../../.."/>
+                          </nisuPolozili>
+                        </predmet>
+                      </spisakNepolozenih>
+                      <spisakSlobodnih>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[5]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[6]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[7]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[8]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[9]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[9]/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet/profesor/predajePredmet/predmet"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]/profesor/predajePredmet/predmet[3]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[5]/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]/profesor/predajePredmet/predmet[4]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[7]/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[8]/profesor/predajePredmet/predmet[2]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[18]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[3]/polozili/model.Student/spisakPolozenih/model.Ocena/predmet"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[8]/profesor/predajePredmet/predmet[3]"/>
+                        <predmet reference="../../spisakPolozenih/model.Ocena/predmet/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[21]"/>
+                      </spisakSlobodnih>
+                    </model.Student>
+                    <model.Student reference="../../../../../../.."/>
+                    <model.Student reference="../model.Student"/>
+                  </nisuPolozili>
+                </predmet>
+              </predmetiBezProfesora>
+            </profesor>
+            <ESPB>8</ESPB>
+            <polozili/>
+            <nisuPolozili/>
+          </predmet>
+        </spisakSlobodnih>
+      </model.Student>
+      <model.Student reference="../model.Student[4]"/>
     </nisuPolozili>
   </predmet>
   <predmet reference="../predmet[18]/nisuPolozili/model.Student[2]/spisakSlobodnih/predmet[18]"/>

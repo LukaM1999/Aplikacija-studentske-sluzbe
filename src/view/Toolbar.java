@@ -388,12 +388,56 @@ public class Toolbar extends JToolBar {
 					
 				}	
 				if (Tabs.getInstance().getSelectedIndex() == 1) {
-					
+					String[] text = textfield.getText().split(" ");
+					if (text.length == 0) {
+						TableProfesor.getInstance().getSorter().setRowFilter(null);
+					} else {
+						if (text.length == 1) {
+							try {
+						//REFERENCE: https://stackoverflow.com/questions/4724095/check-if-word-contains-substring-in-java-regex
+								TableProfesor.getInstance().getSorter().setRowFilter(
+										RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 1));
+							} catch (PatternSyntaxException pse) {
+								System.out.println("Bad regex pattern");
+							}
+						} else {
+							if (text.length == 2) {
+
+						// REFERNCE:
+						// https://stackoverflow.com/questions/5194948/java-swing-combine-rowfilter-andfilter-with-rowfilter-orfilter
+								try {
+									TableProfesor.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[0] + ".*$)", 1));
+									TableProfesor.getInstance().getFilters().add(
+											RowFilter.regexFilter("(?i)" + "(^.*" + text[1] + ".*$)", 0));
+									TableProfesor.getInstance().getSorter()
+											.setRowFilter(RowFilter.andFilter(TableProfesor.getInstance().getFilters()));
+
+								} catch (PatternSyntaxException pse) {
+									System.out.println("Bad regex pattern");
+								}
+
+								for (int i = 0; i < TableProfesor.getInstance().getFilters().size(); i++) {
+									TableProfesor.getInstance().getFilters().remove(i);
+								}
+							}
+						}
+					}
 				}
 				if (Tabs.getInstance().getSelectedIndex() == 2) {
-					
+					String text = textfield.getText();
+					if (text == null) {
+						TablePredmet.getInstance().getSorter().setRowFilter(null);
+					} else {
+							try {
+						//REFERENCE: https://stackoverflow.com/questions/4724095/check-if-word-contains-substring-in-java-regex
+								TablePredmet.getInstance().getSorter().setRowFilter(
+										RowFilter.regexFilter("(?i)" + "(^.*" + text + ".*$)", 1));
+							} catch (PatternSyntaxException pse) {
+								System.out.println("Bad regex pattern");
+							}
+					}	
 				}	
-			
 			}
 		});
 		

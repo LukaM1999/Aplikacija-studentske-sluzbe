@@ -43,12 +43,11 @@ public class IzmeniProfesoraDialog extends JDialog {
 
 	private String telefonSablon = "[0-9]{8,12}?";
 
-	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
+	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
-
 	
 	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
+	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 	
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
@@ -68,7 +67,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 	private boolean emailKorektno = true;
 	private boolean licnaKorektno = true;
 	private boolean kancelarijaKorektno = true;
-
+    
 	private boolean ispravno = true;
 
 	private JButton ok;
@@ -685,6 +684,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 					JOptionPane.OK_CANCEL_OPTION);	
 			if(answer == JOptionPane.YES_OPTION) {	
 				
+				
 				prof.setIme(imeVrednost);
 				prof.setPrezime(prezimeVrednost);
 				prof.setDatumRodjenja(LocalDate.parse(datumVrednost, formatter));
@@ -695,6 +695,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 				prof.setBrLicneKarte(licnaVrednost);
 				prof.setTitula(titulaVrednost);
 				prof.setZvanje(zvanjeVrednost);
+				
 				
 				ProfesorController.getInstance().izmeniProfesora(table.getSelectedRow());
 				dispose();

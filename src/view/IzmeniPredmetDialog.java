@@ -345,7 +345,6 @@ public class IzmeniPredmetDialog extends JDialog {
 						String[] imePrezimeProf = profesorUnos.getText().split(" ");
 						
 						
-						ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 						//REFERENCE: https://stackoverflow.com/questions/886955/how-do-i-break-out-of-nested-loops-in-java
 						outerloop:
 						for(Profesor prof: ProfesorController.getInstance().getProfesori()) {
