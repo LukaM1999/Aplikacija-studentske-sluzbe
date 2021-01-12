@@ -711,6 +711,14 @@ public class IzmeniStudentaDialog extends JDialog {
 					student.setStatusStudenta(status);
 
 					StudentController.getInstance().izmeniStudenta(table.getSelectedRow());
+					
+					table.getSorter().setSortable(0, false);
+					table.getSorter().setSortable(1, false);
+					table.getSorter().setSortable(2, false);
+					table.getSorter().setSortable(3, false);
+					table.getSorter().setSortable(4, false);
+					table.getSorter().setSortable(5, false);
+					
 					dispose();
 				}
 
