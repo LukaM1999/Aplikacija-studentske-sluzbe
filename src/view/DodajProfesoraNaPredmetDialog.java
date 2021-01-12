@@ -19,7 +19,10 @@ public class DodajProfesoraNaPredmetDialog extends JDialog {
 	 * 
 	 */
 	private static final long serialVersionUID = -8975468915958311560L;
+	
 	private TableSlobodniProfesori table;
+	
+	public static int row;
 	
 public DodajProfesoraNaPredmetDialog(Container container, String title, boolean b, Predmet p, JTextField profesorUnos) {
 				
@@ -45,6 +48,7 @@ public DodajProfesoraNaPredmetDialog(Container container, String title, boolean 
 				if (table.getSelectedRow() >= 0) {
 
 					String profesor = (String) table.getValueAt(table.getSelectedRow(), 0);
+					row = table.getSelectedRow();
 					profesorUnos.setText(profesor);
 					dispose();
 				}

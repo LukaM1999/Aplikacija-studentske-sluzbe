@@ -137,7 +137,7 @@ public class BazaPredmeta implements Serializable {
 				}
 				godina =Integer.parseInt(kolone[3]);
 				espb = Integer.parseInt(kolone[4]);
-				if(kolone[5] != null) {
+				if(!kolone[5].equals("null")) {
 					licna = kolone[5];
 				}
 				

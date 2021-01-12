@@ -20,13 +20,16 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import controller.NepolozeniIspitiController;
+import controller.PolozeniIspitiController;
 import controller.PredmetController;
 import controller.ProfesorController;
-import controller.ProfesorPredajeController;
-import model.BazaNepolozenihIspita;
+import controller.SlobodniPredmetiController;
+import controller.StudentController;
+import model.Ocena;
 import model.Predmet;
 import model.Predmet.Semestar;
 import model.Profesor;
+import model.Student;
 
 public class IzmeniPredmetDialog extends JDialog {
 
@@ -52,6 +55,10 @@ public class IzmeniPredmetDialog extends JDialog {
 	private JButton minus;
 	
 	private static JTextField profesorUnos;
+	
+	private String stara;
+	
+	private DodajProfesoraNaPredmetDialog dialog;
 	
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
@@ -262,6 +269,8 @@ public class IzmeniPredmetDialog extends JDialog {
 		TablePredmet table = TablePredmet.getInstance();
 		Predmet predmet = PredmetController.getInstance().getPredmet(table.getSelectedRow());
 
+		stara = predmet.getSifra();
+		
 		sifraUnos.setText(predmet.getSifra());
 		nazivUnos.setText(predmet.getNaziv());
 		ESPBUnos.setText(String.valueOf(predmet.getESPB()));
@@ -342,50 +351,58 @@ public class IzmeniPredmetDialog extends JDialog {
 					
 					if(!profesorUnos.getText().equals("")) {
 						
-						String[] imePrezimeProf = profesorUnos.getText().split(" ");
+						//String[] imePrezimeProf = profesorUnos.getText().split(" ");
 						
-						
+						Profesor izabran = ProfesorController.getInstance().getProfesor(dialog.row);
+
 						//REFERENCE: https://stackoverflow.com/questions/886955/how-do-i-break-out-of-nested-loops-in-java
 						outerloop:
 						for(Profesor prof: ProfesorController.getInstance().getProfesori()) {
-							System.out.println("Lol");
-							if(prof.getIme().equals(imePrezimeProf[0]) && prof.getPrezime().equals(imePrezimeProf[1])) {
+							if(prof.getBrLicneKarte().equals(izabran.getBrLicneKarte())) {
+								
+								//ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 								for(Predmet predavan: prof.getPredajePredmet()) {
-									if(predavan.getSifra().equals(sifraVrednost)) {
-										System.out.println("One time");
-										break;
+									if (predavan.getSifra().equals(stara)) {
+										//System.out.println("One time");
+										predavan.setSifra(sifraVrednost);
+										predavan.setNaziv(nazivVrednost);
+										predavan.setESPB(Integer.parseInt(ESPBVrednost));
+										predavan.setGodinaStudija(godinaStudija);
+										predavan.setSemestar(semestarVrednost);
+										 
+										if(!stara.equals(sifraVrednost)) {
+										prof.izbrisiPredajePredmet(stara);
+										}	
+										//prof.dodajPredajePredmet(predmet);
+										predmet.setProfesor(prof);
+										//prof.izbrisiSlobodan(predmet);
+										break outerloop;
 									}
-									System.out.println("Here i am");
-									ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+								} 
+							
+									//ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 									predmet.setProfesor(prof);
-									prof.izbrisiPredajePredmet(predmet.getSifra());
+									prof.izbrisiPredajePredmet(stara);
 									prof.dodajPredajePredmet(predmet);
 									prof.izbrisiSlobodan(predmet);
-									ProfesorPredajeController.getInstance().initPredajePredmet(prof);
-									
-									System.out.println(ProfesorPredajeController.getInstance().getPredmeti().size());
-									for(Predmet p: ProfesorPredajeController.getInstance().getPredmeti()) {
-										if(p.getSifra().equals(sifraVrednost)) {
-											
-											System.out.println("Mars");
-											
-											p.setSifra(sifraVrednost);
-											p.setNaziv(nazivVrednost);
-											p.setESPB(Integer.parseInt(ESPBVrednost));
-											p.setGodinaStudija(godinaStudija);
-											p.setSemestar(semestarVrednost);
-										}
-									}
-									
+									//ProfesorPredajeController.getInstance().initPredajePredmet(prof);
+
 									break outerloop;
-								}
+								
 							}
 						}
+					
 					}
+				for(Student s : StudentController.getInstance().getStudenti())	{
+					
+					PolozeniIspitiController.getInstance().initSpisakPolozenih(s);
+					NepolozeniIspitiController.getInstance().initSpisakNepolozenih(s);
+					SlobodniPredmetiController.getInstance().initSlobodne(s);
 					
 					for(Predmet p: NepolozeniIspitiController.getInstance().getPredmeti()) {
-						System.out.println("Nmp");
-						if(p.getSifra().equals(sifraVrednost)) {
+						
+						if(p.getSifra().equals(stara)) {
+							System.out.println("Nmp");
 							p.setSifra(sifraVrednost);
 							p.setNaziv(nazivVrednost);
 							p.setESPB(Integer.parseInt(ESPBVrednost));
@@ -393,17 +410,29 @@ public class IzmeniPredmetDialog extends JDialog {
 							p.setSemestar(semestarVrednost);
 						}
 					}
+					for(Ocena o : PolozeniIspitiController.getInstance().getOcene()) {
 					
-					
-					
-					/*
-					 * for(Predmet p: ProfesorPredajeController.getInstance().getPredmeti()) {
-					 * if(p.getSifra().equals(sifraVrednost)) { System.out.println("Mars");
-					 * p.setSifra(sifraVrednost); p.setNaziv(nazivVrednost);
-					 * p.setESPB(Integer.parseInt(ESPBVrednost)); p.setGodinaStudija(godinaStudija);
-					 * p.setSemestar(semestarVrednost); } }
-					 */
-										
+						if(o.getPredmet().getSifra().equals(stara)) {
+							System.out.println("Nmp2");						
+							o.getPredmet().setSifra(sifraVrednost);
+							o.getPredmet().setNaziv(nazivVrednost);
+							o.getPredmet().setESPB(Integer.parseInt(ESPBVrednost));
+							o.getPredmet().setGodinaStudija(godinaStudija);
+							o.getPredmet().setSemestar(semestarVrednost);
+						}
+					}
+					for(Predmet p: SlobodniPredmetiController.getInstance().getPredmeti()) {
+						
+						if(p.getSifra().equals(stara)) {
+							System.out.println("Nmp3");
+							p.setSifra(sifraVrednost);
+							p.setNaziv(nazivVrednost);
+							p.setESPB(Integer.parseInt(ESPBVrednost));
+							p.setGodinaStudija(godinaStudija);
+							p.setSemestar(semestarVrednost);
+						}
+					}
+				}					
 					PredmetController.getInstance().izmeniPredmet(table.getSelectedRow());					
 					
 					dispose();
@@ -474,7 +503,7 @@ public class IzmeniPredmetDialog extends JDialog {
 			
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				new DodajProfesoraNaPredmetDialog(getContentPane(), "Odaberi profesora", true, predmet, profesorUnos);
+				dialog = new DodajProfesoraNaPredmetDialog(getContentPane(), "Odaberi profesora", true, predmet, profesorUnos);
 			}
 		});
 		springLayout.putConstraint(SpringLayout.NORTH, plus, 0, SpringLayout.NORTH, profesorUnos);
