@@ -1,0 +1,30 @@
+P1;Osnove programiranja;1;7;321321321;Zimski
+P2;Statistika;3;8;321321321;Letnji
+P3;Algoritmi i strukture podataka;2;9;321321321;Letnji
+P4;LPRS;3;7;321321321;Zimski
+P5;Matematika;1;11;;Letnji
+P6;Xml i web servisi;4;6;;Letnji
+P7;Metode optimizacije;3;6;;Zimski
+P8;Osnove elektortehnike;1;11;001001001;Letnji
+P9;Sociologija;1;10;001001001;Zimski
+P10;Filozofija;1;4;001001001;Zimski
+P11;ORT;2;7;;Letnji
+P12;NANS;2;5;002002002;Letnji
+P13;Organizacija podataka;2;7;002002002;Zimski
+P14;Baze podataka;2;6;002002002;Zimski
+P15;Paralelno programiranje;2;8;559585632;Zimski
+P16;Konkurentno programiranje;2;9;559585632;Letnji
+P17;Operativni sistemi;2;8;;Letnji
+P18;Algebra;1;15;;Zimski
+P19;Verovatnoca;3;14;;Letnji
+PS20;Upravljacki sistemi;3;8;;Letnji
+PS21;Osnovi elektronike;2;7;;Zimski
+PS22;Slucajni procesi;4;9;;Letnji
+PS23;Racunarstvo visokih performansi;4;10;;Letnji
+P24;Analiza 1;1;20;;Zimski
+IT25;Informaciona bezbednost;4;9;004004004;Letnji
+IT26;Elektronsko placanje;3;8;005005005;Zimski
+IT27;Distribuirani sistemi;4;6;006006006;Zimski
+P28;Projektovanje softvera;3;5;005005005;Zimski
+P29;Informacioni sistemi;4;6;004004004;Zimski
+P30;Masinsko ucenje;4;7;;Letnji

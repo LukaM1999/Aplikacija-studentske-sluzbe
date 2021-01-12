@@ -1,16 +1,20 @@
 package model;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.thoughtworks.xstream.XStream;
 
 import controller.PredmetController;
 import controller.StudentController;
@@ -37,8 +41,17 @@ public class BazaOcena implements Serializable {
 	private BazaOcena() {
 		
 
-		deserijalizacija("deserijalizacija" + File.separator + "ocene.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "ocene1.txt");
 
+		
+		try {
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "ocene1.xml");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra predmeta");
 		this.kolone.add("Naziv predmeta");
@@ -130,6 +143,35 @@ public class BazaOcena implements Serializable {
 			}
 		}	
 
+	}
+	
+
+	public void XstreamDeserialization(String putanja) throws IOException {
+		
+		init();
+		
+		File f = new File(putanja);
+		InputStream os = new BufferedInputStream(new FileInputStream(f));
+		try {
+
+			XStream xs = new XStream();
+			xs.alias("ocena", Ocena.class);
+
+			Ocena[] ucitaneOcene = (Ocena[]) xs.fromXML(os);
+			
+			for(Ocena o: ucitaneOcene) {
+				this.dodajPolozen(o.getStudent().getBrIndeksa(), o.getPredmet().getSifra(), o.getVrednostOcene(),
+						o.getDatumPolaganja());
+			}
+
+
+
+		} finally {
+			os.close();
+		}
+		
+		
+		
 	}
 	
 	public void dodajOcenu(Student s, Predmet p, int vrednostOcene, LocalDate datumPolaganja) {

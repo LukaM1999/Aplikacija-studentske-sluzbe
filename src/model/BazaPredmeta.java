@@ -45,14 +45,16 @@ public class BazaPredmeta implements Serializable {
 	
 	private BazaPredmeta() {
 		
-		//deserijalizacija("deserijalizacija" + File.separator + "predmeti.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "Predmeti1.txt");
+		
+		
 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "predmeti.xml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "predmeti1.xml");
+		} catch (IOException e) { // TODO Auto-generated catchblock
 			e.printStackTrace();
 		}
+		 
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");
@@ -129,16 +131,16 @@ public class BazaPredmeta implements Serializable {
 				String[] kolone = line.split(";");
 				sifra = kolone[0];
 				naziv = kolone[1];
-				if(kolone[2].equals("Zimski")) {
+				godina =Integer.parseInt(kolone[2]);
+				espb = Integer.parseInt(kolone[3]);
+				if(kolone[4] != null) {
+					licna = kolone[4];
+				}
+				if(kolone[5].equals("Zimski")) {
 					semestar = Semestar.Zimski;
 				}
 				else {
 					semestar = Semestar.Letnji;
-				}
-				godina =Integer.parseInt(kolone[3]);
-				espb = Integer.parseInt(kolone[4]);
-				if(!kolone[5].equals("null")) {
-					licna = kolone[5];
 				}
 				
 				for(Profesor p: ProfesorController.getInstance().getProfesori()) {

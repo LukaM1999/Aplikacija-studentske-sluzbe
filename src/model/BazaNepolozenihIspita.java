@@ -1,7 +1,6 @@
 package model;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -36,7 +35,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	
 		init();
 		
-		deserijalizacija("deserijalizacija" + File.separator + "nepolozeni.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "Nepolozeni1.txt");
 		
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");

@@ -44,12 +44,12 @@ public class BazaStudenata implements Serializable {
 	
 	private BazaStudenata() {
 
-		//deserijalizacija("deserijalizacija" + File.separator + "studenti.txt");
+		//deserijalizacija("deserijalizacija" + File.separator + "Studenti1.txt");
 				 		 
+		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "studenti.xml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "studenti1.xml");
+		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -131,20 +131,21 @@ public class BazaStudenata implements Serializable {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] kolone = line.split(";");
-				ime = kolone[0];
-				prezime = kolone[1];
-				datum = kolone[2];
-				adresa = kolone[3];
-				telefon = kolone[4];
-				email = kolone[5];
-				indeks = kolone[6];
-				godinaUpisa = Integer.parseInt(kolone[7]);
-				trenutnaGodina = Integer.parseInt(kolone[8]);
-				if (kolone[9].equals("B")) {
+				indeks = kolone[0];
+				ime = kolone[1];
+				prezime = kolone[2];
+				trenutnaGodina = Integer.parseInt(kolone[3]);
+				datum = kolone[4];
+				adresa = kolone[5];
+				telefon = kolone[6];
+				email = kolone[7];
+				if (kolone[8].equals("B")) {
 					status = Status.B;
 				} else {
 					status = Status.S;
 				}
+				godinaUpisa = Integer.parseInt(kolone[9]);
+				
 
 				// REFERENCE:
 				// https://mkyong.com/java8/java-8-how-to-convert-string-to-localdate/

@@ -72,5 +72,132 @@ III Pristup informacijama o programu i pomoći korišćenja
 
 IV Napuštanje programa
 
-	1) Klikom na File stavku menija (ili pritiskom tastera ALT+F) i zatim na stavku Close (ALT+C).
-	2) Pritiskom kombinacije tastera CTRL+C.
+	1) Klikom na File stavku menija (ili pritiskom tastera ALT+F) i zatim na stavku Close (ALT+C),
+	   praćeno klikom na dugme "OK" u dijalogu potvrde izlaska.
+	2) Pritiskom kombinacije tastera CTRL+C, praćeno klikom na dugme "OK" u dijalogu potvrde izlaska.
+	3) Klikom na X u gornjem desnom uglu prozora, praćeno klikom na dugme "OK" u dijalogu potvrde izlaska.
+
+
+V Prikaz položenih i nepoloženih predmeta studenta
+
+	Kada uđete u izmenu studenta na ranije definisan način u stavki I, imaćete mogućnost da klikom na
+	tabove Položeni i nepoloženi pristupite tabeli predmeta koje je odabrani student položio i koje nije
+	položio.
+
+
+VI Poništavanje ocene
+
+	Poništavanje ocene se vrši klikom na predmet iz tabele položenih predmeta, zatim klikom na dugme
+	"Poništi ocenu". Prikazaće vam se dijalog potvrde, gde je potrebno da pritisnete dugme "Yes" ako
+	želite da poništite odabranu ocenu ili dugme "No" ako to ipak ne želite da uradite.
+
+
+VII Dodavanje predmeta u tabelu nepoloženih predmeta
+
+	Dodavanje predmeta u tabelu nepoloženih predmeta se vrši klikom na dugme "Dodaj" koje se nalazi
+	u prozoru kom se može pristupiti na ranije objašnjen način u stavki V. Kada pritisnete napomenuto dugme,
+	prikazaće se lista predmeta koje odabrani student može da sluša. Kada selektujete željeni predmet, klikom 
+	na dugme "Dodaj" ćete ga dodati u tabelu nepoloženih predmeta i spisak predmeta koje student može da sluša	
+	će se ugasiti. Ako ne želite da dodate nijedan predmet, klikom na dugme "Odustani" će se prozor zatvoriti
+	bez ikakvih izmena.
+
+
+VIII Ukljanjanje predmeta sa studenta
+
+	Ako želite da uklonite neki predmet iz tabele nepoloženih predmeta za nekog studenta, to možete uraditi
+	odabirom željenog predmeta iz tabele nepoloženih predmeta i klikom na dugme "Obriši". Otvoriće se potvrdni dijalog
+	gde je potrebno da pritisnete na dugme "Yes" ukoliko zaista želite da uklonite odabrani predmet ili "No" ukoliko
+	to ipak ne želite da uradite.
+
+
+IX Upis ocene
+	
+	Upis ocene se vrši selekcijom predmeta iz tabele nepoloženih predmeta i klikom na dugme "Polaganje". Nakon
+	toga će se otvoriti forma u kojoj je potrebno izabrati vrednost ocene i uneti datum kada je student položio
+	izabrani predmet. Inicijalno odabrana ocena je 6. Dugme "Potvrdi" će biti omogućeno tek kada se validno unese datum
+	polaganja, čiji oblik je ranije dat u stavki II. Klikom na dugme "Potvrdi" će se odabrani predmet naći u tabeli položenih
+	predmeta, dok klikom na dugme "Odustani" će se forma upisa ocene zatvoriti bez izmena.
+
+
+X Pretraga entiteta
+
+	1) Pretraga studenata:
+		Kada je odabran tab "Student" u glavnom prozoru, možete da pronadjete željene studente u tabeli
+		studenata na sledeći način. Potrebno je u polju koje se nalazi u gornjem desnom uglu, pored dugmeta
+		koje na sebi ima lupu, uneti deo prezimena studenta kojeg hoćete da nadjete, potom razmak pa deo imena
+		studenta i na kraju razmak praćen delom indeksa studenta kog želite da nađete. Pritiskom na dugme sa lupom
+		će se sadržaj tabele studenata osvežiti tako da uneti kriterijumi pretrage budu ispunjeni. Ako želite da se u
+		tabeli opet prikažu svi studenti koji su bili prikazani pre unosa kriterijuma pretrage, potrebno je da polje
+		za unos teksta u gornjem desnom uglu bude prazno i da zatim kliknete dugme za pretragu desno od njega.
+		
+		Napomena: Nije neophodno vršiti pretragu po sva tri kriterijuma. Možete uneti samo deo prezimena ili deo prezimena
+		praćen razmakom i delom imena studenta kog želite da pronađete. Takođe, sve što je uneto posle broja indeksa, a praćeno
+		razmakom će biti zanemareno kao validan kriterijum pretrage.
+
+	2) Pretraga profesora:
+		Kada je odabran tab "Profesor" u glavnom prozoru, možete da pronadjete željene profesore u tabeli
+		profesora na sličan način kao što je to objašnjeno za pretragu studenta. Jedina razlika je ta što
+		pretragu vršite unosom dela prezimena profesora, posle kog opciono možete napisati i deo prezimena profesora
+		posle razmaka.
+
+	3) Pretraga predmeta:
+		Kada je odabran tab "Predmet" u glavnom prozoru, možete da pronadjete željene predmete u tabeli
+		predmeta na sličan način kao što je to objašnjeno za pretragu studenta. Jedina razlika je ta što
+		pretragu vršite unosom dela naziva predmeta.
+
+
+XI Sortiranje entiteta
+
+	Sortiranje entiteta možete uraditi klikom na zaglavlje kolone u tabeli studenata, profesora i predmeta.
+	Kada to uradite, prikazaće se strelice koje označavaju da li je urađeno sortiranje u opadajućem ili rastućem
+	poretku.
+
+	Napomena: Redosled entiteta posle sortiranja se pamti i nakon izlaska iz aplikacije i sledećim pokretanjem će
+	on ostati takav kakav je i bio pre poslednjeg izlaska iz aplikacije.
+
+
+XII Prikaz predmeta koje predaje profesor
+
+	Kada uđete u izmenu profesora na ranije definisan način u stavki I, imaćete mogućnost da klikom na
+	tab "Predmeti" pristupite tabeli predmeta koje je odabrani profesor predaje.
+
+
+XIII Dodavanje predmeta profesoru
+
+	Kada pristupite prikazu predmeta koje predaje profesor, što je objašnjeno u prethodnoj stavki, možete da
+	dodate predmet koji ne predaje nijedan profesor u tabelu predmeta koje predaje izabrani profesor. Ovo možete uraditi
+	klikom na dugme "Dodaj predmet", posle čega će se otvoriti spisak predmeta koje ne predaje nijedan profesor. Možete izabrati
+	više predmeta odjednom tako što ćete kliknuti na neki predmet i držati levi taster pritisnutim dok prevlačite preko predmeta
+	koje hoćete da dodate. Klikom na dugme "Potvrdi" će se odabrani predmet(i) dodati u tabelu predmeta koje predaje profesor.
+
+
+XIV Uklanjanje predmeta koji predaje profesor
+
+	Kada pristupite prikazu predmeta koje predaje profesor, što je objašnjeno u stavki XII, možete da uklonite predmet koji 
+	predaje profesor tako što ćete ga izabrati (moguće je biranje više predmeta odjednom) i kliknuti na dugme "Ukloni predmet".
+	Nakon ovoga će se otvoriti dijalog potvrde gde će se pritiskom na dugme "Yes" ukloniti odabrani predmeti iz tabele predmeta
+	koji izabran profesor predaje.
+
+
+XV Dodavanje profesora na predmet
+
+	Kada pristupite formi za izmenu predmeta, što je objašnjeno u stavki I, moći ćete da dodate profesora na predmet na sledeći način.
+	Ako izabrani predmet ne predaje nijedan profesor, dugme + će biti omogućeno i klikom na njega se otvara spisak svih profesora.
+	Odabirom željenog profesora i klikom na dugme "Potvrdi" će se profesor pojaviti u polju za unos profesora. Tek kada pritisnete
+	dugme "Potvrdi" koje se nalazi u samoj formi za izmenu predmeta će se dodati izabrani profesor na predmet. Ako kliknete na dugme 
+	"Odustani", profesor neće biti dodat i sledećim ulaskom u izmenu istog predmeta će polje za unos profesora biti prazno.
+
+
+XVI Uklanjanje profesora sa predmeta
+
+	Kada pristupite formi za izmenu predmeta, što je objašnjeno u stavki I, moći ćete da uklonite profesora sa predmeta na sledeći način.
+	Ako izabrani predmet predaje neki profesor, klikom na dugme - će se otvoriti dijalog potvrde uklanjanja profesora. 
+	Pritiskom na dugme "Yes" će se profesor ukloniti sa predmeta.
+
+
+XVII Perzistencija stanja informacionog sistema
+
+	Stanje podataka u okviru Studentske službe će biti ažurirano svaki put kada se iz aplikacije izadje na načine definisane u stavki IV. 
+
+	Napomena: Izlazak iz aplikacije na bilo koji drugi način ne garantuje da će stanje informacionog sistema studentske službe biti isto
+	kao pre poslednjeg zatvaranja aplikacije!

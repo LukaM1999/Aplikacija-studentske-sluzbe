@@ -59,7 +59,7 @@ public class IzmeniPredmetDialog extends JDialog {
 	private String stara;
 	
 	private DodajProfesoraNaPredmetDialog dialog;
-	
+		
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniPredmetDialog(Frame parent, String title, boolean modal) {
@@ -335,6 +335,13 @@ public class IzmeniPredmetDialog extends JDialog {
 					semestarVrednost = Semestar.Letnji;
 				}
 
+				for(Predmet p: PredmetController.getInstance().getPredmeti()) {
+					if(p.getSifra().equals(sifraVrednost) && !stara.equals(sifraVrednost)) {
+						JOptionPane.showMessageDialog(getContentPane(), "Već postoji predmet sa unetom šifrom!");
+						return;
+					}
+				}
+				
 				// REFERENCE:
 				// https://stackoverflow.com/questions/8689122/joptionpane-yes-no-options-confirm-dialog-box-issue
 				JOptionPane confirm = new JOptionPane();
@@ -531,7 +538,6 @@ public class IzmeniPredmetDialog extends JDialog {
 							Predmet pred = itp.next();
 							if(pred.getSifra().equals(predmet.getSifra())) {
 								itp.remove();
-								//p.dodajSlobodan(predmet);
 							}
 						}
 					}

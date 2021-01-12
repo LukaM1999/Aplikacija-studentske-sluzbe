@@ -86,6 +86,8 @@ public class IzmeniStudentaDialog extends JDialog {
 	private boolean ispravno = true;
 
 	private JButton ok;
+	
+	private String stariIndeks;
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public IzmeniStudentaDialog(Frame parent, String title, boolean modal) {
@@ -553,9 +555,11 @@ public class IzmeniStudentaDialog extends JDialog {
 
 		TableStudent table = TableStudent.getInstance();
 		Student student = StudentController.getInstance()
-				.getStudent(table.convertRowIndexToModel(table.getSelectedRow()));
+				.getStudent(table.getSelectedRow());
 
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
+		
+		stariIndeks = student.getBrIndeksa();
 
 		imeUnos.setText(student.getIme());
 		prezimeUnos.setText(student.getPrezime());
@@ -605,46 +609,46 @@ public class IzmeniStudentaDialog extends JDialog {
 				String upisVrednost = upisUnos.getText();
 
 				if (!(Pattern.compile(imeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(imeVrednost).matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto ime!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneto ime!");
 					return;
 				}
 
 				if (!(Pattern.compile(prezimeSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(prezimeVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneto prezime!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneto prezime!");
 					return;
 				}
 
 				if (!Pattern.matches(datumSablon, datumVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet datum rođenja!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet datum rođenja!");
 					return;
 				}
 
 				if (!(Pattern.compile(adresaSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(adresaVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta adresa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta adresa!");
 					return;
 				}
 
 				if (!Pattern.matches(telefonSablon, telefonVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet kontakt telefon!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet kontakt telefon!");
 					return;
 				}
 
 				if (!Pattern.matches(emailSablon, emailVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta e-mail adresa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta e-mail adresa!");
 					return;
 				}
 
 				if (!(Pattern.compile(indeksSablon, Pattern.UNICODE_CHARACTER_CLASS).matcher(indeksVrednost)
 						.matches())) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno unet broj indeksa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno unet broj indeksa!");
 					return;
 				}
 
 				String[] godRodjenja = datumVrednost.split("\\.");
 				if (Integer.parseInt(upisVrednost) - Integer.parseInt(godRodjenja[2]) < 16) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešno uneta godina upisa!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešno uneta godina upisa!");
 					return;
 				}
 
@@ -659,7 +663,7 @@ public class IzmeniStudentaDialog extends JDialog {
 
 				String[] indeksGodina = indeksVrednost.split("-");
 				if (Integer.parseInt(indeksGodina[2]) != Integer.parseInt(upisVrednost)) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(),
+					JOptionPane.showMessageDialog(getContentPane(),
 							"Godina na indeksu i godina upisa se razlikuju!");
 					return;
 				}
@@ -668,13 +672,20 @@ public class IzmeniStudentaDialog extends JDialog {
 				// https://stackoverflow.com/questions/136419/get-integer-value-of-the-current-year-in-java
 				int trenutnaGodina = Year.now().getValue();
 				if (Integer.parseInt(upisVrednost) > trenutnaGodina - godinaStudija) {
-					JOptionPane.showMessageDialog(MainFrame.getInstance(), "Pogrešna trenutna godina studija!");
+					JOptionPane.showMessageDialog(getContentPane(), "Pogrešna trenutna godina studija!");
 					return;
 				}
 
 				Status status = Status.B;
 				if (budzetCombo.getSelectedItem().toString() == "Samofinansiranje") {
 					status = Status.S;
+				}
+				
+				for(Student s: StudentController.getInstance().getStudenti()) {
+					if(s.getBrIndeksa().equals(indeksVrednost) && !stariIndeks.equals(indeksVrednost)) {
+						JOptionPane.showMessageDialog(getContentPane(), "Već postoji student sa unetim indeksom!");
+						return;
+					}
 				}
 
 				// REFERENCE:

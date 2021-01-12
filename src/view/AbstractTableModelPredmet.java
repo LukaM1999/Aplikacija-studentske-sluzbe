@@ -10,6 +10,8 @@ public class AbstractTableModelPredmet extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = 1860946642320823358L;
+	
+	public  AbstractTableModelPredmet() {}
 
 	@Override
 	public int getRowCount() {

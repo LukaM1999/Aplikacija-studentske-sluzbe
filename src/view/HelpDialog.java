@@ -24,7 +24,7 @@ public class HelpDialog extends JDialog {
 	public HelpDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 
-		setSize(600, 600);
+		setSize(850, 600);
 		setLocationRelativeTo(parent);
 		getContentPane().setLayout(null);
 

@@ -45,14 +45,16 @@ public class BazaProfesora implements Serializable {
 	
 	private BazaProfesora() {
 		
-		//deserijalizacija("deserijalizacija" + File.separator + "profesori.txt" );
+		//deserijalizacija("deserijalizacija" + File.separator + "Profesori1.txt" );
+		
 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "profesori.xml");
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "profesori1.xml");
+		} catch (IOException e) { // TODO Auto-generated catchblock
 			e.printStackTrace();
 		}
+		  
+		 
 
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Ime");
@@ -160,14 +162,14 @@ public class BazaProfesora implements Serializable {
 			String line = null;
 			while ((line = reader.readLine()) != null) {
 				String[] kolone = line.split(";");
-				ime = kolone[0];
-				prezime = kolone[1];
-				datum = kolone[2];
-				adresa = kolone[3];
-				telefon = kolone[4];
-				email = kolone[5];
-				kancelarija = kolone[6];
-				licna = kolone[7];
+				licna = kolone[0];
+				ime = kolone[1];
+				prezime = kolone[2];
+				datum = kolone[3];
+				adresa = kolone[4];
+				telefon = kolone[5];
+				email = kolone[6];
+				kancelarija = kolone[7];
 				if (kolone[8].equals("BSc")) {
 					titula = Titula.BSc;
 				} else if (kolone[8].equals("MSc")) {
