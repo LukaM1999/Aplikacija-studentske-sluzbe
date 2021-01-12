@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JMenuBar;
 import javax.swing.JOptionPane;
 
+import controller.OcenaController;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
@@ -144,10 +145,10 @@ public class MainFrame extends JFrame {
 			@Override
 			public void windowClosed(WindowEvent e) {
 				
-				StudentController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti.xml");
-				ProfesorController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "profesori.xml"); 
-				PredmetController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "predmeti.xml"); 
-				
+				StudentController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti1.xml");
+				ProfesorController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "profesori1.xml"); 
+				PredmetController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "predmeti1.xml"); 
+				OcenaController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "ocene1.xml");
 				setDefaultCloseOperation(EXIT_ON_CLOSE);
 			}
 			

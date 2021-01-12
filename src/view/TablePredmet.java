@@ -162,7 +162,7 @@ public class TablePredmet extends JTable {
 
 							@Override
 							public int compare(Predmet arg0, Predmet arg1) {
-								return String.valueOf(arg0.getESPB()).compareTo(String.valueOf(arg1.getESPB()));
+								return Integer.compare(arg0.getESPB(), arg1.getESPB());
 							}
 						});
 						
@@ -177,7 +177,7 @@ public class TablePredmet extends JTable {
 
 							@Override
 							public int compare(Predmet arg0, Predmet arg1) {
-								return String.valueOf(arg1.getESPB()).compareTo(String.valueOf(arg0.getESPB()));
+								return Integer.compare(arg1.getESPB(), arg0.getESPB());
 							}
 						});
 						

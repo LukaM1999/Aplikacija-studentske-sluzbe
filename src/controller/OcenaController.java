@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import model.BazaOcena;
@@ -52,5 +53,14 @@ public class OcenaController {
 	
 	public Ocena getOcena(int row) {
 		return BazaOcena.getInstance().getRow(row);
+	}
+	
+	public void XstreamSerialization(String putanja) {
+		try {
+			BazaOcena.getInstance().XstreamSerialization(putanja);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

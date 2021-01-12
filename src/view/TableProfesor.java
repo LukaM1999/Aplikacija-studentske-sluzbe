@@ -15,9 +15,7 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
 import model.BazaProfesora;
-import model.BazaStudenata;
 import model.Profesor;
-import model.Student;
 
 public class TableProfesor extends JTable {
 

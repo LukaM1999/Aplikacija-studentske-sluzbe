@@ -1,13 +1,16 @@
 package model;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +40,8 @@ public class BazaOcena implements Serializable {
 
 	private List<Ocena> ocene;
 	private List<String> kolone;
-
+	private Ocena[] niz;
+	
 	private BazaOcena() {
 		
 
@@ -145,7 +149,30 @@ public class BazaOcena implements Serializable {
 
 	}
 	
+public void XstreamSerialization(String putanja) throws IOException {
+		
+		niz = new Ocena[ocene.size()];
+		
+		for (int i = 0; i < ocene.size(); i++) {
+			niz[i] = ocene.get(i);
+		}
+		
+		File f = new File(putanja);
+		OutputStream os = new BufferedOutputStream(new FileOutputStream(f));
+		try {
 
+			XStream xs = new XStream();
+			// Naziv tag-a u xml umesto punog naziva klase.
+			xs.alias("ocena", Ocena.class);
+
+			// Serijalizacija u xml.
+			xs.toXML(niz, os); 
+			
+		} finally {
+			os.close();
+		}
+	}
+	
 	public void XstreamDeserialization(String putanja) throws IOException {
 		
 		init();

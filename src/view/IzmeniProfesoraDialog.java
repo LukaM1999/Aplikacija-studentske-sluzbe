@@ -57,7 +57,7 @@ public class IzmeniProfesoraDialog extends JDialog {
 	
 	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
-	
+	private String staraLicna;
 	
 	private boolean imeKorektno = true;
 	private boolean prezimeKorektno = true;
@@ -523,6 +523,8 @@ public class IzmeniProfesoraDialog extends JDialog {
 		
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy.");
 		
+		staraLicna = prof.getBrLicneKarte();
+		
 		imeUnos.setText(prof.getIme());
 		prezimeUnos.setText(prof.getPrezime());
 		datumUnos.setText(formatter.format(prof.getDatumRodjenja()));
@@ -675,6 +677,13 @@ public class IzmeniProfesoraDialog extends JDialog {
 				zvanjeVrednost = Zvanje.redovni_profesor;
 			} else if (zvanjeCombo.getSelectedItem().toString() == "Profesor emeritus") {
 				zvanjeVrednost = Zvanje.profesor_emeritus;
+			}
+			
+			for(Profesor p: ProfesorController.getInstance().getProfesori()) {
+				if(p.getBrLicneKarte().equals(licnaVrednost) && !staraLicna.equals(licnaVrednost)) {
+					JOptionPane.showMessageDialog(getContentPane(), "Već postoji profesor sa unetim brojem lične karte!");
+					return;
+				}
 			}
 			
 			JOptionPane confirm = new JOptionPane();	
