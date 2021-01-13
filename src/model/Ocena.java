@@ -22,12 +22,6 @@ public class Ocena {
 		this.datumPolaganja = datumPolaganja;
 	}
 	
-	public Ocena(int vrednostOcene, LocalDate datumPolaganja) {
-		super();
-		this.vrednostOcene = vrednostOcene;
-		this.datumPolaganja = datumPolaganja;
-	}
-	
 	public Ocena(Ocena o) {
 		this.student = o.student;
 		this.predmet = o.predmet;
