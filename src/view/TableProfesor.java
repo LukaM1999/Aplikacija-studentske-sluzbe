@@ -72,7 +72,7 @@ public class TableProfesor extends JTable {
 
 					if ((prva % 2) == 0) {
 
-						// REFERENCE: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
+				// REFERENCE: https://www.codebyamir.com/blog/sort-list-of-objects-by-field-java
 						Collections.sort(BazaProfesora.getInstance().getProfesori(), new Comparator<Profesor>() {
 
 							@Override
@@ -81,7 +81,7 @@ public class TableProfesor extends JTable {
 							}
 						});
 						
-					//REFERENCE: https://stackoverflow.com/questions/1496143/dynamically-changing-the-column-header-text-in-jtable
+				//REFERENCE: https://stackoverflow.com/questions/1496143/dynamically-changing-the-column-header-text-in-jtable
 						getColumnModel().getColumn(0).setHeaderValue("Ime " + "\u25BC");
 						getColumnModel().getColumn(1).setHeaderValue("Prezime");
 						getColumnModel().getColumn(2).setHeaderValue("Titula");
