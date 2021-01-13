@@ -37,7 +37,6 @@ public class Toolbar extends JToolBar {
 		
 		super(SwingConstants.HORIZONTAL);
 		
-		
 		JButton btnNew = new JButton();
 		btnNew.setToolTipText("Kreiranje entiteta");
 		btnNew.setIcon(new ImageIcon("images"+ File.separator +"File_new.png"));
