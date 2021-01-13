@@ -372,11 +372,9 @@ public class IzmeniPredmetDialog extends JDialog {
 								ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 								for (Predmet predavan : prof.getPredajePredmet()) {
 									if (predavan.getSifra().equals(stara)) {
-										System.out.println("One time");
+										
 										predmet.setProfesor(prof);
-										//prof.izbrisiPredajePredmet(stara);
-										//prof.dodajPredajePredmet(predmet);
-
+								
 										predavan.setSifra(sifraVrednost);
 										predavan.setNaziv(nazivVrednost);
 										predavan.setESPB(Integer.parseInt(ESPBVrednost));
@@ -387,19 +385,14 @@ public class IzmeniPredmetDialog extends JDialog {
 										if (!stara.equals(sifraVrednost)) {
 											prof.izbrisiPredajePredmet(stara);
 										}
-										 
-										// prof.dodajPredajePredmet(predmet);
-										// prof.izbrisiSlobodan(predmet);
 										break outerloop;
 									}
 								}
 
-								// ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 								predmet.setProfesor(prof);
 								prof.izbrisiPredajePredmet(stara);
 								prof.dodajPredajePredmet(predmet);
 								prof.izbrisiSlobodan(predmet);
-								// ProfesorPredajeController.getInstance().initPredajePredmet(prof);
 
 								break outerloop;
 
