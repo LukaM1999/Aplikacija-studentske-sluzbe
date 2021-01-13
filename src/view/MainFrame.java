@@ -144,7 +144,7 @@ public class MainFrame extends JFrame {
 			
 			@Override
 			public void windowClosed(WindowEvent e) {
-				
+				//serijalizacija uradjena uz pomoc vezbi - XStream primer
 				StudentController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti1.xml");
 				ProfesorController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "profesori1.xml"); 
 				PredmetController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "predmeti1.xml"); 

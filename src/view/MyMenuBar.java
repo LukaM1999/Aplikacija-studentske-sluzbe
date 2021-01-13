@@ -81,6 +81,11 @@ public class MyMenuBar extends JMenuBar {
 						"Da li ste sigurni da želite da napustite aplikaciju?", "Potvrda izlaska",
 						JOptionPane.OK_CANCEL_OPTION);
 				if (answer == JOptionPane.YES_OPTION) {
+					//serijalizacija uradjena uz pomoc vezbi - XStream primer
+					StudentController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "studenti.xml");
+					ProfesorController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "profesori.xml"); 
+					PredmetController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "predmeti.xml"); 
+					OcenaController.getInstance().XstreamSerialization("deserijalizacija" + File.separator + "ocene.xml");
 					System.exit(0);
 				}
 

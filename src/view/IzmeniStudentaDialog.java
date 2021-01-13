@@ -905,7 +905,7 @@ public class IzmeniStudentaDialog extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				if (nepolozeniTable.getSelectedRow() >= 0) {
 
-					PolaganjeDialog polaganje = new PolaganjeDialog(MainFrame.getInstance(), "Unos ocene", true,
+					PolaganjeDialog polaganje = new PolaganjeDialog(parent, "Unos ocene", true,
 							nepolozeniTable, datumSablon, student, model);
 
 					polaganje.setVisible(true);
