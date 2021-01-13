@@ -44,12 +44,10 @@ public class BazaProfesora implements Serializable {
 	private Profesor[] niz;
 	
 	private BazaProfesora() {
-		
-		//deserijalizacija("deserijalizacija" + File.separator + "Profesori1.txt" );
-		
+				
 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "profesori1.xml");
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "profesori.xml");
 		} catch (IOException e) { // TODO Auto-generated catchblock
 			e.printStackTrace();
 		}

@@ -34,9 +34,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	private BazaNepolozenihIspita() {
 	
 		init();
-		
-		//deserijalizacija("deserijalizacija" + File.separator + "Nepolozeni1.txt");
-		
+				
 		this.kolone = new ArrayList<String>();
 		this.kolone.add("Šifra");
 		this.kolone.add("Naziv");

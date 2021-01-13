@@ -44,12 +44,9 @@ public class BazaOcena implements Serializable {
 	
 	private BazaOcena() {
 		
-
-		//deserijalizacija("deserijalizacija" + File.separator + "ocene1.txt");
-
 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "ocene1.xml");
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "ocene.xml");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

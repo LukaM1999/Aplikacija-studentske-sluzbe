@@ -2,13 +2,16 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javax.swing.InputMap;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableCellRenderer;
@@ -43,12 +46,19 @@ public class TablePredmet extends JTable {
 	private int cetvrta = 0;
 	private int peta = 0;
 	
+	@SuppressWarnings("deprecation")
 	public TablePredmet() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		AbstractTableModelPredmet model = new AbstractTableModelPredmet();
 		this.setModel(model);
+		
+		//REFERENCE: https://community.oracle.com/tech/developers/discussion/1368212/jtable-inhibit-ctrl-a-select-all
+		InputMap im = this.getInputMap(javax.swing.JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK), "none");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK), "none");
+		
 		sorter = new TableRowSorter<AbstractTableModelPredmet>(model);
 
 		// REFERNCE:

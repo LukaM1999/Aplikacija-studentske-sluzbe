@@ -44,11 +44,9 @@ public class BazaStudenata implements Serializable {
 	
 	private BazaStudenata() {
 
-		//deserijalizacija("deserijalizacija" + File.separator + "Studenti1.txt");
-				 		 
-		
+				 		 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "studenti1.xml");
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "studenti.xml");
 		} catch (IOException e) { // TODO Auto-generated catch block
 			e.printStackTrace();
 		}
