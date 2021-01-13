@@ -88,6 +88,7 @@ public class IzmeniStudentaDialog extends JDialog {
 	private JButton ok;
 	
 	private String stariIndeks;
+	
 
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public IzmeniStudentaDialog(Frame parent, String title, boolean modal) {
