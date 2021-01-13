@@ -2,21 +2,21 @@ package view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
+import javax.swing.InputMap;
 import javax.swing.JTable;
+import javax.swing.KeyStroke;
 import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableRowSorter;
 
-import controller.OcenaController;
-import controller.PredmetController;
-import controller.StudentController;
 import model.BazaStudenata;
 import model.Student;
 
@@ -47,12 +47,20 @@ public class TableStudent extends JTable {
 	
 	private ArrayList<RowFilter<Object, Object>> filters;
 
+	@SuppressWarnings("deprecation")
 	public TableStudent() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
 		this.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		AbstractTableModelStudent model = new AbstractTableModelStudent();
 		this.setModel(model);
+		
+		//REFERENCE: https://community.oracle.com/tech/developers/discussion/1368212/jtable-inhibit-ctrl-a-select-all
+		InputMap im = this.getInputMap(javax.swing.JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_A, KeyEvent.CTRL_MASK), "none");
+		im.put(KeyStroke.getKeyStroke(KeyEvent.VK_C, KeyEvent.CTRL_MASK), "none");
+
+		
 		sorter = new TableRowSorter<AbstractTableModelStudent>(model);
 		
 		//REFERNCE: https://docs.oracle.com/javase/7/docs/api/javax/swing/RowFilter.html
@@ -342,33 +350,7 @@ public class TableStudent extends JTable {
 
 			}
 		});
-
-		for (int i = 0; i < StudentController.getInstance().getStudenti().size(); i++) {
-			for (int j = 0; j < OcenaController.getInstance().getOcene().size(); j++)
-				if (StudentController.getInstance().getStudenti().get(i).getBrIndeksa()
-						.equals(OcenaController.getInstance().getOcene().get(j).getStudent().getBrIndeksa())) {
-					StudentController.getInstance().getStudenti().get(i)
-							.dodajPolozen(OcenaController.getInstance().getOcene().get(j));
-				}
-		}
-		
-		for (int i = 0; i < PredmetController.getInstance().getPredmeti().size(); i++) {
-			for (int j = 0; j < OcenaController.getInstance().getOcene().size(); j++)
-				if (PredmetController.getInstance().getPredmeti().get(i).getSifra()
-						.equals(OcenaController.getInstance().getOcene().get(j).getPredmet().getSifra())) {
-					PredmetController.getInstance().getPredmeti().get(i)
-							.dodajPolozili(OcenaController.getInstance().getOcena(j).getStudent());
-				}
-		}
-
-		for (Student s : StudentController.getInstance().getStudenti()) {
-			s.setProsecnaOcena(s.izracunajProsek(s.getSpisakPolozenih()));
-			if (Double.isNaN(s.getProsecnaOcena())) {
-				s.setProsecnaOcena(0);
-			}
-
-		}
-
+	    
 	}
 
 	@Override

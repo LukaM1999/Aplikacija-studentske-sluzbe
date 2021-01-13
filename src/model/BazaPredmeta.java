@@ -43,14 +43,11 @@ public class BazaPredmeta implements Serializable {
 	private List<String> kolone;
 	private Predmet[] niz;
 	
-	private BazaPredmeta() {
-		
-		//deserijalizacija("deserijalizacija" + File.separator + "Predmeti1.txt");
-		
+	private BazaPredmeta() {		
 		
 		
 		try {
-			this.XstreamDeserialization("deserijalizacija" + File.separator + "predmeti1.xml");
+			this.XstreamDeserialization("deserijalizacija" + File.separator + "predmeti.xml");
 		} catch (IOException e) { // TODO Auto-generated catchblock
 			e.printStackTrace();
 		}
