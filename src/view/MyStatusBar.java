@@ -13,17 +13,44 @@ import javax.swing.SwingConstants;
 import javax.swing.Timer;
 import javax.swing.border.BevelBorder;
 
-public class MyStatusBar {
-	JPanel statusBar;
 
+/**
+ * Klasa u kojoj se kreira statusna traka
+ * na dnu glavnog prozora.
+ * 
+ * @author Luka Miletić
+ *
+ */
+public class MyStatusBar {
+	
+	/**
+	 * Objekat statusne trake.
+	 */
+	JPanel statusBar;
+	
+	/**
+	 * Dobavlja objekat statusne trake.
+	 * 
+	 * @return statusBar	objekat statusne trake
+	 */
 	public JPanel getStatusBar() {
 		return this.statusBar;
 	}
 	
+	/**
+	 * Postavlja polje <code>statusBar</code> na vrednost
+	 * prosledjenog objekta statusne trake.
+	 * 
+	 * @param sb	objekat statusne trake
+	 */
 	public void setStatusBar(JPanel sb) {
 		this.statusBar = sb;
 	}
 	
+	/**
+	 * Kreira statusnu traku koja sadrži naziv aplikacije.
+	 * Takođe prikazuje trenutno vreme i datum.
+	 */
 	public MyStatusBar() {
 		this.statusBar = new JPanel();
 	}

@@ -3,8 +3,8 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import model.BazaPredmeta;
-import model.Predmet;
+import model.baze.BazaPredmeta;
+import model.entiteti.Predmet;
 import view.MainFrame;
 
 //Koriscen materijal sa vezbi

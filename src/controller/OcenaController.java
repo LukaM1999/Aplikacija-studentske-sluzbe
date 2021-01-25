@@ -3,9 +3,9 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import model.BazaOcena;
-import model.Ocena;
-import model.Student;
+import model.baze.BazaOcena;
+import model.entiteti.Ocena;
+import model.entiteti.Student;
 
 public class OcenaController {
 	

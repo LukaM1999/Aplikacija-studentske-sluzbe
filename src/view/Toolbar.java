@@ -21,11 +21,38 @@ import controller.OcenaController;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
-import model.Ocena;
-import model.Predmet;
-import model.Profesor;
-import model.Student;
+import model.entiteti.Ocena;
+import model.entiteti.Predmet;
+import model.entiteti.Profesor;
+import model.entiteti.Student;
+import view.dialogs.DodajPredmetDialog;
+import view.dialogs.DodajProfesoraDialog;
+import view.dialogs.DodajStudentaDialog;
+import view.dialogs.IzmeniPredmetDialog;
+import view.dialogs.IzmeniProfesoraDialog;
+import view.dialogs.IzmeniStudentaDialog;
+import view.tables.TablePredmet;
+import view.tables.TableProfesor;
+import view.tables.TableStudent;
 //Koriscen materijal sa vezbi
+/**
+ * Toolbar traka glavnog prozora sa implementiranim
+ * funkcionalnostima pristupanja dodavanju, izmeni i brisanju entiteta.
+ * Brisanje entiteta, u zavisnosti od odabranog taba,
+ * uklanja entitet iz celog informacionog sistema.
+ * Brisanje se vrši tako što se na svim mestima gde
+ * bi mogao biti referenciran, traži student koji
+ * ima broj indeksa isti kao onaj koji je selektovan
+ * za brisanje iz tabele studenata. Isto važi i za profesore
+ * i predmete, samo što se oni traže preko broja lične karte(za profesora)
+ * i sifre(za predmet).
+ * Takodje implementira pretragu entiteta tako što se proveravaju regularni izrazi
+ * unesene vrednosti od nekoliko mogućih kolona tabele.
+ * 
+ * @author Mihajlo Kisić
+ * @author Luka Miletić
+ *
+ */
 public class Toolbar extends JToolBar {
 
 	/**
@@ -33,6 +60,11 @@ public class Toolbar extends JToolBar {
 	 */
 	private static final long serialVersionUID = 8730860374137818360L;
 
+	/**
+	 * Kreira toolbar traku sa ikonama na svakom dugmetu i poljem za unos teksta
+	 * korišćenim za unos kriterijuma pretrage, u zavisnosti od toga koji tab je
+	 * selektovan.
+	 */
 	public Toolbar() {
 		
 		super(SwingConstants.HORIZONTAL);

@@ -2,9 +2,9 @@ package controller;
 
 import java.util.List;
 
-import model.BazaPredmetiBezProfesora;
-import model.Predmet;
-import model.Profesor;
+import model.baze.BazaPredmetiBezProfesora;
+import model.entiteti.Predmet;
+import model.entiteti.Profesor;
 
 public class PredmetiBezProfesoraController {
 

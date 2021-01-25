@@ -77,7 +77,7 @@
                     <godinaUpisa>2015</godinaUpisa>
                     <trenutnaGodina>3</trenutnaGodina>
                     <statusStudenta>S</statusStudenta>
-                    <prosecnaOcena>9.0</prosecnaOcena>
+                    <prosecnaOcena>9.5</prosecnaOcena>
                     <spisakPolozenih>
                       <model.Ocena>
                         <student reference="../../.."/>
@@ -103,12 +103,6 @@
                         <predmet reference="../../../../.."/>
                         <vrednostOcene>9</vrednostOcene>
                         <datumPolaganja>2019-11-10</datumPolaganja>
-                      </model.Ocena>
-                      <model.Ocena>
-                        <student reference="../../.."/>
-                        <predmet reference="../../../../../../../.."/>
-                        <vrednostOcene>8</vrednostOcene>
-                        <datumPolaganja>2020-11-11</datumPolaganja>
                       </model.Ocena>
                     </spisakPolozenih>
                     <spisakNepolozenih>
@@ -251,6 +245,7 @@
                         <nisuPolozili/>
                       </model.Predmet>
                       <model.Predmet reference="../model.Predmet/profesor/predajePredmet/model.Predmet[4]"/>
+                      <model.Predmet reference="../../../../../../.."/>
                     </spisakNepolozenih>
                     <spisakSlobodnih>
                       <model.Predmet>

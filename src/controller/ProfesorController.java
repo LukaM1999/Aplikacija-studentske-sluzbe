@@ -3,8 +3,8 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
-import model.BazaProfesora;
-import model.Profesor;
+import model.baze.BazaProfesora;
+import model.entiteti.Profesor;
 import view.MainFrame;
 
 //Koriscen materijal sa vezbi

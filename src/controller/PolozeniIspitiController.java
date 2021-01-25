@@ -2,11 +2,11 @@ package controller;
 
 import java.util.List;
 
-import model.BazaNepolozenihIspita;
-import model.BazaOcena;
-import model.BazaPolozenihIspita;
-import model.Ocena;
-import model.Student;
+import model.baze.BazaNepolozenihIspita;
+import model.baze.BazaOcena;
+import model.baze.BazaPolozenihIspita;
+import model.entiteti.Ocena;
+import model.entiteti.Student;
 
 public class PolozeniIspitiController {
 	

@@ -11,10 +11,23 @@ import controller.OcenaController;
 import controller.PredmetController;
 import controller.ProfesorController;
 import controller.StudentController;
-import model.Ocena;
-import model.Predmet;
-import model.Profesor;
-import model.Student;
+import model.entiteti.Ocena;
+import model.entiteti.Predmet;
+import model.entiteti.Profesor;
+import model.entiteti.Student;
+import view.dialogs.AboutDialog;
+import view.dialogs.DodajPredmetDialog;
+import view.dialogs.DodajProfesoraDialog;
+import view.dialogs.DodajStudentaDialog;
+import view.dialogs.HelpDialog;
+import view.dialogs.IzmeniPredmetDialog;
+import view.dialogs.IzmeniProfesoraDialog;
+import view.dialogs.IzmeniStudentaDialog;
+import view.dialogs.abstractActions.AboutDialogAction;
+import view.dialogs.abstractActions.HelpDialogAction;
+import view.tables.TablePredmet;
+import view.tables.TableProfesor;
+import view.tables.TableStudent;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
@@ -24,13 +37,35 @@ import java.io.File;
 import java.util.Iterator;
 
 //Koriscen materijal sa vezbi
+/**
+ * Meni traka glavnog prozora sa implementiranim
+ * funkcionalnostima pristupanja dodavanju, izmeni, brisanju
+ * entiteta, kao i pristupanja pomoći pri korišćenju,
+ * informacijama o samom programu i napuštanje programa.
+ * Izlaskom iz aplikacije se čuva stanje informacionog
+ * sistema zapisom u <code>XML</code> datoteku.
+ * Brisanje entiteta, u zavisnosti od odabranog taba,
+ * uklanja entitet iz celog informacionog sistema.
+ * Brisanje se vrši tako što se na svim mestima gde
+ * bi mogao biti referenciran, traži student koji
+ * ima broj indeksa isti kao onaj koji je selektovan
+ * za brisanje iz tabele studenata. Isto važi i za profesore
+ * i predmete, samo što se oni traže preko broja lične karte(za profesora)
+ * i sifre(za predmet).
+ * 
+ * @author Luka Miletić
+ * @author Mihajlo Kisić
+ */
 public class MyMenuBar extends JMenuBar {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -5986249145568966369L;
-
+	
+	/**
+	 * Kreira meni traku unutar glavnog prozora.
+	 */
 	public MyMenuBar() {
 		JMenu fileMenu = new JMenu("File");
 		fileMenu.setMnemonic(KeyEvent.VK_F);
