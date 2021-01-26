@@ -29,9 +29,9 @@ public class Tabs extends JTabbedPane {
 	private static Tabs instance = null;
 	
 	/**
-	 * Dobavlja instancu tabova po Singleton konvenciji.
+	 * Dobavlja instancu tabova po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabova
+	 * @return instanca tabova
 	 */
 	public static Tabs getInstance() {
 		if (instance == null) {

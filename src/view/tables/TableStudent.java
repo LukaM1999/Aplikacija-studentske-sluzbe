@@ -23,10 +23,10 @@ import view.abstractTableModels.AbstractTableModelStudent;
 
 
 /**
- * Klasa u kojoj se pravi instanca funkcionalne tabele studenata,
- *  čiji redovi i kolone se mogu jednostruko selektovati. Takođe je
- *  moguće sortirati vrednosti tabele u opadajućem i rastućem poretku
- *  (leksikografski i brojčano). 
+ * Klasa u kojoj se pravi instanca funkcionalne tabele studenata, 
+ * čiji redovi i kolone se mogu jednostruko selektovati. Takođe je 
+ * moguće sortirati vrednosti tabele u opadajućem i rastućem poretku 
+ * (leksikografski i brojčano). 
  * 
  * @author Luka Miletić
  *
@@ -45,9 +45,9 @@ public class TableStudent extends JTable {
 	private static TableStudent instance = null;
 
 	/**
-	 * Dobavlja instancu tabele studenata po Singleton konvenciji.
+	 * Dobavlja instancu tabele studenata po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele studenata.
+	 * @return instanca tabele studenata.
 	 */
 	public static TableStudent getInstance() {
 		if (instance == null) {
@@ -96,7 +96,6 @@ public class TableStudent extends JTable {
 	 */
 	private ArrayList<RowFilter<Object, Object>> filters;
 
-	@SuppressWarnings("deprecation")
 	/**
 	 * Kreira tabelu studenata po istoimenom apstraktnom modelu tabele.
 	 * Implementira slušače događaja koji broje koliko puta je kliknuto
@@ -105,6 +104,7 @@ public class TableStudent extends JTable {
 	 * je izabrano. Onemogućene su ugrađene prečice tabele zbog konflikta sa
 	 * već postojećim prečicama same aplikacije.
 	 */
+	@SuppressWarnings("deprecation")
 	public TableStudent() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -424,7 +424,7 @@ public class TableStudent extends JTable {
 	/**
 	 * Dobavlja sorter tabele studenata.
 	 * 
-	 * @return sorter - sorter tabele studenata.
+	 * @return sorter tabele studenata.
 	 */
 	public TableRowSorter<AbstractTableModelStudent> getSorter() {
 		return sorter;
@@ -433,7 +433,7 @@ public class TableStudent extends JTable {
 	/**
 	 * Dobavlja listu filtera primenjenih na tabelu studenata.
 	 * 
-	 * @return filters - lista filtera.
+	 * @return lista filtera.
 	 */
 	public ArrayList<RowFilter<Object, Object>> getFilters() {
 		return filters;

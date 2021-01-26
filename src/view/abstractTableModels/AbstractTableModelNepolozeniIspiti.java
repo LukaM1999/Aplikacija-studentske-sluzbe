@@ -35,6 +35,8 @@ public class AbstractTableModelNepolozeniIspiti extends AbstractTableModel {
 	
 	/**
 	 * Dobavlja broj kolona tabele nepoloženih ispita.
+	 * 
+	 * 
 	 */
 	@Override
 	public int getColumnCount() {

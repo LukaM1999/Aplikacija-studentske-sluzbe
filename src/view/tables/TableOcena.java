@@ -28,9 +28,9 @@ public class TableOcena extends JTable{
 	private static TableOcena instance = null;
 	
 	/**
-	 * Dobavlja instancu tabele ocena po Singleton konvenciji.
+	 * Dobavlja instancu tabele ocena po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele ocena.
+	 * @return instanca tabele ocena.
 	 */
 	public static TableOcena getInstance() {
 		if (instance == null) {

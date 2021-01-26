@@ -76,6 +76,8 @@ public class IzmeniProfesoraDialog extends JDialog {
 
 	private JButton ok;
 	
+	
+	
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniProfesoraDialog(MainFrame parent, String title, boolean modal) {
 		super(parent, title, modal);

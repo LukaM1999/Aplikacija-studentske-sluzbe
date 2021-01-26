@@ -29,7 +29,7 @@ import view.tables.TableStudent;
 /**
  * Ova klasa predstavlja instancu glavnog prozora.
  * 
- * @author	Mihajlo Kisić
+ * @author Mihajlo Kisić
  */
 public class MainFrame extends JFrame {
 
@@ -44,9 +44,9 @@ public class MainFrame extends JFrame {
 	private static MainFrame instance = null;
 	
 	/**
-	 * Dobavlja instancu glavnog prozora po Singleton konvenciji.
+	 * Dobavlja instancu glavnog prozora po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca glavnog prozora
+	 * @return instanca glavnog prozora
 	 */
 	public static MainFrame getInstance() {
 		if (instance == null) {
@@ -58,8 +58,8 @@ public class MainFrame extends JFrame {
 	/**
 	 * Ažurira izgled tabele studenata.
 	 * 
-	 * @param akcija	kakav vid azuriranja je u pitanju
-	 * @param vrednost	vrednost korespondentna vidu azuriranja
+	 * @param akcija kakav vid azuriranja je u pitanju
+	 * @param vrednost vrednost korespondentna vidu azuriranja
 	 */
 	public void azurirajStudente(String akcija, int vrednost) {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) TableStudent.getInstance().getModel();
@@ -70,8 +70,8 @@ public class MainFrame extends JFrame {
 	/**
 	 * Ažurira izgled tabele profesora.
 	 * 
-	 * @param akcija	kakav vid azuriranja je u pitanju
-	 * @param vrednost	vrednost korespondentna vidu azuriranja
+	 * @param akcija kakav vid azuriranja je u pitanju
+	 * @param vrednost vrednost korespondentna vidu azuriranja
 	 */
 	public void azurirajProfesore(String akcija, int vrednost) {
 		AbstractTableModelProfesor model = (AbstractTableModelProfesor) TableProfesor.getInstance().getModel();
@@ -82,8 +82,8 @@ public class MainFrame extends JFrame {
 	/**
 	 * Ažurira izgled tabele predmeta.
 	 * 
-	 * @param akcija	kakav vid azuriranja je u pitanju
-	 * @param vrednost	vrednost korespondentna vidu azuriranja
+	 * @param akcija kakav vid azuriranja je u pitanju
+	 * @param vrednost vrednost korespondentna vidu azuriranja
 	 */
 	public void azurirajPredmete(String akcija, int vrednost) {
 		AbstractTableModelPredmet model = (AbstractTableModelPredmet) TablePredmet.getInstance().getModel();
@@ -95,7 +95,7 @@ public class MainFrame extends JFrame {
 	 * Ažurira izgled tabele studenata za prosledjeni
 	 * red u tabeli koji je izmenjen.
 	 * 
-	 * @param row	indeks izmenjenog reda tabele studenata	
+	 * @param row indeks izmenjenog reda tabele studenata	
 	 */
 	public void izmeniStudenta(int row) {
 		AbstractTableModelStudent model = (AbstractTableModelStudent) TableStudent.getInstance().getModel();
@@ -107,7 +107,7 @@ public class MainFrame extends JFrame {
 	 * Ažurira izgled tabele profesora za prosledjeni
 	 * red u tabeli koji je izmenjen.
 	 * 
-	 * @param row	indeks izmenjenog reda tabele profesora	
+	 * @param row indeks izmenjenog reda tabele profesora	
 	 */
 	public void izmeniProfesora(int row) {
 		AbstractTableModelProfesor model = (AbstractTableModelProfesor) TableProfesor.getInstance().getModel();
@@ -119,7 +119,7 @@ public class MainFrame extends JFrame {
 	 * Ažurira izgled tabele predmeta za prosledjeni
 	 * red u tabeli koji je izmenjen.
 	 * 
-	 * @param row	indeks izmenjenog reda tabele predmeta	
+	 * @param row indeks izmenjenog reda tabele predmeta	
 	 */
 	public void izmeniPredmet(int row) {
 		AbstractTableModelPredmet model = (AbstractTableModelPredmet) TablePredmet.getInstance().getModel();

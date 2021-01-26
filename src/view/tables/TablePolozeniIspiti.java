@@ -28,9 +28,9 @@ public class TablePolozeniIspiti extends JTable {
 	private static TablePolozeniIspiti instance = null;
 	
 	/**
-	 * Dobavlja instancu tabele položenih ispita po Singleton konvenciji.
+	 * Dobavlja instancu tabele položenih ispita po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele položenih ispita.
+	 * @return instanca tabele položenih ispita.
 	 */
 	public static TablePolozeniIspiti getInstance() {
 		if (instance == null) {

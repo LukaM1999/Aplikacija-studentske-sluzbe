@@ -28,9 +28,9 @@ public class TableSlobodniProfesori extends JTable {
 	private static TableSlobodniProfesori instance = null;
 	
 	/**
-	 * Dobavlja instancu tabele profesora koji koji mogu da predaju predmete po Singleton konvenciji.
+	 * Dobavlja instancu tabele profesora koji koji mogu da predaju predmete po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele profesora koji mogu da predaju predmete.
+	 * @return instanca tabele profesora koji mogu da predaju predmete.
 	 */
 	public static TableSlobodniProfesori getInstance() {
 		if (instance == null) {

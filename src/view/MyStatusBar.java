@@ -31,7 +31,7 @@ public class MyStatusBar {
 	/**
 	 * Dobavlja objekat statusne trake.
 	 * 
-	 * @return statusBar	objekat statusne trake
+	 * @return objekat statusne trake
 	 */
 	public JPanel getStatusBar() {
 		return this.statusBar;
@@ -41,7 +41,7 @@ public class MyStatusBar {
 	 * Postavlja polje <code>statusBar</code> na vrednost
 	 * prosledjenog objekta statusne trake.
 	 * 
-	 * @param sb	objekat statusne trake
+	 * @param sb objekat statusne trake
 	 */
 	public void setStatusBar(JPanel sb) {
 		this.statusBar = sb;

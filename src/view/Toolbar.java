@@ -44,13 +44,12 @@ import view.tables.TableStudent;
  * bi mogao biti referenciran, traži student koji
  * ima broj indeksa isti kao onaj koji je selektovan
  * za brisanje iz tabele studenata. Isto važi i za profesore
- * i predmete, samo što se oni traže preko broja lične karte(za profesora)
- * i sifre(za predmet).
- * Takodje implementira pretragu entiteta tako što se proveravaju regularni izrazi
+ * i predmete, samo što se oni traže preko broja lične karte (za profesora)
+ * i šifre(za predmet).
+ * Takođe implementira pretragu entiteta tako što se proveravaju regularni izrazi
  * unesene vrednosti od nekoliko mogućih kolona tabele.
  * 
  * @author Mihajlo Kisić
- * @author Luka Miletić
  *
  */
 public class Toolbar extends JToolBar {

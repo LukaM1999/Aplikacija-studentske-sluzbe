@@ -22,10 +22,10 @@ import model.entiteti.Profesor;
 import view.abstractTableModels.AbstractTableModelProfesor;
 
 /**
- * Klasa u kojoj se pravi instanca funkcionalne tabele profesora,
- *  čiji redovi i kolone se mogu jednostruko selektovati. Takođe je
- *  moguće sortirati vrednosti tabele u opadajućem i rastućem poretku
- *  (leksikografski i brojčano). 
+ * Klasa u kojoj se pravi instanca funkcionalne tabele profesora, 
+ * čiji redovi i kolone se mogu jednostruko selektovati. Takođe je 
+ * moguće sortirati vrednosti tabele u opadajućem i rastućem poretku 
+ * (leksikografski i brojčano). 
  * 
  * @author Mihajlo Kisić
  *
@@ -43,9 +43,9 @@ public class TableProfesor extends JTable {
 	private static TableProfesor instance = null;
 	
 	/**
-	 * Dobavlja instancu tabele profesora po Singleton konvenciji.
+	 * Dobavlja instancu tabele profesora po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele profesora.
+	 * @return instanca tabele profesora.
 	 */
 	public static TableProfesor getInstance() {
 		if (instance == null) {
@@ -84,7 +84,6 @@ public class TableProfesor extends JTable {
 	 */
 	private int cetvrta = 0;
 
-	@SuppressWarnings("deprecation")
 	/**
 	 * Kreira tabelu profesora po istoimenom apstraktnom modelu tabele.
 	 * Implementira slušače događaja koji broje koliko puta je kliknuto
@@ -93,6 +92,7 @@ public class TableProfesor extends JTable {
 	 * je izabrano. Onemogućene su ugrađene prečice tabele zbog konflikta sa
 	 * već postojećim prečicama same aplikacije.
 	 */
+	@SuppressWarnings("deprecation")
 	public TableProfesor() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -293,7 +293,7 @@ public class TableProfesor extends JTable {
 	/**
 	 * Dobavlja sorter tabele profesora.
 	 * 
-	 * @return sorter - sorter tabele profesora.
+	 * @return sorter tabele profesora.
 	 */
 	public TableRowSorter<AbstractTableModelProfesor> getSorter() {
 		return sorter;
@@ -302,7 +302,7 @@ public class TableProfesor extends JTable {
 	/**
 	 * Dobavlja listu filtera primenjenih na tabelu profesora.
 	 * 
-	 * @return filters - lista filtera.
+	 * @return lista filtera.
 	 */
 	public ArrayList<RowFilter<Object, Object>> getFilters() {
 		return filters;

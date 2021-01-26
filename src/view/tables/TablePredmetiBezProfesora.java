@@ -30,9 +30,9 @@ public class TablePredmetiBezProfesora extends JTable {
 	
 	/**
 	 * Dobavlja instancu tabele predmeta koje ne predaje nijedan profesor
-	 * po Singleton konvenciji.
+	 * po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele predmeta koje ne predaje nijedan profesor.
+	 * @return instanca tabele predmeta koje ne predaje nijedan profesor.
 	 */
 	public static TablePredmetiBezProfesora getInstance() {
 			if (instance == null) {

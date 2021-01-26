@@ -36,9 +36,9 @@ public class BazaNepolozenihIspita implements Serializable {
 	private static BazaNepolozenihIspita instance = null;
 
 	/**
-	 * Dobavlja instancu baze nepoloženih ispita po Singleton konvenciji.
+	 * Dobavlja instancu baze nepoloženih ispita po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca baze nepoloženih ispita
+	 * @return instanca baze nepoloženih ispita
 	 */
 	public static BazaNepolozenihIspita getInstance() {
 		if (instance == null) {
@@ -102,7 +102,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	/**
 	 * Dobavlja broj kolona tabele nepoloženih ispita.
 	 * 
-	 * @return 5 predefinisan broj kolona tabele nepoloženih ispita
+	 * @return predefinisan broj kolona tabele nepoloženih ispita
 	 */
 	public int getColumnCount() {
 		return 5;
@@ -112,7 +112,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	 * Vraća naziv kolone tabele nepoloženih ispita čiji indeks je prosleđen.
 	 * 
 	 * @param index indeks kolone tabele nepoloženih ispita
-	 * @return kolone[index] naziv kolone iz liste kolona sa prosleđenim indeksom
+	 * @return naziv kolone iz liste kolona sa prosleđenim indeksom
 	 */
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
@@ -123,7 +123,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	 * se u listi nalazi na indeksu koji je prosleđen.
 	 * 
 	 * @param rowIndex indeks reda liste nepoloženih ispita
-	 * @return predmeti[rowIndex] predmet iz liste nepoloženih ispita na prosleđenom indeksu
+	 * @return predmet iz liste nepoloženih ispita na prosleđenom indeksu
 	 */
 	public Predmet getRow(int rowIndex) {
 		return this.predmeti.get(rowIndex);
@@ -135,7 +135,7 @@ public class BazaNepolozenihIspita implements Serializable {
 	 * 
 	 * @param row indeks reda u kom se nalazi željena vrednost
 	 * @param column indeks kolone u kojoj se nalazi željena vrednost
-	 * @return stringVrednost vrednost koja se nalazi u prosleđenoj koloni i redu
+	 * @return vrednost koja se nalazi u prosleđenoj koloni i redu
 	 */
 	public String getValueAt(int row, int column) {
 		Predmet predmet = this.predmeti.get(row);

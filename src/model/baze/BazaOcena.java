@@ -44,9 +44,9 @@ public class BazaOcena implements Serializable {
 	private static BazaOcena instance = null;
 
 	/**
-	 * Dobavlja instancu baze ocena po Singleton konvenciji.
+	 * Dobavlja instancu baze ocena po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca baze ocena
+	 * @return instanca baze ocena
 	 */
 	public static BazaOcena getInstance() {
 		if (instance == null) {
@@ -104,7 +104,7 @@ public class BazaOcena implements Serializable {
 	/**
 	 * Dobavlja listu ocena.
 	 * 
-	 * @return ocene lista ocena
+	 * @return lista ocena
 	 */
 	public List<Ocena> getOcene() {
 		return this.ocene;
@@ -113,7 +113,7 @@ public class BazaOcena implements Serializable {
 	/**
 	 * Postavlja polje liste ocena na prosleđenu listu ocena.
 	 * 
-	 * @param ocene lista predmeta
+	 * @param ocene lista ocena
 	 */
 	public void setOcene(List<Ocena> ocene) {
 		this.ocene = ocene;
@@ -122,7 +122,7 @@ public class BazaOcena implements Serializable {
 	/**
 	 * Dobavlja broj kolona tabele ocena.
 	 * 
-	 * @return 5 predefinisan broj kolona tabele ocena
+	 * @return predefinisan broj kolona tabele ocena
 	 */
 	public int getColumnCount() {
 		return 5;
@@ -132,7 +132,7 @@ public class BazaOcena implements Serializable {
 	 * Vraća naziv kolone tabele ocena čiji indeks je prosleđen.
 	 * 
 	 * @param index indeks kolone tabele ocena
-	 * @return kolone[index] naziv kolone iz liste kolona sa prosleđenim indeksom
+	 * @return naziv kolone iz liste kolona sa prosleđenim indeksom
 	 */
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
@@ -143,7 +143,7 @@ public class BazaOcena implements Serializable {
 	 * se u listi nalazi na indeksu koji je prosleđen.
 	 * 
 	 * @param rowIndex indeks reda liste ocena
-	 * @return ocene[rowIndex] ocena iz liste ocena na prosleđenom indeksu
+	 * @return ocena iz liste ocena na prosleđenom indeksu
 	 */
 	public Ocena getRow(int rowIndex) {
 		return this.ocene.get(rowIndex);
@@ -155,7 +155,7 @@ public class BazaOcena implements Serializable {
 	 * 
 	 * @param row indeks reda u kom se nalazi željena vrednost
 	 * @param column indeks kolone u kojoj se nalazi željena vrednost
-	 * @return stringVrednost vrednost koja se nalazi u prosleđenoj koloni i redu
+	 * @return vrednost koja se nalazi u prosleđenoj koloni i redu
 	 */
 	public String getValueAt(int row, int column) {
 		Ocena ocena = this.ocene.get(row);
@@ -296,7 +296,7 @@ public class BazaOcena implements Serializable {
 	}
 	
 	/**
-	 * Pravi novu ocenu pomoću prosleđenih parametara i dodaje ga u listu ocena.
+	 * Pravi novu ocenu pomoću prosleđenih parametara i dodaje je u listu ocena.
 	 * 
 	 * @param s objekat studenta
 	 * @param p objekat predmeta
@@ -308,7 +308,7 @@ public class BazaOcena implements Serializable {
 	}
 
 	/**
-	 * Pravi novu ocenu pomoću prosleđenog objekta ocene i dodaje ga u listu ocena.
+	 * Pravi novu ocenu pomoću prosleđenog objekta ocene i dodaje je u listu ocena.
 	 * 
 	 * @param o objekat ocene koja se dodaje u listu ocena
 	 */
@@ -353,10 +353,10 @@ public class BazaOcena implements Serializable {
 	 * metoda završava sa radom. U suprotnom prosleđuje objekat nađenog studenta i predmetam kao i vrednost ocene i datun polaganja 
 	 * metodi <code>dodajPolozen</code>.
 	 *  
-	 * @param indeks
-	 * @param sifra
-	 * @param vrednostOcene
-	 * @param datum
+	 * @param indeks indeks studenta
+	 * @param sifra šifra predmeta
+	 * @param vrednostOcene brojčana vrednost ocene (od 6 do 10)
+	 * @param datum datum kada je student sa prosleđenim indeksom položio predmet sa prosleđenom šifrom
 	 */
 	public void dodajPolozen(String indeks, String sifra, int vrednostOcene, LocalDate datum) {
 		List<Student> studenti = StudentController.getInstance().getStudenti();

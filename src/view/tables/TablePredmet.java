@@ -23,10 +23,10 @@ import model.entiteti.Predmet;
 import view.abstractTableModels.AbstractTableModelPredmet;
 
 /**
- * Klasa u kojoj se pravi instanca funkcionalne tabele predmeta,
- *  čiji redovi i kolone se mogu jednostruko selektovati. Takođe je
- *  moguće sortirati vrednosti tabele u opadajućem i rastućem poretku
- *  (leksikografski i brojčano). 
+ * Klasa u kojoj se pravi instanca funkcionalne tabele predmeta, 
+ * čiji redovi i kolone se mogu jednostruko selektovati. Takođe je 
+ * moguće sortirati vrednosti tabele u opadajućem i rastućem poretku 
+ * (leksikografski i brojčano). 
  * 
  * @author Mihajlo Kisić
  *
@@ -44,9 +44,9 @@ public class TablePredmet extends JTable {
 	private static TablePredmet instance = null;
 
 	/**
-	 * Dobavlja instancu tabele predmeta po Singleton konvenciji.
+	 * Dobavlja instancu tabele predmeta po Singleton šablonu.
 	 * 
-	 * @return povratna vrednost instanca tabele predmeta.
+	 * @return instanca tabele predmeta.
 	 */
 	public static TablePredmet getInstance() {
 		if (instance == null) {
@@ -90,7 +90,6 @@ public class TablePredmet extends JTable {
 	 */
 	private int peta = 0;
 	
-	@SuppressWarnings("deprecation")
 	/**
 	 * Kreira tabelu predmeta po istoimenom apstraktnom modelu tabele.
 	 * Implementira slušače događaja koji broje koliko puta je kliknuto
@@ -99,6 +98,7 @@ public class TablePredmet extends JTable {
 	 * je izabrano. Onemogućene su ugrađene prečice tabele zbog konflikta sa
 	 * već postojećim prečicama same aplikacije.
 	 */
+	@SuppressWarnings("deprecation")
 	public TablePredmet() {
 		this.setRowSelectionAllowed(true);
 		this.setColumnSelectionAllowed(true);
@@ -367,7 +367,7 @@ public class TablePredmet extends JTable {
 	/**
 	 * Dobavlja sorter tabele predmeta.
 	 * 
-	 * @return sorter - sorter tabele predmeta.
+	 * @return sorter tabele predmeta.
 	 */
 	public TableRowSorter<AbstractTableModelPredmet> getSorter() {
 		return sorter;
@@ -376,7 +376,7 @@ public class TablePredmet extends JTable {
 	/**
 	 * Dobavlja listu filtera primenjenih na tabelu predmeta.
 	 * 
-	 * @return filters - lista filtera.
+	 * @return lista filtera.
 	 */
 	public ArrayList<RowFilter<Object, Object>> getFilters() {
 		return filters;

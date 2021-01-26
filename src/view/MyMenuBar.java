@@ -54,7 +54,7 @@ import java.util.Iterator;
  * i sifre(za predmet).
  * 
  * @author Luka Miletić
- * @author Mihajlo Kisić
+ * 
  */
 public class MyMenuBar extends JMenuBar {
 

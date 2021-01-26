@@ -23,6 +23,12 @@ import model.entiteti.Student;
 import model.entiteti.Student.Status;
 
 
+/**
+ * Klasa koja predstavlja bazu svih studenata.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class BazaStudenata implements Serializable {
 
 	/**
@@ -30,8 +36,16 @@ public class BazaStudenata implements Serializable {
 	 */
 	private static final long serialVersionUID = -5282477148286140938L;
 
+	/**
+	 * Instanca baze studenata.
+	 */
 	private static BazaStudenata instance = null;
 
+	/**
+	 * Dobavlja instancu baze studenata po Singleton šablonu.
+	 * 
+	 * @return instanca baze studenata
+	 */
 	public static BazaStudenata getInstance() {
 		if (instance == null) {
 			instance = new BazaStudenata();
@@ -39,10 +53,26 @@ public class BazaStudenata implements Serializable {
 		return instance;
 	}
 
+	/**
+	 * Lista svih studenata.
+	 */
 	private List<Student> studenti;
+	
+	/**
+	 * Lista kolona tabele studenata.
+	 */
 	private List<String> kolone;
+	
+	/**
+	 * Niz studenata korišćen pri <code>XStream</code> serijalizaciji.
+	 */
 	private Student[] niz;
 	
+	/**
+	 * Poziva metodu <code>XstreamDeserialization</code> sa prosleđenom putanjom
+	 * datoteke sa svim studentima i dodaje kolone sa predefinisanim nazivima koji se mogu videti
+	 * u zaglavlju tabele studenata.
+	 */
 	private BazaStudenata() {
 
 				 		 		
@@ -62,30 +92,69 @@ public class BazaStudenata implements Serializable {
 
 	}
 
+	/**
+	 * Inicijalizuje listu studenata praznom listom.
+	 */
 	private void init() {
 		this.studenti = new ArrayList<Student>();
 	}
 
+	/**
+	 * Dobavlja listu studenata.
+	 * 
+	 * @return lista studenata
+	 */
 	public List<Student> getStudenti() {
 		return studenti;
 	}
 
+	/**
+	 * Postavlja polje liste studenata na prosleđenu listu studenata.
+	 * 
+	 * @param studenti lista studenata
+	 */
 	public void setStudenti(List<Student> studenti) {
 		this.studenti = studenti;
 	}
 
+	/**
+	 * Dobavlja broj kolona tabele studenata.
+	 * 
+	 * @return predefinisan broj kolona tabele studenata
+	 */
 	public int getColumnCount() {
 		return 6;
 	}
 
+	/**
+	 * Vraća naziv kolone tabele studenata čiji indeks je prosleđen.
+	 * 
+	 * @param index indeks kolone tabele studenata
+	 * @return naziv kolone iz liste kolona sa prosleđenim indeksom
+	 */
 	public String getColumnName(int index) {
 		return this.kolone.get(index);
 	}
 
+	/**
+	 * Dobavlja prosleđeni red iz liste studenata odnosno studenta koji
+	 * se u listi nalazi na indeksu koji je prosleđen.
+	 * 
+	 * @param rowIndex indeks reda liste studenata
+	 * @return student iz liste studenata na prosleđenom indeksu
+	 */
 	public Student getRow(int rowIndex) {
 		return this.studenti.get(rowIndex);
 	}
 
+	/**
+	 * Dobavlja vrednost koja se nalazi na prosleđenom indeksu reda i kolone u tabeli
+	 * studenata u vidu <code>String</code>-a.
+	 * 
+	 * @param row indeks reda u kom se nalazi željena vrednost
+	 * @param column indeks kolone u kojoj se nalazi željena vrednost
+	 * @return vrednost koja se nalazi u prosleđenoj koloni i redu
+	 */
 	public String getValueAt(int row, int column) {
 		Student student = this.studenti.get(row);
 		switch (column) {
@@ -106,6 +175,13 @@ public class BazaStudenata implements Serializable {
 		}
 	}
 
+	/**
+	 * Metoda koja vrši deserijalizaciju datoteke na prosleđenoj putanji.
+	 * Razdvaja slogove po predefinisanom karakteru i dobijene vrednosti
+	 * prosleđuje u metodu <code>dodajStudenta</code>.
+	 * 
+	 * @param putanja putanja datoteke iz koje se vrši deserijalizacija
+	 */
 	public void deserijalizacija(String putanja) {
 		String ime;
 		String prezime;
@@ -166,6 +242,14 @@ public class BazaStudenata implements Serializable {
 
 	}
 
+	/**
+	 * Metoda koja postavlja vrednosti niza studenata na vrednosti studenata iz liste studenata
+	 * i koristi <code>XStream</code> biblioteku da serijalizuje studente iz niza studenata u datoteku
+	 * koja se nalazi na prosleđenoj putanji.
+	 * 
+	 * @param putanja putanja datoteke u koju se serijalizuju studenti
+	 * @throws IOException
+	 */
 	public void XstreamSerialization(String putanja) throws IOException {
 		
 		niz = new Student[studenti.size()];
@@ -195,6 +279,14 @@ public class BazaStudenata implements Serializable {
 		
 	}
 	
+	/**
+	 * Metoda koja poziva inicijalizaciju liste studenata i pomoću <code>XStream</code> 
+	 * biblioteke deserijalizuje studente iz datoteke koja se nalazi na prosleđenoj putanji.
+	 * Na kraju dodaje sve deserijalizovane studente u listu studenata koja predstavlja polje ove klase.
+	 * 
+	 * @param putanja putanja datoteke iz koje se deserijalizuju studenti
+	 * @throws IOException 
+	 */
 	public void XstreamDeserialization(String putanja) throws IOException {
 		
 		init();
@@ -222,6 +314,12 @@ public class BazaStudenata implements Serializable {
 		
 	}
 
+	/**
+	 * Dobavlja studenta koji ima isti indeks kao prosleđeni indeks.
+	 * 
+	 * @param indeks indeks studenta kog želimo da nađemo
+	 * @return objekat studenta
+	 */
 	public Student getStudent(String indeks) {
 		for (Student s : studenti) {
 			if (indeks.equals(s.getBrIndeksa())) {
@@ -231,16 +329,40 @@ public class BazaStudenata implements Serializable {
 		return null;
 	}
 
+	/**
+	 * Pravi novi objekat studenta pomoću proslenih parametara i dodaje ga u listu studenata.
+	 * 
+	 * @param ime ime studenta
+	 * @param prezime prezime studenta
+	 * @param datumRodjenja datum rođenja studenta
+	 * @param adresa adresa stanovanja studenta
+	 * @param telefon kontakt telefon studenta
+	 * @param email email adresa stuudenta
+	 * @param brIndeksa indeks studenta
+	 * @param godinaUpisa godina upisa studenta
+	 * @param trenutnaGodina trenutna godina studija studenta
+	 * @param statusStudenta status studenta u trenutnoj godini studija (budžet/samofinansiranje)
+	 */
 	public void dodajStudenta(String ime, String prezime, LocalDate datumRodjenja, String adresa, String telefon,
 			String email, String brIndeksa, int godinaUpisa, int trenutnaGodina, Status statusStudenta) {
 		this.studenti.add(new Student(ime, prezime, datumRodjenja, adresa, telefon, email, brIndeksa, godinaUpisa,
 				trenutnaGodina, statusStudenta));
 	}
 
+	/**
+	 * Pravi novi objekat studenta pomoću prosleđenog objekta studenta i dodaje ga u listu studenata.
+	 * 
+	 * @param s objekat studenta koji se dodaje u listu studenata
+	 */
 	public void dodajStudenta(Student s) {
 		this.studenti.add(new Student(s));
 	}
-
+	
+	/**
+	 * Uklanja studenta iz liste studenata ako mu je indeks isti kao prosleđeni indeks.
+	 * 
+	 * @param id indeks studenta kog želimo da izbrišemo
+	 */
 	public void izbrisiStudenta(String id) {
 		for (Student s : studenti) {
 			if (s.getBrIndeksa().equals(id)) {
