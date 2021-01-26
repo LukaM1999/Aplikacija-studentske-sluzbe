@@ -33,6 +33,46 @@ import model.entiteti.Student;
 import model.entiteti.Predmet.Semestar;
 import view.tables.TablePredmet;
 
+/**
+ * Klasa predstavlja dijalog izmene predmeta. Sastoji se od tekstualnih polja u
+ * koja se unose informacije o predmetu, njima korespondentnih labela, dugmeta
+ * za potvrdu i odustanak izmene predmeta, kao i dugmad za dodavanje profesora
+ * na predmet i uklanjanje profesora sa predmeta. Za svako tekstualno polje su
+ * vezani slušači događaja koji svaki put kada se promeni sadržaj tekstualnog
+ * polja za koji je vezan, ažurira pokazatelj ispravnosti unosa za to polje.
+ * Dugme potvrde se omogućava tek onda kada su svi pokazatelji postavljeni na
+ * vrednost <code>true</code>, u suprotnom je dugme za potvrdu onemogućeno.
+ * Svako polje koje je korektno popunjeno se boji zelenom bojom kako bi
+ * korisniku bilo dato do znanja da je ispravno uneo tu informaciju o predmetu.
+ * Za dugme potvrde izmene predmeta je takođe vezan slušač događaja u kom se
+ * nalaze dodatne provere. Kada se klikne dugme potvrde, na primer ako predmet
+ * sa istom šifrom već postoji u sistemu pojaviće se novi dijalog koji daje do
+ * znanja referentu da je to slučaj i da treba da promeni šifru predmeta kog
+ * hoće da izmeni. Ako je sve uneto ispravno, polja predmeta koji se menja se
+ * ažuriraju vrednostima unetim u dijalogu izmene predmeta. Slušač događaja
+ * dugmeta za dodavanje profesora na predmet, ako tekstualno polje, koje
+ * predstavlja polje klase, sadrži ime i prezime profesora, radi sledeće. Traži
+ * profesora sa istim imenom i prezimenom u bazi profesora i inicijalizuje
+ * spisak predmeta koje on predaje. Ako je stara šifra predmeta koji se menja
+ * jednaka sa šifrom predmeta iz liste predmeta koje predaje profesor sva polja
+ * predmeta u toj listi se ažuriraju vrednostima polja predmeta koji se menja.
+ * Takođe, ako je šifra predmeta bila menjana u dijalogu izmene predmeta,
+ * uklanja se predmet sa starom šifrom iz liste predmeta koje predaje profesor.
+ * Zatim se za sve studente iz baze studenata inicijalizuju liste položenih,
+ * nepoloženih i predmeta koje mogu da slušaju. Prolazi se kroz njih i ako
+ * predmet koji se nalazi u njima ima staru šifru predmeta, sva polja tog
+ * predmeta se ažuriraju vrednostima polja predmeta koji se izmenio. Na kraju se
+ * poziva metoda za ažuriranje prikaza predmeta preko kontrolera predmeta.
+ * Slušač događaja dugmeta za uklanjanje profesora sa predmeta postavlja polje
+ * profesora predmeta koji se menja na <code>null</code>. Zatim prolazi kroz sve
+ * profesore baze profesora i izbacuje predmet sa izmenjenom šifrom iz njegove
+ * liste predmeta koje predaje. Na kraju briše ime i prezime uklonjenog
+ * profesora iz tekstualnog polja.
+ * 
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class IzmeniPredmetDialog extends JDialog {
 
 	/**
@@ -40,26 +80,74 @@ public class IzmeniPredmetDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 4378274837268901426L;
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa šifre predmeta.
+	 */
 	private String sifraSablon = "\\p{IsUppercase}+[\\p{IsUppercase}0-9]+";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa naziva predmeta.
+	 */
 	private String nazivSablon = "\\p{IsUppercase}(\\p{IsAlphabetic}+)[\\p{IsWhite_Space}\\p{IsAlphabetic}\\p{IsDigit}]*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa broja ESPB poena predmeta.
+	 */
 	private String ESPBSablon = "[1-9]{1,2}0?";
 
+	/**
+	 * Pokazatelj ispravnosti unosa šifre predmeta.
+	 */
 	private boolean sifraKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa naziva predmeta.
+	 */
 	private boolean nazivKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa broja ESPB poena predmeta.
+	 */
 	private boolean ESPBKorektno;
 
+	/**
+	 * Pokazatelj celokupne ispravnosti unosa svih informacija o predmetu.
+	 */
 	private boolean ispravno = true;
 
+	/**
+	 * Dugme potvrde izmene predmeta.
+	 */
 	private JButton ok;
+	
+	/**
+	 * Dugme za dodavanje profesora na predmet.
+	 */
 	private JButton plus;
+	
+	/**
+	 * Dugme za uklanjanje profesora sa predmeta.
+	 */
 	private JButton minus;
 
+	/**
+	 * Tekstualno polje u kom piše ime i prezime profesora koji predaje predmet.
+	 */
 	private static JTextField profesorUnos;
 
+	/**
+	 * Šifra predmeta pre njene izmene u dijalogu.
+	 */
 	private String stara;
 
+	/**
+	 * Kreira dijalog izmene predmeta, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniPredmetDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);

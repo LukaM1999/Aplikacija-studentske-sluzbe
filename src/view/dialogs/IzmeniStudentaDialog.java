@@ -43,6 +43,57 @@ import view.tables.TableStudent;
 import javax.swing.JTabbedPane;
 import javax.swing.JScrollPane;
 
+/**
+ * Klasa predstavlja dijalog izmene studenta. Sastoji se od tabova informacija o
+ * studentu, nepoloženih ispita i položenih ispita studenta. Poziva metode za
+ * inicijalizaciju spiskova nepoloženih i položenih ispita studenta koji se
+ * menja. Prvi tab se sastoji od tekstualnih polja u koja se unose informacije o
+ * studentu(već popunjenih), njima korespondentnih labela i dugmeta za potvrdu i
+ * odustanak izmene studenta. Za svako tekstualno polje su vezani slušači
+ * događaja koji svaki put kada se promeni sadržaj tekstualnog polja za koji je
+ * vezan, ažurira pokazatelj ispravnosti unosa za to polje. Dugme potvrde se
+ * omogućava tek onda kada su svi pokazatelji postavljeni na vrednost
+ * <code>true</code>, u suprotnom je dugme za potvrdu onemogućeno. Svako polje
+ * koje je korektno popunjeno se boji zelenom bojom kako bi korisniku bilo dato
+ * do znanja da je ispravno uneo tu informaciju o studentu. Za dugme potvrde
+ * izmene studenta je takođe vezan slušač događaja u kom se nalaze dodatne
+ * provere. Kada se klikne dugme potvrde, na primer ako student sa istim brojem
+ * indeksa već postoji u sistemu pojaviće se novi dijalog koji daje do znanja
+ * referentu da je to slučaj i da treba da promeni indeks studenta koga hoće da
+ * izmeni. Ako je sve uneto ispravno, otvara se dodatni dijalog potvrde izmene
+ * studenta. Kada se potvrdi izmena klikom na dugme potvrde u tom dijalogu, sva
+ * polja izabranog studenta se ažuriraju novim unetim vrednostima i poziva se
+ * metoda za ažuriranje prikaza studenata preko kontrolera studenata. Drugi tab
+ * se sastoji od tabele predmeta koje je student položio, dugmeta za
+ * poništavanje ocene i labela u kojima se prikazuju prosečna ocena studenta i
+ * ukupan broj ESPB poena. Za dugme poništavanja ocene je vezan slušač događaja.
+ * Za selektovanu ocenu, izbacuje iz njenog predmeta studenta koji je ima iz
+ * liste studenata koji su položili predmet. Zatim dodaje studenta čija je ocena
+ * poništena u listu studenata koji nisu položili predmet, predmeta koji se
+ * nalazi u poništenoj oceni. Poništava ocenu preko kontrolera položenih ispita.
+ * Poziva metodu za računanje proseka i ukupnog broja ESPB poena i ažurira
+ * labele koje ih prikazuju. Na kraju ažurira prikaz studenata, položenih i
+ * nepoloženih ispita. Treći tab se sastoji od tabele nepoloženih predmeta
+ * studenta i dugmadi za dodavanje, brisanje i polaganje nepoloženih predmeta.
+ * Slušač događaja dugmeta za dodavanje nepoloženog predmeta poziva metode
+ * kontrolera predmeta koje student može da sluša za inicijalizaciju svih
+ * spiskova prosleđenog studenta. Poziva konstruktor dijaloga za dodavanje
+ * predmeta koje student može da sluša u listu nepoloženih ispita prosleđujući
+ * mu objekat studenta kome se treba dodati predmet. Na kraju ažurira prikaz
+ * nepoloženih predmeta. Slušač dugmeta za brisanje koristi šifru predmeta iz
+ * selektovanog reda tabele nepoloženih ispita i dodaje studentu koji se menja u
+ * listu slobodnih predmeta predmet iz baze predmeta sa istom šifrom kao
+ * dobavljena. Takođe briše selektovani predmet iz liste nepoloženih predmeta
+ * studenta koji se menja. Na kraju ažurira prikaz nepoloženih ispita. Slušač
+ * dugmeta za polaganje predmeta poziva konstruktor dijaloga za polaganje
+ * predmeta, prosleđujući mu objekat studenta kome se upisuje ocena. Poziva
+ * metodu za računanje proseka i ukupnog broja ESPB poena i ažurira labele koje
+ * ih prikazuju. Na kraju ažurira prikaz studenata, položenih i nepoloženih
+ * ispita.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class IzmeniStudentaDialog extends JDialog {
 
 	/**
@@ -50,53 +101,148 @@ public class IzmeniStudentaDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 7438718548915872276L;
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa imena studenta.
+	 */
 	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa prezimena studenta.
+	 */
 	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa kontakt telefona studenta.
+	 */
 	private String telefonSablon = "[0-9]{8,12}?";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa email adrese studenta.
+	 */
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
 
+	// REFERENCE:
+	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa datuma rođenja studenta.
+	 */
 	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese stanovanja studenta.
+	 */
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa indeksa studenta.
+	 */
 	private String indeksSablon = "([\\p{IsUppercase}]{2}|[\\p{IsUppercase}][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa godine upisa studenta.
+	 */
 	private String upisSablon = "(20[0-9]{2})";
 
+
+	/**
+	 * Instanca tabele položenih ispita studenta.
+	 */
 	private TablePolozeniIspiti polozeniTable;
 
+	/**
+	 * Instanca tabele nepoloženih ispita studenta.
+	 */
 	private TableNepolozeniIspiti nepolozeniTable;
 
+	/**
+	 * Prosečna ocena studenta.
+	 */
 	private double avgOcena = 0;
 
+	/**
+	 * Zbir ESPB poena svih studentovih položenih predmeta.
+	 */
 	private int ukupnoESPB = 0;
 
+	/**
+	 * Labela u kojoj se prikazuje prosek studenta.
+	 */
 	private JLabel prosek;
 
+	/**
+	 * Labela u kojoj se prikazuje ukupan broj ESPB poena studenta.
+	 */
 	private JLabel ESPB;
 
+	/**
+	 * Pokazatelj ispravnosti unosa imena studenta.
+	 */
 	private boolean imeKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa prezimena studenta.
+	 */
 	private boolean prezimeKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa datuma rođenja studenta.
+	 */
 	private boolean datumKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese stanovanja studenta.
+	 */
 	private boolean adresaKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa kontakt telefona studenta.
+	 */
 	private boolean telefonKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa email adrese studenta.
+	 */
 	private boolean emailKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa indeksa studenta.
+	 */
 	private boolean indeksKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa godine upisa studenta.
+	 */
 	private boolean upisKorektno = true;
 
+	/**
+	 * Pokazatelj celokupne ispravnosti unosa svih informacija o studentu, inicijalno postavljen na <code>true</code> jer
+	 * je očekivano da su sva polja korektno popunjena kada se dijalog otvori.
+	 */
 	private boolean ispravno = true;
 
+	/**
+	 * Dugme potvrde dodavanja novog studenta.
+	 */
 	private JButton ok;
-	
+
+	/**
+	 * Indeks studenta pre njegove izmene u dijalogu.
+	 */
 	private String stariIndeks;
 	
 
+	/**
+	 * Kreira dijalog izmene studenta, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes", "static-access" })
 	public IzmeniStudentaDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
@@ -948,6 +1094,13 @@ public class IzmeniStudentaDialog extends JDialog {
 
 	}
 
+	/**
+	 * Računa prosek zaokružen na dve decimale prosleđenog studenta tako što sabira
+	 * vrednost svake ocene iz liste položenih ispita studenta i deli
+	 * ih sa brojem položenih ispita. Takođe računa ukupan broj ESPB poena.
+	 * 
+	 * @param s objekat studenta čiji se prosek i ukupan broj ESPB poena računaju
+	 */
 	public void izracunaj(Student s) {
 		double prosecnaOcena = 0;
 		int brOcena = 0;

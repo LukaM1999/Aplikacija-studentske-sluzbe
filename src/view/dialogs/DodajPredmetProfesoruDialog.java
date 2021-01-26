@@ -19,6 +19,24 @@ import view.tables.TablePredmetiBezProfesora;
 
 import javax.swing.JLabel;
 
+/**
+ * Klasa predstavlja dijalog dodavanja predmeta profesoru.
+ * Sastoji se od tabele predmeta koje ne predaje nijedan profesor i
+ * dugmadi za potvrdu dodavanja i odustanak. Za dugme potvrde dodavanja predmeta
+ * profesoru je vezan slušač događaja koji iz izabranih redova tabele predmeta
+ * koje ne predaje nijedan profesor koristi šifru predmeta. Prolazi kroz predmete bez profesora
+ * prosleđenog profesora u konstruktoru dijaloga i ako nađe predmet sa istom šifrom kao šifra iz selektovanog
+ * reda tabele, briše taj predmet iz liste predmeta baze predmeta koje ne predaje nijedan profesor preko kontrolera
+ * predmeta koje ne predaje nijedan profesor. Zatim prosleđenom profesoru dodaje taj predmet u listu predmeta koje predaje
+ * i briše ga iz liste predmeta koje ne predaje nijedan profesor tako što prosleđuje indeks reda tabele predmeta
+ * koje ne predaje nijedan profesor metodi za brisanje slobodnih predmeta prosleđenog profesora. Takođe se nađenom predmetu
+ * postavlja prosleđeni profesor koji ga sada predaje. Na kraju se ažurira prikaz
+ * predmeta koje ne predaje nijedan profesor i prikaz predmeta koje predaje prosleđeni profesor.
+ * 
+ * 
+ * @author Mihajlo Kisić
+ *
+ */
 public class DodajPredmetProfesoruDialog extends JDialog {
 
 	/**
@@ -26,10 +44,25 @@ public class DodajPredmetProfesoruDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -3417973446528522618L;
 
+	/**
+	 * Instanca tabele predmeta bez profesora.
+	 */
 	private JTable table;
 
+	/**
+	 * Apstraktni model tabele predmeta koje ne predaje nijedan profesor.
+	 */
 	private AbstractTableModelPredmetiBezProfesora model;
 		
+	/**
+	 * Kreira dijalog dodavanja predmeta profesoru, centriran u odnosu
+	 * na prozor iz kog je pozvan konstruktor.
+	 * 
+	 * @param container prozor iz kog se poziva konstruktor dijaloga
+	 * @param title naslov dijaloga
+	 * @param b modalnost dijaloga
+	 * @param p objekat profesora kome se dodaje predmet
+	 */
 	public DodajPredmetProfesoruDialog(Container container, String title, boolean b, Profesor p) {
 		
 		setSize(400,400);

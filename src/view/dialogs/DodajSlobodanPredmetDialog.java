@@ -18,6 +18,22 @@ import model.entiteti.Student;
 import view.abstractTableModels.AbstractTableModelSlobodniPredmeti;
 import view.tables.TableSlobodniPredmeti;
 
+/**
+ * Klasa predstavlja dijalog dodavanja predmeta koje student može da sluša
+ * u listu nepoloženih predmeta studenta. Sastoji se od tabele predmeta koje student
+ * može da sluša i dugmadi za potvrdu dodavanja i odustanak. Za dugme potvrde je
+ * vezan slušač događaja iz izabranog reda tabele dobavlja šifru predmeta i prolazi
+ * kroz listu predmeta koje može da sluša student prosleđen u konstruktoru dijaloga.
+ * Ako se dobavljena šifra predmeta poklapa sa predmetom iz liste predmeta koje student
+ * može da sluša, on se preko kontrolera predmeta koje student može da sluša briše iz
+ * istoimene baze. Takođe se dodaje prosleđenom studentu u listu nepoloženih ispita i
+ * briše iz njegove liste predmeta koje može da sluša tako što se metodi za brisanje slobodnih
+ * predmeta tog studenta prosledi indeks izabranog reda tabele predmeta koje student može da sluša.
+ * Na kraju se ažurira prikaz predmeta koje student može da sluša.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class DodajSlobodanPredmetDialog extends JDialog {
 
 	/**
@@ -25,10 +41,27 @@ public class DodajSlobodanPredmetDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -9037223482256955123L;
 
+	
+	/**
+	 * Instanca tabele predmeta koje student može da sluša.
+	 */
 	private JTable table;
 
+	/**
+	 * Apstraktni model tabele predmeta koje student može da sluša.
+	 */
 	private AbstractTableModelSlobodniPredmeti model;
 
+	/**
+	 * Kreira dijalog dodavanja predmeta koje student može da sluša u njegovu
+	 * listu nepoloženih predmeta, centriran u odnosu na prozor iz kog se poziva
+	 * konstruktor dijaloga.
+	 * 
+	 * @param container prozor iz kog se poziva konstruktor dijaloga
+	 * @param title naslov dijaloga
+	 * @param b modalnost dijaloga
+	 * @param s objekat studenta kome se dodaje predmet u listu nepoloženih ispita
+	 */
 	public DodajSlobodanPredmetDialog(Container container, String title, boolean b, Student s) {
 				
 		

@@ -14,6 +14,14 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Font;
 
+/**
+ * Klasa predstavlja dijalog pomoći korišćenja programa.
+ * Koristi učitavanje .txt datoteke radi boljeg prikaza
+ * informacija u tekstualnom polju dijaloga.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class HelpDialog extends JDialog {
 
 	/**
@@ -21,6 +29,14 @@ public class HelpDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 7532094756704393899L;
 
+	/**
+	 * Kreira dijalog pomoći korišćenja programa, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	public HelpDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 

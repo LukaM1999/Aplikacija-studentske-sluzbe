@@ -27,6 +27,30 @@ import view.MainFrame;
 import javax.swing.JComboBox;
 import java.awt.Color;
 
+/**
+ * Klasa predstavlja dijalog dodavanja novog studenta u informacioni sistem.
+ * Sastoji se od tekstualnih polja u koja se unose informacije o studentu, njima
+ * korespondentnih labela i dugmeta za potvrdu i odustanak dodavanja novog
+ * studenta. Za svako tekstualno polje su vezani slušači događaja koji svaki put
+ * kada se promeni sadržaj tekstualnog polja za koji je vezan, ažurira
+ * pokazatelj ispravnosti unosa za to polje. Dugme potvrde se omogućava tek onda
+ * kada su svi pokazatelji postavljeni na vrednost <code>true</code>, u
+ * suprotnom je dugme za potvrdu onemogućeno. Svako polje koje je korektno
+ * popunjeno se boji zelenom bojom kako bi korisniku bilo dato do znanja da je
+ * ispravno uneo tu informaciju o studentu. Za dugme potvrde dodavanja novog
+ * studenta je takođe vezan slušač događaja u kom se nalaze dodatne provere.
+ * Kada se klikne dugme potvrde, na primer ako student sa istim brojem indeksa
+ * već postoji u sistemu pojaviće se novi dijalog koji daje do znanja referentu
+ * da je to slučaj i da treba da promeni indeks studenta koga hoće da doda. Ako
+ * je sve uneto ispravno, kreira se objekat novog studenta. Ovaj objekat se
+ * dodaje u listu svih studenata baze studenata preko kontrolera studenata.
+ * Takođe mu se dodaju svi predmeti iz baze predmeta preko kontrolera predmeta u
+ * listu predmeta koje može da sluša, ako je studentova trenutna godina studija
+ * veća ili jednaka od godine na kojoj se taj predmet predaje.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class DodajStudentaDialog extends JDialog {
 
 	/**
@@ -36,40 +60,112 @@ public class DodajStudentaDialog extends JDialog {
 
 	// REFERENCE:
 	// https://docs.oracle.com/javase/7/docs/api/java/util/regex/Pattern.html
+	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa imena studenta.
+	 */
 	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa prezimena studenta.
+	 */
 	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa kontakt telefona studenta.
+	 */
 	private String telefonSablon = "[0-9]{8,12}?";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa email adrese studenta.
+	 */
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
 
 	// REFERENCE:
 	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa datuma rođenja studenta.
+	 */
 	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese stanovanja studenta.
+	 */
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa indeksa studenta.
+	 */
 	private String indeksSablon = "([\\p{IsUppercase}]{2}|[\\p{IsUppercase}][1-9])-([0-9]{1,3})-(20[0-9]{2})";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa godine upisa studenta.
+	 */
 	private String upisSablon = "(20[0-9]{2})";
 
+	/**
+	 * Pokazatelj ispravnosti unosa imena studenta.
+	 */
 	private boolean imeKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa prezimena studenta.
+	 */
 	private boolean prezimeKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa datuma rođenja studenta.
+	 */
 	private boolean datumKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese stanovanja studenta.
+	 */
 	private boolean adresaKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa kontakt telefona studenta.
+	 */
 	private boolean telefonKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa email adrese studenta.
+	 */
 	private boolean emailKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa indeksa studenta.
+	 */
 	private boolean indeksKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa godine upisa studenta.
+	 */
 	private boolean upisKorektno;
 
+	/**
+	 * Pokazatelj celokupne ispravnosti unosa svih informacija o studentu, inicijalno postavljen na <code>false</code> kako
+	 * bi dugme potvrde dodavanja novog studenta bilo onemogućeno kada se otvori dijalog.
+	 */
 	private boolean ispravno = false;
 
+	/**
+	 * Dugme potvrde dodavanja novog studenta.
+	 */
 	private JButton ok;
 
+	/**
+	 * Kreira dijalog dodavanja novog studenta, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajStudentaDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);

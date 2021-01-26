@@ -27,7 +27,25 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Pattern;
 import java.awt.event.ActionEvent;
 
-
+/**
+ * Klasa predstavlja dijalog dodavanja novog profesora u informacioni sistem.
+ * Sastoji se od tekstualnih polja u koja se unose informacije o profesoru, njima
+ * korespondentnih labela i dugmeta za potvrdu i odustanak dodavanja novog profesora.
+ * Za svako tekstualno polje su vezani slušači događaja koji svaki put kada se promeni
+ * sadržaj tekstualnog polja za koji je vezan, ažurira pokazatelj ispravnosti unosa za
+ * to polje. Dugme potvrde se omogućava tek onda kada su svi pokazatelji postavljeni na
+ * vrednost <code>true</code>, u suprotnom je dugme za potvrdu onemogućeno. Svako polje
+ * koje je korektno popunjeno se boji zelenom bojom kako bi korisniku bilo dato do znanja
+ * da je ispravno uneo tu informaciju o profesoru. Za dugme potvrde dodavanja novog profesora
+ * je takođe vezan slušač događaja u kom se nalaze dodatne provere. Kada se klikne dugme
+ * potvrde, na primer ako profesor sa istim brojem lične karte već postoji u sistemu pojaviće se
+ * novi dijalog koji daje do znanja referentu da je to slučaj i da treba da promeni broj lične karte
+ * profesora koga hoće da doda. Ako je sve uneto ispravno, kreira se objekat novog profesora.
+ * Ovaj objekat se dodaje u listu svih profesora baze profesora preko kontrolera profesora.
+ * 
+ * @author Mihajlo Kisić
+ *
+ */
 public class DodajProfesoraDialog extends JDialog {
 
 	/**
@@ -35,41 +53,112 @@ public class DodajProfesoraDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = 6293346707131160182L;
 	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa imena profesora.
+	 */
 	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa prezimena profesora.
+	 */
 	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa kontakt telefona profesora.
+	 */
 	private String telefonSablon = "[0-9]{8,12}?";
 
-	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\.)?"
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa email adrese profesora.
+	 */
+	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
 
 	// REFERENCE:
 	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
-	private String datumSablon = "(0?[1-9]|[12][0-9]|3[01]).(0?[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
+	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa datuma rođenja profesora.
+	 */
+	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese stanovanja profesora.
+	 */
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
-	
+
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa broja lične karte profesora.
+	 */
 	private String licnaSablon = "[0-9]{9}";
 	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese kancelarije profesora.
+	 */
 	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
 
+	/**
+	 * Pokazatelj ispravnosti unosa imena profesora.
+	 */
 	private boolean imeKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa prezimena profesora.
+	 */
 	private boolean prezimeKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa datuma rođenja profesora.
+	 */
 	private boolean datumKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese stanovanja profesora.
+	 */
 	private boolean adresaKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa kontakt telefona profesora.
+	 */
 	private boolean telefonKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa email adrese profesora.
+	 */
 	private boolean emailKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa broja lične karte profesora.
+	 */
 	private boolean licnaKorektno;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese kancelarije profesora.
+	 */
 	private boolean kancelarijaKorektno;
 	
+	/**
+	 * Pokazatelj celokupne ispravnosti unosa svih informacija o profesoru, inicijalno postavljen na <code>false</code> kako
+	 * bi dugme potvrde dodavanja novog profesora bilo onemogućeno kada se otvori dijalog.
+	 */
 	private boolean ispravno = false;
 	
+	/**
+	 * Dugme potvrde dodavanja novog profesora.
+	 */
 	private JButton ok;
 	
+	/**
+	 * Kreira dijalog dodavanja novog profesora, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public DodajProfesoraDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);

@@ -29,6 +29,28 @@ import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * Klasa predstavlja dijalog za upis ocene.
+ * Sastoji se od polja u kojima pišu šifra i naziv
+ * predmeta iz kog treba da se upiše ocena, kao i combo
+ * polja za biranje vrednosti ocene, polja za unos datuma
+ * polaganja predmeta, kao i dugmadi za potvrdu i odustanak
+ * upisa ocene. Za poslednje polje je vezan slušač događaja
+ * koji, svaki put kada se promeni sadržaj polja za unos datuma, ažurira
+ * vrednost pokazatelja korektnog unosa za to polje. Dugme potvrde se omogućava tek onda
+ * kada je pokazatelj korektnog unosa datuma postavljen na vrednost <code>true</code>, u
+ * suprotnom je dugme za potvrdu onemogućeno. Kada se klikne dugme potvrde upisa ocene, prolazi
+ * se kroz listu svih predmeta baze predmeta preko kontrolera predmeta i ako je šifra predmeta
+ * kog je student položio ista kao šifra predmeta iz baze, kreira se objekat nove ocene pomoću
+ * prosleđenih parametara u konstruktoru dijaloga i informacija unetih u samom dijalogu.
+ * Zatim se kreirana ocena dodaje u bazu ocena preko kontrolera ocena, prosleđenom studentu
+ * se dodaje ocena u spisak položenih ispita i uklanja mu se predmet iz spiska nepoloženih ispita
+ * tako što se prosledi indeks izabranog reda tabele nepoloženih ispita metodi za brisanje nepoloženog 
+ * predmeta prosleđenog studenta. Na kraju se ažurira prikaz tabele nepoloženih ispita.
+ * 
+ * @author Mihajlo Kisić
+ *
+ */
 public class PolaganjeDialog extends JDialog {
 
 	/**
@@ -36,9 +58,28 @@ public class PolaganjeDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -3632848417475164935L;
 
+	/**
+	 * Dugme potvrde upisa ocene.
+	 */
 	private JButton potvrdi;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa datuma kada je predmet položen.
+	 */
 	private Boolean korektno;
 
+	/**
+	 * Kreira dijalog upisa ocene, centriran u odnosu
+	 * na roditeljski prozor. 
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 * @param tabela instanca tabele nepoloženih ispita
+	 * @param regex regularni izraz kojim se proverava korektnost unosa datuma
+	 * @param s objekat studenta koji je položio predmet
+	 * @param model apstraktni model tabele nepoloženih ispita
+	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public PolaganjeDialog(Frame parent, String title, boolean modal, TableNepolozeniIspiti tabela, String regex,
 			Student s, AbstractTableModelPolozeniIspiti model) {

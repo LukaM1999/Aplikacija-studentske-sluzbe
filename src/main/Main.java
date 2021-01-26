@@ -7,8 +7,19 @@ import javax.swing.JFrame;
 
 import view.MainFrame;
 
+/**
+ * Main klasa.
+ * 
+ * @author Mihajlo Kisić
+ *
+ */
 public class Main {
 
+	/**
+	 * Main metoda koja čini vidljivim glavni prozor studentske službe. 
+	 * 
+	 * @param args argumenti komandne linije
+	 */
 	public static void main(String[] args) {
 		
 		JFrame frame = MainFrame.getInstance();

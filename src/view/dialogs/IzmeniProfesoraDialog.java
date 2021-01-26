@@ -34,6 +34,44 @@ import view.abstractTableModels.AbstractTableModelProfesorPredaje;
 import view.tables.TableProfesor;
 import view.tables.TableProfesorPredaje;
 
+/**
+ * Klasa predstavlja dijalog izmene profesora. Sastoji se od tabova informacija
+ * o profesoru i predmeta koje predaje profesor. Poziva metodu za
+ * inicijalizaciju liste predmeta koje predaje profesor koji se menja preko
+ * kontrolera predmeta koje predaje profesor. Prvi tab se sastoji od tekstualnih
+ * polja u koja se unose informacije o profesoru(već popunjenih), njima
+ * korespondentnih labela i dugmeta za potvrdu i odustanak izmene profesora. Za
+ * svako tekstualno polje su vezani slušači događaja koji svaki put kada se
+ * promeni sadržaj tekstualnog polja za koji je vezan, ažurira pokazatelj
+ * ispravnosti unosa za to polje. Dugme potvrde se omogućava tek onda kada su
+ * svi pokazatelji postavljeni na vrednost <code>true</code>, u suprotnom je
+ * dugme za potvrdu onemogućeno. Svako polje koje je korektno popunjeno se boji
+ * zelenom bojom kako bi korisniku bilo dato do znanja da je ispravno uneo tu
+ * informaciju o profesoru. Za dugme potvrde izmene profesora je takođe vezan
+ * slušač događaja u kom se nalaze dodatne provere. Kada se klikne dugme
+ * potvrde, na primer ako profesor sa istim brojem lične karte već postoji u
+ * sistemu pojaviće se novi dijalog koji daje do znanja referentu da je to
+ * slučaj i da treba da promeni broj lične karte profesora koga hoće da izmeni.
+ * Ako je sve uneto ispravno, otvara se dodatni dijalog potvrde izmene
+ * profesora. Kada se potvrdi izmena klikom na dugme potvrde u tom dijalogu, sva
+ * polja izabranog profesora se ažuriraju novim unetim vrednostima i poziva se
+ * metoda za ažuriranje prikaza profesora preko kontrolera profesora. Drugi tab
+ * se sastoji od tabele predmeta koje student predaje, dugmadi za dodavanje
+ * predmeta i brisanje predmeta. Za dugme dodavanja predmeta je vezan slušač
+ * događaja. On poziva metode kontrolera predmeta koje ne predaje nijedan
+ * profesor za inicijalizaciju svih spiskova prosleđenog profesora. Poziva
+ * konstruktor dijaloga za dodavanje predmeta profesru prosleđujući mu objekat
+ * profesora kome se treba dodati predmet. Na kraju ažurira prikaz predmeta koje
+ * predaje profesor. Slušač dugmeta za uklanjanje predmeta iz izabranih redova
+ * tabele predmeta koje predaje profesor koristi šifru predmeta. Prolazi kroz
+ * sve predmete baze predmeta preko kontrolera predmeta i postavlja vrednost
+ * polja profesora predmeta sa nađenom šifrom na <code>null</code>. Takođe briše
+ * predmet sa nađenom šifrom iz liste predmeta koje predaje profesor koji se
+ * menja. Na kraju ažurira prikaz predmeta koje predaje profesor.
+ * 
+ * @author Mihajlo Kisić
+ *
+ */
 public class IzmeniProfesoraDialog extends JDialog {
 
 	/**
@@ -41,43 +79,116 @@ public class IzmeniProfesoraDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -1719251097886236916L;
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa imena profesora.
+	 */
 	private String imeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa prezimena profesora.
+	 */
 	private String prezimeSablon = "\\p{IsUppercase}\\p{IsAlphabetic}+(\\p{IsWhite_Space}\\p{IsUppercase}\\p{IsAlphabetic}+)*";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa kontakt telefona profesora.
+	 */
 	private String telefonSablon = "[0-9]{8,12}?";
 
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa email adrese profesora.
+	 */
 	private String emailSablon = "([\\p{IsLowercase}\\p{IsUppercase}0-9\\.])+"
 			+ "([\\p{IsLowercase}\\p{IsUppercase}0-9])+(\\@)\\p{IsAlphabetic}+([\\p{IsAlphabetic}\\.])*\\.\\p{IsAlphabetic}+";
+
+	// REFERENCE:
+	// https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
 	
-	//REFERENCE: https://stackoverflow.com/questions/2149680/regex-date-format-validation-on-java
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa datuma rođenja profesora.
+	 */
 	private String datumSablon = "(0[1-9]|[12][0-9]|3[01]).(0[1-9]|1[012]).((18|19|20|21)\\d\\d)\\.";
-	
+
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese stanovanja profesora.
+	 */
 	private String adresaSablon = "\\p{IsUppercase}\\p{IsLowercase}+(\\p{IsWhite_Space}\\p{IsAlphabetic}+)*"
 			+ "(\\p{IsWhite_Space}\\p{IsDigit}+)\\p{IsAlphabetic}?(\\,)(\\p{IsWhite_Space})?\\p{IsUppercase}(\\p{IsLowercase})+"
 			+ "(\\p{IsWhite_Space}\\p{IsUppercase}(\\p{IsLowercase})+)?";
-	
+
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa broja lične karte profesora.
+	 */
 	private String licnaSablon = "[0-9]{9}";
 	
+	/**
+	 * Regularni izraz koji se koristi za proveru korektnosti unosa adrese kancelarije profesora.
+	 */
 	private String kancelarijaSablon = "[a-zA-Z0-9\\p{IsWhite_Space}\\-]+";
 	
+	/**
+	 * Broj lične karte profesora pre njene izmene u dijalogu.
+	 */
 	private String staraLicna;
 	
+	/**
+	 * Pokazatelj ispravnosti unosa imena profesora.
+	 */
 	private boolean imeKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa prezimena profesora.
+	 */
 	private boolean prezimeKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa datuma rođenja profesora.
+	 */
 	private boolean datumKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese stanovanja profesora.
+	 */
 	private boolean adresaKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa kontakt telefona profesora.
+	 */
 	private boolean telefonKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa email adrese profesora.
+	 */
 	private boolean emailKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa broja lične karte profesora.
+	 */
 	private boolean licnaKorektno = true;
+	
+	/**
+	 * Pokazatelj ispravnosti unosa adrese kancelarije profesora.
+	 */
 	private boolean kancelarijaKorektno = true;
-    
+	
+	/**
+	 * Pokazatelj celokupne ispravnosti unosa svih informacija o profesoru, inicijalno postavljen na <code>true</code> jer
+	 * je očekivano da su sva polja korektno popunjena kada se dijalog otvori.
+	 */
 	private boolean ispravno = true;
-
+	
+	/**
+	 * Dugme potvrde izmene profesora.
+	 */
 	private JButton ok;
 	
-	
-	
+	/**
+	 * Kreira dijalog izmene profesora, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public IzmeniProfesoraDialog(MainFrame parent, String title, boolean modal) {
 		super(parent, title, modal);

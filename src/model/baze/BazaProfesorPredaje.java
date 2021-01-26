@@ -1,3 +1,4 @@
+
 package model.baze;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import model.entiteti.Predmet.Semestar;
 public class BazaProfesorPredaje {
 
 	/**
-	 * Instanca bazepredmeta koje predaje profesor.
+	 * Instanca baze predmeta koje predaje profesor.
 	 */
 	private static BazaProfesorPredaje instance = null;
 
@@ -66,8 +67,10 @@ public class BazaProfesorPredaje {
 	}
 	
 	/**
+	 * Inicijalizuje listu predmeta koje predaje profesor listom
+	 * predmeta koje predaje profesor od prosleđenog profesora.
 	 * 
-	 * @param p
+	 * @param p objekat profesora čiju listu predmeta koje predaje koristimo
 	 */
 	public void initPredajePredmet(Profesor p) {
 		this.predmeti = p.getPredajePredmet();

@@ -13,6 +13,14 @@ import javax.swing.JDialog;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
+/**
+ * Klasa predstavlja dijalog informacija o programu.
+ * Koristi učitavanje .txt datoteke radi boljeg prikaza
+ * informacija u tekstualnom polju dijaloga.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class AboutDialog extends JDialog{
 
 	/**
@@ -20,6 +28,14 @@ public class AboutDialog extends JDialog{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * Kreira dijalog informacija o programu, centriran u odnosu
+	 * na glavni prozor.
+	 * 
+	 * @param parent roditeljski prozor dijaloga
+	 * @param title naslov dijaloga
+	 * @param modal modalnost dijaloga
+	 */
 	public AboutDialog(Frame parent, String title, boolean modal) {
 		super(parent, title, modal);
 

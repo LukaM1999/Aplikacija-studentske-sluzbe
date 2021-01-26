@@ -14,6 +14,16 @@ import javax.swing.JTextField;
 import model.entiteti.Predmet;
 import view.tables.TableSlobodniProfesori;
 
+/**
+ * Klasa predstavlja dijalog dodavanja profesora na predmet.
+ * Sastoji se od tabele profesora koji mogu da predaju predmete i
+ * dugmadi za potvrdu dodavanja i odustanak. Za dugme potvrde dodavanja profesora
+ * na predmet je vezan slušač događaja koji iz izabranog reda tabele koristi ime
+ * i prezime profesora i upisuje ih u tekstualno polje prosleđeno u konstruktoru dijaloga.
+ * 
+ * @author Luka Miletić
+ *
+ */
 public class DodajProfesoraNaPredmetDialog extends JDialog {
 
 	/**
@@ -21,8 +31,21 @@ public class DodajProfesoraNaPredmetDialog extends JDialog {
 	 */
 	private static final long serialVersionUID = -8975468915958311560L;
 	
+	/**
+	 * Instanca tabele profesora koji mogu da predaju predmete.
+	 */
 	private TableSlobodniProfesori table;
 		
+	/**
+	 * Kreira dijalog dodavanja profesora na predmet, centriran u odnosu
+	 * na prozor iz kog je pozvan konstruktor.
+	 * 
+	 * @param container prozor iz kog se poziva konstruktor dijaloga
+	 * @param title naslov dijaloga
+	 * @param b modalnost dijaloga
+	 * @param p objekat predmeta
+	 * @param profesorUnos tekstualno polje u kom se nalazi ime i prezime profesora koji predaje predmet
+	 */
 	public DodajProfesoraNaPredmetDialog(Container container, String title, boolean b, Predmet p, JTextField profesorUnos) {
 				
 		
